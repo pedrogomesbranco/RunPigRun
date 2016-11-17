@@ -19,8 +19,9 @@ class Player: SKSpriteNode {
     var jumpTextures = [SKTexture]()
     var slideTextures = [SKTexture]()
     var isRunning: Bool = true
-    var coins: Int = 10
+    var coins: Int = 0
     var score: Int = 0
+    var life: Int = 3
     
     let gameScene = GameScene.sharedInstance
     
@@ -147,6 +148,7 @@ class Player: SKSpriteNode {
         case ColliderTypes.Spikes:
             if let spikes = body.node as? SKSpriteNode {
                 spikes.removeFromParent()
+                self.life-=1
             }
             
         // Player - Ground Collision
@@ -157,6 +159,9 @@ class Player: SKSpriteNode {
             if let spinningWheel = body.node?.parent?.childNode(withName: "sawblade") as? SKSpriteNode {
                 rotateSpinningWheel(node: spinningWheel)
             }
+            
+        case ColliderTypes.SpinningWheel:
+            self.life = 0
             
         case ColliderTypes.Magnet:
             if let magnet = body.node as? SKSpriteNode {

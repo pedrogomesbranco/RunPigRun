@@ -39,7 +39,7 @@ class BlocksGenerator: SKNode {
         backWidth = background.calculateAccumulatedFrame().width.rounded()-1
         
         fgNode = worldNode.childNode(withName: "Foreground")!
-        
+
         // Load Obstacle's scene files
         loadObstacles()
     }

@@ -55,7 +55,7 @@ class GameScene: SKScene {
 
         // HUD
         self.cameraNode.addChild(self.hudNode)
-        self.hud = HUD(lives: 2, coinsCollected: 10, score: 0)
+        self.hud = HUD(lives: player.life, coinsCollected: player.coins, score: 0)
         self.hudNode.addChild(self.hud)
         
         self.hudNode.zPosition = GameLayer.Interface
@@ -78,9 +78,13 @@ class GameScene: SKScene {
         updateCamera()
         
         self.hud.updateCoinsCollected(self.player.coins)
-        self.hud.updateScore(score: 0)
+        self.hud.updateScore(score: player.life)
         
         blocksGenerator.updateLevel(withCameraPosition: cameraNode.position)
+        
+        if player.life <= 0{
+            player.life = 0
+        }
     }
     
     // MARK: - User Interaction
@@ -125,7 +129,6 @@ class GameScene: SKScene {
 extension GameScene: SKPhysicsContactDelegate {
     func didBegin(_ contact: SKPhysicsContact) {
         let other = contact.bodyA.categoryBitMask == ColliderTypes.Player ? contact.bodyB : contact.bodyA
-        
         player.collided(withBody: other)
     }
 }
