@@ -15,11 +15,15 @@ class GameScene: SKScene {
     var player: Player!
     var blocksGenerator: BlocksGenerator!
     let cameraNode = SKCameraNode()
-    private let hudNode = SKNode()
-    private var hud = HUD()
+    let hudNode = SKNode()
+    var hud = HUD()
     
     // Shared Instance
-    static let sharedInstance = GameScene()
+    static let GameSceneSharedInstance = GameScene()
+    
+    class var sharedInstance: GameScene {
+        return GameSceneSharedInstance
+    }
     
     override func didMove(to view: SKView) {
         physicsWorld.contactDelegate = self
@@ -51,7 +55,7 @@ class GameScene: SKScene {
 
         // HUD
         self.cameraNode.addChild(self.hudNode)
-        self.hud = HUD(lives: 2, coinsCollected: 0, score: 0)
+        self.hud = HUD(lives: 2, coinsCollected: 10, score: 0)
         self.hudNode.addChild(self.hud)
         
         self.hudNode.zPosition = GameLayer.Interface
@@ -70,8 +74,12 @@ class GameScene: SKScene {
     
     // MARK: - Game Loop
     override func update(_ currentTime: TimeInterval) {
-        updateCamera()
         player.updatePlayer()
+        updateCamera()
+        
+        self.hud.updateCoinsCollected(self.player.coins)
+        self.hud.updateScore(score: 0)
+        
         blocksGenerator.updateLevel(withCameraPosition: cameraNode.position)
     }
     

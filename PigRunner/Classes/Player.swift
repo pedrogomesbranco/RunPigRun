@@ -19,10 +19,10 @@ class Player: SKSpriteNode {
     var jumpTextures = [SKTexture]()
     var slideTextures = [SKTexture]()
     var isRunning: Bool = true
-    var coins: Int = 0
+    var coins: Int = 10
     var score: Int = 0
     
-    var hud = HUD.sharedInstance
+    let gameScene = GameScene.sharedInstance
     
     // MARK: - Init
     convenience init(imageName: String, pos: CGPoint) {
@@ -69,14 +69,9 @@ class Player: SKSpriteNode {
     func updatePlayer() {
         // Set player's constant velocity
         self.physicsBody?.velocity.dx = CGFloat(velocityX)
-    }
-    
-    func updateScore(_ score: Int) {
-        self.score = score
-    }
-    
-    func updateCoins(_ coins: Int) {
-        self.coins = coins
+        
+        // Update player's score
+        self.score += 1
     }
     
     // MARK: - Movements
@@ -138,7 +133,6 @@ class Player: SKSpriteNode {
         case ColliderTypes.CoinNormal:
             if let coin = body.node as? SKSpriteNode {
                 self.coins += 1
-                self.updateCoins(self.coins)
                 coin.removeFromParent()
             }
             
@@ -146,7 +140,6 @@ class Player: SKSpriteNode {
         case ColliderTypes.CoinSpecial:
             if let specialCoin = body.node as? SKSpriteNode {
                 self.coins += 5
-                self.updateCoins(self.coins)
                 specialCoin.removeFromParent()
             }
             

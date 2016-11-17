@@ -14,6 +14,22 @@
          contextName = "BlocksGenerator.init(withWorldNode : SKNode) -&gt; BlocksGenerator:BlocksGenerator.swift">
       </ContextState>
       <ContextState
+         contextName = "HUD.updateCoinsCollectedWithCoins(Int, score : Int) -&gt; ():HUD.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.coinsLabel.text">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Player.updateCoins(Int) -&gt; ():Player.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.gameScene.hud.coinsLabel.text">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "main:AppDelegate.swift">
          <PersistentStrings>
             <PersistentString

@@ -20,9 +20,6 @@ class HUD: SKNode {
     // MARK: - Public Properties
 //    internal let pauseButton = PauseButton()
     
-    // Shared Instance
-    static let sharedInstance = HUD()
-    
     // MARK: - Init
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -38,7 +35,7 @@ class HUD: SKNode {
         self.zPosition = GameLayer.Interface
         
         self.setupHUDBackground()
-        self.setupHUDCoinsCollected(collected: coinsCollected)
+        self.setupHUDCoins(collected: coinsCollected)
         self.setupHUDScore(score: score)
     }
     
@@ -54,9 +51,9 @@ class HUD: SKNode {
         self.addChild(hudBackground)
     }
     
-    private func setupHUDCoinsCollected(collected: Int) {
+    private func setupHUDCoins(collected: Int) {
         // Coins Sprite
-        self.coinsCollected = GameTextures.sharedInstance.spriteWithName(name: SpriteName.CoinsCollected)
+        self.coinsCollected = SKSpriteNode(imageNamed: "coin")
         self.coinsCollected.setScale(0.2)
         
         let coinOffsetX = self.coinsCollected.size.width*2
@@ -67,42 +64,35 @@ class HUD: SKNode {
         // Coins Collected Label
         self.coinsLabel = GameFonts.sharedInstance.createCoinsLabel(coins: 0)
         
+        let labelOffsetX = coinOffsetX + 150
+        let labelOffsetY = coinOffsetY - self.coinsCollected.size.height/2 + 5
         
-        let labelOffsetX = coinOffsetX + 100
-        let labelOffsetY = coinOffsetY
-        
-        self.coinsLabel.position = CGPoint(x: labelOffsetX, y: labelOffsetY - self.coinsCollected.size.height/2 + 5)
+        self.coinsLabel.position = CGPoint(x: labelOffsetX, y: labelOffsetY)
         
         self.hudBackground.addChild(self.coinsCollected)
         self.hudBackground.addChild(self.coinsLabel)
     }
     
     private func setupHUDScore(score: Int) {
-        self.scoreLabel = SKLabelNode(text: "\(score)")
-        self.scoreLabel.fontName = "Arial"
-        self.scoreLabel.fontSize = 120.0
-        self.scoreLabel.fontColor = SKColor.black
+        self.scoreLabel = GameFonts.sharedInstance.createScoreLabel(score: 0)
         
-        let offsetX = self.hudBackground.size.width * 0.7
-        let offsetY = self.hudBackground.size.height/2
+        let offsetX = self.hudBackground.size.width * 0.9
+        let offsetY = self.hudBackground.size.height/2 - self.coinsCollected.size.height/2 + 5
         
         self.scoreLabel.position = CGPoint(x: offsetX, y: offsetY)
         
         self.hudBackground.addChild(self.scoreLabel)
     }
     
-    func updateCoinsCollectedWithCoins(_ coins: Int, score: Int) {
+    func updateCoinsCollected(_ coins: Int) {
         self.coinsLabel.text = String(coins)
         
         // Animation for label text
-        let scaleUp = SKAction.scale(to: 1.5, duration: 0.12)
-        let scaleNormal = SKAction.scale(to: 1.0, duration: 0.12)
+        let scaleUp = SKAction.scale(to: 0.3, duration: 0.12)
+        let scaleNormal = SKAction.scale(to: 0.2, duration: 0.12)
         let scaleSequence = SKAction.sequence([scaleUp, scaleNormal])
         
         self.coinsCollected.run(scaleSequence)
-        self.scoreLabel.run(scaleSequence)
-        
-        self.updateScore(score: score)
     }
     
     func updateScore(score: Int) {
