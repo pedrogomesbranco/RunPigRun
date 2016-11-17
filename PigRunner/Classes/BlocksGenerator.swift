@@ -99,7 +99,7 @@ class BlocksGenerator: SKNode {
         
         lastItemWidth = platform.size.width / 2.0
         platform.position = lastItemPosition
-        platform.position.y = -495.0
+        platform.position.y = -490.0
         
         platform.physicsBody?.contactTestBitMask = ColliderTypes.Player | ColliderTypes.GarbageCollector
         
