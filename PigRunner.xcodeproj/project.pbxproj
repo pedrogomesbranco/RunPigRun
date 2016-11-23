@@ -15,7 +15,6 @@
 		642C237D1DE63716006DDC53 /* Int+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642C237A1DE63716006DDC53 /* Int+Extensions.swift */; };
 		642C23801DE63729006DDC53 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642C237E1DE63729006DDC53 /* AppDelegate.swift */; };
 		642C23831DE63741006DDC53 /* BIG CAR Short Gun.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 642C23821DE6373F006DDC53 /* BIG CAR Short Gun.ttf */; };
-		642C23851DE63768006DDC53 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 642C23841DE63768006DDC53 /* Info.plist */; };
 		642C23871DE6379E006DDC53 /* SpinningWheel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642C23861DE6379E006DDC53 /* SpinningWheel.swift */; };
 		642DFA441DD8C932003FE64B /* HUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642DFA431DD8C932003FE64B /* HUD.swift */; };
 		645C33E31DCFD0A600ABA4D7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 645C33E11DCFD0A600ABA4D7 /* Main.storyboard */; };
@@ -263,7 +262,6 @@
 				64AF81BF1DD811B700DC654C /* BigBlockOne.sks in Resources */,
 				64FF4EE51DD7D9F400337C2E /* SpinningWheel.sks in Resources */,
 				642C23831DE63741006DDC53 /* BIG CAR Short Gun.ttf in Resources */,
-				642C23851DE63768006DDC53 /* Info.plist in Resources */,
 				645C33FC1DCFD8BA00ABA4D7 /* CoinArrow.sks in Resources */,
 				645C33E51DCFD0A600ABA4D7 /* Assets.xcassets in Resources */,
 				645C33E81DCFD0A600ABA4D7 /* LaunchScreen.storyboard in Resources */,

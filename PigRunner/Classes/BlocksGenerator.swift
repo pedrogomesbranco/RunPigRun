@@ -139,21 +139,7 @@ class BlocksGenerator: SKNode {
     }
     
     func createSpinningWheelNode(_ nodeType: SKSpriteNode, flipX: Bool) {
-        let platform = nodeType.copy() as! SKSpriteNode
-        
-        lastItemPosition.x = lastItemPosition.x +
-            (lastItemWidth + (platform.size.width / 2.0))
-        
-        lastItemWidth = platform.size.width / 2.0
-        platform.position = lastItemPosition
-        platform.position.y = -460.0
-        platform.setScale(0.6)
-        
-        platform.physicsBody?.contactTestBitMask = ColliderTypes.Player | ColliderTypes.GarbageCollector
-        
-        if flipX == true {
-            platform.xScale = -1.6
-        }
+        let platform = SpinningWheel(position: lastItemPosition)
         
         fgNode.addChild(platform)
     }
@@ -175,6 +161,12 @@ class BlocksGenerator: SKNode {
         }
         
         fgNode.addChild(platform)
+    }
+    
+    private func updateLastItem(withPosition position: CGPoint, andWidth width: CGFloat) {
+        lastItemPosition.x = lastItemPosition.x + (lastItemWidth + (width/2.0))
+        
+        lastItemWidth = width/2.0
     }
     
     func addRandomBlockNode() {

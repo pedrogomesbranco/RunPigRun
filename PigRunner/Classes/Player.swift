@@ -114,18 +114,18 @@ class Player: SKSpriteNode {
     
     // TODO: - Remove this function from Player class
     // Create another class for obstacles
-    func rotateSpinningWheel(node: SKSpriteNode) {
-        let rotate = SKAction.rotate(byAngle: CGFloat(M_PI), duration: 0.04)
-        let rotateAction = SKAction.repeat(rotate, count: 12)
-        
-        // After spin animation, apply force towards the player
-        node.run(rotateAction, completion: {
-            let rotate = SKAction.rotate(byAngle: CGFloat(M_PI), duration: 0.04)
-            let rotateAction = SKAction.repeat(rotate, count: 20)
-            node.run(rotateAction)
-            node.physicsBody?.velocity.dx = -1200
-        })
-    }
+//    func rotateSpinningWheel(node: SKSpriteNode) {
+//        let rotate = SKAction.rotate(byAngle: CGFloat(M_PI), duration: 0.04)
+//        let rotateAction = SKAction.repeat(rotate, count: 12)
+//        
+//        // After spin animation, apply force towards the player
+//        node.run(rotateAction, completion: {
+//            let rotate = SKAction.rotate(byAngle: CGFloat(M_PI), duration: 0.04)
+//            let rotateAction = SKAction.repeat(rotate, count: 20)
+//            node.run(rotateAction)
+//            node.physicsBody?.velocity.dx = -1200
+//        })
+//    }
     
     // MARK: - Collision Handling
     func collided(withBody body: SKPhysicsBody) {
@@ -156,8 +156,8 @@ class Player: SKSpriteNode {
             self.land()
             
         case ColliderTypes.Trigger:
-            if let spinningWheel = body.node?.parent?.childNode(withName: "sawblade") as? SKSpriteNode {
-                rotateSpinningWheel(node: spinningWheel)
+            if let spinningWheel = body.node?.parent?.childNode(withName: "sawblade") as? SpinningWheel {
+                spinningWheel.trigger()
             }
             
         case ColliderTypes.SpinningWheel:
