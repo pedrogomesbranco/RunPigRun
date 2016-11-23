@@ -44,8 +44,8 @@ class GameScene: SKScene {
         // Setup player
         player = Player(imageName: "Run_000",
                         pos: CGPoint(x: 0, y: -500),
-                        categoryBitMask: ColliderTypes.Player,
-                        collisionBitMask: ColliderTypes.Ground | ColliderTypes.Spikes)
+                        categoryBitMask: ColliderType.Player,
+                        collisionBitMask: ColliderType.Ground | ColliderType.Spikes)
         blocksGenerator.fgNode.addChild(player)
         
         // Setup camera
@@ -130,7 +130,7 @@ class GameScene: SKScene {
 // MARK: - SKPhysicsContactDelegate
 extension GameScene: SKPhysicsContactDelegate {
     func didBegin(_ contact: SKPhysicsContact) {
-        let other = contact.bodyA.categoryBitMask == ColliderTypes.Player ? contact.bodyB : contact.bodyA
+        let other = contact.bodyA.categoryBitMask == ColliderType.Player ? contact.bodyB : contact.bodyA
         player.collided(withBody: other)
     }
 }

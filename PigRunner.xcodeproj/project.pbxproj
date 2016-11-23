@@ -16,14 +16,18 @@
 		642C23801DE63729006DDC53 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642C237E1DE63729006DDC53 /* AppDelegate.swift */; };
 		642C23831DE63741006DDC53 /* BIG CAR Short Gun.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 642C23821DE6373F006DDC53 /* BIG CAR Short Gun.ttf */; };
 		642C23871DE6379E006DDC53 /* SpinningWheel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642C23861DE6379E006DDC53 /* SpinningWheel.swift */; };
+		642C23891DE64955006DDC53 /* Coin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642C23881DE64955006DDC53 /* Coin.swift */; };
 		642DFA441DD8C932003FE64B /* HUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642DFA431DD8C932003FE64B /* HUD.swift */; };
 		645C33E31DCFD0A600ABA4D7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 645C33E11DCFD0A600ABA4D7 /* Main.storyboard */; };
 		645C33E51DCFD0A600ABA4D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 645C33E41DCFD0A600ABA4D7 /* Assets.xcassets */; };
 		645C33E81DCFD0A600ABA4D7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 645C33E61DCFD0A600ABA4D7 /* LaunchScreen.storyboard */; };
-		645C33FA1DCFD8A800ABA4D7 /* Spikes_Two.sks in Resources */ = {isa = PBXBuildFile; fileRef = 645C33F91DCFD8A800ABA4D7 /* Spikes_Two.sks */; };
+		645C33FA1DCFD8A800ABA4D7 /* Spikes.sks in Resources */ = {isa = PBXBuildFile; fileRef = 645C33F91DCFD8A800ABA4D7 /* Spikes.sks */; };
 		645C33FC1DCFD8BA00ABA4D7 /* CoinArrow.sks in Resources */ = {isa = PBXBuildFile; fileRef = 645C33FB1DCFD8BA00ABA4D7 /* CoinArrow.sks */; };
-		64AF81BF1DD811B700DC654C /* BigBlockOne.sks in Resources */ = {isa = PBXBuildFile; fileRef = 64AF81BE1DD811B700DC654C /* BigBlockOne.sks */; };
-		64AF81C11DD812EA00DC654C /* CoinsWritten.sks in Resources */ = {isa = PBXBuildFile; fileRef = 64AF81C01DD812EA00DC654C /* CoinsWritten.sks */; };
+		645C8F211DE651B1002E68C2 /* Obstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645C8F201DE651B1002E68C2 /* Obstacle.swift */; };
+		645DB06E1DE65C7C00CE79F4 /* Spike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645DB06D1DE65C7C00CE79F4 /* Spike.swift */; };
+		645DB0701DE65E4300CE79F4 /* BlockSpawner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645DB06F1DE65E4300CE79F4 /* BlockSpawner.swift */; };
+		64AF81BF1DD811B700DC654C /* SmileAndTrigger.sks in Resources */ = {isa = PBXBuildFile; fileRef = 64AF81BE1DD811B700DC654C /* SmileAndTrigger.sks */; };
+		64AF81C11DD812EA00DC654C /* CoinSmile.sks in Resources */ = {isa = PBXBuildFile; fileRef = 64AF81C01DD812EA00DC654C /* CoinSmile.sks */; };
 		64FF4EE51DD7D9F400337C2E /* SpinningWheel.sks in Resources */ = {isa = PBXBuildFile; fileRef = 64FF4EE41DD7D9F400337C2E /* SpinningWheel.sks */; };
 		790679E41DDE250800F8BA7A /* GameFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790679E31DDE250800F8BA7A /* GameFonts.swift */; };
 		793D1B671DD0D035008A7B9E /* BlocksGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793D1B661DD0D035008A7B9E /* BlocksGenerator.swift */; };
@@ -44,15 +48,19 @@
 		642C23821DE6373F006DDC53 /* BIG CAR Short Gun.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "BIG CAR Short Gun.ttf"; path = "Resources/BIG CAR Short Gun.ttf"; sourceTree = "<group>"; };
 		642C23841DE63768006DDC53 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		642C23861DE6379E006DDC53 /* SpinningWheel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SpinningWheel.swift; path = Classes/Obstacles/SpinningWheel.swift; sourceTree = "<group>"; };
+		642C23881DE64955006DDC53 /* Coin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Coin.swift; path = Classes/Obstacles/Coin.swift; sourceTree = "<group>"; };
 		642DFA431DD8C932003FE64B /* HUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HUD.swift; path = pigrunner/Classes/HUD.swift; sourceTree = SOURCE_ROOT; };
 		645C33D41DCFD0A600ABA4D7 /* PigRunner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PigRunner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		645C33E21DCFD0A600ABA4D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		645C33E41DCFD0A600ABA4D7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		645C33E71DCFD0A600ABA4D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		645C33F91DCFD8A800ABA4D7 /* Spikes_Two.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = Spikes_Two.sks; path = Scenes/Obstacles/Spikes_Two.sks; sourceTree = "<group>"; };
+		645C33F91DCFD8A800ABA4D7 /* Spikes.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = Spikes.sks; path = Scenes/Obstacles/Spikes.sks; sourceTree = "<group>"; };
 		645C33FB1DCFD8BA00ABA4D7 /* CoinArrow.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = CoinArrow.sks; path = Scenes/Coins/CoinArrow.sks; sourceTree = "<group>"; };
-		64AF81BE1DD811B700DC654C /* BigBlockOne.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = BigBlockOne.sks; path = "pigrunner/scenes/Big Blocks/BigBlockOne.sks"; sourceTree = SOURCE_ROOT; };
-		64AF81C01DD812EA00DC654C /* CoinsWritten.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = CoinsWritten.sks; path = pigrunner/scenes/Coins/CoinsWritten.sks; sourceTree = SOURCE_ROOT; };
+		645C8F201DE651B1002E68C2 /* Obstacle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Obstacle.swift; path = Classes/Obstacles/Obstacle.swift; sourceTree = "<group>"; };
+		645DB06D1DE65C7C00CE79F4 /* Spike.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Spike.swift; path = Classes/Obstacles/Spike.swift; sourceTree = "<group>"; };
+		645DB06F1DE65E4300CE79F4 /* BlockSpawner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlockSpawner.swift; path = Classes/Obstacles/BlockSpawner.swift; sourceTree = "<group>"; };
+		64AF81BE1DD811B700DC654C /* SmileAndTrigger.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = SmileAndTrigger.sks; path = "pigrunner/scenes/Big Blocks/SmileAndTrigger.sks"; sourceTree = SOURCE_ROOT; };
+		64AF81C01DD812EA00DC654C /* CoinSmile.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = CoinSmile.sks; path = pigrunner/scenes/Coins/CoinSmile.sks; sourceTree = SOURCE_ROOT; };
 		64FF4EE41DD7D9F400337C2E /* SpinningWheel.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = SpinningWheel.sks; path = pigrunner/scenes/Obstacles/SpinningWheel.sks; sourceTree = SOURCE_ROOT; };
 		790679E31DDE250800F8BA7A /* GameFonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameFonts.swift; path = pigrunner/Classes/GameFonts.swift; sourceTree = SOURCE_ROOT; };
 		793D1B661DD0D035008A7B9E /* BlocksGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlocksGenerator.swift; path = Classes/BlocksGenerator.swift; sourceTree = "<group>"; };
@@ -76,7 +84,11 @@
 		642C23711DE63669006DDC53 /* Obstacles */ = {
 			isa = PBXGroup;
 			children = (
+				645C8F201DE651B1002E68C2 /* Obstacle.swift */,
 				642C23861DE6379E006DDC53 /* SpinningWheel.swift */,
+				642C23881DE64955006DDC53 /* Coin.swift */,
+				645DB06D1DE65C7C00CE79F4 /* Spike.swift */,
+				645DB06F1DE65E4300CE79F4 /* BlockSpawner.swift */,
 			);
 			name = Obstacles;
 			sourceTree = "<group>";
@@ -112,7 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				642C23721DE636C7006DDC53 /* GameScene.sks */,
-				64AF81BB1DD8119200DC654C /* Big Blocks */,
+				64AF81BB1DD8119200DC654C /* Blocks */,
 				645C33F81DCFD87500ABA4D7 /* Coins */,
 				645C33F31DCFD6A800ABA4D7 /* Obstacles */,
 			);
@@ -159,7 +171,7 @@
 		645C33F31DCFD6A800ABA4D7 /* Obstacles */ = {
 			isa = PBXGroup;
 			children = (
-				645C33F91DCFD8A800ABA4D7 /* Spikes_Two.sks */,
+				645C33F91DCFD8A800ABA4D7 /* Spikes.sks */,
 				64FF4EE41DD7D9F400337C2E /* SpinningWheel.sks */,
 			);
 			name = Obstacles;
@@ -170,7 +182,7 @@
 			children = (
 				645C33FB1DCFD8BA00ABA4D7 /* CoinArrow.sks */,
 				798C5FB21DD0CCEE00CA0FB5 /* CoinSpecialArrow.sks */,
-				64AF81C01DD812EA00DC654C /* CoinsWritten.sks */,
+				64AF81C01DD812EA00DC654C /* CoinSmile.sks */,
 			);
 			name = Coins;
 			sourceTree = "<group>";
@@ -185,12 +197,12 @@
 			name = Extensions;
 			sourceTree = "<group>";
 		};
-		64AF81BB1DD8119200DC654C /* Big Blocks */ = {
+		64AF81BB1DD8119200DC654C /* Blocks */ = {
 			isa = PBXGroup;
 			children = (
-				64AF81BE1DD811B700DC654C /* BigBlockOne.sks */,
+				64AF81BE1DD811B700DC654C /* SmileAndTrigger.sks */,
 			);
-			name = "Big Blocks";
+			name = Blocks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -254,12 +266,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				64AF81C11DD812EA00DC654C /* CoinsWritten.sks in Resources */,
+				64AF81C11DD812EA00DC654C /* CoinSmile.sks in Resources */,
 				645C33E31DCFD0A600ABA4D7 /* Main.storyboard in Resources */,
 				642C23731DE636C7006DDC53 /* GameScene.sks in Resources */,
 				798C5FB31DD0CCEE00CA0FB5 /* CoinSpecialArrow.sks in Resources */,
-				645C33FA1DCFD8A800ABA4D7 /* Spikes_Two.sks in Resources */,
-				64AF81BF1DD811B700DC654C /* BigBlockOne.sks in Resources */,
+				645C33FA1DCFD8A800ABA4D7 /* Spikes.sks in Resources */,
+				64AF81BF1DD811B700DC654C /* SmileAndTrigger.sks in Resources */,
 				64FF4EE51DD7D9F400337C2E /* SpinningWheel.sks in Resources */,
 				642C23831DE63741006DDC53 /* BIG CAR Short Gun.ttf in Resources */,
 				645C33FC1DCFD8BA00ABA4D7 /* CoinArrow.sks in Resources */,
@@ -277,16 +289,20 @@
 			files = (
 				642C23871DE6379E006DDC53 /* SpinningWheel.swift in Sources */,
 				642C23801DE63729006DDC53 /* AppDelegate.swift in Sources */,
+				645DB06E1DE65C7C00CE79F4 /* Spike.swift in Sources */,
 				793D1B671DD0D035008A7B9E /* BlocksGenerator.swift in Sources */,
 				642DFA441DD8C932003FE64B /* HUD.swift in Sources */,
 				642C23771DE636F1006DDC53 /* GameViewController.swift in Sources */,
 				796BD57C1DDE20A9001985F0 /* GameTextures.swift in Sources */,
+				642C23891DE64955006DDC53 /* Coin.swift in Sources */,
 				642C23761DE636F1006DDC53 /* GameScene.swift in Sources */,
+				645DB0701DE65E4300CE79F4 /* BlockSpawner.swift in Sources */,
 				79BA49CF1DD0B86B0029EEF8 /* Player.swift in Sources */,
 				642C237B1DE63716006DDC53 /* CGFloat+Extensions.swift in Sources */,
 				642C237C1DE63716006DDC53 /* CGPoint+Extensions.swift in Sources */,
 				790679E41DDE250800F8BA7A /* GameFonts.swift in Sources */,
 				642C237D1DE63716006DDC53 /* Int+Extensions.swift in Sources */,
+				645C8F211DE651B1002E68C2 /* Obstacle.swift in Sources */,
 				79BA49D11DD0BA690029EEF8 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

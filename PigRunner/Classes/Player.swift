@@ -27,7 +27,7 @@ class Player: SKSpriteNode {
     
     // MARK: - Init
     convenience init(imageName: String, pos: CGPoint) {
-        self.init(imageName: imageName, pos: pos, categoryBitMask: ColliderTypes.Player, collisionBitMask: ColliderTypes.Ground)
+        self.init(imageName: imageName, pos: pos, categoryBitMask: ColliderType.Player, collisionBitMask: ColliderType.Ground)
     }
     
     init(imageName: String, pos: CGPoint, categoryBitMask: UInt32, collisionBitMask: UInt32) {
@@ -112,58 +112,43 @@ class Player: SKSpriteNode {
         }
     }
     
-    // TODO: - Remove this function from Player class
-    // Create another class for obstacles
-//    func rotateSpinningWheel(node: SKSpriteNode) {
-//        let rotate = SKAction.rotate(byAngle: CGFloat(M_PI), duration: 0.04)
-//        let rotateAction = SKAction.repeat(rotate, count: 12)
-//        
-//        // After spin animation, apply force towards the player
-//        node.run(rotateAction, completion: {
-//            let rotate = SKAction.rotate(byAngle: CGFloat(M_PI), duration: 0.04)
-//            let rotateAction = SKAction.repeat(rotate, count: 20)
-//            node.run(rotateAction)
-//            node.physicsBody?.velocity.dx = -1200
-//        })
-//    }
-    
     // MARK: - Collision Handling
     func collided(withBody body: SKPhysicsBody) {
         switch body.categoryBitMask {
         // Player - Coin Collision
-        case ColliderTypes.CoinNormal:
-            if let coin = body.node as? SKSpriteNode {
+        case ColliderType.CoinNormal:
+            if let coin = body.node as? Coin {
                 self.coins += 1
-                coin.removeFromParent()
+                coin.collectedCoin()
             }
             
         // Player - Special Coin Collision
-        case ColliderTypes.CoinSpecial:
-            if let specialCoin = body.node as? SKSpriteNode {
+        case ColliderType.CoinSpecial:
+            if let specialCoin = body.node as? Coin {
                 self.coins += 5
-                specialCoin.removeFromParent()
+                specialCoin.collectedCoin()
             }
             
         // Player - Spike Collision
-        case ColliderTypes.Spikes:
+        case ColliderType.Spikes:
             if let spikes = body.node as? SKSpriteNode {
                 spikes.removeFromParent()
                 self.life-=1
             }
             
         // Player - Ground Collision
-        case ColliderTypes.Ground:
+        case ColliderType.Ground:
             self.land()
             
-        case ColliderTypes.Trigger:
+        case ColliderType.Trigger:
             if let spinningWheel = body.node?.parent?.childNode(withName: "sawblade") as? SpinningWheel {
                 spinningWheel.trigger()
             }
             
-        case ColliderTypes.SpinningWheel:
+        case ColliderType.SpinningWheel:
             self.life = 0
             
-        case ColliderTypes.Magnet:
+        case ColliderType.Magnet:
             if let magnet = body.node as? SKSpriteNode {
                 self.collectedMagnet()
                 magnet.removeFromParent()

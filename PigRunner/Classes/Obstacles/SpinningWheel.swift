@@ -8,13 +8,14 @@
 
 import SpriteKit
 
-class SpinningWheel: SKSpriteNode {
+class SpinningWheel: Obstacle {
     var defaultWheel: SKSpriteNode {
         get {
-            let spinningWheel = SKSpriteNode(fileNamed: "SpinningWheel")!
+            let scene = SKNode(fileNamed: "SpinningWheel")!
+            let spinningWheel = scene.childNode(withName: "Block") as! SKSpriteNode
             
             spinningWheel.setScale(0.5)
-            spinningWheel.physicsBody?.contactTestBitMask = ColliderTypes.Player | ColliderTypes.GarbageCollector
+            spinningWheel.physicsBody?.contactTestBitMask = ColliderType.Player | ColliderType.GarbageCollector
             
             return spinningWheel
         }

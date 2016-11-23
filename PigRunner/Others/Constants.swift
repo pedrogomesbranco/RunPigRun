@@ -9,7 +9,7 @@
 import SpriteKit
 import Foundation
 
-struct ColliderTypes {
+struct ColliderType {
     static let None: UInt32             = 0
     static let Player: UInt32           = 0b1       // 1
     static let Ground: UInt32           = 0b10      // 2
@@ -21,6 +21,17 @@ struct ColliderTypes {
     static let Magnet: UInt32           = 0b10000000 // 128
     static let MagneticField: UInt32    = 0b100000000 // 256
     static let GarbageCollector: UInt32 = 0b1000000000 // 512
+}
+
+enum CoinBlock: UInt32 {
+    case Arrow          = 0
+    case SpecialArrow   = 0b1   // 1
+    case Smile          = 0b10  // 2
+}
+
+enum CoinType: UInt32 {
+    case Normal         = 0
+    case Special        = 0b1   // 1
 }
 
 struct GameLayer {
