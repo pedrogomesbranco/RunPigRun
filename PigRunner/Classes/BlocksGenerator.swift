@@ -12,10 +12,13 @@ import SpriteKit
 class BlocksGenerator: SKNode {
     // MARK: - Properties
     var background: SKNode!
+    var backImage: SKSpriteNode!
     var backWidth: CGFloat = 0.0
     var lastItemPosition = CGPoint.zero
     var lastItemWidth: CGFloat = 0.0
     var levelX: CGFloat = 0.0
+    
+    var image = UIImage()
     
     var bgNode = SKNode()
     var fgNode = SKNode()
@@ -36,10 +39,17 @@ class BlocksGenerator: SKNode {
         bgNode = worldNode.childNode(withName: "Background")!
         
         background = bgNode.childNode(withName: "Block")!.copy() as! SKNode
+        
+        backImage = background.childNode(withName: "bg_1") as! SKSpriteNode!
+        
         backWidth = background.calculateAccumulatedFrame().width.rounded()-1
         
         fgNode = worldNode.childNode(withName: "Foreground")!
 
+        DispatchQueue.global(qos: .background).async {
+            self.image = self.imageWithImage(source: UIImage(named: "full-background")!, rotatedByHue: CGFloat(arc4random()))
+        }
+        
         // Load Obstacle's scene files
         loadObstacles()
     }
@@ -47,6 +57,24 @@ class BlocksGenerator: SKNode {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    func changeBackground(){
+        backImage.texture = SKTexture(image: image)
+    }
+    
+    func imageWithImage(source: UIImage, rotatedByHue: CGFloat) -> UIImage {
+        let sourceCore = CIImage(cgImage: source.cgImage!)
+        let hueAdjust = CIFilter(name: "CIHueAdjust")
+        hueAdjust?.setDefaults()
+        hueAdjust?.setValue(sourceCore, forKey: "inputImage")
+        hueAdjust?.setValue(CGFloat(rotatedByHue), forKey: "inputAngle")
+        let resultCore = hueAdjust?.value(forKey: "outputImage") as! CIImage!
+        let context = CIContext(options: nil)
+        let resultRef = context.createCGImage(resultCore!, from: resultCore!.extent)
+        let result = UIImage(cgImage: resultRef!)
+        return result
+    }
+    
     
     func setupInitialLevel() {
         // Fill level with random blocks (coins and obstacles)
@@ -151,9 +179,7 @@ class BlocksGenerator: SKNode {
     
     func addRandomBlockNode() {
         let blockSprite: SKSpriteNode!
-        
         let random = Int.random(min: 1, max: 100)
-        
         if random <= spikesPercentage {
             blockSprite = spikesTwo
             createSpikeNode(blockSprite, flipX: false)
@@ -180,11 +206,13 @@ class BlocksGenerator: SKNode {
     }
     
     // Background
+    
     func createBackgroundNode() {
+            DispatchQueue.main.async {
+                self.changeBackground()
+            }
         let backNode = background.copy() as! SKNode
-        
         backNode.position = CGPoint(x: levelX, y: 0.0)
-        
         bgNode.addChild(backNode)
         levelX += backWidth
     }

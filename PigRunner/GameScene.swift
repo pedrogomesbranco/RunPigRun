@@ -61,6 +61,7 @@ class GameScene: SKScene {
         self.hudNode.zPosition = GameLayer.Interface
     }
     
+    
     func setupGestures() {
         // Setup tap interaction control
         let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(GameScene.tapped))
@@ -85,6 +86,7 @@ class GameScene: SKScene {
         if player.life <= 0{
             player.life = 0
         }
+        
     }
     
     // MARK: - User Interaction
