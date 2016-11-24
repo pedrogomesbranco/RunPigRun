@@ -8,23 +8,23 @@
 
 import SpriteKit
 
-class Spike: Obstacle {
-    var defaultSpike: SKSpriteNode {
-        get {
-            let scene = SKNode(fileNamed: "Spikes")!
-            let spikes = scene.childNode(withName: "Block") as! SKSpriteNode
-            
-            spikes.physicsBody?.contactTestBitMask = ColliderType.Player | ColliderType.GarbageCollector
-            
-            return spikes
-        }
-    }
+class Spike: SKSpriteNode {
+    // MARK: - Properties
+    var nodeWidth: CGFloat = 0.0
+    var nodeToSpawn: SKSpriteNode!
     
-    // MARK: - Init
-    convenience init(position: CGPoint) {
-        self.init()
+    // MARK: - Methods
+    func spawnSpike(at pos: CGPoint, onNode node: SKNode) {
+        let scene = SKNode(fileNamed: "Spikes")!
+        self.nodeToSpawn = scene.childNode(withName: "Block") as! SKSpriteNode!
         
-        defaultSpike.position = position
-        defaultSpike.position.y = -490
+        self.nodeToSpawn.position = pos
+        self.nodeToSpawn.position.y = -500
+        self.nodeToSpawn.physicsBody?.contactTestBitMask = ColliderType.Player | ColliderType.GarbageCollector
+        
+        self.nodeWidth = self.nodeToSpawn.size.width
+        
+        self.nodeToSpawn.removeFromParent()
+        node.addChild(self.nodeToSpawn)
     }
 }

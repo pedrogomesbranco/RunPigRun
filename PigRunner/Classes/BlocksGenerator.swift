@@ -59,41 +59,45 @@ class BlocksGenerator: SKNode {
     }
     
     func createCoinNode(block: CoinBlock) {
-        let coinNode = Coin(block: block, position: lastItemPosition)
+        let coinNode = Coin()
+        coinNode.spawnCoin(block: block, at: lastItemPosition, onNode: fgNode)
         
-        updateLastItem(withPosition: coinNode.position, andWidth: coinNode.coinSpecialArrow.size.width)
+        updateLastItem(width: coinNode.nodeWidth)
         
-        fgNode.addChild(coinNode)
+        //fgNode.addChild(coinNode)
     }
     
     func createSpinningWheelNode() {
-        let spinningWheel = SpinningWheel(position: lastItemPosition)
+        let spinningWheel = SpinningWheel()
+        spinningWheel.spawnSpinningWheel(at: lastItemPosition, onNode: fgNode)
         
-        updateLastItem(withPosition: spinningWheel.position, andWidth: spinningWheel.defaultWheel.size.width)
+        updateLastItem(width: spinningWheel.nodeWidth)
         
-        fgNode.addChild(spinningWheel)
+        //fgNode.addChild(spinningWheel)
     }
     
     func createSpikeNode() {
-        let spikes = Spike(position: lastItemPosition)
+        let spikes = Spike()
+        spikes.spawnSpike(at: lastItemPosition, onNode: fgNode)
         
-        updateLastItem(withPosition: spikes.position, andWidth: spikes.defaultSpike.size.width)
+        updateLastItem(width: spikes.nodeWidth)
         
-        fgNode.addChild(spikes)
+        //fgNode.addChild(spikes)
     }
     
     func createBigBlockOneNode() {
-        let platform = BlockSpawner(position: lastItemPosition)
+        let block = BlockSpawner()
+        block.spawnBlock(at: lastItemPosition, onNode: fgNode)
         
-        updateLastItem(withPosition: platform.position, andWidth: platform.smileAndTriggerBlock.size.width)
+        updateLastItem(width: block.nodeWidth)
         
-        fgNode.addChild(platform)
+        //fgNode.addChild(platform)
     }
     
-    private func updateLastItem(withPosition position: CGPoint, andWidth width: CGFloat) {
+    private func updateLastItem(width: CGFloat) {
         lastItemPosition.x = lastItemPosition.x + (lastItemWidth + (width/2.0))
         
-        lastItemWidth = width/2.0
+        lastItemWidth = width
     }
     
     func addRandomBlockNode() {

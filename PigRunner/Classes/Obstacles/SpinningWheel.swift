@@ -8,26 +8,10 @@
 
 import SpriteKit
 
-class SpinningWheel: Obstacle {
-    var defaultWheel: SKSpriteNode {
-        get {
-            let scene = SKNode(fileNamed: "SpinningWheel")!
-            let spinningWheel = scene.childNode(withName: "Block") as! SKSpriteNode
-            
-            spinningWheel.setScale(0.5)
-            spinningWheel.physicsBody?.contactTestBitMask = ColliderType.Player | ColliderType.GarbageCollector
-            
-            return spinningWheel
-        }
-    }
-    
-    // MARK: - Init
-    convenience init(position: CGPoint) {
-        self.init()
-        
-        defaultWheel.position = position
-        defaultWheel.position.y = -460.0
-    }
+class SpinningWheel: SKSpriteNode {
+    // MARK: - Properties
+    var nodeWidth: CGFloat = 0.0
+    var nodeToSpawn: SKSpriteNode!
     
     // MARK: - Methods
     func trigger() {
@@ -41,5 +25,19 @@ class SpinningWheel: Obstacle {
             self.run(rotateAction)
             self.physicsBody?.velocity.dx = -1200
         })
+    }
+
+    func spawnSpinningWheel(at pos: CGPoint, onNode node: SKNode) {
+        let scene = SKNode(fileNamed: "SpinningWheel")!
+        self.nodeToSpawn = scene.childNode(withName: "Block") as! SKSpriteNode!
+        
+        self.nodeToSpawn.position = pos
+        self.nodeToSpawn.position.y = -460.0
+        self.nodeToSpawn.physicsBody?.contactTestBitMask = ColliderType.Player | ColliderType.GarbageCollector
+        
+        self.nodeWidth = self.nodeToSpawn.size.width
+        
+        self.nodeToSpawn.removeFromParent()
+        node.addChild(self.nodeToSpawn)
     }
 }

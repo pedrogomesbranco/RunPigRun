@@ -8,23 +8,23 @@
 
 import SpriteKit
 
-class BlockSpawner: Obstacle {
-    var smileAndTriggerBlock: SKSpriteNode {
-        get {
-            let scene = SKNode(fileNamed: "SmileAndTrigger")!
-            let node = scene.childNode(withName: "Block") as! SKSpriteNode
-            
-            node.physicsBody?.contactTestBitMask = ColliderType.Player | ColliderType.GarbageCollector
-            
-            return node
-        }
-    }
+class BlockSpawner: SKSpriteNode {
+    // MARK: - Properties
+    var nodeWidth: CGFloat = 0.0
+    var nodeToSpawn: SKSpriteNode!
     
-    // MARK: - Init
-    convenience init(position: CGPoint) {
-        self.init()
+    // MARK: - Methods
+    func spawnBlock(at pos: CGPoint, onNode node: SKNode) {
+        let scene = SKNode(fileNamed: "SmileAndTrigger")!
+        self.nodeToSpawn = scene.childNode(withName: "Block") as! SKSpriteNode!
         
-        smileAndTriggerBlock.position = position
-        smileAndTriggerBlock.position.y += 190
+        self.nodeToSpawn.position = pos
+        self.nodeToSpawn.position.y += 190
+        self.nodeToSpawn.physicsBody?.contactTestBitMask = ColliderType.Player | ColliderType.GarbageCollector
+        
+        self.nodeWidth = self.nodeToSpawn.size.width
+        
+        self.nodeToSpawn.removeFromParent()
+        node.addChild(self.nodeToSpawn)
     }
 }

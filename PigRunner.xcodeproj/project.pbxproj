@@ -23,7 +23,6 @@
 		645C33E81DCFD0A600ABA4D7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 645C33E61DCFD0A600ABA4D7 /* LaunchScreen.storyboard */; };
 		645C33FA1DCFD8A800ABA4D7 /* Spikes.sks in Resources */ = {isa = PBXBuildFile; fileRef = 645C33F91DCFD8A800ABA4D7 /* Spikes.sks */; };
 		645C33FC1DCFD8BA00ABA4D7 /* CoinArrow.sks in Resources */ = {isa = PBXBuildFile; fileRef = 645C33FB1DCFD8BA00ABA4D7 /* CoinArrow.sks */; };
-		645C8F211DE651B1002E68C2 /* Obstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645C8F201DE651B1002E68C2 /* Obstacle.swift */; };
 		645DB06E1DE65C7C00CE79F4 /* Spike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645DB06D1DE65C7C00CE79F4 /* Spike.swift */; };
 		645DB0701DE65E4300CE79F4 /* BlockSpawner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645DB06F1DE65E4300CE79F4 /* BlockSpawner.swift */; };
 		64AF81BF1DD811B700DC654C /* SmileAndTrigger.sks in Resources */ = {isa = PBXBuildFile; fileRef = 64AF81BE1DD811B700DC654C /* SmileAndTrigger.sks */; };
@@ -56,7 +55,6 @@
 		645C33E71DCFD0A600ABA4D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		645C33F91DCFD8A800ABA4D7 /* Spikes.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = Spikes.sks; path = Scenes/Obstacles/Spikes.sks; sourceTree = "<group>"; };
 		645C33FB1DCFD8BA00ABA4D7 /* CoinArrow.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = CoinArrow.sks; path = Scenes/Coins/CoinArrow.sks; sourceTree = "<group>"; };
-		645C8F201DE651B1002E68C2 /* Obstacle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Obstacle.swift; path = Classes/Obstacles/Obstacle.swift; sourceTree = "<group>"; };
 		645DB06D1DE65C7C00CE79F4 /* Spike.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Spike.swift; path = Classes/Obstacles/Spike.swift; sourceTree = "<group>"; };
 		645DB06F1DE65E4300CE79F4 /* BlockSpawner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlockSpawner.swift; path = Classes/Obstacles/BlockSpawner.swift; sourceTree = "<group>"; };
 		64AF81BE1DD811B700DC654C /* SmileAndTrigger.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = SmileAndTrigger.sks; path = "pigrunner/scenes/Big Blocks/SmileAndTrigger.sks"; sourceTree = SOURCE_ROOT; };
@@ -84,7 +82,6 @@
 		642C23711DE63669006DDC53 /* Obstacles */ = {
 			isa = PBXGroup;
 			children = (
-				645C8F201DE651B1002E68C2 /* Obstacle.swift */,
 				642C23861DE6379E006DDC53 /* SpinningWheel.swift */,
 				642C23881DE64955006DDC53 /* Coin.swift */,
 				645DB06D1DE65C7C00CE79F4 /* Spike.swift */,
@@ -302,7 +299,6 @@
 				642C237C1DE63716006DDC53 /* CGPoint+Extensions.swift in Sources */,
 				790679E41DDE250800F8BA7A /* GameFonts.swift in Sources */,
 				642C237D1DE63716006DDC53 /* Int+Extensions.swift in Sources */,
-				645C8F211DE651B1002E68C2 /* Obstacle.swift in Sources */,
 				79BA49D11DD0BA690029EEF8 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
