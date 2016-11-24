@@ -35,7 +35,7 @@ class SpinningWheel: SKSpriteNode {
         self.nodeToSpawn.position.y = -460.0
         self.nodeToSpawn.physicsBody?.contactTestBitMask = ColliderType.Player | ColliderType.GarbageCollector
         
-        self.nodeWidth = self.nodeToSpawn.size.width
+        self.nodeWidth = self.nodeToSpawn.calculateAccumulatedFrame().width
         
         self.nodeToSpawn.removeFromParent()
         node.addChild(self.nodeToSpawn)

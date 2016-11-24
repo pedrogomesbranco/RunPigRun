@@ -12,14 +12,14 @@ import SpriteKit
 class BlocksGenerator: SKNode {
     // MARK: - Properties
     var background: SKNode!
-    var backImage: SKSpriteNode!
+    //var backImage: SKSpriteNode!
     var backWidth: CGFloat = 0.0
     var lastItemPosition = CGPoint.zero
     var lastItemWidth: CGFloat = 0.0
     var levelX: CGFloat = 0.0
     
     var image = UIImage()
-
+    
     var bgNode = SKNode()
     var fgNode = SKNode()
     
@@ -30,19 +30,17 @@ class BlocksGenerator: SKNode {
         super.init()
         
         // Setup initial scene nodes variables
-        bgNode = worldNode.childNode(withName: "Background")!
+        self.bgNode = worldNode.childNode(withName: "Background")!
         
-        background = bgNode.childNode(withName: "Block")!.copy() as! SKNode
+        self.background = self.bgNode.childNode(withName: "Block")!.copy() as! SKNode
         
-        backImage = background.childNode(withName: "bg_1") as! SKSpriteNode!
+        //self.backImage = self.background.childNode(withName: "bg_1") as! SKSpriteNode!
         
-        backWidth = background.calculateAccumulatedFrame().width.rounded()
+        self.backWidth = self.background.calculateAccumulatedFrame().width.rounded()
         
-        fgNode = worldNode.childNode(withName: "Foreground")!
+        self.fgNode = worldNode.childNode(withName: "Foreground")!
         
-        DispatchQueue.global(qos: .background).async {
-            self.image = self.imageWithImage(source: UIImage(named: "full-background")!, rotatedByHue: CGFloat(arc4random()))
-        }
+        self.image = self.imageWithImage(source: UIImage(named: "full-background")!, rotatedByHue: CGFloat(arc4random()))
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -63,8 +61,6 @@ class BlocksGenerator: SKNode {
         coinNode.spawnCoin(block: block, at: lastItemPosition, onNode: fgNode)
         
         updateLastItem(width: coinNode.nodeWidth)
-        
-        //fgNode.addChild(coinNode)
     }
     
     func createSpinningWheelNode() {
@@ -72,8 +68,6 @@ class BlocksGenerator: SKNode {
         spinningWheel.spawnSpinningWheel(at: lastItemPosition, onNode: fgNode)
         
         updateLastItem(width: spinningWheel.nodeWidth)
-        
-        //fgNode.addChild(spinningWheel)
     }
     
     func createSpikeNode() {
@@ -81,8 +75,6 @@ class BlocksGenerator: SKNode {
         spikes.spawnSpike(at: lastItemPosition, onNode: fgNode)
         
         updateLastItem(width: spikes.nodeWidth)
-        
-        //fgNode.addChild(spikes)
     }
     
     func createBigBlockOneNode() {
@@ -90,14 +82,12 @@ class BlocksGenerator: SKNode {
         block.spawnBlock(at: lastItemPosition, onNode: fgNode)
         
         updateLastItem(width: block.nodeWidth)
-        
-        //fgNode.addChild(platform)
     }
     
     private func updateLastItem(width: CGFloat) {
-        lastItemPosition.x = lastItemPosition.x + (lastItemWidth + (width/2.0))
+        lastItemPosition.x = lastItemPosition.x + (lastItemWidth + (width))
         
-        lastItemWidth = width
+        lastItemWidth = width/1.5
     }
     
     func addRandomBlockNode() {
@@ -130,28 +120,35 @@ class BlocksGenerator: SKNode {
     
     // MARK: - Background
     func createBackgroundNode() {
-        self.changeBackground()
+//        DispatchQueue.main.async {
+//            self.changeBackground()
+//        }
         
         let backNode = background.copy() as! SKNode
         backNode.position = CGPoint(x: levelX, y: 0.0)
         bgNode.addChild(backNode)
         levelX += backWidth
     }
-    
-    func changeBackground(){
-        backImage.texture = SKTexture(image: image)
-    }
+ 
+//    func changeBackground(){
+//        DispatchQueue.global(qos: .background).async {
+//            self.backImage.texture = SKTexture(image: self.image)
+//        }
+//    }
     
     func imageWithImage(source: UIImage, rotatedByHue: CGFloat) -> UIImage {
         let sourceCore = CIImage(cgImage: source.cgImage!)
         let hueAdjust = CIFilter(name: "CIHueAdjust")
+        
         hueAdjust?.setDefaults()
         hueAdjust?.setValue(sourceCore, forKey: "inputImage")
         hueAdjust?.setValue(CGFloat(rotatedByHue), forKey: "inputAngle")
+        
         let resultCore = hueAdjust?.value(forKey: "outputImage") as! CIImage!
         let context = CIContext(options: nil)
         let resultRef = context.createCGImage(resultCore!, from: resultCore!.extent)
         let result = UIImage(cgImage: resultRef!)
+        
         return result
     }
 }

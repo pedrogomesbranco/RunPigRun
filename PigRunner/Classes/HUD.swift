@@ -12,13 +12,12 @@ import SpriteKit
 class HUD: SKNode {
     // MARK: - Private Properties
     private var hudBackground: SKSpriteNode!
-    private var coinsCollectedLabel = SKLabelNode()
     private var coinsCollected = SKSpriteNode()
     private var scoreLabel = SKLabelNode()
     private var coinsLabel = SKLabelNode()
     
     // MARK: - Public Properties
-//    internal let pauseButton = PauseButton()
+    internal let pauseButton = PauseButton()
     
     // MARK: - Init
     required init?(coder aDecoder: NSCoder) {
@@ -37,6 +36,7 @@ class HUD: SKNode {
         self.setupHUDBackground()
         self.setupHUDCoins(collected: coinsCollected)
         self.setupHUDScore(score: score)
+        self.setupPauseButton()
     }
     
     // MARK: - Setup Functions
@@ -53,8 +53,7 @@ class HUD: SKNode {
     
     private func setupHUDCoins(collected: Int) {
         // Coins Sprite
-        self.coinsCollected = SKSpriteNode(imageNamed: "coin")
-        self.coinsCollected.setScale(0.2)
+        self.coinsCollected = SKSpriteNode(imageNamed: "moeda")
         
         let coinOffsetX = self.coinsCollected.size.width*2
         let coinOffsetY = self.hudBackground.size.height/2
@@ -76,12 +75,21 @@ class HUD: SKNode {
     private func setupHUDScore(score: Int) {
         self.scoreLabel = GameFonts.sharedInstance.createScoreLabel(score: 0)
         
-        let offsetX = self.hudBackground.size.width * 0.9
-        let offsetY = self.hudBackground.size.height/2 - self.coinsCollected.size.height/2 + 5
+        let offsetX = self.coinsCollected.position.x
+        let offsetY = self.coinsCollected.position.y - self.scoreLabel.frame.size.height - 50
         
         self.scoreLabel.position = CGPoint(x: offsetX, y: offsetY)
         
         self.hudBackground.addChild(self.scoreLabel)
+    }
+    
+    private func setupPauseButton() {
+        let offsetX = self.hudBackground.size.width * 0.9
+        let offsetY = self.hudBackground.size.height/2 - self.coinsCollected.size.height/2 + 5
+        
+        self.pauseButton.position = CGPoint(x: offsetX, y: offsetY)
+        
+        self.hudBackground.addChild(self.pauseButton)
     }
     
     func updateCoinsCollected(_ coins: Int) {
@@ -96,6 +104,6 @@ class HUD: SKNode {
     }
     
     func updateScore(score: Int) {
-        self.scoreLabel.text = "\(score)"
+        self.scoreLabel.text = String(score)
     }
 }

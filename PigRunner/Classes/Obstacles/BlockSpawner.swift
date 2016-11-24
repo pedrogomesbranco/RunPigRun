@@ -22,7 +22,7 @@ class BlockSpawner: SKSpriteNode {
         self.nodeToSpawn.position.y += 190
         self.nodeToSpawn.physicsBody?.contactTestBitMask = ColliderType.Player | ColliderType.GarbageCollector
         
-        self.nodeWidth = self.nodeToSpawn.size.width
+        self.nodeWidth = self.nodeToSpawn.calculateAccumulatedFrame().width
         
         self.nodeToSpawn.removeFromParent()
         node.addChild(self.nodeToSpawn)
