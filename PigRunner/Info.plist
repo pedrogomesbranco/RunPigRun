@@ -5,6 +5,8 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>BIG CAR Short Gun.ttf</string>
+		<string>Comic_Andy.ttf</string>
+		<string>Space Comics.ttf</string>
 	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>

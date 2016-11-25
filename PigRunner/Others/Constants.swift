@@ -48,3 +48,6 @@ let specialCoinPercentage: Int = 30
 // Screen Dimensions
 let kViewSizeWidth: CGFloat = 2208.0
 let kViewSizeHeight: CGFloat = 1522.0
+
+// Debug
+let kDebug = true

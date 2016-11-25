@@ -11,25 +11,24 @@ import SpriteKit
 import GameplayKit
 
 class GameViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
         
-        if let view = self.view as! SKView? {
-            // Load the SKScene from 'GameScene.sks'
-            if let scene = SKScene(fileNamed: "GameScene") {
-                // Set the scale mode to scale to fit the window
-                scene.scaleMode = .aspectFill
+        if let skView = self.view as? SKView {
+            if skView.scene == nil {
+                if kDebug {
+                    skView.showsFPS = true
+                    skView.showsNodeCount = true
+                }
                 
-                // Present the scene
-                view.presentScene(scene)
+                skView.ignoresSiblingOrder = true
+                
+                let menuScene = MenuScene(size: CGSize(width: kViewSizeWidth, height: kViewSizeHeight))
+                let menuTransition = SKTransition.fade(with: UIColor.black, duration: 0.25)
+                
+                skView.presentScene(menuScene, transition: menuTransition)
             }
-            
-            view.ignoresSiblingOrder = true
-            view.showsFields = true
-            view.showsFPS = true
-            view.showsNodeCount = true
-            //view.showsPhysics = true
         }
     }
 

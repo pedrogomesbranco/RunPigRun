@@ -27,15 +27,15 @@ class GameFonts {
     
     // MARK: - Setup
     private func setupScoreLabel() {
-        self.scoreLabel = SKLabelNode(fontNamed: "BIG CAR Short Gun")
+        self.scoreLabel = SKLabelNode(fontNamed: "comic andy")
         self.scoreLabel.fontColor = UIColor.black
-        self.scoreLabel.fontSize = 105.0
+        self.scoreLabel.fontSize = 180.0
     }
     
     private func setupCoinsLabel() {
-        self.coinsLabel = SKLabelNode(fontNamed: "BIG CAR Short Gun")
-        self.coinsLabel.fontColor = UIColor.yellow
-        self.coinsLabel.fontSize = 105.0
+        self.coinsLabel = SKLabelNode(fontNamed: "comic andy")
+        self.coinsLabel.fontColor = UIColor(red: 248.0/255.0, green: 194.0/255.0, blue: 65.0/255.0, alpha: 1.0)
+        self.coinsLabel.fontSize = 180.0
     }
     
     // MARK: - Public Functions

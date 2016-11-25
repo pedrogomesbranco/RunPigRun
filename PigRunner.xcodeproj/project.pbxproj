@@ -27,6 +27,9 @@
 		645DB0701DE65E4300CE79F4 /* BlockSpawner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645DB06F1DE65E4300CE79F4 /* BlockSpawner.swift */; };
 		64AF81BF1DD811B700DC654C /* SmileAndTrigger.sks in Resources */ = {isa = PBXBuildFile; fileRef = 64AF81BE1DD811B700DC654C /* SmileAndTrigger.sks */; };
 		64AF81C11DD812EA00DC654C /* CoinSmile.sks in Resources */ = {isa = PBXBuildFile; fileRef = 64AF81C01DD812EA00DC654C /* CoinSmile.sks */; };
+		64F8B6561DE7D7C200B59BF2 /* Comic_Andy.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 64F8B6541DE7D7B400B59BF2 /* Comic_Andy.ttf */; };
+		64F8B6571DE7D7C400B59BF2 /* Space Comics.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 64F8B6551DE7D7B400B59BF2 /* Space Comics.ttf */; };
+		64F8B6591DE7D93A00B59BF2 /* MenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F8B6581DE7D93A00B59BF2 /* MenuScene.swift */; };
 		64FF4EE51DD7D9F400337C2E /* SpinningWheel.sks in Resources */ = {isa = PBXBuildFile; fileRef = 64FF4EE41DD7D9F400337C2E /* SpinningWheel.sks */; };
 		790679E41DDE250800F8BA7A /* GameFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790679E31DDE250800F8BA7A /* GameFonts.swift */; };
 		793D1B671DD0D035008A7B9E /* BlocksGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793D1B661DD0D035008A7B9E /* BlocksGenerator.swift */; };
@@ -61,6 +64,9 @@
 		645DB06F1DE65E4300CE79F4 /* BlockSpawner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlockSpawner.swift; path = Classes/Obstacles/BlockSpawner.swift; sourceTree = "<group>"; };
 		64AF81BE1DD811B700DC654C /* SmileAndTrigger.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = SmileAndTrigger.sks; path = "pigrunner/scenes/Big Blocks/SmileAndTrigger.sks"; sourceTree = SOURCE_ROOT; };
 		64AF81C01DD812EA00DC654C /* CoinSmile.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = CoinSmile.sks; path = pigrunner/scenes/Coins/CoinSmile.sks; sourceTree = SOURCE_ROOT; };
+		64F8B6541DE7D7B400B59BF2 /* Comic_Andy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Comic_Andy.ttf; path = Resources/Comic_Andy.ttf; sourceTree = "<group>"; };
+		64F8B6551DE7D7B400B59BF2 /* Space Comics.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Space Comics.ttf"; path = "Resources/Space Comics.ttf"; sourceTree = "<group>"; };
+		64F8B6581DE7D93A00B59BF2 /* MenuScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuScene.swift; path = Classes/MenuScene.swift; sourceTree = "<group>"; };
 		64FF4EE41DD7D9F400337C2E /* SpinningWheel.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = SpinningWheel.sks; path = pigrunner/scenes/Obstacles/SpinningWheel.sks; sourceTree = SOURCE_ROOT; };
 		790679E31DDE250800F8BA7A /* GameFonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameFonts.swift; path = pigrunner/Classes/GameFonts.swift; sourceTree = SOURCE_ROOT; };
 		793D1B661DD0D035008A7B9E /* BlocksGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlocksGenerator.swift; path = Classes/BlocksGenerator.swift; sourceTree = "<group>"; };
@@ -137,6 +143,7 @@
 			children = (
 				642C23711DE63669006DDC53 /* Obstacles */,
 				79BA49D01DD0BA690029EEF8 /* Constants.swift */,
+				64F8B6581DE7D93A00B59BF2 /* MenuScene.swift */,
 				642C23741DE636F1006DDC53 /* GameScene.swift */,
 				642C23751DE636F1006DDC53 /* GameViewController.swift */,
 				79BA49CE1DD0B86B0029EEF8 /* Player.swift */,
@@ -164,6 +171,8 @@
 		645C33F21DCFD69D00ABA4D7 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				64F8B6541DE7D7B400B59BF2 /* Comic_Andy.ttf */,
+				64F8B6551DE7D7B400B59BF2 /* Space Comics.ttf */,
 				642C23821DE6373F006DDC53 /* BIG CAR Short Gun.ttf */,
 				645C33E41DCFD0A600ABA4D7 /* Assets.xcassets */,
 			);
@@ -277,6 +286,8 @@
 				64AF81BF1DD811B700DC654C /* SmileAndTrigger.sks in Resources */,
 				64FF4EE51DD7D9F400337C2E /* SpinningWheel.sks in Resources */,
 				642C23831DE63741006DDC53 /* BIG CAR Short Gun.ttf in Resources */,
+				64F8B6561DE7D7C200B59BF2 /* Comic_Andy.ttf in Resources */,
+				64F8B6571DE7D7C400B59BF2 /* Space Comics.ttf in Resources */,
 				645C33FC1DCFD8BA00ABA4D7 /* CoinArrow.sks in Resources */,
 				645C33E51DCFD0A600ABA4D7 /* Assets.xcassets in Resources */,
 				645C33E81DCFD0A600ABA4D7 /* LaunchScreen.storyboard in Resources */,
@@ -290,6 +301,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64F8B6591DE7D93A00B59BF2 /* MenuScene.swift in Sources */,
 				79CF88811DE768DD00FCBCE6 /* PauseButton.swift in Sources */,
 				642C23871DE6379E006DDC53 /* SpinningWheel.swift in Sources */,
 				642C23801DE63729006DDC53 /* AppDelegate.swift in Sources */,
