@@ -8,6 +8,7 @@
 
 import Foundation
 import SpriteKit
+import CoreImage
 
 class BlocksGenerator: SKNode {
     // MARK: - Properties
@@ -41,12 +42,19 @@ class BlocksGenerator: SKNode {
         self.fgNode = worldNode.childNode(withName: "Foreground")!
         
 //        self.image = self.imageWithImage(source: UIImage(named: "full-background")!, rotatedByHue: CGFloat(arc4random()))
+//        DispatchQueue.global(qos: .background).async {
+//            self.image = self.imageWithImage(source: UIImage(named: "full-background")!, rotatedByHue: CGFloat(arc4random()))
+//        
+//            DispatchQueue.main.async {
+//                self.changeBackground()
+//            }
+//        }
+
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     
     func setupInitialLevel() {
         // Fill level with random blocks (coins and obstacles)
@@ -93,10 +101,11 @@ class BlocksGenerator: SKNode {
     
     // MARK: - Background
     func createBackgroundNode() {
+
 //        DispatchQueue.main.async {
 //            self.changeBackground()
 //        }
-        
+
         let backNode = background.copy() as! SKNode
         backNode.position = CGPoint(x: levelX, y: 0.0)
         bgNode.addChild(backNode)

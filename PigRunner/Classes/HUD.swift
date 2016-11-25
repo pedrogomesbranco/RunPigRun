@@ -11,7 +11,7 @@ import SpriteKit
 
 class HUD: SKNode {
     // MARK: - Private Properties
-    private var hudBackground: SKSpriteNode!
+    internal var hudBackground: SKSpriteNode!
     private var coinsCollected = SKSpriteNode()
     private var scoreLabel = SKLabelNode()
     private var coinsLabel = SKLabelNode()
@@ -90,6 +90,7 @@ class HUD: SKNode {
         let offsetY = self.hudBackground.size.height/2 + 30
         
         self.pauseButton.position = CGPoint(x: offsetX, y: offsetY)
+        self.pauseButton.setScale(4)
         
         self.hudBackground.addChild(self.pauseButton)
     }

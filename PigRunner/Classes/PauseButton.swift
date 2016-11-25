@@ -22,7 +22,7 @@ class PauseButton: SKSpriteNode {
     }
     
     convenience init() {
-        let texture = SKTexture(imageNamed: "pause-btn")
+        let texture = SKTexture(imageNamed: "pause")
         self.init(texture: texture, color: UIColor.white, size: texture.size())
         
         self.setupPauseButton()

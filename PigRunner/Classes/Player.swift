@@ -153,7 +153,6 @@ class Player: SKSpriteNode {
             if let spikes = body.node as? SKSpriteNode {
                 spikes.removeFromParent()
                 self.life-=1
-                self.die()
             }
             
         // Player - Ground Collision
@@ -167,7 +166,6 @@ class Player: SKSpriteNode {
             
         case ColliderType.SpinningWheel:
             self.life = 0
-            self.die()
             
         case ColliderType.Magnet:
             if let magnet = body.node as? SKSpriteNode {

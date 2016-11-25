@@ -93,7 +93,14 @@ class GameScene: SKScene {
         blocksGenerator.updateLevel(withCameraPosition: cameraNode.position)
         
         if player.life <= 0{
-            player.life = 0
+            player.die()
+            self.removeAllChildren()
+            self.removeAllActions()
+            
+            let gameOverScene = MenuScene(size: size)
+            gameOverScene.scaleMode = .aspectFill
+            let transition = SKTransition.fade(with: UIColor.black, duration: 0.25)
+            self.view?.presentScene(gameOverScene, transition: transition)
         }
         
         timeStep += 1
@@ -112,7 +119,7 @@ class GameScene: SKScene {
         let touch: UITouch = touches.first!
         let touchLocation = touch.location(in: self.hudNode)
         
-        if self.hud.pauseButton.contains(touchLocation) {
+        if self.hud.hudBackground.contains(touchLocation) {
             print("PAUSED")
             self.pauseButtonPressed()
         } else {
@@ -125,8 +132,10 @@ class GameScene: SKScene {
         
         if self.hud.pauseButton.tapped {
             self.isPaused = true
+            self.hud.pauseButton.texture = SKTexture(imageNamed: "play")
         } else {
             self.isPaused = false
+            self.hud.pauseButton.texture = SKTexture(imageNamed: "pause")
         }
     }
     
