@@ -56,30 +56,9 @@ class BlocksGenerator: SKNode {
         }
     }
     
-    func createCoinNode(block: CoinBlock) {
-        let coinNode = Coin()
-        coinNode.spawnCoin(block: block, at: lastItemPosition, onNode: fgNode)
-        
-        updateLastItem(width: coinNode.nodeWidth)
-    }
-    
-    func createSpinningWheelNode() {
-        let spinningWheel = SpinningWheel()
-        spinningWheel.spawnSpinningWheel(at: lastItemPosition, onNode: fgNode)
-        
-        updateLastItem(width: spinningWheel.nodeWidth)
-    }
-    
-    func createSpikeNode() {
-        let spikes = Spike()
-        spikes.spawnSpike(at: lastItemPosition, onNode: fgNode)
-        
-        updateLastItem(width: spikes.nodeWidth)
-    }
-    
-    func createBigBlockOneNode() {
+    func createBigBlockNode(type: BlockType) {
         let block = BlockSpawner()
-        block.spawnBlock(at: lastItemPosition, onNode: fgNode)
+        block.spawnBlock(type, at: lastItemPosition, onNode: fgNode)
         
         updateLastItem(width: block.nodeWidth)
     }
@@ -91,20 +70,14 @@ class BlocksGenerator: SKNode {
     }
     
     func addRandomBlockNode() {
-        let coinBlock: CoinBlock!
         let random = Int.random(min: 1, max: 100)
         
-        if random <= spikesPercentage {
-            createSpikeNode()
-        } else if random <= coinsPercentage {
-            if Int.random(min: 1, max: 100) <= specialCoinPercentage {
-                coinBlock = CoinBlock.SpecialArrow
-            } else {
-                coinBlock = CoinBlock.Arrow
-            }
-            createCoinNode(block: coinBlock)
+        if random <= 33 {
+            createBigBlockNode(type: .SmileAndTrigger)
+        } else if random <= 66 {
+            createBigBlockNode(type: .SpikesAndCoins)
         } else {
-            createBigBlockOneNode()
+            createBigBlockNode(type: .TwoTriggers)
         }
     }
     

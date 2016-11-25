@@ -34,6 +34,12 @@ enum CoinType: UInt32 {
     case Special        = 0b1   // 1
 }
 
+enum BlockType: UInt32 {
+    case SmileAndTrigger        = 0
+    case TwoTriggers            = 0b1
+    case SpikesAndCoins         = 0b10
+}
+
 struct GameLayer {
     static let Interface: CGFloat = 5
 }

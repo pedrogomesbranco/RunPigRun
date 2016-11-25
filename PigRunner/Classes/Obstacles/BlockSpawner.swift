@@ -14,9 +14,19 @@ class BlockSpawner: SKSpriteNode {
     var nodeToSpawn: SKSpriteNode!
     
     // MARK: - Methods
-    func spawnBlock(at pos: CGPoint, onNode node: SKNode) {
-        let scene = SKNode(fileNamed: "SmileAndTrigger")!
-        self.nodeToSpawn = scene.childNode(withName: "Block") as! SKSpriteNode!
+    func spawnBlock(_ type: BlockType, at pos: CGPoint, onNode node: SKNode) {
+        var blockNode: SKNode!
+        
+        switch type {
+        case .SmileAndTrigger:
+            blockNode = SKNode(fileNamed: "SmileAndTrigger")
+        case .SpikesAndCoins:
+            blockNode = SKNode(fileNamed: "SpikesAndCoins")
+        case .TwoTriggers:
+            blockNode = SKNode(fileNamed: "TwoTriggers")
+        }
+        
+        self.nodeToSpawn = blockNode.childNode(withName: "Block") as! SKSpriteNode!
         
         self.nodeToSpawn.position = pos
         self.nodeToSpawn.position.y += 190

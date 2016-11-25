@@ -68,7 +68,7 @@ class GameScene: SKScene {
         self.garbageCollector.physicsBody?.collisionBitMask = ColliderType.GarbageCollector
         self.garbageCollector.zPosition = 40
         
-        self.cameraNode.addChild(self.garbageCollector)
+        //self.cameraNode.addChild(self.garbageCollector)
     }
     
     
