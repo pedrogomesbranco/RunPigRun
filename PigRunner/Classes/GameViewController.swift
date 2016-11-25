@@ -15,6 +15,8 @@ class GameViewController: UIViewController {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
+        GameTextures.sharedInstance.preloadAssets()
+        
         if let skView = self.view as? SKView {
             if skView.scene == nil {
                 if kDebug {

@@ -14,7 +14,6 @@
 		642C237C1DE63716006DDC53 /* CGPoint+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642C23791DE63716006DDC53 /* CGPoint+Extensions.swift */; };
 		642C237D1DE63716006DDC53 /* Int+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642C237A1DE63716006DDC53 /* Int+Extensions.swift */; };
 		642C23801DE63729006DDC53 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642C237E1DE63729006DDC53 /* AppDelegate.swift */; };
-		642C23831DE63741006DDC53 /* BIG CAR Short Gun.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 642C23821DE6373F006DDC53 /* BIG CAR Short Gun.ttf */; };
 		642C23871DE6379E006DDC53 /* SpinningWheel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642C23861DE6379E006DDC53 /* SpinningWheel.swift */; };
 		642C23891DE64955006DDC53 /* Coin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642C23881DE64955006DDC53 /* Coin.swift */; };
 		642DFA441DD8C932003FE64B /* HUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642DFA431DD8C932003FE64B /* HUD.swift */; };
@@ -35,6 +34,7 @@
 		64FF4EE51DD7D9F400337C2E /* SpinningWheel.sks in Resources */ = {isa = PBXBuildFile; fileRef = 64FF4EE41DD7D9F400337C2E /* SpinningWheel.sks */; };
 		790679E41DDE250800F8BA7A /* GameFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790679E31DDE250800F8BA7A /* GameFonts.swift */; };
 		793D1B671DD0D035008A7B9E /* BlocksGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793D1B661DD0D035008A7B9E /* BlocksGenerator.swift */; };
+		7942F7161DE872300032B9BA /* Pig.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 7942F7151DE872300032B9BA /* Pig.atlas */; };
 		796BD57C1DDE20A9001985F0 /* GameTextures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796BD57B1DDE20A9001985F0 /* GameTextures.swift */; };
 		798C5FB31DD0CCEE00CA0FB5 /* CoinSpecialArrow.sks in Resources */ = {isa = PBXBuildFile; fileRef = 798C5FB21DD0CCEE00CA0FB5 /* CoinSpecialArrow.sks */; };
 		79BA49CF1DD0B86B0029EEF8 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BA49CE1DD0B86B0029EEF8 /* Player.swift */; };
@@ -50,7 +50,6 @@
 		642C23791DE63716006DDC53 /* CGPoint+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CGPoint+Extensions.swift"; path = "Others/Extensions/CGPoint+Extensions.swift"; sourceTree = "<group>"; };
 		642C237A1DE63716006DDC53 /* Int+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Int+Extensions.swift"; path = "Others/Extensions/Int+Extensions.swift"; sourceTree = "<group>"; };
 		642C237E1DE63729006DDC53 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Others/AppDelegate.swift; sourceTree = "<group>"; };
-		642C23821DE6373F006DDC53 /* BIG CAR Short Gun.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "BIG CAR Short Gun.ttf"; path = "Resources/BIG CAR Short Gun.ttf"; sourceTree = "<group>"; };
 		642C23841DE63768006DDC53 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		642C23861DE6379E006DDC53 /* SpinningWheel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SpinningWheel.swift; path = Classes/Obstacles/SpinningWheel.swift; sourceTree = "<group>"; };
 		642C23881DE64955006DDC53 /* Coin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Coin.swift; path = Classes/Obstacles/Coin.swift; sourceTree = "<group>"; };
@@ -73,6 +72,7 @@
 		64FF4EE41DD7D9F400337C2E /* SpinningWheel.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = SpinningWheel.sks; path = pigrunner/scenes/Obstacles/SpinningWheel.sks; sourceTree = SOURCE_ROOT; };
 		790679E31DDE250800F8BA7A /* GameFonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameFonts.swift; path = pigrunner/Classes/GameFonts.swift; sourceTree = SOURCE_ROOT; };
 		793D1B661DD0D035008A7B9E /* BlocksGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlocksGenerator.swift; path = Classes/BlocksGenerator.swift; sourceTree = "<group>"; };
+		7942F7151DE872300032B9BA /* Pig.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = Pig.atlas; path = Resources/Pig.atlas; sourceTree = "<group>"; };
 		796BD57B1DDE20A9001985F0 /* GameTextures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameTextures.swift; path = pigrunner/Classes/GameTextures.swift; sourceTree = SOURCE_ROOT; };
 		798C5FB21DD0CCEE00CA0FB5 /* CoinSpecialArrow.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = CoinSpecialArrow.sks; path = Scenes/Coins/CoinSpecialArrow.sks; sourceTree = "<group>"; };
 		79BA49CE1DD0B86B0029EEF8 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Player.swift; path = Classes/Player.swift; sourceTree = "<group>"; };
@@ -173,9 +173,9 @@
 		645C33F21DCFD69D00ABA4D7 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				7942F7151DE872300032B9BA /* Pig.atlas */,
 				64F8B6541DE7D7B400B59BF2 /* Comic_Andy.ttf */,
 				64F8B6551DE7D7B400B59BF2 /* Space Comics.ttf */,
-				642C23821DE6373F006DDC53 /* BIG CAR Short Gun.ttf */,
 				645C33E41DCFD0A600ABA4D7 /* Assets.xcassets */,
 			);
 			name = Resources;
@@ -289,11 +289,11 @@
 				645C33FA1DCFD8A800ABA4D7 /* Spikes.sks in Resources */,
 				64AF81BF1DD811B700DC654C /* SmileAndTrigger.sks in Resources */,
 				64FF4EE51DD7D9F400337C2E /* SpinningWheel.sks in Resources */,
-				642C23831DE63741006DDC53 /* BIG CAR Short Gun.ttf in Resources */,
 				64F8B6611DE7F6A900B59BF2 /* SpikesAndCoins.sks in Resources */,
 				64F8B6561DE7D7C200B59BF2 /* Comic_Andy.ttf in Resources */,
 				64F8B6571DE7D7C400B59BF2 /* Space Comics.ttf in Resources */,
 				645C33FC1DCFD8BA00ABA4D7 /* CoinArrow.sks in Resources */,
+				7942F7161DE872300032B9BA /* Pig.atlas in Resources */,
 				645C33E51DCFD0A600ABA4D7 /* Assets.xcassets in Resources */,
 				645C33E81DCFD0A600ABA4D7 /* LaunchScreen.storyboard in Resources */,
 			);
@@ -455,6 +455,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
+				"Texture Atlas Maximum Size" = 4096x4096;
 			};
 			name = Debug;
 		};
@@ -470,6 +471,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;
+				"Texture Atlas Maximum Size" = 4096x4096;
 			};
 			name = Release;
 		};

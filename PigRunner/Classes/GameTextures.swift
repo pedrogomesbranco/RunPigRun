@@ -17,6 +17,9 @@ class GameTextures {
     }
     
     // MARK: - Public properties
+    // Texture Atlas
+    let pigAnimationAtlas = SKTextureAtlas(named: "Pig")
+    
     // Texture Arrays
     internal var runTextures = [SKTexture]()
     internal var jumpTextures = [SKTexture]()
@@ -31,28 +34,34 @@ class GameTextures {
         self.setupIdleTextures()
     }
     
+    func preloadAssets() {
+        pigAnimationAtlas.preload(completionHandler: {
+            print("Pig animations atlas pre-loaded.")
+        })
+    }
+    
     // MARK: Animation textures setup
     private func setupRunTextures() {
         for i in 0...5 {
-            runTextures.append(SKTexture(imageNamed: "Run_00\(i)"))
+            runTextures.append(pigAnimationAtlas.textureNamed("Run_00\(i)"))
         }
     }
     
     private func setupJumpTextures() {
         for i in 0...9 {
-            jumpTextures.append(SKTexture(imageNamed: "Jump_00\(i)"))
+            jumpTextures.append(pigAnimationAtlas.textureNamed("Jump_00\(i)"))
         }
     }
     
     private func setupSlideTextures() {
         for i in 0...3 {
-            slideTextures.append(SKTexture(imageNamed: "Sliding_00\(i)"))
+            slideTextures.append(pigAnimationAtlas.textureNamed("Sliding_00\(i)"))
         }
     }
     
     private func setupIdleTextures() {
         for i in 0...9 {
-            idleTextures.append(SKTexture(imageNamed: "Idle_00\(i)"))
+            idleTextures.append(pigAnimationAtlas.textureNamed("Idle_00\(i)"))
         }
     }
 }
