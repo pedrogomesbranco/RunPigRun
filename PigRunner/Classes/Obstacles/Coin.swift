@@ -15,7 +15,7 @@ class Coin: SKSpriteNode {
     
     // MARK: - Methods
     func collectedCoin() {
-        let shrinkAction = SKAction.scale(to: 0.0, duration: 0.05)
+        let shrinkAction = SKAction.scale(to: 0.0, duration: 0.03)
         
         self.run(shrinkAction, completion: {
             self.removeFromParent()

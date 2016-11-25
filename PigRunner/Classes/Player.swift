@@ -67,12 +67,12 @@ class Player: SKSpriteNode {
             max(self.physicsBody!.velocity.dy, amount * CGFloat(jumpPower))
     }
     
-    func updatePlayer() {
+    func updatePlayer(_ timeStep: Int) {
         // Set player's constant velocity
-        self.physicsBody?.velocity.dx = CGFloat(velocityX)
+        self.physicsBody?.velocity.dx = CGFloat((kSpeedMultiplier * log(Double(timeStep+1))) + Double(velocityX))
         
         // Update player's score
-        self.score += 1
+        self.score += Int((self.physicsBody?.velocity.dx)!/CGFloat(velocityX))
     }
     
     // MARK: - Movements

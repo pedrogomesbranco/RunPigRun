@@ -40,7 +40,7 @@ class BlocksGenerator: SKNode {
         
         self.fgNode = worldNode.childNode(withName: "Foreground")!
         
-        self.image = self.imageWithImage(source: UIImage(named: "full-background")!, rotatedByHue: CGFloat(arc4random()))
+//        self.image = self.imageWithImage(source: UIImage(named: "full-background")!, rotatedByHue: CGFloat(arc4random()))
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -85,9 +85,9 @@ class BlocksGenerator: SKNode {
     }
     
     private func updateLastItem(width: CGFloat) {
-        lastItemPosition.x = lastItemPosition.x + (lastItemWidth + (width))
+        lastItemPosition.x = lastItemPosition.x + width
         
-        lastItemWidth = width/1.5
+        lastItemWidth = width/2
     }
     
     func addRandomBlockNode() {
@@ -136,19 +136,19 @@ class BlocksGenerator: SKNode {
 //        }
 //    }
     
-    func imageWithImage(source: UIImage, rotatedByHue: CGFloat) -> UIImage {
-        let sourceCore = CIImage(cgImage: source.cgImage!)
-        let hueAdjust = CIFilter(name: "CIHueAdjust")
-        
-        hueAdjust?.setDefaults()
-        hueAdjust?.setValue(sourceCore, forKey: "inputImage")
-        hueAdjust?.setValue(CGFloat(rotatedByHue), forKey: "inputAngle")
-        
-        let resultCore = hueAdjust?.value(forKey: "outputImage") as! CIImage!
-        let context = CIContext(options: nil)
-        let resultRef = context.createCGImage(resultCore!, from: resultCore!.extent)
-        let result = UIImage(cgImage: resultRef!)
-        
-        return result
-    }
+//    func imageWithImage(source: UIImage, rotatedByHue: CGFloat) -> UIImage {
+//        let sourceCore = CIImage(cgImage: source.cgImage!)
+//        let hueAdjust = CIFilter(name: "CIHueAdjust")
+//        
+//        hueAdjust?.setDefaults()
+//        hueAdjust?.setValue(sourceCore, forKey: "inputImage")
+//        hueAdjust?.setValue(CGFloat(rotatedByHue), forKey: "inputAngle")
+//        
+//        let resultCore = hueAdjust?.value(forKey: "outputImage") as! CIImage!
+//        let context = CIContext(options: nil)
+//        let resultRef = context.createCGImage(resultCore!, from: resultCore!.extent)
+//        let result = UIImage(cgImage: resultRef!)
+//        
+//        return result
+//    }
 }

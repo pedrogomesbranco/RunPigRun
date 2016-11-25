@@ -13,5 +13,13 @@
             </PersistentString>
          </PersistentStrings>
       </ContextState>
+      <ContextState
+         contextName = "HUD.setupHUDCoins(collected : Int) -&gt; ():HUD.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "coinsCollected.size">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
    </ContextStates>
 </VariablesViewState>

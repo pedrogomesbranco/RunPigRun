@@ -39,6 +39,7 @@ struct GameLayer {
 }
 
 let playerVelocityX: Int = 700
+let kSpeedMultiplier = 10.0
 let playerJumpPower: Float = 1.5
 let spikesPercentage: Int = 33
 let coinsPercentage: Int = 66

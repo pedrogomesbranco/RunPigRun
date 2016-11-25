@@ -20,10 +20,10 @@ class SpinningWheel: SKSpriteNode {
         
         self.run(rotateAction, completion: {
             let rotate = SKAction.rotate(byAngle: CGFloat(M_PI), duration: 0.04)
-            let rotateAction = SKAction.repeat(rotate, count: 20)
+            let rotateAction = SKAction.repeat(rotate, count: 50)
             
             self.run(rotateAction)
-            self.physicsBody?.velocity.dx = -1200
+            self.physicsBody?.velocity.dx = -1300
         })
     }
 

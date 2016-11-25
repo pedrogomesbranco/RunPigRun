@@ -18,6 +18,8 @@ class GameScene: SKScene {
     let hudNode = SKNode()
     var hud = HUD()
     
+    private var timeStep = 0
+    
     // Shared Instance
     static let GameSceneSharedInstance = GameScene()
     
@@ -75,11 +77,11 @@ class GameScene: SKScene {
     
     // MARK: - Game Loop
     override func update(_ currentTime: TimeInterval) {
-        player.updatePlayer()
+        player.updatePlayer(timeStep)
         updateCamera()
         
         self.hud.updateCoinsCollected(self.player.coins)
-        self.hud.updateScore(score: player.life)
+        self.hud.updateScore(score: player.score)
         
         blocksGenerator.updateLevel(withCameraPosition: cameraNode.position)
         
@@ -87,6 +89,7 @@ class GameScene: SKScene {
             player.life = 0
         }
         
+        timeStep += 1
     }
     
     // MARK: - User Interaction

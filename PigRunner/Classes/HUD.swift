@@ -53,9 +53,11 @@ class HUD: SKNode {
     
     private func setupHUDCoins(collected: Int) {
         // Coins Sprite
-        self.coinsCollected = SKSpriteNode(imageNamed: "moeda")
+        self.coinsCollected = SKSpriteNode(imageNamed: "moedao")
+        self.coinsCollected.size.height *= 2
+        self.coinsCollected.size.width *= 2
         
-        let coinOffsetX = self.coinsCollected.size.width*2
+        let coinOffsetX = self.coinsCollected.size.width - 150
         let coinOffsetY = self.hudBackground.size.height/2
         
         self.coinsCollected.position = CGPoint(x: coinOffsetX, y: coinOffsetY)
@@ -63,8 +65,8 @@ class HUD: SKNode {
         // Coins Collected Label
         self.coinsLabel = GameFonts.sharedInstance.createCoinsLabel(coins: 0)
         
-        let labelOffsetX = coinOffsetX + 150
-        let labelOffsetY = coinOffsetY - self.coinsCollected.size.height/2 + 5
+        let labelOffsetX = coinOffsetX + 120
+        let labelOffsetY = coinOffsetY - self.coinsCollected.size.height/8
         
         self.coinsLabel.position = CGPoint(x: labelOffsetX, y: labelOffsetY)
         
@@ -75,8 +77,8 @@ class HUD: SKNode {
     private func setupHUDScore(score: Int) {
         self.scoreLabel = GameFonts.sharedInstance.createScoreLabel(score: 0)
         
-        let offsetX = self.coinsCollected.position.x
-        let offsetY = self.coinsCollected.position.y - self.scoreLabel.frame.size.height - 50
+        let offsetX = self.coinsCollected.position.x + self.coinsCollected.size.width/2
+        let offsetY = self.coinsCollected.position.y - self.scoreLabel.frame.size.height - 80
         
         self.scoreLabel.position = CGPoint(x: offsetX, y: offsetY)
         
@@ -84,8 +86,8 @@ class HUD: SKNode {
     }
     
     private func setupPauseButton() {
-        let offsetX = self.hudBackground.size.width * 0.9
-        let offsetY = self.hudBackground.size.height/2 - self.coinsCollected.size.height/2 + 5
+        let offsetX = self.hudBackground.size.width * 0.95
+        let offsetY = self.hudBackground.size.height/2 + 30
         
         self.pauseButton.position = CGPoint(x: offsetX, y: offsetY)
         
