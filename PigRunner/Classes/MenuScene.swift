@@ -57,7 +57,7 @@ class MenuScene: SKScene {
         pig.zPosition = 5
         
         // Animate the pig's running movement
-        pig.run(SKAction.repeatForever(SKAction.animate(with: GameTextures.sharedInstance.idleTextures, timePerFrame: 0.1, resize: false, restore: true)), withKey: "menu_idle")
+        pig.run(SKAction.repeatForever(SKAction.animate(with: GameTextures.sharedInstance.idleTextures, timePerFrame: 0.1, resize: true, restore: true)), withKey: "menu_idle")
         
         self.addChild(pig)
     }
@@ -70,7 +70,7 @@ class MenuScene: SKScene {
     // MARK: - Switch scenes
     private func loadGameScene() {
         let runAction = SKAction.moveBy(x: 1600, y: 0, duration: 0.8)
-        pig.run(SKAction.repeatForever(SKAction.animate(with: GameTextures.sharedInstance.runTextures, timePerFrame: 0.1, resize: false, restore: true)), withKey: "menu_run")
+        pig.run(SKAction.repeatForever(SKAction.animate(with: GameTextures.sharedInstance.runTextures, timePerFrame: 0.1, resize: true, restore: true)), withKey: "menu_run")
         
         pig.run(runAction, completion: {
             self.run(SKAction.run {

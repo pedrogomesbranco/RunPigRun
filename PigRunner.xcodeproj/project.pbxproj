@@ -43,7 +43,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		642C23721DE636C7006DDC53 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = GameScene.sks; path = Scenes/GameScene.sks; sourceTree = "<group>"; };
+		642C23721DE636C7006DDC53 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = GameScene.sks; path = PigRunner/Scenes/GameScene.sks; sourceTree = "<group>"; };
 		642C23741DE636F1006DDC53 /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameScene.swift; path = Classes/GameScene.swift; sourceTree = "<group>"; };
 		642C23751DE636F1006DDC53 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameViewController.swift; path = Classes/GameViewController.swift; sourceTree = "<group>"; };
 		642C23781DE63716006DDC53 /* CGFloat+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CGFloat+Extensions.swift"; path = "Others/Extensions/CGFloat+Extensions.swift"; sourceTree = "<group>"; };
@@ -105,6 +105,7 @@
 		645C33CB1DCFD0A600ABA4D7 = {
 			isa = PBXGroup;
 			children = (
+				642C23721DE636C7006DDC53 /* GameScene.sks */,
 				645C33D61DCFD0A600ABA4D7 /* PigRunner */,
 				645C33D51DCFD0A600ABA4D7 /* Products */,
 			);
@@ -132,7 +133,6 @@
 		645C33EF1DCFD68700ABA4D7 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				642C23721DE636C7006DDC53 /* GameScene.sks */,
 				64AF81BB1DD8119200DC654C /* Blocks */,
 				645C33F81DCFD87500ABA4D7 /* Coins */,
 				645C33F31DCFD6A800ABA4D7 /* Obstacles */,
@@ -455,6 +455,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
+				"Texture Atlas Format" = RGBA8888_COMPRESSED;
 				"Texture Atlas Maximum Size" = 4096x4096;
 			};
 			name = Debug;
@@ -471,6 +472,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;
+				"Texture Atlas Format" = RGBA8888_COMPRESSED;
 				"Texture Atlas Maximum Size" = 4096x4096;
 			};
 			name = Release;

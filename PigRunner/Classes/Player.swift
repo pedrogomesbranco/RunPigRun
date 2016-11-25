@@ -15,10 +15,12 @@ class Player: SKSpriteNode {
     var velocityX: Int = playerVelocityX
     var jumpPower: CGFloat = CGFloat(playerJumpPower)
     var jumpsLeft: Int = 2
-    var runTextures = [SKTexture]()
-    var jumpTextures = [SKTexture]()
-    var slideTextures = [SKTexture]()
+    var runTextures: [SKTexture]!
+    var jumpTextures: [SKTexture]!
+    var slideTextures: [SKTexture]!
+    var dieTextures: [SKTexture]!
     var isRunning: Bool = true
+    var isAlive: Bool = true
     var coins: Int = 0
     var score: Int = 0
     var life: Int = 3
@@ -37,12 +39,13 @@ class Player: SKSpriteNode {
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         self.position = position
         self.zPosition = 3
-        self.setScale(0.25)
+        self.setScale(0.3)
         
         // Textures setup
         runTextures = GameTextures.sharedInstance.runTextures
         jumpTextures = GameTextures.sharedInstance.jumpTextures
         slideTextures = GameTextures.sharedInstance.slideTextures
+        dieTextures = GameTextures.sharedInstance.dieTextures
         
         // Animate the pig's running movement
         self.run(SKAction.repeatForever(SKAction.animate(with: runTextures, timePerFrame: 0.1, resize: false, restore: true)), withKey: "run")
@@ -68,11 +71,13 @@ class Player: SKSpriteNode {
     }
     
     func updatePlayer(_ timeStep: Int) {
-        // Set player's constant velocity
-        self.physicsBody?.velocity.dx = CGFloat((kSpeedMultiplier * log(Double(timeStep+1))) + Double(velocityX))
-        
-        // Update player's score
-        self.score += Int((self.physicsBody?.velocity.dx)!/CGFloat(velocityX))
+        if isAlive {
+            // Set player's constant velocity
+            self.physicsBody?.velocity.dx = CGFloat((kSpeedMultiplier * log(Double(timeStep+1))) + Double(velocityX))
+            
+            // Update player's score
+            self.score += Int((self.physicsBody?.velocity.dx)!/CGFloat(velocityX))
+        }
     }
     
     // MARK: - Movements
@@ -85,16 +90,30 @@ class Player: SKSpriteNode {
         }
     }
     
-    func slide() {
-        if isRunning {
-            changeAnimation(newTextures: slideTextures, timePerFrame: 0.15, withKey: "slide", restore: true, repeatCount: 2)
+    //    func slide() {
+    //        if isRunning {
+    //            changeAnimation(newTextures: slideTextures, timePerFrame: 0.15, withKey: "slide", restore: true, repeatCount: 2)
+    //        }
+    //    }
+    
+    func land() {
+        if isAlive {
+            jumpsLeft = 2
+            isRunning = true
+            changeAnimation(newTextures: runTextures, timePerFrame: 0.2, withKey: "run", restore: false, repeatCount: nil)
         }
     }
     
-    func land() {
-        jumpsLeft = 2
-        isRunning = true
-        changeAnimation(newTextures: runTextures, timePerFrame: 0.2, withKey: "run", restore: false, repeatCount: nil)
+    func die() {
+        self.physicsBody?.velocity.dx = 0.0
+        jumpsLeft = 0
+        isRunning = false
+        isAlive = false
+        self.removeAllActions()
+        //changeAnimation(newTextures: dieTextures, timePerFrame: 0.1, withKey: "die", restore: false, repeatCount: nil)
+        let dieAction = SKAction.animate(with: dieTextures, timePerFrame: 0.1, resize: true, restore: false)
+        self.run(dieAction)
+        self.gameScene.isPaused = true
     }
     
     // MARK: Power Ups
@@ -106,9 +125,9 @@ class Player: SKSpriteNode {
         self.setScale(0.3)
         
         if restore {
-            self.run(SKAction.repeat(SKAction.animate(with: newTextures, timePerFrame: timePerFrame, resize: false, restore: true), count: repeatCount!))
+            self.run(SKAction.repeat(SKAction.animate(with: newTextures, timePerFrame: timePerFrame, resize: true, restore: true), count: repeatCount!))
         } else {
-            self.run(SKAction.repeatForever(SKAction.animate(with: newTextures, timePerFrame: timePerFrame, resize: false, restore: false)), withKey: key)
+            self.run(SKAction.repeatForever(SKAction.animate(with: newTextures, timePerFrame: timePerFrame, resize: true, restore: false)), withKey: key)
         }
     }
     
@@ -134,6 +153,7 @@ class Player: SKSpriteNode {
             if let spikes = body.node as? SKSpriteNode {
                 spikes.removeFromParent()
                 self.life-=1
+                self.die()
             }
             
         // Player - Ground Collision
@@ -147,6 +167,7 @@ class Player: SKSpriteNode {
             
         case ColliderType.SpinningWheel:
             self.life = 0
+            self.die()
             
         case ColliderType.Magnet:
             if let magnet = body.node as? SKSpriteNode {

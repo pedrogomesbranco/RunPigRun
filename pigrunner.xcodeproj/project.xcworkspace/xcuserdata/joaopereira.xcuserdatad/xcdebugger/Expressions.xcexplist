@@ -3,6 +3,14 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "main:AppDelegate.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "cameraPos">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "semaphore_timedwait_trap:(null)">
          <PersistentStrings>
             <PersistentString
@@ -11,7 +19,12 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "BlocksGenerator.init(withWorldNode : SKNode) -&gt; BlocksGenerator:BlocksGenerator.swift">
+         contextName = "GameScene.touchesBegan(Set&lt;UITouch&gt;, with : UIEvent?) -&gt; ():GameScene.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.hud.pauseButton.position">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "HUD.updateCoinsCollectedWithCoins(Int, score : Int) -&gt; ():HUD.swift">
@@ -30,12 +43,7 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "main:AppDelegate.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "cameraPos">
-            </PersistentString>
-         </PersistentStrings>
+         contextName = "BlocksGenerator.init(withWorldNode : SKNode) -&gt; BlocksGenerator:BlocksGenerator.swift">
       </ContextState>
       <ContextState
          contextName = "GameScene.didMove(to : SKView) -&gt; ():GameScene.swift">

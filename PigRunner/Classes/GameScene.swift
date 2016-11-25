@@ -32,7 +32,7 @@ class GameScene: SKScene {
         physicsWorld.contactDelegate = self
         
         setupNodes()
-        setupGestures()
+        //setupGestures()
     }
     
     // MARK: - Init
@@ -71,17 +71,16 @@ class GameScene: SKScene {
         //self.cameraNode.addChild(self.garbageCollector)
     }
     
-    
-    func setupGestures() {
-        // Setup tap interaction control
-        let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(GameScene.tapped))
-        view?.addGestureRecognizer(tapGesture)
-        
-        // Setup slide interaction control
-        let swipeDown: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.swipedDown))
-        swipeDown.direction = .down
-        view?.addGestureRecognizer(swipeDown)
-    }
+    //    func setupGestures() {
+    //        // Setup tap interaction control
+    //        let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(GameScene.tapped))
+    //        view?.addGestureRecognizer(tapGesture)
+    //
+    //        // Setup slide interaction control
+    //        let swipeDown: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.swipedDown))
+    //        swipeDown.direction = .down
+    //        view?.addGestureRecognizer(swipeDown)
+    //    }
     
     // MARK: - Game Loop
     override func update(_ currentTime: TimeInterval) {
@@ -101,12 +100,34 @@ class GameScene: SKScene {
     }
     
     // MARK: - User Interaction
-    func tapped() {
-        player.jump()
+    //    func tapped() {
+    //        player.jump()
+    //    }
+    //
+    //    func swipedDown() {
+    //        player.slide()
+    //    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touch: UITouch = touches.first!
+        let touchLocation = touch.location(in: self.hudNode)
+        
+        if self.hud.pauseButton.contains(touchLocation) {
+            print("PAUSED")
+            self.pauseButtonPressed()
+        } else {
+            player.jump()
+        }
     }
     
-    func swipedDown() {
-        player.slide()
+    private func pauseButtonPressed() {
+        self.hud.pauseButton.tappedPauseButton()
+        
+        if self.hud.pauseButton.tapped {
+            self.isPaused = true
+        } else {
+            self.isPaused = false
+        }
     }
     
     // MARK: - Camera

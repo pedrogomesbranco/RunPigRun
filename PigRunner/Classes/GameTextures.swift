@@ -25,6 +25,7 @@ class GameTextures {
     internal var jumpTextures = [SKTexture]()
     internal var slideTextures = [SKTexture]()
     internal var idleTextures = [SKTexture]()
+    internal var dieTextures = [SKTexture]()
     
     // MARK: - Init
     init() {
@@ -32,6 +33,7 @@ class GameTextures {
         self.setupJumpTextures()
         self.setupSlideTextures()
         self.setupIdleTextures()
+        self.setupDieTextures()
     }
     
     func preloadAssets() {
@@ -62,6 +64,12 @@ class GameTextures {
     private func setupIdleTextures() {
         for i in 0...9 {
             idleTextures.append(pigAnimationAtlas.textureNamed("Idle_00\(i)"))
+        }
+    }
+    
+    private func setupDieTextures() {
+        for i in 0...7 {
+            dieTextures.append(pigAnimationAtlas.textureNamed("Die_00\(i)"))
         }
     }
 }
