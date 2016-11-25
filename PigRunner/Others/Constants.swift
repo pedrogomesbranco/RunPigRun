@@ -50,4 +50,4 @@ let kViewSizeWidth: CGFloat = 2208.0
 let kViewSizeHeight: CGFloat = 1522.0
 
 // Debug
-let kDebug = true
+let kDebug = false

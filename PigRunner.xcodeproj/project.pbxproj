@@ -35,7 +35,6 @@
 		793D1B671DD0D035008A7B9E /* BlocksGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793D1B661DD0D035008A7B9E /* BlocksGenerator.swift */; };
 		796BD57C1DDE20A9001985F0 /* GameTextures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796BD57B1DDE20A9001985F0 /* GameTextures.swift */; };
 		798C5FB31DD0CCEE00CA0FB5 /* CoinSpecialArrow.sks in Resources */ = {isa = PBXBuildFile; fileRef = 798C5FB21DD0CCEE00CA0FB5 /* CoinSpecialArrow.sks */; };
-		79B3CA461DE762F400BBB1B7 /* BorderedLabelNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B3CA451DE762F400BBB1B7 /* BorderedLabelNode.swift */; };
 		79BA49CF1DD0B86B0029EEF8 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BA49CE1DD0B86B0029EEF8 /* Player.swift */; };
 		79BA49D11DD0BA690029EEF8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BA49D01DD0BA690029EEF8 /* Constants.swift */; };
 		79CF88811DE768DD00FCBCE6 /* PauseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CF88801DE768DD00FCBCE6 /* PauseButton.swift */; };
@@ -72,7 +71,6 @@
 		793D1B661DD0D035008A7B9E /* BlocksGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlocksGenerator.swift; path = Classes/BlocksGenerator.swift; sourceTree = "<group>"; };
 		796BD57B1DDE20A9001985F0 /* GameTextures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameTextures.swift; path = pigrunner/Classes/GameTextures.swift; sourceTree = SOURCE_ROOT; };
 		798C5FB21DD0CCEE00CA0FB5 /* CoinSpecialArrow.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = CoinSpecialArrow.sks; path = Scenes/Coins/CoinSpecialArrow.sks; sourceTree = "<group>"; };
-		79B3CA451DE762F400BBB1B7 /* BorderedLabelNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BorderedLabelNode.swift; path = Others/Extensions/BorderedLabelNode.swift; sourceTree = "<group>"; };
 		79BA49CE1DD0B86B0029EEF8 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Player.swift; path = Classes/Player.swift; sourceTree = "<group>"; };
 		79BA49D01DD0BA690029EEF8 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = Others/Constants.swift; sourceTree = "<group>"; };
 		79CF88801DE768DD00FCBCE6 /* PauseButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PauseButton.swift; path = Classes/PauseButton.swift; sourceTree = "<group>"; };
@@ -201,7 +199,6 @@
 		645C33FD1DCFDF9200ABA4D7 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				79B3CA451DE762F400BBB1B7 /* BorderedLabelNode.swift */,
 				642C23781DE63716006DDC53 /* CGFloat+Extensions.swift */,
 				642C23791DE63716006DDC53 /* CGPoint+Extensions.swift */,
 				642C237A1DE63716006DDC53 /* Int+Extensions.swift */,
@@ -317,7 +314,6 @@
 				642C237B1DE63716006DDC53 /* CGFloat+Extensions.swift in Sources */,
 				642C237C1DE63716006DDC53 /* CGPoint+Extensions.swift in Sources */,
 				790679E41DDE250800F8BA7A /* GameFonts.swift in Sources */,
-				79B3CA461DE762F400BBB1B7 /* BorderedLabelNode.swift in Sources */,
 				642C237D1DE63716006DDC53 /* Int+Extensions.swift in Sources */,
 				79BA49D11DD0BA690029EEF8 /* Constants.swift in Sources */,
 			);

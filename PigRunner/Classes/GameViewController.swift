@@ -20,6 +20,7 @@ class GameViewController: UIViewController {
                 if kDebug {
                     skView.showsFPS = true
                     skView.showsNodeCount = true
+                    skView.showsPhysics = true
                 }
                 
                 skView.ignoresSiblingOrder = true

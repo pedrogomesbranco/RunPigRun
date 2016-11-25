@@ -11,6 +11,7 @@ import SpriteKit
 class GameScene: SKScene {
     
     // MARK: - Properties
+    var garbageCollector: SKShapeNode!
     var ground: SKNode!
     var player: Player!
     var blocksGenerator: BlocksGenerator!
@@ -54,13 +55,20 @@ class GameScene: SKScene {
         setCameraPosition(position: CGPoint(x: size.width/2, y: size.height/2))
         addChild(cameraNode)
         camera = cameraNode
-
+        
         // HUD
         self.cameraNode.addChild(self.hudNode)
         self.hud = HUD(lives: player.life, coinsCollected: player.coins, score: 0)
         self.hudNode.addChild(self.hud)
         
         self.hudNode.zPosition = GameLayer.Interface
+        
+        // Garbage Collector
+        self.garbageCollector = SKShapeNode(rect: CGRect(x: -1100, y: -(kViewSizeHeight/2), width: 20, height: kViewSizeHeight))
+        self.garbageCollector.physicsBody?.collisionBitMask = ColliderType.GarbageCollector
+        self.garbageCollector.zPosition = 40
+        
+        self.cameraNode.addChild(self.garbageCollector)
     }
     
     
@@ -134,6 +142,7 @@ class GameScene: SKScene {
 extension GameScene: SKPhysicsContactDelegate {
     func didBegin(_ contact: SKPhysicsContact) {
         let other = contact.bodyA.categoryBitMask == ColliderType.Player ? contact.bodyB : contact.bodyA
+        
         player.collided(withBody: other)
     }
 }

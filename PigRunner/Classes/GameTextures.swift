@@ -21,12 +21,14 @@ class GameTextures {
     internal var runTextures = [SKTexture]()
     internal var jumpTextures = [SKTexture]()
     internal var slideTextures = [SKTexture]()
+    internal var idleTextures = [SKTexture]()
     
     // MARK: - Init
     init() {
         self.setupRunTextures()
         self.setupJumpTextures()
         self.setupSlideTextures()
+        self.setupIdleTextures()
     }
     
     // MARK: Animation textures setup
@@ -45,6 +47,12 @@ class GameTextures {
     private func setupSlideTextures() {
         for i in 0...3 {
             slideTextures.append(SKTexture(imageNamed: "Sliding_00\(i)"))
+        }
+    }
+    
+    private func setupIdleTextures() {
+        for i in 0...9 {
+            idleTextures.append(SKTexture(imageNamed: "Idle_00\(i)"))
         }
     }
 }
