@@ -97,9 +97,9 @@ class GameScene: SKScene {
             self.removeAllChildren()
             self.removeAllActions()
             
-            let gameOverScene = MenuScene(size: size)
-            gameOverScene.scaleMode = .aspectFill
+            let gameOverScene = MenuScene(size: CGSize(width: kViewSizeWidth, height: kViewSizeHeight))
             let transition = SKTransition.fade(with: UIColor.black, duration: 0.25)
+            
             self.view?.presentScene(gameOverScene, transition: transition)
         }
         
