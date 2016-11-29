@@ -15,6 +15,7 @@ class GameScene: SKScene {
     var ground: SKNode!
     var player: Player!
     var blocksGenerator: BlocksGenerator!
+    let pauseMenu = PauseMenu()
     let cameraNode = SKCameraNode()
     let hudNode = SKNode()
     var hud = HUD()
@@ -62,6 +63,8 @@ class GameScene: SKScene {
         self.hudNode.addChild(self.hud)
         
         self.hudNode.zPosition = GameLayer.Interface
+        
+        self.pauseMenu.zPosition = GameLayer.Interface
         
         // Garbage Collector
         self.garbageCollector = SKShapeNode(rect: CGRect(x: -1100, y: -(kViewSizeHeight/2), width: 20, height: kViewSizeHeight))
@@ -117,12 +120,18 @@ class GameScene: SKScene {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch: UITouch = touches.first!
-        let touchLocation = touch.location(in: self.hudNode)
+        let touchLocationHUD = touch.location(in: self.hudNode)
+        let touchLocationPauseMenu = touch.location(in: self.pauseMenu.pauseMenu)
         
-        if self.hud.hudBackground.contains(touchLocation) {
-            print("PAUSED")
+        if self.hud.hudBackground.contains(touchLocationHUD) {
             self.pauseButtonPressed()
-        } else {
+        } else if self.pauseMenu.playBtn.contains(touchLocationPauseMenu) {
+            print("Play tapped.")
+            self.pauseMenu.playTapped()
+        } else if self.pauseMenu.menuBtn.contains(touchLocationPauseMenu) {
+            print("Menu tapped.")
+            self.pauseMenu.menuTapped()
+        }else {
             player.jump()
         }
     }
@@ -130,12 +139,11 @@ class GameScene: SKScene {
     private func pauseButtonPressed() {
         self.hud.pauseButton.tappedPauseButton()
         
+        pauseMenu.createPauseMenu(at: CGPoint(x: self.cameraNode.frame.size.width/2, y: self.cameraNode.frame.size.height/2), onNode: self.cameraNode)
+        
         if self.hud.pauseButton.tapped {
             self.isPaused = true
-            self.hud.pauseButton.texture = SKTexture(imageNamed: "play")
-        } else {
-            self.isPaused = false
-            self.hud.pauseButton.texture = SKTexture(imageNamed: "pause")
+            self.hud.pauseButton.isHidden = true
         }
     }
     
@@ -165,6 +173,14 @@ class GameScene: SKScene {
         let newPosition = getCameraPosition() + diff
         
         setCameraPosition(position: CGPoint(x: newPosition.x, y: size.height/2))
+    }
+    
+    func gameOver() {
+        let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
+        let gameOverScene = SKScene(size: CGSize(width: 300, height: 300))
+        gameOverScene.backgroundColor = UIColor.black
+        
+        self.view?.presentScene(gameOverScene, transition: reveal)
     }
 }
 

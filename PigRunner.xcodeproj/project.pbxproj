@@ -37,6 +37,8 @@
 		7942F7161DE872300032B9BA /* Pig.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 7942F7151DE872300032B9BA /* Pig.atlas */; };
 		796BD57C1DDE20A9001985F0 /* GameTextures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796BD57B1DDE20A9001985F0 /* GameTextures.swift */; };
 		798C5FB31DD0CCEE00CA0FB5 /* CoinSpecialArrow.sks in Resources */ = {isa = PBXBuildFile; fileRef = 798C5FB21DD0CCEE00CA0FB5 /* CoinSpecialArrow.sks */; };
+		798E9C551DEDCA72000BEBD0 /* PauseMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798E9C541DEDCA72000BEBD0 /* PauseMenu.swift */; };
+		798E9C581DEDCB4D000BEBD0 /* PauseMenu.sks in Resources */ = {isa = PBXBuildFile; fileRef = 798E9C571DEDCB4D000BEBD0 /* PauseMenu.sks */; };
 		79BA49CF1DD0B86B0029EEF8 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BA49CE1DD0B86B0029EEF8 /* Player.swift */; };
 		79BA49D11DD0BA690029EEF8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BA49D01DD0BA690029EEF8 /* Constants.swift */; };
 		79CF88811DE768DD00FCBCE6 /* PauseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CF88801DE768DD00FCBCE6 /* PauseButton.swift */; };
@@ -75,6 +77,8 @@
 		7942F7151DE872300032B9BA /* Pig.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = Pig.atlas; path = Resources/Pig.atlas; sourceTree = "<group>"; };
 		796BD57B1DDE20A9001985F0 /* GameTextures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameTextures.swift; path = pigrunner/Classes/GameTextures.swift; sourceTree = SOURCE_ROOT; };
 		798C5FB21DD0CCEE00CA0FB5 /* CoinSpecialArrow.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = CoinSpecialArrow.sks; path = Scenes/Coins/CoinSpecialArrow.sks; sourceTree = "<group>"; };
+		798E9C541DEDCA72000BEBD0 /* PauseMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PauseMenu.swift; path = Classes/PauseMenu.swift; sourceTree = "<group>"; };
+		798E9C571DEDCB4D000BEBD0 /* PauseMenu.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = PauseMenu.sks; path = Scenes/Menu/PauseMenu.sks; sourceTree = "<group>"; };
 		79BA49CE1DD0B86B0029EEF8 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Player.swift; path = Classes/Player.swift; sourceTree = "<group>"; };
 		79BA49D01DD0BA690029EEF8 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = Others/Constants.swift; sourceTree = "<group>"; };
 		79CF88801DE768DD00FCBCE6 /* PauseButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PauseButton.swift; path = Classes/PauseButton.swift; sourceTree = "<group>"; };
@@ -133,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				642C23721DE636C7006DDC53 /* GameScene.sks */,
+				798E9C561DEDCB38000BEBD0 /* Menu */,
 				64AF81BB1DD8119200DC654C /* Blocks */,
 				645C33F81DCFD87500ABA4D7 /* Coins */,
 				645C33F31DCFD6A800ABA4D7 /* Obstacles */,
@@ -145,15 +150,16 @@
 			children = (
 				642C23711DE63669006DDC53 /* Obstacles */,
 				79BA49D01DD0BA690029EEF8 /* Constants.swift */,
-				64F8B6581DE7D93A00B59BF2 /* MenuScene.swift */,
 				642C23741DE636F1006DDC53 /* GameScene.swift */,
 				642C23751DE636F1006DDC53 /* GameViewController.swift */,
-				79BA49CE1DD0B86B0029EEF8 /* Player.swift */,
 				793D1B661DD0D035008A7B9E /* BlocksGenerator.swift */,
+				79BA49CE1DD0B86B0029EEF8 /* Player.swift */,
 				642DFA431DD8C932003FE64B /* HUD.swift */,
+				64F8B6581DE7D93A00B59BF2 /* MenuScene.swift */,
+				79CF88801DE768DD00FCBCE6 /* PauseButton.swift */,
+				798E9C541DEDCA72000BEBD0 /* PauseMenu.swift */,
 				796BD57B1DDE20A9001985F0 /* GameTextures.swift */,
 				790679E31DDE250800F8BA7A /* GameFonts.swift */,
-				79CF88801DE768DD00FCBCE6 /* PauseButton.swift */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -218,6 +224,14 @@
 				64F8B6601DE7F6A900B59BF2 /* SpikesAndCoins.sks */,
 			);
 			name = Blocks;
+			sourceTree = "<group>";
+		};
+		798E9C561DEDCB38000BEBD0 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				798E9C571DEDCB4D000BEBD0 /* PauseMenu.sks */,
+			);
+			name = Menu;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -296,6 +310,7 @@
 				7942F7161DE872300032B9BA /* Pig.atlas in Resources */,
 				645C33E51DCFD0A600ABA4D7 /* Assets.xcassets in Resources */,
 				645C33E81DCFD0A600ABA4D7 /* LaunchScreen.storyboard in Resources */,
+				798E9C581DEDCB4D000BEBD0 /* PauseMenu.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -307,6 +322,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				64F8B6591DE7D93A00B59BF2 /* MenuScene.swift in Sources */,
+				798E9C551DEDCA72000BEBD0 /* PauseMenu.swift in Sources */,
 				79CF88811DE768DD00FCBCE6 /* PauseButton.swift in Sources */,
 				642C23871DE6379E006DDC53 /* SpinningWheel.swift in Sources */,
 				642C23801DE63729006DDC53 /* AppDelegate.swift in Sources */,
