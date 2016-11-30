@@ -15,7 +15,7 @@ class GameScene: SKScene {
     var ground: SKNode!
     var player: Player!
     var blocksGenerator: BlocksGenerator!
-    let pauseMenu = PauseMenu()
+    var pauseMenu: PauseMenu!
     let cameraNode = SKCameraNode()
     let hudNode = SKNode()
     var hud = HUD()
@@ -64,7 +64,8 @@ class GameScene: SKScene {
         
         self.hudNode.zPosition = GameLayer.Interface
         
-        self.pauseMenu.zPosition = GameLayer.Interface
+        // Pause Menu
+        //self.pauseMenu = PauseMenu(fileNamed: "PauseMenu", atPosition: CGPoint(x: self.cameraNode.frame.size.width/2, y: self.cameraNode.frame.size.height/2))
         
         // Garbage Collector
         self.garbageCollector = SKShapeNode(rect: CGRect(x: -1100, y: -(kViewSizeHeight/2), width: 20, height: kViewSizeHeight))
@@ -100,7 +101,8 @@ class GameScene: SKScene {
             self.removeAllChildren()
             self.removeAllActions()
             
-            let gameOverScene = MenuScene(size: CGSize(width: kViewSizeWidth, height: kViewSizeHeight))
+            let gameOverScene = MenuScene(size: size)
+            gameOverScene.scaleMode = .fill
             let transition = SKTransition.fade(with: UIColor.black, duration: 0.25)
             
             self.view?.presentScene(gameOverScene, transition: transition)
@@ -123,15 +125,13 @@ class GameScene: SKScene {
         let touchLocationHUD = touch.location(in: self.hudNode)
         let touchLocationPauseMenu = touch.location(in: self.pauseMenu.pauseMenu)
         
-        if self.hud.hudBackground.contains(touchLocationHUD) {
+        if self.hud.hudBackground.contains(touchLocationHUD) { // Pause
             self.pauseButtonPressed()
-        } else if self.pauseMenu.playBtn.contains(touchLocationPauseMenu) {
-            print("Play tapped.")
-            self.pauseMenu.playTapped()
-        } else if self.pauseMenu.menuBtn.contains(touchLocationPauseMenu) {
-            print("Menu tapped.")
-            self.pauseMenu.menuTapped()
-        }else {
+        } else if self.pauseMenu.playBtn.contains(touchLocationPauseMenu) { // Play
+            self.resumeButtonPressed()
+        } else if self.pauseMenu.menuBtn.contains(touchLocationPauseMenu) { // Menu
+            self.menuButtonPressed()
+        } else { // Jump
             player.jump()
         }
     }
@@ -139,12 +139,26 @@ class GameScene: SKScene {
     private func pauseButtonPressed() {
         self.hud.pauseButton.tappedPauseButton()
         
-        pauseMenu.createPauseMenu(at: CGPoint(x: self.cameraNode.frame.size.width/2, y: self.cameraNode.frame.size.height/2), onNode: self.cameraNode)
+        self.addChild(self.pauseMenu)
         
         if self.hud.pauseButton.tapped {
             self.isPaused = true
             self.hud.pauseButton.isHidden = true
         }
+    }
+    
+    private func resumeButtonPressed() {
+        self.pauseMenu.removeFromParent()
+        self.isPaused = false
+    }
+    
+    private func menuButtonPressed() {
+        self.pauseMenu.removeFromParent()
+        
+        let menuScene = MenuScene(size: CGSize(width: kViewSizeWidth, height: kViewSizeHeight))
+        let transition = SKTransition.fade(with: UIColor.black, duration: 0.25)
+        
+        self.view?.presentScene(menuScene, transition: transition)
     }
     
     // MARK: - Camera

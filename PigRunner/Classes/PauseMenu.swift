@@ -12,9 +12,7 @@ class PauseMenu: SKNode {
     // MARK: - Properties
     var playBtn: SKSpriteNode!
     var menuBtn: SKSpriteNode!
-    var skScene:  SKNode!
     var pauseMenu: SKNode!
-    
     
     // MARK: - Init
     required init?(coder aDecoder: NSCoder) {
@@ -24,22 +22,23 @@ class PauseMenu: SKNode {
     override init() {
         super.init()
         
-        self.skScene = SKNode(fileNamed: "PauseMenu")!
-        self.pauseMenu = skScene.childNode(withName: "Block") as SKNode!
+        self.playBtn = self.childNode(withName: "playBtn")! as! SKSpriteNode
+        self.menuBtn = self.childNode(withName: "menuBtn")! as! SKSpriteNode
         
-        self.playBtn = pauseMenu?.childNode(withName: "playBtn")! as! SKSpriteNode
-        self.menuBtn = pauseMenu?.childNode(withName: "menuBtn")! as! SKSpriteNode
+//        self.position = CGPoint(x: self.cameraNode.frame.size.width/2, y: self.cameraNode.frame.size.height/2)
+        self.zPosition = GameLayer.Interface
+        
+        self.removeFromParent()
     }
     
     // MARK: - Methods
-    func createPauseMenu(at pos: CGPoint, onNode node: SKNode) {
-        
-        self.pauseMenu?.position = pos
-        self.pauseMenu?.zPosition = 40
-        
-        self.pauseMenu?.removeFromParent()
-        node.addChild(self.pauseMenu!)
-    }
+    //    func createPauseMenu(at pos: CGPoint, onNode node: SKNode) {
+    //        self.pauseMenu?.position = pos
+    //        self.pauseMenu?.zPosition = GameLayer.Interface
+    //
+    //        self.pauseMenu?.removeFromParent()
+    //        node.addChild(self.pauseMenu!)
+    //    }
     
     func menuTapped() {
         self.removeFromParent()
@@ -52,5 +51,7 @@ class PauseMenu: SKNode {
     
     func playTapped() {
         self.removeFromParent()
+        
+        GameScene.sharedInstance.isPaused = false
     }
 }
