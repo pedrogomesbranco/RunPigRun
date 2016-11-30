@@ -15,7 +15,7 @@ class GameScene: SKScene {
     var ground: SKNode!
     var player: Player!
     var blocksGenerator: BlocksGenerator!
-    var pauseMenu: PauseMenu!
+    var pauseMenu = PauseMenu()
     let cameraNode = SKCameraNode()
     let hudNode = SKNode()
     var hud = HUD()
@@ -65,7 +65,7 @@ class GameScene: SKScene {
         self.hudNode.zPosition = GameLayer.Interface
         
         // Pause Menu
-        //self.pauseMenu = PauseMenu(fileNamed: "PauseMenu", atPosition: CGPoint(x: self.cameraNode.frame.size.width/2, y: self.cameraNode.frame.size.height/2))
+        self.pauseMenu.setupPauseMenu(fileNamed: "PauseMenu")
         
         // Garbage Collector
         self.garbageCollector = SKShapeNode(rect: CGRect(x: -1100, y: -(kViewSizeHeight/2), width: 20, height: kViewSizeHeight))
@@ -123,13 +123,13 @@ class GameScene: SKScene {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch: UITouch = touches.first!
         let touchLocationHUD = touch.location(in: self.hudNode)
-        let touchLocationPauseMenu = touch.location(in: self.pauseMenu.pauseMenu)
+        let touchLocationPauseMenu = touch.location(in: self.pauseMenu)
         
         if self.hud.hudBackground.contains(touchLocationHUD) { // Pause
             self.pauseButtonPressed()
-        } else if self.pauseMenu.playBtn.contains(touchLocationPauseMenu) { // Play
+        } else if (self.pauseMenu.playBtn?.contains(touchLocationPauseMenu))! { // Play
             self.resumeButtonPressed()
-        } else if self.pauseMenu.menuBtn.contains(touchLocationPauseMenu) { // Menu
+        } else if (self.pauseMenu.menuBtn?.contains(touchLocationPauseMenu))! { // Menu
             self.menuButtonPressed()
         } else { // Jump
             player.jump()
@@ -138,8 +138,9 @@ class GameScene: SKScene {
     
     private func pauseButtonPressed() {
         self.hud.pauseButton.tappedPauseButton()
-        
-        self.addChild(self.pauseMenu)
+        let pausar = pauseMenu
+        self.cameraNode.addChild(pausar)
+        self.pauseMenu.position = CGPoint(x: self.cameraNode.calculateAccumulatedFrame().width/2, y: self.cameraNode.calculateAccumulatedFrame().height/2)
         
         if self.hud.pauseButton.tapped {
             self.isPaused = true

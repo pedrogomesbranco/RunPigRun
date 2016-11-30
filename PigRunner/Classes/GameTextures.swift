@@ -36,9 +36,10 @@ class GameTextures {
         self.setupDieTextures()
     }
     
-    func preloadAssets() {
+    func preloadAssets(completionHandler:@escaping (Bool) -> Void) {
         pigAnimationAtlas.preload(completionHandler: {
             print("Pig animations atlas pre-loaded.")
+            completionHandler(true)
         })
     }
     

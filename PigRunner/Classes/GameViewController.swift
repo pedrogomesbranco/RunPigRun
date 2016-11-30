@@ -15,8 +15,6 @@ class GameViewController: UIViewController {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
-        GameTextures.sharedInstance.preloadAssets()
-        
         if let skView = self.view as? SKView {
             if skView.scene == nil {
                 if kDebug {
@@ -27,10 +25,12 @@ class GameViewController: UIViewController {
                 
                 skView.ignoresSiblingOrder = true
                 
-                let menuScene = MenuScene(size: CGSize(width: kViewSizeWidth, height: kViewSizeHeight))
-                let menuTransition = SKTransition.fade(with: UIColor.black, duration: 0.25)
-                
-                skView.presentScene(menuScene, transition: menuTransition)
+                GameTextures.sharedInstance.preloadAssets(completionHandler: { (_) in
+                    let menuScene = MenuScene(size: CGSize(width: kViewSizeWidth, height: kViewSizeHeight))
+                    let menuTransition = SKTransition.fade(with: UIColor.black, duration: 0.25)
+                    
+                    skView.presentScene(menuScene, transition: menuTransition)
+                })
             }
         }
     }

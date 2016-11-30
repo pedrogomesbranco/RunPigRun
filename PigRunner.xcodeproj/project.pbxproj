@@ -150,8 +150,8 @@
 			children = (
 				642C23711DE63669006DDC53 /* Obstacles */,
 				79BA49D01DD0BA690029EEF8 /* Constants.swift */,
-				642C23741DE636F1006DDC53 /* GameScene.swift */,
 				642C23751DE636F1006DDC53 /* GameViewController.swift */,
+				642C23741DE636F1006DDC53 /* GameScene.swift */,
 				793D1B661DD0D035008A7B9E /* BlocksGenerator.swift */,
 				79BA49CE1DD0B86B0029EEF8 /* Player.swift */,
 				642DFA431DD8C932003FE64B /* HUD.swift */,
