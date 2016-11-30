@@ -11,14 +11,13 @@ import SpriteKit
 class GameScene: SKScene {
     
     // MARK: - Properties
-    var garbageCollector: SKShapeNode!
     var ground: SKNode!
     var player: Player!
     var blocksGenerator: BlocksGenerator!
-    var pauseMenu = PauseMenu()
     let cameraNode = SKCameraNode()
     let hudNode = SKNode()
     var hud = HUD()
+    let pauseMenu = PauseMenu()
     
     private var timeStep = 0
     
@@ -63,28 +62,7 @@ class GameScene: SKScene {
         self.hudNode.addChild(self.hud)
         
         self.hudNode.zPosition = GameLayer.Interface
-        
-        // Pause Menu
-        self.pauseMenu.setupPauseMenu(fileNamed: "PauseMenu")
-        
-        // Garbage Collector
-        self.garbageCollector = SKShapeNode(rect: CGRect(x: -1100, y: -(kViewSizeHeight/2), width: 20, height: kViewSizeHeight))
-        self.garbageCollector.physicsBody?.collisionBitMask = ColliderType.GarbageCollector
-        self.garbageCollector.zPosition = 40
-        
-        //self.cameraNode.addChild(self.garbageCollector)
     }
-    
-    //    func setupGestures() {
-    //        // Setup tap interaction control
-    //        let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(GameScene.tapped))
-    //        view?.addGestureRecognizer(tapGesture)
-    //
-    //        // Setup slide interaction control
-    //        let swipeDown: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.swipedDown))
-    //        swipeDown.direction = .down
-    //        view?.addGestureRecognizer(swipeDown)
-    //    }
     
     // MARK: - Game Loop
     override func update(_ currentTime: TimeInterval) {
@@ -112,25 +90,20 @@ class GameScene: SKScene {
     }
     
     // MARK: - User Interaction
-    //    func tapped() {
-    //        player.jump()
-    //    }
-    //
-    //    func swipedDown() {
-    //        player.slide()
-    //    }
-    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch: UITouch = touches.first!
         let touchLocationHUD = touch.location(in: self.hudNode)
-        let touchLocationPauseMenu = touch.location(in: self.pauseMenu)
+        let touchLocationPauseMenu = touch.location(in: self.pauseMenu.pauseMenuNode)
         
         if self.hud.hudBackground.contains(touchLocationHUD) { // Pause
             self.pauseButtonPressed()
-        } else if (self.pauseMenu.playBtn?.contains(touchLocationPauseMenu))! { // Play
-            self.resumeButtonPressed()
-        } else if (self.pauseMenu.menuBtn?.contains(touchLocationPauseMenu))! { // Menu
-            self.menuButtonPressed()
+        } else if self.pauseMenu.playBtn.contains(touchLocationPauseMenu) { // Play
+            self.pauseMenu.playTapped()
+            self.isPaused = false
+            self.hud.pauseButton.isHidden = false
+        } else if self.pauseMenu.menuBtn.contains(touchLocationPauseMenu) { // Menu
+            self.pauseMenu.menuTapped()
+            goToMenu()
         } else { // Jump
             player.jump()
         }
@@ -138,9 +111,8 @@ class GameScene: SKScene {
     
     private func pauseButtonPressed() {
         self.hud.pauseButton.tappedPauseButton()
-        let pausar = pauseMenu
-        self.cameraNode.addChild(pausar)
-        self.pauseMenu.position = CGPoint(x: self.cameraNode.calculateAccumulatedFrame().width/2, y: self.cameraNode.calculateAccumulatedFrame().height/2)
+        
+        pauseMenu.show(at: CGPoint(x: self.cameraNode.frame.width/2, y: self.cameraNode.frame.height/2), onNode: self.cameraNode)
         
         if self.hud.pauseButton.tapped {
             self.isPaused = true
@@ -148,15 +120,9 @@ class GameScene: SKScene {
         }
     }
     
-    private func resumeButtonPressed() {
-        self.pauseMenu.removeFromParent()
-        self.isPaused = false
-    }
-    
-    private func menuButtonPressed() {
-        self.pauseMenu.removeFromParent()
-        
-        let menuScene = MenuScene(size: CGSize(width: kViewSizeWidth, height: kViewSizeHeight))
+    private func goToMenu() {
+        let menuScene = MenuScene(size: size)
+        menuScene.scaleMode = .fill
         let transition = SKTransition.fade(with: UIColor.black, duration: 0.25)
         
         self.view?.presentScene(menuScene, transition: transition)

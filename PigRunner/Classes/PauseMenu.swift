@@ -21,25 +21,24 @@ class PauseMenu: SKNode {
     
     override init() {
         super.init()
-    }
-    
-    // MARK: - Methods
-    func setupPauseMenu(fileNamed filename: String) {
-        self.pauseMenuNode = SKNode(fileNamed: filename)
+        
+        self.pauseMenuNode = SKNode(fileNamed: "PauseMenu")!.childNode(withName: "Overlay")
         
         self.playBtn = self.pauseMenuNode.childNode(withName: "playBtn") as! SKSpriteNode
         self.menuBtn = self.pauseMenuNode.childNode(withName: "menuBtn") as! SKSpriteNode
+    }
+    
+    // MARK: - Methods
+    func show(at pos: CGPoint, onNode node: SKNode) {
+        self.pauseMenuNode.position = pos
+        self.pauseMenuNode.removeFromParent()
+        self.pauseMenuNode.zPosition = GameLayer.Interface
         
-        self.addChild(self.pauseMenuNode)
+        node.addChild(self.pauseMenuNode)
     }
     
     func menuTapped() {
         self.pauseMenuNode.removeFromParent()
-        
-        let gameOverScene = MenuScene(size: CGSize(width: kViewSizeWidth, height: kViewSizeHeight))
-        let transition = SKTransition.fade(with: UIColor.black, duration: 0.25)
-        
-        GameScene.sharedInstance.view?.presentScene(gameOverScene, transition: transition)
     }
     
     func playTapped() {
