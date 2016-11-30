@@ -101,7 +101,14 @@ class MenuScene: SKScene {
     
     // MARK: - User Interaction
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.loadGameScene()
+        let touch = touches.first!
+        let touchLocation = touch.location(in: self)
+        
+        if self.storeButton.contains(touchLocation) {
+            self.loadStoreScene()
+        } else {
+            self.loadGameScene()
+        }
     }
     
     // MARK: - Switch scenes
@@ -118,5 +125,12 @@ class MenuScene: SKScene {
                 self.view?.presentScene(gameScene, transition: transition)
             })
         })
+    }
+    
+    private func loadStoreScene() {
+        let storeScene = StoreScene(fileNamed: "Store")
+        storeScene?.scaleMode = .fill
+        
+        self.view?.presentScene(storeScene)
     }
 }

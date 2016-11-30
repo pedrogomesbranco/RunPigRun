@@ -32,7 +32,6 @@ class GameScene: SKScene {
         physicsWorld.contactDelegate = self
         
         setupNodes()
-        //setupGestures()
     }
     
     // MARK: - Init

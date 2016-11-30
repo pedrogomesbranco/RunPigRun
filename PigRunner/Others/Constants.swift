@@ -50,6 +50,7 @@ let playerJumpPower: Float = 1.5
 let spikesPercentage: Int = 33
 let coinsPercentage: Int = 66
 let specialCoinPercentage: Int = 30
+var coinBonus = 1
 
 // Screen Dimensions
 let kViewSizeWidth: CGFloat = 2208.0

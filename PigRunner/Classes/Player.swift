@@ -137,7 +137,7 @@ class Player: SKSpriteNode {
         // Player - Coin Collision
         case ColliderType.CoinNormal:
             if let coin = body.node as? Coin {
-                self.coins += 1
+                self.coins += coinBonus
                 coin.collectedCoin()
             }
             
