@@ -12,6 +12,7 @@ class GameScene: SKScene {
     
     // MARK: - Properties
     var player: Player!
+    var enemy: SKSpriteNode!
     var blocksGenerator: BlocksGenerator!
     var hud = HUD()
     
@@ -57,6 +58,13 @@ class GameScene: SKScene {
                         collisionBitMask: ColliderType.Ground | ColliderType.Spikes)
         blocksGenerator.fgNode.addChild(player)
         
+        // Setup Enemy
+        enemy = SKSpriteNode(texture: GameTextures.sharedInstance.enemyRunTextures.first!)
+        enemy.setScale(1.5)
+        enemy.position = CGPoint(x: 0, y: -450)
+        blocksGenerator.fgNode.addChild(enemy)
+        enemy.run(SKAction.repeatForever(SKAction.animate(with: GameTextures.sharedInstance.enemyRunTextures, timePerFrame: 0.1, resize: false, restore: true)), withKey: "enemyRun")
+        
         // Setup camera
         setCameraPosition(position: CGPoint(x: size.width/2, y: size.height/2))
         addChild(cameraNode)
@@ -76,6 +84,8 @@ class GameScene: SKScene {
         
         player.updatePlayer(timeStep)
         updateCamera()
+        
+        enemy.position.x = player.position.x - 300
         
         self.hud.updateCoinsCollected(GameData.sharedInstance.coins)
         self.hud.updateScore(score: GameData.sharedInstance.score)
@@ -139,9 +149,9 @@ class GameScene: SKScene {
     
     private func continueGame() {
         if GameData.sharedInstance.totalCoins >= 1000 {
-        GameData.sharedInstance.totalCoins -= 1000
-        GameData.sharedInstance.save()
-        self.player.revive()
+            GameData.sharedInstance.totalCoins -= 1000
+            GameData.sharedInstance.save()
+            self.player.revive()
         }
     }
     

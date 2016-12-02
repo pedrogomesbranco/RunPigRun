@@ -19,6 +19,7 @@ class GameTextures {
     // MARK: - Public properties
     // Texture Atlas
     let pigAnimationAtlas = SKTextureAtlas(named: "Pig")
+    let enemyAnimationAtlas = SKTextureAtlas(named: "FatEnemy")
     
     // Texture Arrays
     internal var runTextures = [SKTexture]()
@@ -26,6 +27,7 @@ class GameTextures {
     internal var slideTextures = [SKTexture]()
     internal var idleTextures = [SKTexture]()
     internal var dieTextures = [SKTexture]()
+    internal var enemyRunTextures = [SKTexture]()
     
     // MARK: - Init
     init() {
@@ -34,12 +36,15 @@ class GameTextures {
         self.setupSlideTextures()
         self.setupIdleTextures()
         self.setupDieTextures()
+        self.setupEnemyRunTextures()
     }
     
     func preloadAssets(completionHandler:@escaping (Bool) -> Void) {
         pigAnimationAtlas.preload(completionHandler: {
-            print("Pig animations atlas pre-loaded.")
-            completionHandler(true)
+            print("Animations atlas pre-loaded.")
+            self.enemyAnimationAtlas.preload(completionHandler: {
+                completionHandler(true)
+            })
         })
     }
     
@@ -71,6 +76,12 @@ class GameTextures {
     private func setupDieTextures() {
         for i in 0...7 {
             dieTextures.append(pigAnimationAtlas.textureNamed("Die_00\(i)"))
+        }
+    }
+    
+    private func setupEnemyRunTextures() {
+        for i in 0...3 {
+            enemyRunTextures.append(enemyAnimationAtlas.textureNamed("Enemy_Running\(i)"))
         }
     }
 }

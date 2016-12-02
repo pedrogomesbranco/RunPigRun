@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		641F0FD61DF123AD00D5902A /* FatEnemy.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 641F0FD51DF123AD00D5902A /* FatEnemy.atlas */; };
 		642C23731DE636C7006DDC53 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 642C23721DE636C7006DDC53 /* GameScene.sks */; };
 		642C23761DE636F1006DDC53 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642C23741DE636F1006DDC53 /* GameScene.swift */; };
 		642C23771DE636F1006DDC53 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642C23751DE636F1006DDC53 /* GameViewController.swift */; };
@@ -50,6 +51,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		641F0FD51DF123AD00D5902A /* FatEnemy.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = FatEnemy.atlas; path = Resources/FatEnemy.atlas; sourceTree = "<group>"; };
 		642C23721DE636C7006DDC53 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = GameScene.sks; path = Scenes/GameScene.sks; sourceTree = "<group>"; };
 		642C23741DE636F1006DDC53 /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameScene.swift; path = Classes/GameScene.swift; sourceTree = "<group>"; };
 		642C23751DE636F1006DDC53 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameViewController.swift; path = Classes/GameViewController.swift; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 		645C33F21DCFD69D00ABA4D7 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				641F0FD51DF123AD00D5902A /* FatEnemy.atlas */,
 				7942F7151DE872300032B9BA /* Pig.atlas */,
 				64F8B6541DE7D7B400B59BF2 /* Comic_Andy.ttf */,
 				64F8B6551DE7D7B400B59BF2 /* Space Comics.ttf */,
@@ -317,6 +320,7 @@
 				792365821DEF61700000AF05 /* Store.sks in Resources */,
 				798C5FB31DD0CCEE00CA0FB5 /* CoinSpecialArrow.sks in Resources */,
 				645C33FA1DCFD8A800ABA4D7 /* Spikes.sks in Resources */,
+				641F0FD61DF123AD00D5902A /* FatEnemy.atlas in Resources */,
 				64AF81BF1DD811B700DC654C /* SmileAndTrigger.sks in Resources */,
 				64FF4EE51DD7D9F400337C2E /* SpinningWheel.sks in Resources */,
 				64F8B6611DE7F6A900B59BF2 /* SpikesAndCoins.sks in Resources */,
