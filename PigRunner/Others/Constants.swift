@@ -52,6 +52,9 @@ let coinsPercentage: Int = 66
 let specialCoinPercentage: Int = 30
 var coinBonus = 1
 
+// Ground node height (for positioning the blocks correctly on Y axis)
+var groundHeight: CGFloat = 0.0
+
 // Screen Dimensions
 let kViewSizeWidth: CGFloat = 2208.0
 let kViewSizeHeight: CGFloat = 1522.0

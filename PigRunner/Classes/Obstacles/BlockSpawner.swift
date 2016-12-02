@@ -29,7 +29,8 @@ class BlockSpawner: SKSpriteNode {
         self.nodeToSpawn = blockNode.childNode(withName: "Block") as! SKSpriteNode!
         
         self.nodeToSpawn.position = pos
-        self.nodeToSpawn.position.y += 190
+        print(groundHeight)
+        self.nodeToSpawn.position.y = groundHeight
         self.nodeToSpawn.physicsBody?.contactTestBitMask = ColliderType.Player | ColliderType.GarbageCollector
         
         self.nodeWidth = self.nodeToSpawn.calculateAccumulatedFrame().width

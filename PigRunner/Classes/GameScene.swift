@@ -11,7 +11,6 @@ import SpriteKit
 class GameScene: SKScene {
     
     // MARK: - Properties
-    var ground: SKNode!
     var player: Player!
     var blocksGenerator: BlocksGenerator!
     let cameraNode = SKCameraNode()
@@ -38,6 +37,10 @@ class GameScene: SKScene {
     func setupNodes() {
         // Setup World (root) SKScene
         let worldNode = childNode(withName: "World")!
+        
+        // Apply ground height to variable (used to position each block on the correct Y value)
+        let groundNode = worldNode.childNode(withName: "Background")!.childNode(withName: "Block")!.childNode(withName: "Ground")! as! SKSpriteNode
+        groundHeight = groundNode.size.height
         
         // Setup level generation
         blocksGenerator = BlocksGenerator(withWorldNode: worldNode)
