@@ -53,7 +53,7 @@ class HUD: SKNode {
     
     private func setupHUDCoins(collected: Int) {
         // Coins Sprite
-        self.coinsCollected = SKSpriteNode(imageNamed: "moedao")
+        self.coinsCollected = SKSpriteNode(imageNamed: "coin")
         self.coinsCollected.size.height *= 2
         self.coinsCollected.size.width *= 2
         

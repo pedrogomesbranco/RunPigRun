@@ -21,6 +21,8 @@ struct ColliderType {
     static let Magnet: UInt32           = 0b10000000 // 128
     static let MagneticField: UInt32    = 0b100000000 // 256
     static let GarbageCollector: UInt32 = 0b1000000000 // 512
+    static let Wall: UInt32             = 0b10000000000
+    static let Red: UInt32              = 0b100000000000
 }
 
 enum CoinBlock: UInt32 {
@@ -38,6 +40,8 @@ enum BlockType: UInt32 {
     case SmileAndTrigger        = 0
     case TwoTriggers            = 0b1
     case SpikesAndCoins         = 0b10
+    case Obstacle1              = 0b100
+    case Obstacles2             = 0b1000
 }
 
 struct GameLayer {

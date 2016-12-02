@@ -13,10 +13,18 @@ class MenuScene: SKScene {
     private var playButton = SKSpriteNode()
     private var storeButton = SKSpriteNode()
     private var settingsButton = SKSpriteNode()
+    private var rankingButton = SKSpriteNode()
     private var soundButton = SKSpriteNode()
     private var musicButton = SKSpriteNode()
     private var coinsLabel = SKLabelNode()
     private var pig = SKSpriteNode()
+    private var blocksGenerator: BlocksGenerator!
+    let background = SKSpriteNode(imageNamed: "full-background")
+    let background2 = SKSpriteNode(imageNamed: "full-background")
+    var cameraNode = SKCameraNode()
+
+    
+    private var touchSettings = false
     
     // MARK: - Init
     required init?(coder aDecoder: NSCoder) {
@@ -35,10 +43,15 @@ class MenuScene: SKScene {
     private func setupMenuScene() {
         self.backgroundColor = UIColor.black
         
-        let background = SKSpriteNode(imageNamed: "full-background")
+        self.addChild(cameraNode)
+        
         background.anchorPoint = CGPoint.zero
-        background.position = CGPoint(x: -100, y: 0)
+        background.position = CGPoint.zero
         self.addChild(background)
+        
+        background2.anchorPoint = CGPoint.zero
+        background2.position = CGPoint(x: background.frame.width, y: 0)
+        self.addChild(background2)
         
         let title = SKSpriteNode(imageNamed: "menu_title")
         title.position = CGPoint(x: self.size.width/2, y: self.size.height/2 + title.size.height*2)
@@ -68,33 +81,39 @@ class MenuScene: SKScene {
         musicButton.setScale(3.8)
         self.addChild(musicButton)
         
-        storeButton = SKSpriteNode(imageNamed: "storeButton")
-        storeButton.position = CGPoint(x: 820, y: self.size.height/2 - 400)
+        storeButton = SKSpriteNode(imageNamed: "store 2")
+        storeButton.position = CGPoint(x: 860, y: self.size.height/2 - 400)
         storeButton.setScale(4)
         storeButton.zPosition = GameLayer.Interface
         self.addChild(storeButton)
         
-//        coinsLabel.text = "\(1234) coins"
-//        coinsLabel.fontName = "Comic_Andy"
-//        coinsLabel.fontColor = UIColor.white
-//        coinsLabel.fontSize = 120
-//        coinsLabel.zPosition = 6
-//        coinsLabel.position = CGPoint(x: 850, y: self.size.height/2 - 400)
-//        self.addChild(coinsLabel)
+        rankingButton = SKSpriteNode(imageNamed: "rankingsbutton")
+        rankingButton.position = CGPoint(x: 580, y: self.size.height/2 - 400)
+        rankingButton.setScale(4)
+        rankingButton.zPosition = GameLayer.Interface
+        self.addChild(rankingButton)
         
-        let playBtnScaleUp = SKAction.scale(to: 1.1, duration: 0.3)
-        let playBtnScaleDown = SKAction.scale(to: 1.0, duration: 0.3)
+        //        coinsLabel.text = "\(1234) coins"
+        //        coinsLabel.fontName = "Comic_Andy"
+        //        coinsLabel.fontColor = UIColor.white
+        //        coinsLabel.fontSize = 120
+        //        coinsLabel.zPosition = 6
+        //        coinsLabel.position = CGPoint(x: 850, y: self.size.height/2 - 400)
+        //        self.addChild(coinsLabel)
+        
+        let playBtnScaleUp = SKAction.scale(to: 1.3, duration: 0.5)
+        let playBtnScaleDown = SKAction.scale(to: 1.0, duration: 0.5)
         let playBtnAnimation = SKAction.sequence([playBtnScaleUp, playBtnScaleDown])
         
         playButton.run(SKAction.repeatForever(playBtnAnimation))
         
         pig = SKSpriteNode(imageNamed: "Run_000")
         pig.setScale(0.5)
-        pig.position = CGPoint(x: self.size.width/2 + 800, y: self.size.height/2 - 390)
+        pig.position = CGPoint(x: self.size.width/2 + 800, y: self.size.height/2 - 375)
         pig.zPosition = 5
         
         // Animate the pig's running movement
-        pig.run(SKAction.repeatForever(SKAction.animate(with: GameTextures.sharedInstance.idleTextures, timePerFrame: 0.1, resize: true, restore: true)), withKey: "menu_idle")
+        pig.run(SKAction.repeatForever(SKAction.animate(with: GameTextures.sharedInstance.runTextures, timePerFrame: 0.1, resize: true, restore: true)), withKey: "menu_run")
         
         self.addChild(pig)
     }
@@ -138,10 +157,37 @@ class MenuScene: SKScene {
     }
     
     private func loadSettingsMenu() {
-        let soundMoveAction = SKAction.move(to: CGPoint(x: 300, y: self.size.height/2 + 140), duration: 0.25)
-        let musicMoveAction = SKAction.move(to: CGPoint(x: 300, y: self.size.height/2 - 120), duration: 0.25)
+        if(touchSettings == false){
+            touchSettings = true
+            let soundMoveAction = SKAction.move(to: CGPoint(x: 300, y: self.size.height/2 + 140), duration: 0.25)
+            let musicMoveAction = SKAction.move(to: CGPoint(x: 300, y: self.size.height/2 - 120), duration: 0.25)
+            self.soundButton.run(soundMoveAction)
+            self.musicButton.run(musicMoveAction)
+            
+        }
+        else{
+            touchSettings = false
+            let soundMoveAction = SKAction.move(to: CGPoint(x: 300, y: self.size.height/2 - 400), duration: 0.25)
+            let musicMoveAction = SKAction.move(to: CGPoint(x: 300, y: self.size.height/2 - 400), duration: 0.25)
+            self.soundButton.run(soundMoveAction)
+            self.musicButton.run(musicMoveAction)
+
+        }
         
-        self.soundButton.run(soundMoveAction)
-        self.musicButton.run(musicMoveAction)
+    }
+    
+    override func update(_ currentTime: TimeInterval) {
+//        updateBackground()
+//        self.pig.position.x += 10
+//        self.cameraNode.position.x = self.pig.position.x
+    }
+    
+    func updateBackground(){
+        if(self.cameraNode.position.x > background.position.x + background.size.width + 400) {
+            background.position = CGPoint(x: background2.position.x + background2.size.width, y: background.position.y)
+        }
+        if(self.cameraNode.position.x > background2.position.x + background2.size.width + 400) {
+            background2.position = CGPoint(x: background.position.x + background.size.width, y: background2.position.y)
+        }
     }
 }

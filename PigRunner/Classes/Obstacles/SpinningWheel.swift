@@ -23,7 +23,7 @@ class SpinningWheel: SKSpriteNode {
             let rotateAction = SKAction.repeat(rotate, count: 50)
             
             self.run(rotateAction)
-            self.physicsBody?.velocity.dx = -2000
+            self.physicsBody?.velocity.dx = -1800
         })
     }
 

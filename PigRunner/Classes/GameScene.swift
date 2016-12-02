@@ -62,7 +62,7 @@ class GameScene: SKScene {
         enemy = SKSpriteNode(texture: GameTextures.sharedInstance.enemyRunTextures.first!)
         enemy.setScale(1.5)
         enemy.position = CGPoint(x: 0, y: -450)
-        blocksGenerator.fgNode.addChild(enemy)
+//        blocksGenerator.fgNode.addChild(enemy)
         enemy.run(SKAction.repeatForever(SKAction.animate(with: GameTextures.sharedInstance.enemyRunTextures, timePerFrame: 0.1, resize: false, restore: true)), withKey: "enemyRun")
         
         // Setup camera
@@ -90,9 +90,7 @@ class GameScene: SKScene {
         self.hud.updateCoinsCollected(GameData.sharedInstance.coins)
         self.hud.updateScore(score: GameData.sharedInstance.score)
         
-<<<<<<< Updated upstream
         blocksGenerator.updateLevel(withCameraPosition: cameraNode.position)
-=======
         if player.life <= 0{
             player.die()
             self.removeAllChildren()
@@ -103,7 +101,6 @@ class GameScene: SKScene {
             let transition = SKTransition.fade(with: UIColor.black, duration: 0.25)
             self.view?.presentScene(gameOverScene, transition: transition)
         }
->>>>>>> Stashed changes
         
         timeStep += 1
     }
@@ -143,14 +140,9 @@ class GameScene: SKScene {
     
     private func pauseButtonPressed() {
         self.hud.pauseButton.tappedPauseButton()
-<<<<<<< Updated upstream
-        
         pauseMenu.show(at: CGPoint(x: self.cameraNode.frame.width/2, y: self.cameraNode.frame.height/2), onNode: self.cameraNode)
-=======
-     
         self.cameraNode.addChild(pauseMenu)
         self.pauseMenu.position = CGPoint(x: self.cameraNode.calculateAccumulatedFrame().width/2, y: self.cameraNode.calculateAccumulatedFrame().height/2)
->>>>>>> Stashed changes
         
         if self.hud.pauseButton.tapped {
             self.isPaused = true

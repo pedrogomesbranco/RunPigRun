@@ -24,6 +24,10 @@ class BlockSpawner: SKSpriteNode {
             blockNode = SKNode(fileNamed: "SpikesAndCoins")
         case .TwoTriggers:
             blockNode = SKNode(fileNamed: "TwoTriggers")
+        case .Obstacle1:
+            blockNode = SKNode(fileNamed: "Obstacle1")
+        case .Obstacles2:
+            blockNode = SKNode(fileNamed: "Obstacles2")
         }
         
         self.nodeToSpawn = blockNode.childNode(withName: "Block") as! SKSpriteNode!
