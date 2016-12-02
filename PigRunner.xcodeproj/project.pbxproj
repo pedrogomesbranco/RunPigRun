@@ -284,7 +284,7 @@
 				TargetAttributes = {
 					645C33D31DCFD0A600ABA4D7 = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = Z7E3V3347K;
+						DevelopmentTeam = Y93WP7899G;
 						LastSwiftMigration = 0810;
 						ProvisioningStyle = Automatic;
 					};
@@ -487,7 +487,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = Z7E3V3347K;
+				DEVELOPMENT_TEAM = Y93WP7899G;
 				INFOPLIST_FILE = PigRunner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.jpereira.PigRunner;
@@ -505,7 +505,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = Z7E3V3347K;
+				DEVELOPMENT_TEAM = Y93WP7899G;
 				INFOPLIST_FILE = PigRunner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.jpereira.PigRunner;
