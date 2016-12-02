@@ -21,8 +21,6 @@ class Player: SKSpriteNode {
     var dieTextures: [SKTexture]!
     var isRunning: Bool = true
     var isAlive: Bool = true
-    var coins: Int = 0
-    var score: Int = 0
     var life: Int = 3
     
     let gameScene = GameScene.sharedInstance
@@ -38,7 +36,7 @@ class Player: SKSpriteNode {
         
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         self.position = position
-        self.zPosition = 3
+        self.zPosition = GameLayer.Player
         self.setScale(0.3)
         
         // Textures setup
@@ -57,7 +55,7 @@ class Player: SKSpriteNode {
         self.physicsBody!.categoryBitMask = categoryBitMask
         self.physicsBody!.collisionBitMask = collisionBitMask
         self.physicsBody?.friction = 0
-        self.physicsBody?.restitution = 0.0 // No bounce
+        self.physicsBody?.restitution = 0.0
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -76,7 +74,7 @@ class Player: SKSpriteNode {
             self.physicsBody?.velocity.dx = CGFloat((kSpeedMultiplier * log(Double(timeStep+1))) + Double(velocityX))
             
             // Update player's score
-            self.score += Int((self.physicsBody?.velocity.dx)!/CGFloat(velocityX))
+            GameData.sharedInstance.score += Int((self.physicsBody?.velocity.dx)!/CGFloat(velocityX))
         }
     }
     
@@ -100,7 +98,7 @@ class Player: SKSpriteNode {
         if isAlive {
             jumpsLeft = 2
             isRunning = true
-            changeAnimation(newTextures: runTextures, timePerFrame: 0.2, withKey: "run", restore: false, repeatCount: nil)
+            changeAnimation(newTextures: runTextures, timePerFrame: 0.1, withKey: "run", restore: false, repeatCount: nil)
         }
     }
     
@@ -110,10 +108,13 @@ class Player: SKSpriteNode {
         isRunning = false
         isAlive = false
         self.removeAllActions()
-        //changeAnimation(newTextures: dieTextures, timePerFrame: 0.1, withKey: "die", restore: false, repeatCount: nil)
         let dieAction = SKAction.animate(with: dieTextures, timePerFrame: 0.1, resize: true, restore: false)
         self.run(dieAction)
-        self.gameScene.isPaused = true
+    }
+    
+    func revive() {
+        self.life = 3
+        self.isAlive = true
     }
     
     // MARK: Power Ups
@@ -137,14 +138,15 @@ class Player: SKSpriteNode {
         // Player - Coin Collision
         case ColliderType.CoinNormal:
             if let coin = body.node as? Coin {
-                self.coins += coinBonus
+                GameData.sharedInstance.coins += 1
                 coin.collectedCoin()
             }
             
         // Player - Special Coin Collision
         case ColliderType.CoinSpecial:
             if let specialCoin = body.node as? Coin {
-                self.coins += 5
+                
+                GameData.sharedInstance.coins += (GameData.sharedInstance.specialCoinMultiplier) * 5
                 specialCoin.collectedCoin()
             }
             

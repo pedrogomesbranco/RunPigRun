@@ -13,9 +13,11 @@ class GameScene: SKScene {
     // MARK: - Properties
     var player: Player!
     var blocksGenerator: BlocksGenerator!
+    var hud = HUD()
+    
     let cameraNode = SKCameraNode()
     let hudNode = SKNode()
-    var hud = HUD()
+    let gameOver = GameOver()
     let pauseMenu = PauseMenu()
     
     private var timeStep = 0
@@ -30,6 +32,8 @@ class GameScene: SKScene {
     override func didMove(to view: SKView) {
         physicsWorld.contactDelegate = self
         
+        // Reset GameData for current game
+        GameData.sharedInstance.reset()
         setupNodes()
     }
     
@@ -48,7 +52,7 @@ class GameScene: SKScene {
         
         // Setup player
         player = Player(imageName: "Run_000",
-                        pos: CGPoint(x: 0, y: -500),
+                        pos: CGPoint(x: 0, y: -550),
                         categoryBitMask: ColliderType.Player,
                         collisionBitMask: ColliderType.Ground | ColliderType.Spikes)
         blocksGenerator.fgNode.addChild(player)
@@ -60,7 +64,7 @@ class GameScene: SKScene {
         
         // HUD
         self.cameraNode.addChild(self.hudNode)
-        self.hud = HUD(lives: player.life, coinsCollected: player.coins, score: 0)
+        self.hud = HUD(lives: player.life, coinsCollected: GameData.sharedInstance.coins, score: 0)
         self.hudNode.addChild(self.hud)
         
         self.hudNode.zPosition = GameLayer.Interface
@@ -68,25 +72,15 @@ class GameScene: SKScene {
     
     // MARK: - Game Loop
     override func update(_ currentTime: TimeInterval) {
+        checkDeath()
+        
         player.updatePlayer(timeStep)
         updateCamera()
         
-        self.hud.updateCoinsCollected(self.player.coins)
-        self.hud.updateScore(score: player.score)
+        self.hud.updateCoinsCollected(GameData.sharedInstance.coins)
+        self.hud.updateScore(score: GameData.sharedInstance.score)
         
         blocksGenerator.updateLevel(withCameraPosition: cameraNode.position)
-        
-        if player.life <= 0{
-            player.die()
-            self.removeAllChildren()
-            self.removeAllActions()
-            
-            let gameOverScene = MenuScene(size: size)
-            gameOverScene.scaleMode = .fill
-            let transition = SKTransition.fade(with: UIColor.black, duration: 0.25)
-            
-            self.view?.presentScene(gameOverScene, transition: transition)
-        }
         
         timeStep += 1
     }
@@ -96,16 +90,29 @@ class GameScene: SKScene {
         let touch: UITouch = touches.first!
         let touchLocationHUD = touch.location(in: self.hudNode)
         let touchLocationPauseMenu = touch.location(in: self.pauseMenu.pauseMenuNode)
+        let touchLocationGameOver = touch.location(in: self.gameOver.gameOverNode)
         
         if self.hud.hudBackground.contains(touchLocationHUD) { // Pause
             self.pauseButtonPressed()
-        } else if self.pauseMenu.playBtn.contains(touchLocationPauseMenu) { // Play
-            self.pauseMenu.playTapped()
+        } else if self.pauseMenu.playBtn.contains(touchLocationPauseMenu) { // Play (Pause)
+            self.pauseMenu.tappedButton()
             self.isPaused = false
             self.hud.pauseButton.isHidden = false
-        } else if self.pauseMenu.menuBtn.contains(touchLocationPauseMenu) { // Menu
-            self.pauseMenu.menuTapped()
-            goToMenu()
+        } else if self.pauseMenu.menuBtn.contains(touchLocationPauseMenu) { // Menu (Pause)
+            self.pauseMenu.tappedButton()
+            self.updateGameData()
+            self.goToMenu()
+        } else if self.gameOver.restartBtn.contains(touchLocationGameOver) { // Restart (GameOver)
+            self.gameOver.tappedButton()
+            self.updateGameData()
+            self.restartGame()
+        } else if self.gameOver.menuBtn.contains(touchLocationGameOver) { // Menu (GameOver)
+            self.gameOver.tappedButton()
+            self.updateGameData()
+            self.goToMenu()
+        } else if self.gameOver.continueBtn.contains(touchLocationGameOver) { // Continue (GameOver)
+            self.gameOver.tappedButton()
+            self.continueGame()
         } else { // Jump
             player.jump()
         }
@@ -130,6 +137,36 @@ class GameScene: SKScene {
         self.view?.presentScene(menuScene, transition: transition)
     }
     
+    private func continueGame() {
+        if GameData.sharedInstance.totalCoins >= 1000 {
+        GameData.sharedInstance.totalCoins -= 1000
+        GameData.sharedInstance.save()
+        self.player.revive()
+        }
+    }
+    
+    private func restartGame() {
+        let gameScene = GameScene(fileNamed: "GameScene")!
+        gameScene.scaleMode = .aspectFill
+        
+        self.view?.presentScene(gameScene)
+    }
+    
+    private func updateGameData() {
+        GameData.sharedInstance.highScore = max(GameData.sharedInstance.highScore, GameData.sharedInstance.score)
+        GameData.sharedInstance.totalCoins += GameData.sharedInstance.coins
+        
+        GameData.sharedInstance.save()
+    }
+    
+    private func checkDeath() {
+        if player.life <= 0 {
+            player.die()
+            // Display GameOver Overlay
+            gameOver.show(at: CGPoint(x: self.cameraNode.frame.width/2, y: self.cameraNode.frame.height/2), onNode: self.cameraNode)
+        }
+    }
+    
     // MARK: - Camera
     func overlapAmount() -> CGFloat {
         guard let view = self.view else { return 0 }
@@ -150,20 +187,12 @@ class GameScene: SKScene {
     func updateCamera() {
         let cameraTarget = convert(player.position,
                                    from: blocksGenerator.fgNode)
-        let targetPosition = CGPoint(x: cameraTarget.x + (scene!.view!.bounds.width * 0.8),
+        let targetPosition = CGPoint(x: cameraTarget.x + (scene!.view!.bounds.width * 1.1),
                                      y: getCameraPosition().y)
         let diff = targetPosition - getCameraPosition()
         let newPosition = getCameraPosition() + diff
         
         setCameraPosition(position: CGPoint(x: newPosition.x, y: size.height/2))
-    }
-    
-    func gameOver() {
-        let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
-        let gameOverScene = SKScene(size: CGSize(width: 300, height: 300))
-        gameOverScene.backgroundColor = UIColor.black
-        
-        self.view?.presentScene(gameOverScene, transition: reveal)
     }
 }
 

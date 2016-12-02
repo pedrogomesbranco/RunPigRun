@@ -41,6 +41,7 @@ enum BlockType: UInt32 {
 }
 
 struct GameLayer {
+    static let Player: CGFloat = 3
     static let Interface: CGFloat = 5
 }
 
@@ -50,7 +51,6 @@ let playerJumpPower: Float = 1.5
 let spikesPercentage: Int = 33
 let coinsPercentage: Int = 66
 let specialCoinPercentage: Int = 30
-var coinBonus = 1
 
 // Ground node height (for positioning the blocks correctly on Y axis)
 var groundHeight: CGFloat = 0.0

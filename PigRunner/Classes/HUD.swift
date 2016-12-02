@@ -77,8 +77,8 @@ class HUD: SKNode {
     private func setupHUDScore(score: Int) {
         self.scoreLabel = GameFonts.sharedInstance.createScoreLabel(score: 0)
         
-        let offsetX = self.coinsCollected.position.x + self.coinsCollected.size.width/2
-        let offsetY = self.coinsCollected.position.y - self.scoreLabel.frame.size.height - 80
+        let offsetX = self.hudBackground.size.width/2
+        let offsetY = self.coinsLabel.position.y
         
         self.scoreLabel.position = CGPoint(x: offsetX, y: offsetY)
         

@@ -31,6 +31,9 @@
 		64F8B6591DE7D93A00B59BF2 /* MenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F8B6581DE7D93A00B59BF2 /* MenuScene.swift */; };
 		64F8B65F1DE7F5CF00B59BF2 /* TwoTriggers.sks in Resources */ = {isa = PBXBuildFile; fileRef = 64F8B65E1DE7F5CF00B59BF2 /* TwoTriggers.sks */; };
 		64F8B6611DE7F6A900B59BF2 /* SpikesAndCoins.sks in Resources */ = {isa = PBXBuildFile; fileRef = 64F8B6601DE7F6A900B59BF2 /* SpikesAndCoins.sks */; };
+		64FC20741DF0F6C1008E73B6 /* GameOver.sks in Resources */ = {isa = PBXBuildFile; fileRef = 64FC20731DF0F6C1008E73B6 /* GameOver.sks */; };
+		64FC20761DF0F873008E73B6 /* GameOver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FC20751DF0F873008E73B6 /* GameOver.swift */; };
+		64FC20781DF103CA008E73B6 /* GameData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FC20771DF103CA008E73B6 /* GameData.swift */; };
 		64FF4EE51DD7D9F400337C2E /* SpinningWheel.sks in Resources */ = {isa = PBXBuildFile; fileRef = 64FF4EE41DD7D9F400337C2E /* SpinningWheel.sks */; };
 		790679E41DDE250800F8BA7A /* GameFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790679E31DDE250800F8BA7A /* GameFonts.swift */; };
 		792365821DEF61700000AF05 /* Store.sks in Resources */ = {isa = PBXBuildFile; fileRef = 792365811DEF61700000AF05 /* Store.sks */; };
@@ -73,6 +76,9 @@
 		64F8B6581DE7D93A00B59BF2 /* MenuScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuScene.swift; path = Classes/MenuScene.swift; sourceTree = "<group>"; };
 		64F8B65E1DE7F5CF00B59BF2 /* TwoTriggers.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = TwoTriggers.sks; path = "Scenes/Big Blocks/TwoTriggers.sks"; sourceTree = "<group>"; };
 		64F8B6601DE7F6A900B59BF2 /* SpikesAndCoins.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = SpikesAndCoins.sks; path = "Scenes/Big Blocks/SpikesAndCoins.sks"; sourceTree = "<group>"; };
+		64FC20731DF0F6C1008E73B6 /* GameOver.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = GameOver.sks; path = Scenes/Menu/GameOver.sks; sourceTree = "<group>"; };
+		64FC20751DF0F873008E73B6 /* GameOver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameOver.swift; path = Classes/GameOver.swift; sourceTree = "<group>"; };
+		64FC20771DF103CA008E73B6 /* GameData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameData.swift; path = Classes/GameData.swift; sourceTree = "<group>"; };
 		64FF4EE41DD7D9F400337C2E /* SpinningWheel.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = SpinningWheel.sks; path = pigrunner/scenes/Obstacles/SpinningWheel.sks; sourceTree = SOURCE_ROOT; };
 		790679E31DDE250800F8BA7A /* GameFonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameFonts.swift; path = pigrunner/Classes/GameFonts.swift; sourceTree = SOURCE_ROOT; };
 		792365811DEF61700000AF05 /* Store.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = Store.sks; path = Scenes/Menu/Store.sks; sourceTree = "<group>"; };
@@ -163,8 +169,10 @@
 				642DFA431DD8C932003FE64B /* HUD.swift */,
 				79CF88801DE768DD00FCBCE6 /* PauseButton.swift */,
 				798E9C541DEDCA72000BEBD0 /* PauseMenu.swift */,
+				64FC20751DF0F873008E73B6 /* GameOver.swift */,
 				796BD57B1DDE20A9001985F0 /* GameTextures.swift */,
 				790679E31DDE250800F8BA7A /* GameFonts.swift */,
+				64FC20771DF103CA008E73B6 /* GameData.swift */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -234,6 +242,7 @@
 		798E9C561DEDCB38000BEBD0 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
+				64FC20731DF0F6C1008E73B6 /* GameOver.sks */,
 				798E9C571DEDCB4D000BEBD0 /* PauseMenu.sks */,
 				792365811DEF61700000AF05 /* Store.sks */,
 			);
@@ -314,6 +323,7 @@
 				64F8B6561DE7D7C200B59BF2 /* Comic_Andy.ttf in Resources */,
 				64F8B6571DE7D7C400B59BF2 /* Space Comics.ttf in Resources */,
 				645C33FC1DCFD8BA00ABA4D7 /* CoinArrow.sks in Resources */,
+				64FC20741DF0F6C1008E73B6 /* GameOver.sks in Resources */,
 				7942F7161DE872300032B9BA /* Pig.atlas in Resources */,
 				645C33E51DCFD0A600ABA4D7 /* Assets.xcassets in Resources */,
 				645C33E81DCFD0A600ABA4D7 /* LaunchScreen.storyboard in Resources */,
@@ -337,11 +347,13 @@
 				793D1B671DD0D035008A7B9E /* BlocksGenerator.swift in Sources */,
 				642DFA441DD8C932003FE64B /* HUD.swift in Sources */,
 				642C23771DE636F1006DDC53 /* GameViewController.swift in Sources */,
+				64FC20761DF0F873008E73B6 /* GameOver.swift in Sources */,
 				796BD57C1DDE20A9001985F0 /* GameTextures.swift in Sources */,
 				642C23891DE64955006DDC53 /* Coin.swift in Sources */,
 				642C23761DE636F1006DDC53 /* GameScene.swift in Sources */,
 				645DB0701DE65E4300CE79F4 /* BlockSpawner.swift in Sources */,
 				79BA49CF1DD0B86B0029EEF8 /* Player.swift in Sources */,
+				64FC20781DF103CA008E73B6 /* GameData.swift in Sources */,
 				642C237B1DE63716006DDC53 /* CGFloat+Extensions.swift in Sources */,
 				642C237C1DE63716006DDC53 /* CGPoint+Extensions.swift in Sources */,
 				790679E41DDE250800F8BA7A /* GameFonts.swift in Sources */,

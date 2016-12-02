@@ -15,15 +15,15 @@ class SpinningWheel: SKSpriteNode {
     
     // MARK: - Methods
     func trigger() {
-        let rotate = SKAction.rotate(byAngle: CGFloat(M_PI), duration: 0.04)
+        let rotate = SKAction.rotate(byAngle: CGFloat(-M_PI), duration: 0.04)
         let rotateAction = SKAction.repeat(rotate, count: 12)
         
         self.run(rotateAction, completion: {
-            let rotate = SKAction.rotate(byAngle: CGFloat(M_PI), duration: 0.04)
+            let rotate = SKAction.rotate(byAngle: CGFloat(-M_PI), duration: 0.04)
             let rotateAction = SKAction.repeat(rotate, count: 50)
             
             self.run(rotateAction)
-            self.physicsBody?.velocity.dx = -1300
+            self.physicsBody?.velocity.dx = -2000
         })
     }
 

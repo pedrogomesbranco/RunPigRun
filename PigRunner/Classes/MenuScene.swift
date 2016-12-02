@@ -42,36 +42,36 @@ class MenuScene: SKScene {
         
         let title = SKSpriteNode(imageNamed: "menu_title")
         title.position = CGPoint(x: self.size.width/2, y: self.size.height/2 + title.size.height*2)
-        title.zPosition = 5
+        title.zPosition = GameLayer.Interface
         self.addChild(title)
         
         playButton = SKSpriteNode(imageNamed: "play_btn")
         playButton.position = CGPoint(x: self.size.width/2, y: self.size.height/2 + 30)
-        playButton.zPosition = 5
+        playButton.zPosition = GameLayer.Interface
         self.addChild(playButton)
         
         settingsButton = SKSpriteNode(imageNamed: "settingsButton")
         settingsButton.position = CGPoint(x: 300, y: self.size.height/2 - 400)
-        settingsButton.zPosition = 5
+        settingsButton.zPosition = GameLayer.Interface + 1
         settingsButton.setScale(4)
         self.addChild(settingsButton)
         
         soundButton = SKSpriteNode(imageNamed: "soundButtonon")
-        soundButton.position = CGPoint(x: 300, y: self.size.height/2 + 140)
-        soundButton.zPosition = 5
+        soundButton.position = settingsButton.position
+        soundButton.zPosition = GameLayer.Interface
         soundButton.setScale(3.8)
         self.addChild(soundButton)
         
         musicButton = SKSpriteNode(imageNamed: "musicButtonon")
-        musicButton.position = CGPoint(x: 300, y: self.size.height/2 - 120)
-        musicButton.zPosition = 5
+        musicButton.position = settingsButton.position
+        musicButton.zPosition = GameLayer.Interface
         musicButton.setScale(3.8)
         self.addChild(musicButton)
         
         storeButton = SKSpriteNode(imageNamed: "storeButton")
         storeButton.position = CGPoint(x: 820, y: self.size.height/2 - 400)
         storeButton.setScale(4)
-        storeButton.zPosition = 5
+        storeButton.zPosition = GameLayer.Interface
         self.addChild(storeButton)
         
 //        coinsLabel.text = "\(1234) coins"
@@ -106,7 +106,10 @@ class MenuScene: SKScene {
         
         if self.storeButton.contains(touchLocation) {
             self.loadStoreScene()
-        } else {
+        } else if self.settingsButton.contains(touchLocation) {
+            self.loadSettingsMenu()
+        }
+        else {
             self.loadGameScene()
         }
     }
@@ -132,5 +135,13 @@ class MenuScene: SKScene {
         storeScene?.scaleMode = .fill
         
         self.view?.presentScene(storeScene)
+    }
+    
+    private func loadSettingsMenu() {
+        let soundMoveAction = SKAction.move(to: CGPoint(x: 300, y: self.size.height/2 + 140), duration: 0.25)
+        let musicMoveAction = SKAction.move(to: CGPoint(x: 300, y: self.size.height/2 - 120), duration: 0.25)
+        
+        self.soundButton.run(soundMoveAction)
+        self.musicButton.run(musicMoveAction)
     }
 }

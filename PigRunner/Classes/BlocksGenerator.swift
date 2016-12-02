@@ -41,6 +41,10 @@ class BlocksGenerator: SKNode {
         
         self.fgNode = worldNode.childNode(withName: "Foreground")!
         
+        // Set initial value for 'lastItemPosition' to create an initial empty space
+        // on the start of a level.
+        self.lastItemPosition.x = self.backWidth * 1.5
+        
 //        self.image = self.imageWithImage(source: UIImage(named: "full-background")!, rotatedByHue: CGFloat(arc4random()))
 //        DispatchQueue.global(qos: .background).async {
 //            self.image = self.imageWithImage(source: UIImage(named: "full-background")!, rotatedByHue: CGFloat(arc4random()))

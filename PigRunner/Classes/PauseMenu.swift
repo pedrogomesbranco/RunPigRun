@@ -37,11 +37,7 @@ class PauseMenu: SKNode {
         node.addChild(self.pauseMenuNode)
     }
     
-    func menuTapped() {
-        self.pauseMenuNode.removeFromParent()
-    }
-    
-    func playTapped() {
+    func tappedButton() {
         self.pauseMenuNode.removeFromParent()
     }
 }
