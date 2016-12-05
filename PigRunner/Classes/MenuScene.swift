@@ -18,7 +18,7 @@ class MenuScene: SKScene {
     private var musicButton = SKSpriteNode()
     private var coinsLabel = SKLabelNode()
     private var pig = SKSpriteNode()
-    private var blocksGenerator: BlocksGenerator!
+    
     let background = SKSpriteNode(imageNamed: "full-background")
     let background2 = SKSpriteNode(imageNamed: "full-background")
     var cameraNode = SKCameraNode()
@@ -107,13 +107,13 @@ class MenuScene: SKScene {
         
         playButton.run(SKAction.repeatForever(playBtnAnimation))
         
-        pig = SKSpriteNode(imageNamed: "Run_000")
+        pig = SKSpriteNode(imageNamed: "Idle_000")
         pig.setScale(0.5)
         pig.position = CGPoint(x: self.size.width/2 + 800, y: self.size.height/2 - 375)
         pig.zPosition = 5
         
         // Animate the pig's running movement
-        pig.run(SKAction.repeatForever(SKAction.animate(with: GameTextures.sharedInstance.runTextures, timePerFrame: 0.1, resize: true, restore: true)), withKey: "menu_run")
+        pig.run(SKAction.repeatForever(SKAction.animate(with: GameTextures.sharedInstance.idleTextures, timePerFrame: 0.1, resize: true, restore: true)), withKey: "menu_run")
         
         self.addChild(pig)
     }
@@ -171,7 +171,6 @@ class MenuScene: SKScene {
             let musicMoveAction = SKAction.move(to: CGPoint(x: 300, y: self.size.height/2 - 400), duration: 0.25)
             self.soundButton.run(soundMoveAction)
             self.musicButton.run(musicMoveAction)
-
         }
         
     }

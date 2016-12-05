@@ -12,7 +12,6 @@ class GameScene: SKScene {
     
     // MARK: - Properties
     var player: Player!
-    var enemy: SKSpriteNode!
     var blocksGenerator: BlocksGenerator!
     var hud = HUD()
     
@@ -58,13 +57,6 @@ class GameScene: SKScene {
                         collisionBitMask: ColliderType.Ground | ColliderType.Spikes)
         blocksGenerator.fgNode.addChild(player)
         
-        // Setup Enemy
-        enemy = SKSpriteNode(texture: GameTextures.sharedInstance.enemyRunTextures.first!)
-        enemy.setScale(1.5)
-        enemy.position = CGPoint(x: 0, y: -450)
-//        blocksGenerator.fgNode.addChild(enemy)
-        enemy.run(SKAction.repeatForever(SKAction.animate(with: GameTextures.sharedInstance.enemyRunTextures, timePerFrame: 0.1, resize: false, restore: true)), withKey: "enemyRun")
-        
         // Setup camera
         setCameraPosition(position: CGPoint(x: size.width/2, y: size.height/2))
         addChild(cameraNode)
@@ -85,22 +77,10 @@ class GameScene: SKScene {
         player.updatePlayer(timeStep)
         updateCamera()
         
-        enemy.position.x = player.position.x - 300
-        
         self.hud.updateCoinsCollected(GameData.sharedInstance.coins)
         self.hud.updateScore(score: GameData.sharedInstance.score)
         
         blocksGenerator.updateLevel(withCameraPosition: cameraNode.position)
-        if player.life <= 0{
-            player.die()
-            self.removeAllChildren()
-            self.removeAllActions()
-            let gameOverScene = MenuScene(size: size)
-            gameOverScene.scaleMode = .fill
-
-            let transition = SKTransition.fade(with: UIColor.black, duration: 0.25)
-            self.view?.presentScene(gameOverScene, transition: transition)
-        }
         
         timeStep += 1
     }
@@ -183,6 +163,7 @@ class GameScene: SKScene {
     private func checkDeath() {
         if player.life <= 0 {
             player.die()
+            
             // Display GameOver Overlay
             gameOver.show(at: CGPoint(x: self.cameraNode.frame.width/2, y: self.cameraNode.frame.height/2), onNode: self.cameraNode)
         }

@@ -13,7 +13,6 @@ import CoreImage
 class BlocksGenerator: SKNode {
     // MARK: - Properties
     var background: SKNode!
-    //var backImage: SKSpriteNode!
     var backWidth: CGFloat = 0.0
     var lastItemPosition = CGPoint.zero
     var lastItemWidth: CGFloat = 0.0
@@ -35,8 +34,6 @@ class BlocksGenerator: SKNode {
         
         self.background = self.bgNode.childNode(withName: "Block")!.copy() as! SKNode
         
-        //self.backImage = self.background.childNode(withName: "bg_1") as! SKSpriteNode!
-        
         self.backWidth = self.background.calculateAccumulatedFrame().width.rounded()
         
         self.fgNode = worldNode.childNode(withName: "Foreground")!
@@ -45,15 +42,6 @@ class BlocksGenerator: SKNode {
         // on the start of a level.
         self.lastItemPosition.x = self.backWidth * 1.5
         
-//        self.image = self.imageWithImage(source: UIImage(named: "full-background")!, rotatedByHue: CGFloat(arc4random()))
-//        DispatchQueue.global(qos: .background).async {
-//            self.image = self.imageWithImage(source: UIImage(named: "full-background")!, rotatedByHue: CGFloat(arc4random()))
-//        
-//            DispatchQueue.main.async {
-//                self.changeBackground()
-//            }
-//        }
-
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -78,7 +66,7 @@ class BlocksGenerator: SKNode {
     private func updateLastItem(width: CGFloat) {
         lastItemPosition.x = lastItemPosition.x + width
         
-        lastItemWidth = width/2
+        lastItemWidth = width
     }
     
     func addRandomBlockNode() {
@@ -109,36 +97,9 @@ class BlocksGenerator: SKNode {
     
     // MARK: - Background
     func createBackgroundNode() {
-
-//        DispatchQueue.main.async {
-//            self.changeBackground()
-//        }
-
         let backNode = background.copy() as! SKNode
         backNode.position = CGPoint(x: levelX, y: 0.0)
         bgNode.addChild(backNode)
         levelX += backWidth
     }
- 
-//    func changeBackground(){
-//        DispatchQueue.global(qos: .background).async {
-//            self.backImage.texture = SKTexture(image: self.image)
-//        }
-//    }
-    
-//    func imageWithImage(source: UIImage, rotatedByHue: CGFloat) -> UIImage {
-//        let sourceCore = CIImage(cgImage: source.cgImage!)
-//        let hueAdjust = CIFilter(name: "CIHueAdjust")
-//        
-//        hueAdjust?.setDefaults()
-//        hueAdjust?.setValue(sourceCore, forKey: "inputImage")
-//        hueAdjust?.setValue(CGFloat(rotatedByHue), forKey: "inputAngle")
-//        
-//        let resultCore = hueAdjust?.value(forKey: "outputImage") as! CIImage!
-//        let context = CIContext(options: nil)
-//        let resultRef = context.createCGImage(resultCore!, from: resultCore!.extent)
-//        let result = UIImage(cgImage: resultRef!)
-//        
-//        return result
-//    }
 }

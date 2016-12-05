@@ -53,12 +53,12 @@ class HUD: SKNode {
     
     private func setupHUDCoins(collected: Int) {
         // Coins Sprite
-        self.coinsCollected = SKSpriteNode(imageNamed: "coin")
+        self.coinsCollected = SKSpriteNode(imageNamed: "moedao")
         self.coinsCollected.size.height *= 2
         self.coinsCollected.size.width *= 2
         
         let coinOffsetX = self.coinsCollected.size.width - 150
-        let coinOffsetY = self.hudBackground.size.height/2
+        let coinOffsetY = self.hudBackground.size.height/2 - 30
         
         self.coinsCollected.position = CGPoint(x: coinOffsetX, y: coinOffsetY)
         
