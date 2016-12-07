@@ -59,13 +59,11 @@ class BlocksGenerator: SKNode {
     func createBigBlockNode(type: BlockType) {
         let block = BlockSpawner()
         block.spawnBlock(type, at: lastItemPosition, onNode: fgNode)
-        
         updateLastItem(width: block.nodeWidth)
     }
     
     private func updateLastItem(width: CGFloat) {
         lastItemPosition.x = lastItemPosition.x + width
-        
         lastItemWidth = width
     }
     

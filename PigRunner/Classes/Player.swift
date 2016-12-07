@@ -22,7 +22,7 @@ class Player: SKSpriteNode {
     var isRunning: Bool = true
     var isAlive: Bool = true
     var life: Int = 3
-    
+    var timeAtColision = NSDate()
     let gameScene = GameScene.sharedInstance
     
     // MARK: - Init
@@ -101,9 +101,9 @@ class Player: SKSpriteNode {
         jumpsLeft = 0
         isRunning = false
         isAlive = false
-        self.removeAllActions()
         let dieAction = SKAction.animate(with: dieTextures, timePerFrame: 0.1, resize: true, restore: false)
         self.run(dieAction)
+        self.removeAllActions()
     }
     
     func revive() {
@@ -139,16 +139,22 @@ class Player: SKSpriteNode {
         // Player - Special Coin Collision
         case ColliderType.CoinSpecial:
             if let specialCoin = body.node as? Coin {
-                
                 GameData.sharedInstance.coins += (GameData.sharedInstance.specialCoinMultiplier) * 5
                 specialCoin.collectedCoin()
             }
             
         // Player - Spike Collision
         case ColliderType.Spikes:
-            if let spikes = body.node as? SKSpriteNode {
-                spikes.removeFromParent()
-                self.life-=1
+            if (body.node as? SKSpriteNode) != nil {
+                let timeDiff = Date().timeIntervalSince(timeAtColision as Date)
+                if(timeDiff > 1.2){
+                    self.life-=1
+                    self.land()
+                    timeAtColision = NSDate()
+                }
+                print("time: \(timeDiff)")
+                print(self.life)
+                changeAnimation(newTextures: dieTextures, timePerFrame: 0.1, withKey: "die", restore: false, repeatCount: nil)
             }
             
         // Player - Ground Collision
@@ -166,7 +172,6 @@ class Player: SKSpriteNode {
         case ColliderType.Magnet:
             if let magnet = body.node as? SKSpriteNode {
                 self.collectedMagnet()
-                
                 magnet.removeFromParent()
             }
             

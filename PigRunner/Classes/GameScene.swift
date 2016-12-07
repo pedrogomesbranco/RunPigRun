@@ -66,7 +66,8 @@ class GameScene: SKScene {
         self.cameraNode.addChild(self.hudNode)
         self.hud = HUD(lives: player.life, coinsCollected: GameData.sharedInstance.coins, score: 0, lifes: self.player.life)
         self.hudNode.addChild(self.hud)
-        
+        self.hud.updateLife(life: self.player.life)
+
         self.hudNode.zPosition = GameLayer.Interface
     }
     
@@ -79,7 +80,6 @@ class GameScene: SKScene {
         
         self.hud.updateCoinsCollected(GameData.sharedInstance.coins)
         self.hud.updateScore(score: GameData.sharedInstance.score)
-        self.hud.updateLife(life: self.player.life)
         
         blocksGenerator.updateLevel(withCameraPosition: cameraNode.position)
         
@@ -164,7 +164,6 @@ class GameScene: SKScene {
     private func checkDeath() {
         if player.life <= 0 {
             player.die()
-            
             // Display GameOver Overlay
             gameOver.show(at: CGPoint(x: self.cameraNode.frame.width/2, y: self.cameraNode.frame.height/2), onNode: self.cameraNode)
         }
@@ -203,7 +202,7 @@ class GameScene: SKScene {
 extension GameScene: SKPhysicsContactDelegate {
     func didBegin(_ contact: SKPhysicsContact) {
         let other = contact.bodyA.categoryBitMask == ColliderType.Player ? contact.bodyB : contact.bodyA
-        
         player.collided(withBody: other)
+        self.hud.updateLife(life: self.player.life)
     }
 }
