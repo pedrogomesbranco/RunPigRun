@@ -93,14 +93,6 @@ class MenuScene: SKScene {
         rankingButton.zPosition = GameLayer.Interface
         self.addChild(rankingButton)
         
-        //        coinsLabel.text = "\(1234) coins"
-        //        coinsLabel.fontName = "Comic_Andy"
-        //        coinsLabel.fontColor = UIColor.white
-        //        coinsLabel.fontSize = 120
-        //        coinsLabel.zPosition = 6
-        //        coinsLabel.position = CGPoint(x: 850, y: self.size.height/2 - 400)
-        //        self.addChild(coinsLabel)
-        
         let playBtnScaleUp = SKAction.scale(to: 1.3, duration: 0.5)
         let playBtnScaleDown = SKAction.scale(to: 1.0, duration: 0.5)
         let playBtnAnimation = SKAction.sequence([playBtnScaleUp, playBtnScaleDown])
@@ -175,18 +167,18 @@ class MenuScene: SKScene {
         
     }
     
-    override func update(_ currentTime: TimeInterval) {
+//    override func update(_ currentTime: TimeInterval) {
 //        updateBackground()
 //        self.pig.position.x += 10
 //        self.cameraNode.position.x = self.pig.position.x
-    }
+//    }
     
     func updateBackground(){
-        if(self.cameraNode.position.x > background.position.x + background.size.width + 400) {
-            background.position = CGPoint(x: background2.position.x + background2.size.width, y: background.position.y)
+        if(self.cameraNode.position.x > background.position.x + background.size.width) {
+            background.position = CGPoint(x: background2.position.x, y: background.position.y)
         }
-        if(self.cameraNode.position.x > background2.position.x + background2.size.width + 400) {
-            background2.position = CGPoint(x: background.position.x + background.size.width, y: background2.position.y)
+        if(self.cameraNode.position.x > background2.position.x + background2.size.width) {
+            background2.position = CGPoint(x: background.position.x, y: background2.position.y)
         }
     }
 }

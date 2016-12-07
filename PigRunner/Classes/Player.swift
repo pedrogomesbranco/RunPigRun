@@ -113,7 +113,6 @@ class Player: SKSpriteNode {
     
     // MARK: Power Ups
     func collectedMagnet() {
-        
     }
     
     func changeAnimation(newTextures: [SKTexture], timePerFrame: TimeInterval, withKey key: String, restore: Bool, repeatCount: Int?) {
@@ -167,6 +166,7 @@ class Player: SKSpriteNode {
         case ColliderType.Magnet:
             if let magnet = body.node as? SKSpriteNode {
                 self.collectedMagnet()
+                
                 magnet.removeFromParent()
             }
             
