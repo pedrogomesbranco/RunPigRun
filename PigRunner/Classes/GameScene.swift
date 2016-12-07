@@ -64,7 +64,7 @@ class GameScene: SKScene {
         
         // HUD
         self.cameraNode.addChild(self.hudNode)
-        self.hud = HUD(lives: player.life, coinsCollected: GameData.sharedInstance.coins, score: 0)
+        self.hud = HUD(lives: player.life, coinsCollected: GameData.sharedInstance.coins, score: 0, lifes: self.player.life)
         self.hudNode.addChild(self.hud)
         
         self.hudNode.zPosition = GameLayer.Interface
@@ -79,6 +79,7 @@ class GameScene: SKScene {
         
         self.hud.updateCoinsCollected(GameData.sharedInstance.coins)
         self.hud.updateScore(score: GameData.sharedInstance.score)
+        self.hud.updateLife(life: self.player.life)
         
         blocksGenerator.updateLevel(withCameraPosition: cameraNode.position)
         

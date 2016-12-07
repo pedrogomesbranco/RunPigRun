@@ -48,5 +48,13 @@
       <ContextState
          contextName = "GameScene.didMove(to : SKView) -&gt; ():GameScene.swift">
       </ContextState>
+      <ContextState
+         contextName = "GameScene.update(Double) -&gt; ():GameScene.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.player.life">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
    </ContextStates>
 </VariablesViewState>

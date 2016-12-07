@@ -13,8 +13,10 @@ class HUD: SKNode {
     // MARK: - Private Properties
     internal var hudBackground: SKSpriteNode!
     private var coinsCollected = SKSpriteNode()
+    private var currentLife = SKSpriteNode()
     private var scoreLabel = SKLabelNode()
     private var coinsLabel = SKLabelNode()
+    private var lastLifeX: CGFloat = 0.0
     
     // MARK: - Public Properties
     internal let pauseButton = PauseButton()
@@ -28,7 +30,7 @@ class HUD: SKNode {
         super.init()
     }
     
-    convenience init(lives: Int, coinsCollected: Int, score: Int) {
+    convenience init(lives: Int, coinsCollected: Int, score: Int, lifes: Int) {
         self.init()
         
         self.zPosition = GameLayer.Interface
@@ -37,6 +39,7 @@ class HUD: SKNode {
         self.setupHUDCoins(collected: coinsCollected)
         self.setupHUDScore(score: score)
         self.setupPauseButton()
+        self.setupCurrentLife(lifes: lifes)
     }
     
     // MARK: - Setup Functions
@@ -85,6 +88,21 @@ class HUD: SKNode {
         self.hudBackground.addChild(self.scoreLabel)
     }
     
+    private func setupCurrentLife(lifes: Int) {
+        for _ in 0...lifes {
+            let lifeIcon = SKSpriteNode(imageNamed: "life")
+            
+            let offsetX = self.coinsCollected.position.x + self.currentLife.size.width/4 + lastLifeX
+            let offsetY = self.coinsCollected.position.y - self.currentLife.size.height*2
+            
+            self.lastLifeX = offsetX
+            
+            self.currentLife.position = CGPoint(x: offsetX, y: offsetY)
+            
+            self.hudBackground.addChild(lifeIcon)
+        }
+    }
+    
     private func setupPauseButton() {
         let offsetX = self.hudBackground.size.width * 0.95
         let offsetY = self.hudBackground.size.height/2 + 30
@@ -108,5 +126,13 @@ class HUD: SKNode {
     
     func updateScore(score: Int) {
         self.scoreLabel.text = String(score)
+    }
+    
+    func updateLife(life: Int) {
+//        if life <= 0 {
+//            self.currentLife = SKSpriteNode(imageNamed: "lifes_0")
+//            return
+//        }
+//        self.currentLife = SKSpriteNode(imageNamed: "lifes_\(life-1)")
     }
 }

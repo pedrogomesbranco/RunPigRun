@@ -88,12 +88,6 @@ class Player: SKSpriteNode {
         }
     }
     
-    //    func slide() {
-    //        if isRunning {
-    //            changeAnimation(newTextures: slideTextures, timePerFrame: 0.15, withKey: "slide", restore: true, repeatCount: 2)
-    //        }
-    //    }
-    
     func land() {
         if isAlive {
             jumpsLeft = 2
