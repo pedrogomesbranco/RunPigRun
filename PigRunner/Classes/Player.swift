@@ -12,17 +12,20 @@ import SpriteKit
 class Player: SKSpriteNode {
     
     // MARK: - Properties
-    var velocityX: Int = playerVelocityX
-    var jumpPower: CGFloat = CGFloat(playerJumpPower)
-    var jumpsLeft: Int = 2
+    // Textures
     var runTextures: [SKTexture]!
     var jumpTextures: [SKTexture]!
     var slideTextures: [SKTexture]!
     var dieTextures: [SKTexture]!
+    
+    // Properties
     var isRunning: Bool = true
     var isAlive: Bool = true
+    var isInvencible: Bool = false
     var life: Int = 3
-    var timeAtColision = NSDate()
+    var velocityX: Int = playerVelocityX
+    var jumpPower: CGFloat = CGFloat(playerJumpPower)
+    var jumpsLeft: Int = 2
     let gameScene = GameScene.sharedInstance
     
     // MARK: - Init
@@ -99,6 +102,7 @@ class Player: SKSpriteNode {
     func die() {
         self.physicsBody?.velocity.dx = 0.0
         jumpsLeft = 0
+        life = 0
         isRunning = false
         isAlive = false
         let dieAction = SKAction.animate(with: dieTextures, timePerFrame: 0.1, resize: true, restore: false)
@@ -145,16 +149,11 @@ class Player: SKSpriteNode {
             
         // Player - Spike Collision
         case ColliderType.Spikes:
-            if (body.node as? SKSpriteNode) != nil {
-                let timeDiff = Date().timeIntervalSince(timeAtColision as Date)
-                if(timeDiff > 1.2){
-                    self.life-=1
-                    self.land()
-                    timeAtColision = NSDate()
-                }
-                print("time: \(timeDiff)")
-                print(self.life)
-                changeAnimation(newTextures: dieTextures, timePerFrame: 0.1, withKey: "die", restore: false, repeatCount: nil)
+            guard let _ = body.node as? SKSpriteNode else { break }
+            
+            if isInvencible == false {
+                self.life -= 1
+                self.makePlayerInvencible()
             }
             
         // Player - Ground Collision
@@ -178,5 +177,17 @@ class Player: SKSpriteNode {
         default:
             break
         }
+    }
+    
+    private func makePlayerInvencible() {
+        self.isInvencible = true
+        
+        let blinkAction = SKAction.sequence([SKAction.fadeOut(withDuration: 0.1),
+                                             SKAction.fadeIn(withDuration: 0.1)])
+        let blinkForTime = SKAction.repeat(blinkAction, count: 6)
+        
+        self.run(blinkForTime, completion: {
+            self.isInvencible = false
+        })
     }
 }
