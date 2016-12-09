@@ -32,6 +32,8 @@ class GameOver: SKNode {
     
     // MARK: - Methods
     func show(at pos: CGPoint, onNode node: SKNode) {
+        GameAudio.sharedInstance.pauseBackgroundMusic()
+        
         let whiteBg = SKShapeNode(rect: CGRect(x: 0, y: 0, width: kViewSizeWidth, height: kViewSizeHeight))
         whiteBg.position = CGPoint(x: 0, y: 0)
         whiteBg.fillColor = UIColor.white

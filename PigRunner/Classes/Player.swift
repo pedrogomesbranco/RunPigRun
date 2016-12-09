@@ -177,13 +177,14 @@ class Player: SKSpriteNode {
         self.isInvencible = true
         self.starPowerup = true
         
-        let blinkAction1 = SKAction.colorize(with: UIColor.yellow, colorBlendFactor: 0.6, duration: 0.15)
-        let blinkAction2 = SKAction.colorize(with: UIColor.white, colorBlendFactor: 0.6, duration: 0.15)
+        let blinkAction1 = SKAction.colorize(with: UIColor.yellow, colorBlendFactor: 0.6, duration: 0.2)
+        let blinkAction2 = SKAction.colorize(with: UIColor.white, colorBlendFactor: 0.6, duration: 0.2)
         
         let blinkSequence = SKAction.sequence([blinkAction1, blinkAction2])
-        let blinkAction = SKAction.repeat(blinkSequence, count: 30) // 9 seconds duration
+        let blinkAction = SKAction.repeat(blinkSequence, count: 20) // 9 seconds duration
         
         self.run(blinkAction, completion: {
+            self.run(SKAction.colorize(with: UIColor.white, colorBlendFactor: 1.0, duration: 0.1))
             self.isInvencible = false
             self.starPowerup = false
             
@@ -265,8 +266,11 @@ class Player: SKSpriteNode {
             }
             
         case ColliderType.Life:
-            if life < 3 {
-                self.life += 1
+            if let lifeNode = body.node as? SKSpriteNode {
+                if life < 4 {
+                    self.life += 1
+                }
+                lifeNode.removeFromParent()
             }
             
         default:
