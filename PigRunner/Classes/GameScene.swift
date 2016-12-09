@@ -55,7 +55,7 @@ class GameScene: SKScene {
         player = Player(imageName: "Run_000",
                         pos: CGPoint(x: groundHeight+5, y: -550),
                         categoryBitMask: ColliderType.Player,
-                        collisionBitMask: ColliderType.Ground | ColliderType.Spikes)
+                        collisionBitMask: ColliderType.Ground | ColliderType.Spikes | ColliderType.Life)
         blocksGenerator.fgNode.addChild(player)
         
         // Setup camera

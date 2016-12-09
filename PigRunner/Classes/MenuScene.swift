@@ -18,12 +18,12 @@ class MenuScene: SKScene {
     private var musicButton = SKSpriteNode()
     private var coinsLabel = SKLabelNode()
     private var pig = SKSpriteNode()
+    let storeScene = StoreScene()
     
     let background = SKSpriteNode(imageNamed: "full-background")
     let background2 = SKSpriteNode(imageNamed: "full-background")
     var cameraNode = SKCameraNode()
 
-    
     private var touchSettings = false
     
     // MARK: - Init
@@ -168,10 +168,7 @@ class MenuScene: SKScene {
     }
     
     private func loadStoreScene() {
-        let storeScene = StoreScene(fileNamed: "Store")
-        storeScene?.scaleMode = .fill
-        
-        self.view?.presentScene(storeScene)
+        storeScene.show(at: CGPoint(x: self.size.width/2, y: self.size.height/2), onScene: self)
     }
     
     private func loadSettingsMenu() {
