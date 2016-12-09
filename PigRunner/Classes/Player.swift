@@ -22,6 +22,7 @@ class Player: SKSpriteNode {
     var isRunning: Bool = true
     var isAlive: Bool = true
     var isInvencible: Bool = false
+    var starPowerup: Bool = false
     var life: Int = 3
     var velocityX: Int = playerVelocityX
     var jumpPower: CGFloat = CGFloat(playerJumpPower)
@@ -139,7 +140,14 @@ class Player: SKSpriteNode {
     
     // MARK: Power Ups
     func collectedStar() {
+        let musicPrefs = GamePreferences.sharedInstance.getBackgroundMusicPrefs()
+        
+        if musicPrefs {
+            GameAudio.sharedInstance.playBackgroundMusic(filename: Music.BackgroundStarMusic)
+        }
+        
         self.isInvencible = true
+        self.starPowerup = true
         
         let blinkAction1 = SKAction.colorize(with: UIColor.blue, colorBlendFactor: 0.6, duration: 0.2)
         let blinkAction2 = SKAction.colorize(with: UIColor.red, colorBlendFactor: 0.6, duration: 0.2)
@@ -150,6 +158,11 @@ class Player: SKSpriteNode {
         
         self.run(blinkAction, completion: {
             self.isInvencible = false
+            self.starPowerup = false
+            
+            if musicPrefs {
+                GameAudio.sharedInstance.playBackgroundMusic(filename: Music.BackgroundMusic)
+            }
         })
     }
     
@@ -180,6 +193,11 @@ class Player: SKSpriteNode {
         case ColliderType.Spikes:
             guard let spike = body.node as? SKSpriteNode else { break }
             
+            if starPowerup {
+                spike.removeFromParent()
+                break
+            }
+            
             if soundEffectPrefs {
                 spike.run(GameAudio.sharedInstance.soundHurt)
             }
@@ -199,12 +217,23 @@ class Player: SKSpriteNode {
             }
             
         case ColliderType.SpinningWheel:
-            if !isInvencible {
-                self.life = 0
+            if let spinningWheel = body.node?.parent?.childNode(withName: "sawblade") as? SpinningWheel {
+                if starPowerup {
+                    spinningWheel.removeFromParent()
+                    break
+                }
+                
+                if !isInvencible {
+                    self.life = 0
+                }
             }
+       
             
         case ColliderType.Star:
             if let star = body.node as? SKSpriteNode {
+                if soundEffectPrefs {
+                    star.run(GameAudio.sharedInstance.soundStar)
+                }
                 self.collectedStar()
                 star.removeFromParent()
             }

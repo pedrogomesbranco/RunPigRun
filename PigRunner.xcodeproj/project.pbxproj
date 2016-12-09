@@ -24,6 +24,7 @@
 		642C23891DE64955006DDC53 /* Coin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642C23881DE64955006DDC53 /* Coin.swift */; };
 		642DFA441DD8C932003FE64B /* HUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642DFA431DD8C932003FE64B /* HUD.swift */; };
 		6459DA121DFA5F1100FB3A6B /* Star.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6459DA111DFA5F1100FB3A6B /* Star.swift */; };
+		6459DA141DFA68E700FB3A6B /* background_star.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6459DA131DFA68E700FB3A6B /* background_star.mp3 */; };
 		645C33E31DCFD0A600ABA4D7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 645C33E11DCFD0A600ABA4D7 /* Main.storyboard */; };
 		645C33E51DCFD0A600ABA4D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 645C33E41DCFD0A600ABA4D7 /* Assets.xcassets */; };
 		645C33E81DCFD0A600ABA4D7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 645C33E61DCFD0A600ABA4D7 /* LaunchScreen.storyboard */; };
@@ -87,6 +88,7 @@
 		642C23881DE64955006DDC53 /* Coin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Coin.swift; path = Classes/Obstacles/Coin.swift; sourceTree = "<group>"; };
 		642DFA431DD8C932003FE64B /* HUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HUD.swift; path = pigrunner/Classes/HUD.swift; sourceTree = SOURCE_ROOT; };
 		6459DA111DFA5F1100FB3A6B /* Star.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Star.swift; path = Classes/Obstacles/Star.swift; sourceTree = "<group>"; };
+		6459DA131DFA68E700FB3A6B /* background_star.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = background_star.mp3; path = Resources/Audio/background_star.mp3; sourceTree = "<group>"; };
 		645C33D41DCFD0A600ABA4D7 /* PigRunner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PigRunner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		645C33E21DCFD0A600ABA4D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		645C33E41DCFD0A600ABA4D7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -278,6 +280,7 @@
 		64AD7F5A1DFA1F6F0012665E /* Audio */ = {
 			isa = PBXGroup;
 			children = (
+				6459DA131DFA68E700FB3A6B /* background_star.mp3 */,
 				64AD7F5B1DFA1F830012665E /* background.mp3 */,
 				64AD7F5C1DFA1F830012665E /* big_coin.wav */,
 				64AD7F5D1DFA1F830012665E /* coin.wav */,
@@ -388,6 +391,7 @@
 				792365821DEF61700000AF05 /* Store.sks in Resources */,
 				798C5FB31DD0CCEE00CA0FB5 /* CoinSpecialArrow.sks in Resources */,
 				64AD7F6A1DFA1F830012665E /* hurt.mp3 in Resources */,
+				6459DA141DFA68E700FB3A6B /* background_star.mp3 in Resources */,
 				645C33FA1DCFD8A800ABA4D7 /* Spikes.sks in Resources */,
 				64AF81BF1DD811B700DC654C /* SmileAndTrigger.sks in Resources */,
 				64FF4EE51DD7D9F400337C2E /* SpinningWheel.sks in Resources */,

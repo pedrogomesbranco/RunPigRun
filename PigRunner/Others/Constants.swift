@@ -18,11 +18,11 @@ struct ColliderType {
     static let Spikes: UInt32           = 0b10000   // 16
     static let Trigger: UInt32          = 0b100000  // 32
     static let SpinningWheel: UInt32    = 0b1000000 // 64
-    static let Star: UInt32           = 0b10000000 // 128
+    static let Star: UInt32             = 0b10000000 // 128
     static let MagneticField: UInt32    = 0b100000000 // 256
     static let GarbageCollector: UInt32 = 0b1000000000 // 512
-    static let Wall: UInt32             = 0b10000000000
-    static let Red: UInt32              = 0b100000000000
+    static let Wall: UInt32             = 0b10000000000 // 1024
+    static let Red: UInt32              = 0b100000000000 // 2048
 }
 
 enum CoinBlock: UInt32 {

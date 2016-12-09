@@ -11,6 +11,7 @@ import AVFoundation
 
 internal class Music {
     class var BackgroundMusic: String { return "background.mp3" }
+    class var BackgroundStarMusic: String { return "background_star.mp3" }
 }
 
 internal class SoundEffects {
