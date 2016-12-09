@@ -23,7 +23,7 @@ internal class SoundEffects {
     class var Hurt: String { return "hurt" }
     class var GameOver: String { return "game_over" }
     class var NewRecord: String { return "new_record" }
-    class var Purchase: String { return "purchase" }
+    class var Purchase: String { return "purchase.mp3" }
 }
 
 let GameAudioSharedInstance = GameAudio()

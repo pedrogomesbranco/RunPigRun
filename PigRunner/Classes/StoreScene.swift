@@ -18,6 +18,8 @@ class StoreScene: SKNode {
     var menuButton: SKSpriteNode!
     var coinsLabel: SKLabelNode!
     
+    var extraLifeData: Bool = false
+    
     // MARK: - Init
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -38,24 +40,25 @@ class StoreScene: SKNode {
         self.menuButton.zPosition = GameLayer.Interface
         self.coinsLabel.zPosition = GameLayer.Interface
         
+        self.extraLifeData = GameData.sharedInstance.extraLife
+        
         updateScene()
     }
     
-    // MARK: - User Interaction
-//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        let touch = touches.first!
-//        let touchLocation = touch.location(in: self)
-//        
-//        if coinButton.contains(touchLocation) {
-//            buySpecialCoinBonus()
-//        } else if lifeButton.contains(touchLocation) {
-//            buyExtraLife()
-//        } else if starButton.contains(touchLocation) {
-//            buyExtraStarTime()
-//        } else if menuButton.contains(touchLocation) {
-//            goToMenu()
-//        }
-//    }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touch = touches.first!
+        let touchLocation = touch.location(in: self)
+        
+        if coinButton.contains(touchLocation) {
+            buySpecialCoinBonus()
+        } else if lifeButton.contains(touchLocation) {
+            buyExtraLife()
+        } else if starButton.contains(touchLocation) {
+            buyExtraStarTime()
+        } else if menuButton.contains(touchLocation) {
+            goToMenu()
+        }
+    }
     
     // MARK: - Methods
     func show(at pos: CGPoint, onScene scene: SKScene) {
@@ -69,34 +72,51 @@ class StoreScene: SKNode {
     }
     
     // MARK: - Methods
-    private func goToMenu() {
-//        let menuScene = MenuScene(size: size)
-//        menuScene.scaleMode = .fill
-//        let transition = SKTransition.fade(with: UIColor.black, duration: 0.25)
-//        
-//        self.view?.presentScene(menuScene, transition: transition)
+    func goToMenu() {
         self.removeFromParent()
     }
     
     private func updateScene() {
         self.coinsLabel.text = "\(GameData.sharedInstance.totalCoins)c"
+        
+        self.extraLifeData = GameData.sharedInstance.extraLife
+        
+        if extraLifeData {
+            self.lifeButton.alpha = 0.5
+        } else {
+            self.lifeButton.alpha = 1.0
+        }
     }
     
-    private func buySpecialCoinBonus() {
-        GameData.sharedInstance.totalCoins -= 1
+    func buySpecialCoinBonus() {
+        GameData.sharedInstance.totalCoins -= 600
         GameData.sharedInstance.specialCoinMultiplier = 2
         GameData.sharedInstance.save()
+        
+        self.run(GameAudio.sharedInstance.soundPurchase)
+        
+        self.updateScene()
     }
     
-    private func buyExtraLife() {
-        GameData.sharedInstance.totalCoins -= 1
-        GameData.sharedInstance.extraLife = true
-        GameData.sharedInstance.save()
+    func buyExtraLife() {
+        if !extraLifeData {
+            GameData.sharedInstance.totalCoins -= 100
+            GameData.sharedInstance.extraLife = true
+            GameData.sharedInstance.save()
+            
+            self.run(GameAudio.sharedInstance.soundPurchase)
+            
+            self.updateScene()
+        }
     }
     
-    private func buyExtraStarTime() {
-        GameData.sharedInstance.totalCoins -= 1
+    func buyExtraStarTime() {
+        GameData.sharedInstance.totalCoins -= 600
         GameData.sharedInstance.starExtraTime = 2
         GameData.sharedInstance.save()
+        
+        self.run(GameAudio.sharedInstance.soundPurchase)
+        
+        self.updateScene()
     }
 }

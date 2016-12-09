@@ -2,7 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "storeBg.png",
+      "filename" : "storeBackground.png",
       "scale" : "1x"
     },
     {

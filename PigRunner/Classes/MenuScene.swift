@@ -19,11 +19,14 @@ class MenuScene: SKScene {
     private var coinsLabel = SKLabelNode()
     private var pig = SKSpriteNode()
     let storeScene = StoreScene()
+    let rankingScene = RankingScene()
     
     let background = SKSpriteNode(imageNamed: "full-background")
     let background2 = SKSpriteNode(imageNamed: "full-background")
     var cameraNode = SKCameraNode()
-
+    var rankingIsActive: Bool = false
+    var storeIsActive: Bool = false
+    
     private var touchSettings = false
     
     // MARK: - Init
@@ -91,7 +94,7 @@ class MenuScene: SKScene {
         rankingButton.size.height = 280
         rankingButton.size.width = 240
         self.addChild(rankingButton)
-
+        
         if soundEffectPrefs {
             soundButton = SKSpriteNode(imageNamed: "soundButtonon")
         } else {
@@ -136,21 +139,58 @@ class MenuScene: SKScene {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch = touches.first!
         let touchLocation = touch.location(in: self)
+        let touchLocationInStore = touch.location(in: self.storeScene.storeNode)
+        let touchLocationInRanking = touch.location(in: self.rankingScene.rankingNode)
         
-        if self.storeButton.contains(touchLocation) {
-            self.loadStoreScene()
-        } else if self.settingsButton.contains(touchLocation) {
-            self.loadSettingsMenu()
-        } else if self.soundButton.contains(touchLocation) {
-            self.soundButtonTapped()
-        } else if self.musicButton.contains(touchLocation) {
-            self.musicButtonTapped()
-        }
-        else {
-            self.loadGameScene()
+        if rankingIsActive {
+            if self.rankingScene.menuButton.contains(touchLocationInRanking) {
+                self.rankingIsActive = false
+                self.rankingScene.rankingNode.removeFromParent()
+                GameAudio.sharedInstance.playBackgroundMusic(filename: Music.BackgroundMusic)
+            }
+        } else if storeIsActive {
+            if self.storeScene.menuButton.contains(touchLocationInStore) {
+                self.storeScene.storeNode.removeFromParent()
+                self.storeIsActive = false
+                GameAudio.sharedInstance.playBackgroundMusic(filename: Music.BackgroundMusic)
+            } else if self.storeScene.coinButton.contains(touchLocationInStore) {
+                if storeIsActive == true {
+                    self.storeScene.buySpecialCoinBonus()
+                } else {
+                    self.loadGameScene()
+                }
+            } else if self.storeScene.lifeButton.contains(touchLocationInStore) {
+                if storeIsActive == true {
+                    self.storeScene.buyExtraLife()
+                } else {
+                    self.loadGameScene()
+                }
+            } else if self.storeScene.starButton.contains(touchLocationInStore) {
+                if storeIsActive == true {
+                    self.storeScene.buyExtraStarTime()
+                } else {
+                    self.loadGameScene()
+                }
+            }
+        } else {
+            if self.storeButton.contains(touchLocation) {
+                self.loadStoreScene()
+                self.storeIsActive = true
+            } else if self.settingsButton.contains(touchLocation) {
+                self.loadSettingsMenu()
+            } else if self.soundButton.contains(touchLocation) {
+                self.soundButtonTapped()
+            } else if self.musicButton.contains(touchLocation) {
+                self.musicButtonTapped()
+            } else if self.rankingButton.contains(touchLocation) {
+                self.loadRankingScene()
+                self.rankingIsActive = true
+            } else {
+                self.loadGameScene()
+            }
         }
     }
-    
+
     // MARK: - Switch scenes
     private func loadGameScene() {
         let runAction = SKAction.moveBy(x: 1600, y: 0, duration: 0.8)
@@ -193,6 +233,10 @@ class MenuScene: SKScene {
                 self.musicButton.removeFromParent()
             })
         }
+    }
+    
+    private func loadRankingScene() {
+        rankingScene.show(at: CGPoint(x: self.size.width/2, y: self.size.height/2), onScene: self)
     }
     
     private func soundButtonTapped() {

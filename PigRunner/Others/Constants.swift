@@ -43,6 +43,8 @@ enum BlockType: UInt32 {
     case SpikesAndCoins         = 0b10
     case Obstacle1              = 0b100
     case Obstacles2             = 0b1000
+    case Obstacles3             = 0b10000
+    case Obstacles4             = 0b100000
 }
 
 struct GameLayer {

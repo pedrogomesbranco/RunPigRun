@@ -15,6 +15,10 @@ class GameOver: SKNode {
     var menuBtn: SKSpriteNode!
     var restartBtn: SKSpriteNode!
     
+    var collectedCoinsLbl: SKLabelNode!
+    var earnedCoinsLbl: SKLabelNode!
+    var totalCoinsLbl: SKLabelNode!
+    
     // MARK: - Init
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -28,10 +32,14 @@ class GameOver: SKNode {
         self.restartBtn = self.gameOverNode.childNode(withName: "restartBtn") as! SKSpriteNode
         self.menuBtn = self.gameOverNode.childNode(withName: "menuBtn") as! SKSpriteNode
         self.continueBtn = self.gameOverNode.childNode(withName: "continueBtn") as! SKSpriteNode
+        
+        self.collectedCoinsLbl = self.gameOverNode.childNode(withName: "collectedCoinsLbl") as! SKLabelNode
+        self.earnedCoinsLbl = self.gameOverNode.childNode(withName: "earnedCoinsLbl") as! SKLabelNode
+        self.totalCoinsLbl = self.gameOverNode.childNode(withName: "totalCoinsLbl") as! SKLabelNode
     }
     
     // MARK: - Methods
-    func show(at pos: CGPoint, onNode node: SKNode) {
+    func show(at pos: CGPoint, onNode node: SKNode, withCoins coins: Int) {
         GameAudio.sharedInstance.pauseBackgroundMusic()
         
         let whiteBg = SKShapeNode(rect: CGRect(x: 0, y: 0, width: kViewSizeWidth, height: kViewSizeHeight))
@@ -47,6 +55,16 @@ class GameOver: SKNode {
         
         node.addChild(bloodSpatter)
         
+        let earnedCoins = Int(Double(coins)*0.1)
+        
+        self.collectedCoinsLbl.text = String(coins)
+        self.earnedCoinsLbl.text = String(earnedCoins)
+        
+        GameData.sharedInstance.totalCoins += Int(coins + earnedCoins)
+        GameData.sharedInstance.save()
+        
+        self.totalCoinsLbl.text = String(GameData.sharedInstance.totalCoins)
+        
         let scaleX = SKAction.scaleX(to: 2.0, duration: 0.08)
         let scaleY = SKAction.scaleY(to: 3.5, duration: 0.08)
         let scaleSequence = SKAction.sequence([scaleX, scaleY])
@@ -58,7 +76,7 @@ class GameOver: SKNode {
             
             node.addChild(self.gameOverNode)
             
-            self.gameOverNode.run(SKAction.scale(to: 1.0, duration: 0.5))
+            self.gameOverNode.run(SKAction.scale(to: 1.1, duration: 0.5))
         })
     }
     

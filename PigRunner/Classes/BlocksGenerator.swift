@@ -70,16 +70,20 @@ class BlocksGenerator: SKNode {
     func addRandomBlockNode() {
         let random = Int.random(min: 1, max: 100)
         
-        if random <= 20 {
+        if random <= 10 {
             createBigBlockNode(type: .SmileAndTrigger)
-        } else if random <= 40 {
+        } else if random <= 20 {
             createBigBlockNode(type: .SpikesAndCoins)
-        } else if random <= 60 {
+        } else if random <= 30 {
             createBigBlockNode(type: .TwoTriggers)
-        } else if random <= 80 {
+        } else if random <= 40 {
             createBigBlockNode(type: .Obstacle1)
-        } else {
+        } else if random <= 50 {
             createBigBlockNode(type: .Obstacles2)
+        } else if random <= 60 {
+            createBigBlockNode(type: .Obstacles3)
+        } else if random <= 70 {
+            createBigBlockNode(type: .Obstacles4)
         }
     }
     

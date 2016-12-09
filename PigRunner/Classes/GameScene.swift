@@ -114,11 +114,9 @@ class GameScene: SKScene {
             self.goToMenu()
         } else if self.gameOver.restartBtn.contains(touchLocationGameOver) { // Restart (GameOver)
             self.gameOver.tappedButton()
-            self.updateGameData()
             self.restartGame()
         } else if self.gameOver.menuBtn.contains(touchLocationGameOver) { // Menu (GameOver)
             self.gameOver.tappedButton()
-            self.updateGameData()
             self.goToMenu()
         } else if self.gameOver.continueBtn.contains(touchLocationGameOver) { // Continue (GameOver)
             self.gameOver.tappedButton()
@@ -188,7 +186,8 @@ class GameScene: SKScene {
                 self.gamePaused = true
                 player.die()
                 // Display GameOver Overlay
-                self.gameOver.show(at: CGPoint(x: self.cameraNode.frame.width/2, y: self.cameraNode.frame.height/2), onNode: self.cameraNode)
+                self.gameOver.show(at: CGPoint(x: self.cameraNode.frame.width/2, y: self.cameraNode.frame.height/2), onNode: self.cameraNode, withCoins: GameData.sharedInstance.coins)
+                self.gameOver.zPosition = GameLayer.Interface+2
             }
         }
     }

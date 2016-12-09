@@ -31,6 +31,7 @@ class Player: SKSpriteNode {
     var soundEffectPrefs: Bool = true
     var emitter: SKEmitterNode!
     let gameScene = GameScene.sharedInstance
+    var starTimer: Timer!
     
     // MARK: - Init
     convenience init(imageName: String, pos: CGPoint) {
@@ -183,11 +184,12 @@ class Player: SKSpriteNode {
         let blinkSequence = SKAction.sequence([blinkAction1, blinkAction2])
         let blinkAction = SKAction.repeat(blinkSequence, count: 20) // 9 seconds duration
         
-        self.run(blinkAction, completion: {
+        self.run(blinkAction)
+        
+        self.starTimer = Timer.scheduledTimer(withTimeInterval: 9, repeats: false, block: { (_) in
             self.run(SKAction.colorize(with: UIColor.white, colorBlendFactor: 1.0, duration: 0.1))
             self.isInvencible = false
             self.starPowerup = false
-            
             if musicPrefs {
                 GameAudio.sharedInstance.playBackgroundMusic(filename: Music.BackgroundMusic)
             }
