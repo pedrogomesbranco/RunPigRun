@@ -43,7 +43,12 @@ class Player: SKSpriteNode {
         self.zPosition = GameLayer.Player
         self.setScale(0.3)
         
+        // Load Preferences & Store data
         self.soundEffectPrefs = GamePreferences.sharedInstance.getSoundEffectsPrefs()
+        
+        if GameData.sharedInstance.extraLife {
+            self.life = 4
+        }
         
         // Textures setup
         runTextures = GameTextures.sharedInstance.runTextures
@@ -146,7 +151,6 @@ class Player: SKSpriteNode {
                 if soundEffectPrefs {
                     coin.run(GameAudio.sharedInstance.soundCoin)
                 }
-                
                 GameData.sharedInstance.coins += 1
                 coin.collectedCoin()
             }
@@ -157,7 +161,6 @@ class Player: SKSpriteNode {
                 if soundEffectPrefs {
                     specialCoin.run(GameAudio.sharedInstance.soundBigCoin)
                 }
-                
                 GameData.sharedInstance.coins += (GameData.sharedInstance.specialCoinMultiplier) * 5
                 specialCoin.collectedCoin()
             }
@@ -200,6 +203,7 @@ class Player: SKSpriteNode {
     
     private func makePlayerInvencible() {
         self.isInvencible = true
+        self.land()
         
         let blinkAction = SKAction.sequence([SKAction.fadeOut(withDuration: 0.1),
                                              SKAction.fadeIn(withDuration: 0.1)])

@@ -11,12 +11,16 @@ import SpriteKit
 class StoreScene: SKScene {
     // MARK: - Properties
     var coinButton: SKSpriteNode!
+    var starButton: SKSpriteNode!
+    var lifeButton: SKSpriteNode!
     var menuButton: SKSpriteNode!
     var coinsLabel: SKLabelNode!
     
     // MARK: - Initialization
     override func didMove(to view: SKView) {
         self.coinButton = self.childNode(withName: "coinButton") as! SKSpriteNode
+        self.starButton = self.childNode(withName: "starButton") as! SKSpriteNode
+        self.lifeButton = self.childNode(withName: "lifeButton") as! SKSpriteNode
         self.menuButton = self.childNode(withName: "menuButton") as! SKSpriteNode
         self.coinsLabel = self.childNode(withName: "coinsLabel") as! SKLabelNode
         
@@ -53,8 +57,20 @@ class StoreScene: SKScene {
     }
     
     private func buySpecialCoinBonus() {
-        GameData.sharedInstance.totalCoins -= 50
+        GameData.sharedInstance.totalCoins -= 1
         GameData.sharedInstance.specialCoinMultiplier = 2
+        GameData.sharedInstance.save()
+    }
+    
+    private func buyExtraLife() {
+        GameData.sharedInstance.totalCoins -= 1
+        GameData.sharedInstance.extraLife = true
+        GameData.sharedInstance.save()
+    }
+    
+    private func buyExtraStarTime() {
+        GameData.sharedInstance.totalCoins -= 1
+        GameData.sharedInstance.starExtraTime = 2
         GameData.sharedInstance.save()
     }
 }

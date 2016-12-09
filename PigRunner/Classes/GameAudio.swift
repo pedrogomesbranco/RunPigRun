@@ -53,6 +53,7 @@ class GameAudio {
     // MARK: - Background Music player
     func playBackgroundMusic(filename: String) {
         let music = URL(fileURLWithPath: Bundle.main.path(forResource: filename, ofType: nil)!)
+        let musicPreference = GamePreferences.sharedInstance.getBackgroundMusicPrefs()
         
         do {
             try self.musicPlayer = AVAudioPlayer(contentsOf: music)
@@ -61,7 +62,10 @@ class GameAudio {
         self.musicPlayer.numberOfLoops = -1
         self.musicPlayer.volume = 0.25
         self.musicPlayer.prepareToPlay()
-        self.musicPlayer.play()
+        
+        if musicPreference {
+            self.musicPlayer.play()
+        }
     }
     
     func stopBackgroundMusic() {

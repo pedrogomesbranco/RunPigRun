@@ -14,6 +14,7 @@ class GameScene: SKScene {
     var player: Player!
     var blocksGenerator: BlocksGenerator!
     var hud = HUD()
+    var gamePaused: Bool = false
     
     let cameraNode = SKCameraNode()
     let hudNode = SKNode()
@@ -67,7 +68,7 @@ class GameScene: SKScene {
         self.hud = HUD(lives: player.life, coinsCollected: GameData.sharedInstance.coins, score: 0, lifes: self.player.life)
         self.hudNode.addChild(self.hud)
         //self.hud.updateLife(life: self.player.life)
-
+        
         self.hudNode.zPosition = GameLayer.Interface
     }
     
@@ -95,11 +96,12 @@ class GameScene: SKScene {
         
         if self.hud.hudBackground.contains(touchLocationHUD) { // Pause
             self.pauseButtonPressed()
-        } else if self.pauseMenu.playBtn.contains(touchLocationPauseMenu) { // Play (Pause)
+        } else if self.pauseMenu.playBtn.contains(touchLocationPauseMenu) { // Play (Pause Menu)
             self.pauseMenu.tappedButton()
             self.isPaused = false
+            self.gamePaused = false
             self.hud.pauseButton.isHidden = false
-        } else if self.pauseMenu.menuBtn.contains(touchLocationPauseMenu) { // Menu (Pause)
+        } else if self.pauseMenu.menuBtn.contains(touchLocationPauseMenu) { // Menu (Pause Menu)
             self.pauseMenu.tappedButton()
             self.updateGameData()
             self.goToMenu()
@@ -120,14 +122,14 @@ class GameScene: SKScene {
     }
     
     private func pauseButtonPressed() {
-        self.hud.pauseButton.tappedPauseButton()
-        pauseMenu.show(at: CGPoint(x: self.cameraNode.frame.width/2, y: self.cameraNode.frame.height/2), onNode: self.cameraNode)
-        self.cameraNode.addChild(pauseMenu)
-        self.pauseMenu.position = CGPoint(x: self.cameraNode.calculateAccumulatedFrame().width/2, y: self.cameraNode.calculateAccumulatedFrame().height/2)
-        
-        if self.hud.pauseButton.tapped {
+        if !gamePaused {
             self.isPaused = true
+            self.gamePaused = true
             self.hud.pauseButton.isHidden = true
+            self.hud.pauseButton.tappedPauseButton()
+            pauseMenu.show(at: CGPoint(x: self.cameraNode.frame.width/2, y: self.cameraNode.frame.height/2), onNode: self.cameraNode)
+            self.cameraNode.addChild(pauseMenu)
+            self.pauseMenu.position = CGPoint(x: self.cameraNode.calculateAccumulatedFrame().width/2, y: self.cameraNode.calculateAccumulatedFrame().height/2)
         }
     }
     
@@ -189,7 +191,7 @@ class GameScene: SKScene {
     func updateCamera() {
         let cameraTarget = convert(player.position,
                                    from: blocksGenerator.fgNode)
-        let targetPosition = CGPoint(x: cameraTarget.x + (scene!.view!.bounds.width * 1.1),
+        let targetPosition = CGPoint(x: cameraTarget.x + (scene!.view!.bounds.width * 1.45),
                                      y: getCameraPosition().y)
         let diff = targetPosition - getCameraPosition()
         let newPosition = getCameraPosition() + diff

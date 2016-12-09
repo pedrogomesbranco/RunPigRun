@@ -18,6 +18,8 @@ class GameData: NSObject {
     
     // Store items
     var specialCoinMultiplier: Int = 1
+    var extraLife: Bool = false
+    var starExtraTime: Int = 0
     
     static var filePath: String? {
         get {
@@ -31,6 +33,8 @@ class GameData: NSObject {
         self.highScore = aDecoder.decodeInteger(forKey: "highScore")
         self.totalCoins = aDecoder.decodeInteger(forKey: "totalCoins")
         self.specialCoinMultiplier = aDecoder.decodeInteger(forKey: "specialCoinMultiplier")
+        self.extraLife = aDecoder.decodeBool(forKey: "extraLife")
+        self.starExtraTime = aDecoder.decodeInteger(forKey: "starExtraTime")
     }
     
     override init() {
@@ -82,5 +86,7 @@ extension GameData: NSCoding {
         aCoder.encode(GameData.sharedInstance.highScore, forKey: "highScore")
         aCoder.encode(GameData.sharedInstance.totalCoins, forKey: "totalCoins")
         aCoder.encode(GameData.sharedInstance.specialCoinMultiplier, forKey: "specialCoinMultiplier")
+        aCoder.encode(GameData.sharedInstance.extraLife, forKey: "extraLife")
+        aCoder.encode(GameData.sharedInstance.starExtraTime, forKey: "starExtraTime")
     }
 }

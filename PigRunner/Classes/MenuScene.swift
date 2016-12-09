@@ -38,15 +38,14 @@ class MenuScene: SKScene {
     override func didMove(to view: SKView) {
         self.setupMenuScene()
         
-        let musicPreference = GamePreferences.sharedInstance.getBackgroundMusicPrefs()
-        
-        if musicPreference {
-            GameAudio.sharedInstance.playBackgroundMusic(filename: Music.BackgroundMusic)
-        }
+        GameAudio.sharedInstance.playBackgroundMusic(filename: Music.BackgroundMusic)
     }
     
     // MARK: - Setup
     private func setupMenuScene() {
+        let musicPrefs = GamePreferences.sharedInstance.getBackgroundMusicPrefs()
+        let soundEffectPrefs = GamePreferences.sharedInstance.getSoundEffectsPrefs()
+        
         self.backgroundColor = UIColor.black
         
         self.addChild(cameraNode)
@@ -73,31 +72,48 @@ class MenuScene: SKScene {
         settingsButton.position = CGPoint(x: 300, y: self.size.height/2 - 400)
         settingsButton.zPosition = GameLayer.Interface + 1
         settingsButton.setScale(4)
+        settingsButton.size.height = 280
+        settingsButton.size.width = 240
         self.addChild(settingsButton)
         
-        soundButton = SKSpriteNode(imageNamed: "soundButtonon")
-        soundButton.position = settingsButton.position
-        soundButton.zPosition = GameLayer.Interface
-        soundButton.setScale(3.8)
-        self.addChild(soundButton)
-        
-        musicButton = SKSpriteNode(imageNamed: "musicButtonon")
-        musicButton.position = settingsButton.position
-        musicButton.zPosition = GameLayer.Interface
-        musicButton.setScale(3.8)
-        self.addChild(musicButton)
-        
-        storeButton = SKSpriteNode(imageNamed: "store 2")
+        storeButton = SKSpriteNode(imageNamed: "storeButton")
         storeButton.position = CGPoint(x: 860, y: self.size.height/2 - 400)
         storeButton.setScale(4)
         storeButton.zPosition = GameLayer.Interface
+        storeButton.size.height = 280
+        storeButton.size.width = 240
         self.addChild(storeButton)
         
         rankingButton = SKSpriteNode(imageNamed: "rankingsbutton")
         rankingButton.position = CGPoint(x: 580, y: self.size.height/2 - 400)
         rankingButton.setScale(4)
         rankingButton.zPosition = GameLayer.Interface
+        rankingButton.size.height = 280
+        rankingButton.size.width = 240
         self.addChild(rankingButton)
+
+        if soundEffectPrefs {
+            soundButton = SKSpriteNode(imageNamed: "soundButtonon")
+        } else {
+            soundButton = SKSpriteNode(imageNamed: "soundButtonoff")
+        }
+        soundButton.position = settingsButton.position
+        soundButton.zPosition = GameLayer.Interface
+        soundButton.setScale(4)
+        soundButton.size.height = 280
+        soundButton.size.width = 240
+        
+        if musicPrefs {
+            musicButton = SKSpriteNode(imageNamed: "musicButtonon")
+        } else {
+            musicButton = SKSpriteNode(imageNamed: "musicButtonoff")
+        }
+        
+        musicButton.position = settingsButton.position
+        musicButton.zPosition = GameLayer.Interface
+        musicButton.setScale(4)
+        musicButton.size.height = 280
+        musicButton.size.width = 240
         
         let playBtnScaleUp = SKAction.scale(to: 1.3, duration: 0.5)
         let playBtnScaleDown = SKAction.scale(to: 1.0, duration: 0.5)
@@ -160,6 +176,8 @@ class MenuScene: SKScene {
     
     private func loadSettingsMenu() {
         if(touchSettings == false){
+            self.addChild(musicButton)
+            self.addChild(soundButton)
             touchSettings = true
             let soundMoveAction = SKAction.move(to: CGPoint(x: 300, y: self.size.height/2 + 140), duration: 0.25)
             let musicMoveAction = SKAction.move(to: CGPoint(x: 300, y: self.size.height/2 - 120), duration: 0.25)
@@ -171,10 +189,13 @@ class MenuScene: SKScene {
             touchSettings = false
             let soundMoveAction = SKAction.move(to: CGPoint(x: 300, y: self.size.height/2 - 400), duration: 0.25)
             let musicMoveAction = SKAction.move(to: CGPoint(x: 300, y: self.size.height/2 - 400), duration: 0.25)
-            self.soundButton.run(soundMoveAction)
-            self.musicButton.run(musicMoveAction)
+            self.soundButton.run(soundMoveAction, completion: {
+                self.soundButton.removeFromParent()
+            })
+            self.musicButton.run(musicMoveAction, completion: {
+                self.musicButton.removeFromParent()
+            })
         }
-        
     }
     
     private func soundButtonTapped() {

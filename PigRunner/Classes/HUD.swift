@@ -19,7 +19,6 @@ class HUD: SKNode {
     private var lastLifeX: CGFloat = 0.0
     private var lifesNodes = [SKSpriteNode(imageNamed: "life"),SKSpriteNode(imageNamed: "life"),SKSpriteNode(imageNamed: "life"), SKSpriteNode(imageNamed: "life")]
     
-    
     // MARK: - Public Properties
     internal let pauseButton = PauseButton()
     
@@ -83,7 +82,6 @@ class HUD: SKNode {
     private func setupHUDScore(score: Int) {
         self.scoreLabel = GameFonts.sharedInstance.createScoreLabel(score: 0)
         
-        
         let offsetX = self.hudBackground.size.width/2
         let offsetY = self.hudBackground.size.height/2 - 80
         
@@ -96,7 +94,7 @@ class HUD: SKNode {
         // O lifes-1 tem que ser o numero de vidas de compra. NSUSERDEFAULT
         lastLifeX = 0
         
-        for var j in 0...lifes-1{
+        for j in 0...lifes-1 {
             let offsetX = self.coinsCollected.position.x + self.currentLife.size.width/8 + lastLifeX
             let offsetY = self.coinsCollected.position.y - 115
             self.lastLifeX = offsetX
@@ -106,12 +104,12 @@ class HUD: SKNode {
     }
     
     private func currentLife(lifes: Int) {
-        for var i in 0...lifes{
+        for i in 0...lifes{
             lifesNodes[i].removeFromParent()
         }
         lastLifeX = 0
         if(lifes > 0){
-            for var j in 0...lifes-1{
+            for j in 0...lifes-1{
                 let offsetX = self.coinsCollected.position.x + self.currentLife.size.width/8 + lastLifeX
                 let offsetY = self.coinsCollected.position.y - 115
                 self.lastLifeX = offsetX

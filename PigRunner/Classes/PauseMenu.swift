@@ -41,7 +41,7 @@ class PauseMenu: SKNode {
     
     func tappedButton() {
         GameAudio.sharedInstance.resumeBackgroundMusic()
-        
         self.pauseMenuNode.removeFromParent()
+        self.removeFromParent()
     }
 }
