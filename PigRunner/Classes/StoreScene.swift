@@ -99,7 +99,7 @@ class StoreScene: SKNode {
     }
     
     func buyExtraLife() {
-        if !extraLifeData {
+        if (!extraLifeData && GameData.sharedInstance.totalCoins >= 100) {
             GameData.sharedInstance.totalCoins -= 100
             GameData.sharedInstance.extraLife = true
             GameData.sharedInstance.save()

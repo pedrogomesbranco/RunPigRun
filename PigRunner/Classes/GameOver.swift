@@ -36,11 +36,18 @@ class GameOver: SKNode {
         self.collectedCoinsLbl = self.gameOverNode.childNode(withName: "collectedCoinsLbl") as! SKLabelNode
         self.earnedCoinsLbl = self.gameOverNode.childNode(withName: "earnedCoinsLbl") as! SKLabelNode
         self.totalCoinsLbl = self.gameOverNode.childNode(withName: "totalCoinsLbl") as! SKLabelNode
+        
+        let totalCoins = GameData.sharedInstance.totalCoins
+        
+        if totalCoins < 1000 {
+            self.continueBtn.alpha = 0.5
+        }
     }
     
     // MARK: - Methods
     func show(at pos: CGPoint, onNode node: SKNode, withCoins coins: Int) {
         GameAudio.sharedInstance.pauseBackgroundMusic()
+        self.run(GameAudio.sharedInstance.soundGameOver)
         
         let whiteBg = SKShapeNode(rect: CGRect(x: 0, y: 0, width: kViewSizeWidth, height: kViewSizeHeight))
         whiteBg.position = CGPoint(x: 0, y: 0)

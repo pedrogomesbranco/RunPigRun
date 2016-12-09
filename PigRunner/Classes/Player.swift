@@ -125,16 +125,20 @@ class Player: SKSpriteNode {
         }
     }
     
-    func glide(){
+    func glide() {
         if jumpsLeft == 0 {
+            self.emitter.isHidden = false
+            self.run(GameAudio.sharedInstance.soundJump)
             self.removeAllActions()
             self.texture = SKTexture(imageNamed: "Run_000")
+            self.alpha = 1.0
             self.physicsBody!.velocity.dy = self.physicsBody!.velocity.dy/1.1
         }
     }
     
     func land() {
         if isAlive {
+            self.emitter.isHidden = true
             jumpsLeft = 2
             isRunning = true
             isGliding = false

@@ -20,12 +20,16 @@ class MenuScene: SKScene {
     private var pig = SKSpriteNode()
     let storeScene = StoreScene()
     let rankingScene = RankingScene()
+    let tutorialScene = TutorialScene()
     
     let background = SKSpriteNode(imageNamed: "full-background")
     let background2 = SKSpriteNode(imageNamed: "full-background")
+    let whiteBg = SKSpriteNode(imageNamed: "whiteBg")
     var cameraNode = SKCameraNode()
+    
     var rankingIsActive: Bool = false
     var storeIsActive: Bool = false
+    var tutorialIsActive: Bool = false
     
     private var touchSettings = false
     
@@ -141,35 +145,64 @@ class MenuScene: SKScene {
         let touchLocation = touch.location(in: self)
         let touchLocationInStore = touch.location(in: self.storeScene.storeNode)
         let touchLocationInRanking = touch.location(in: self.rankingScene.rankingNode)
+        let touchLocationInTutorial = touch.location(in: self.tutorialScene.tutorialNode)
         
-        if rankingIsActive {
+        let tutorialPref = GamePreferences.sharedInstance.getTutorialPrefs()
+        
+        if tutorialIsActive {
+            if self.tutorialScene.gotItButton.contains(touchLocationInTutorial) {
+                self.tutorialScene.tutorialNode.removeFromParent()
+                self.whiteBg.removeFromParent()
+                self.loadGameScene()
+            }
+        } else if rankingIsActive {
             if self.rankingScene.menuButton.contains(touchLocationInRanking) {
                 self.rankingIsActive = false
+                self.whiteBg.removeFromParent()
                 self.rankingScene.rankingNode.removeFromParent()
                 GameAudio.sharedInstance.playBackgroundMusic(filename: Music.BackgroundMusic)
             }
         } else if storeIsActive {
             if self.storeScene.menuButton.contains(touchLocationInStore) {
                 self.storeScene.storeNode.removeFromParent()
+                self.whiteBg.removeFromParent()
                 self.storeIsActive = false
                 GameAudio.sharedInstance.playBackgroundMusic(filename: Music.BackgroundMusic)
             } else if self.storeScene.coinButton.contains(touchLocationInStore) {
                 if storeIsActive == true {
                     self.storeScene.buySpecialCoinBonus()
                 } else {
-                    self.loadGameScene()
+                    if tutorialPref {
+                        self.tutorialIsActive = true
+                        self.loadTutorialScene()
+                    } else {
+                        self.whiteBg.removeFromParent()
+                        self.loadGameScene()
+                    }
                 }
             } else if self.storeScene.lifeButton.contains(touchLocationInStore) {
                 if storeIsActive == true {
                     self.storeScene.buyExtraLife()
                 } else {
-                    self.loadGameScene()
+                    if tutorialPref {
+                        self.tutorialIsActive = true
+                        self.loadTutorialScene()
+                    } else {
+                        self.whiteBg.removeFromParent()
+                        self.loadGameScene()
+                    }
                 }
             } else if self.storeScene.starButton.contains(touchLocationInStore) {
                 if storeIsActive == true {
                     self.storeScene.buyExtraStarTime()
                 } else {
-                    self.loadGameScene()
+                    if tutorialPref {
+                        self.tutorialIsActive = true
+                        self.loadTutorialScene()
+                    } else {
+                        self.whiteBg.removeFromParent()
+                        self.loadGameScene()
+                    }
                 }
             }
         } else {
@@ -186,7 +219,13 @@ class MenuScene: SKScene {
                 self.loadRankingScene()
                 self.rankingIsActive = true
             } else {
-                self.loadGameScene()
+                if tutorialPref {
+                    self.tutorialIsActive = true
+                    self.loadTutorialScene()
+                } else {
+                    self.whiteBg.removeFromParent()
+                    self.loadGameScene()
+                }
             }
         }
     }
@@ -208,7 +247,26 @@ class MenuScene: SKScene {
     }
     
     private func loadStoreScene() {
+        whiteBg.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        whiteBg.position = CGPoint(x: self.size.width/2, y: self.size.height/2)
+        whiteBg.alpha = 0.5
+        whiteBg.zPosition = GameLayer.Interface
+        self.addChild(whiteBg)
+        
         storeScene.show(at: CGPoint(x: self.size.width/2, y: self.size.height/2), onScene: self)
+        storeScene.zPosition = GameLayer.Interface+2
+    }
+    
+    private func loadTutorialScene() {
+        whiteBg.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        whiteBg.position = CGPoint(x: self.size.width/2, y: self.size.height/2)
+        whiteBg.alpha = 0.5
+        whiteBg.zPosition = GameLayer.Interface
+        self.addChild(whiteBg)
+        
+        self.tutorialIsActive = true
+        tutorialScene.show(at: CGPoint(x: self.size.width/2, y: self.size.height/2), onScene: self)
+        tutorialScene.zPosition = GameLayer.Interface+2
     }
     
     private func loadSettingsMenu() {
@@ -236,7 +294,14 @@ class MenuScene: SKScene {
     }
     
     private func loadRankingScene() {
+        whiteBg.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        whiteBg.position = CGPoint(x: self.size.width/2, y: self.size.height/2)
+        whiteBg.alpha = 0.5
+        whiteBg.zPosition = GameLayer.Interface
+        self.addChild(whiteBg)
+        
         rankingScene.show(at: CGPoint(x: self.size.width/2, y: self.size.height/2), onScene: self)
+        rankingScene.zPosition = GameLayer.Interface+2
     }
     
     private func soundButtonTapped() {

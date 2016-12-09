@@ -21,6 +21,8 @@ class GameScene: SKScene {
     let gameOver = GameOver()
     let pauseMenu = PauseMenu()
     
+    let whiteBg =  SKSpriteNode(imageNamed: "whiteBg")
+    
     private var timeStep = 0
     
     // Shared Instance
@@ -32,7 +34,7 @@ class GameScene: SKScene {
     
     override func didMove(to view: SKView) {
         physicsWorld.contactDelegate = self
-        
+
         // Reset GameData for current game
         GameData.sharedInstance.reset()
         setupNodes()
@@ -40,6 +42,7 @@ class GameScene: SKScene {
     
     // MARK: - Init
     func setupNodes() {
+        GameAudio.sharedInstance.playBackgroundMusic(filename: Music.BackgroundMusic)
         // Setup World (root) SKScene
         let worldNode = childNode(withName: "World")!
         
@@ -67,6 +70,7 @@ class GameScene: SKScene {
         self.cameraNode.addChild(self.hudNode)
         self.hud = HUD(lives: player.life, coinsCollected: GameData.sharedInstance.coins, score: 0, lifes: self.player.life)
         self.hudNode.addChild(self.hud)
+        self.hud.showScore()
         //self.hud.updateLife(life: self.player.life)
         
         self.hudNode.zPosition = GameLayer.Interface
@@ -105,6 +109,7 @@ class GameScene: SKScene {
             }
         } else if self.pauseMenu.playBtn.contains(touchLocationPauseMenu) { // Play (Pause Menu)
             self.pauseMenu.tappedButton()
+            self.whiteBg.removeFromParent()
             self.isPaused = false
             self.gamePaused = false
             self.hud.pauseButton.isHidden = false
@@ -124,11 +129,9 @@ class GameScene: SKScene {
         } else { // Jump | Glide
             if self.player.jumpsLeft > 0 {
                 player.jump()
-            }
-            else{
+            } else{
                 player.isGliding = true
             }
-            
         }
     }
     
@@ -138,6 +141,12 @@ class GameScene: SKScene {
     
     private func pauseButtonPressed() {
         if !gamePaused {
+            whiteBg.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+            whiteBg.position = CGPoint(x: self.cameraNode.frame.width/2, y: self.cameraNode.frame.height/2)
+            whiteBg.alpha = 0.5
+            whiteBg.zPosition = GameLayer.Interface
+            self.cameraNode.addChild(whiteBg)
+            
             self.isPaused = true
             self.gamePaused = true
             self.hud.pauseButton.isHidden = true
@@ -149,6 +158,7 @@ class GameScene: SKScene {
     }
     
     private func goToMenu() {
+        self.whiteBg.removeFromParent()
         let menuScene = MenuScene(size: size)
         menuScene.scaleMode = .fill
         let transition = SKTransition.fade(with: UIColor.black, duration: 0.25)
@@ -158,6 +168,7 @@ class GameScene: SKScene {
     
     private func continueGame() {
         if GameData.sharedInstance.totalCoins >= 1000 {
+            self.whiteBg.removeFromParent()
             GameData.sharedInstance.totalCoins -= 1000
             GameData.sharedInstance.save()
             self.player.revive()
@@ -165,6 +176,7 @@ class GameScene: SKScene {
     }
     
     private func restartGame() {
+        self.whiteBg.removeFromParent()
         let gameScene = GameScene(fileNamed: "GameScene")!
         gameScene.scaleMode = .aspectFill
         
@@ -181,6 +193,11 @@ class GameScene: SKScene {
     private func checkDeath() {
         if player.life <= 0 {
             if !gamePaused {
+                whiteBg.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+                whiteBg.position = CGPoint(x: self.cameraNode.frame.width/2, y: self.cameraNode.frame.height/2)
+                whiteBg.alpha = 0.5
+                whiteBg.zPosition = GameLayer.Interface
+                self.cameraNode.addChild(whiteBg)
                 GameData.sharedInstance.extraLife = false
                 GameData.sharedInstance.save()
                 self.gamePaused = true
@@ -188,6 +205,7 @@ class GameScene: SKScene {
                 // Display GameOver Overlay
                 self.gameOver.show(at: CGPoint(x: self.cameraNode.frame.width/2, y: self.cameraNode.frame.height/2), onNode: self.cameraNode, withCoins: GameData.sharedInstance.coins)
                 self.gameOver.zPosition = GameLayer.Interface+2
+                self.hud.hideScore()
             }
         }
     }

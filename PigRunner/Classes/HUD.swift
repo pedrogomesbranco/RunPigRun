@@ -149,6 +149,14 @@ class HUD: SKNode {
         self.coinsCollected.run(scaleSequence)
     }
     
+    func hideScore() {
+        self.scoreLabel.isHidden = true
+    }
+    
+    func showScore() {
+        self.scoreLabel.isHidden = false
+    }
+    
     func updateScore(score: Int) {
         self.scoreLabel.text = String(score)
     }

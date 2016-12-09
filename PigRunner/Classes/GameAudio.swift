@@ -43,7 +43,7 @@ class GameAudio {
     internal let soundExtraLife = SKAction.playSoundFileNamed(SoundEffects.ExtraLife, waitForCompletion: false)
     internal let soundStar = SKAction.playSoundFileNamed(SoundEffects.Star, waitForCompletion: false)
     internal let soundJump = SKAction.playSoundFileNamed(SoundEffects.Jump, waitForCompletion: false)
-    internal let soundHurt = SKAction.playSoundFileNamed(SoundEffects.Hurt, waitForCompletion: false)
+    internal let soundHurt = SKAction.playSoundFileNamed(SoundEffects.Hurt, waitForCompletion: true)
     internal let soundGameOver = SKAction.playSoundFileNamed(SoundEffects.GameOver, waitForCompletion: false)
     internal let soundNewRecord = SKAction.playSoundFileNamed(SoundEffects.NewRecord, waitForCompletion: false)
     internal let soundPurchase = SKAction.playSoundFileNamed(SoundEffects.Purchase, waitForCompletion: false)

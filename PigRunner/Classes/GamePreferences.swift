@@ -21,6 +21,7 @@ class GamePreferences {
     private let keyFirstRun = "FirstRun"
     private let keyBackgroundMusic = "BackgroundMusic"
     private let keySoundEffects = "SoundEffects"
+    private let keyTutorial = "Tutorial"
     
     // MARK: - Init
     init() {
@@ -35,6 +36,7 @@ class GamePreferences {
         self.localDefaults.set(true, forKey: keyBackgroundMusic)
         self.localDefaults.set(true, forKey: keySoundEffects)
         self.localDefaults.set(false, forKey: keyFirstRun)
+        self.localDefaults.set(true, forKey: keyTutorial)
         self.localDefaults.synchronize()
     }
     
@@ -49,11 +51,20 @@ class GamePreferences {
         self.localDefaults.synchronize()
     }
     
+    func saveTutorialPrefs(_ preference: Bool) {
+        self.localDefaults.set(preference, forKey: keyTutorial)
+        self.localDefaults.synchronize()
+    }
+    
     func getBackgroundMusicPrefs() -> Bool {
         return self.localDefaults.bool(forKey: keyBackgroundMusic)
     }
     
     func getSoundEffectsPrefs() -> Bool {
         return self.localDefaults.bool(forKey: keySoundEffects)
+    }
+    
+    func getTutorialPrefs() -> Bool {
+        return self.localDefaults.bool(forKey: keyTutorial)
     }
 }
