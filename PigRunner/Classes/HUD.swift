@@ -133,8 +133,8 @@ class HUD: SKNode {
         self.coinsLabel.text = String(coins)
         
         // Animation for label text
-        let scaleUp = SKAction.scale(to: 0.3, duration: 0.12)
-        let scaleNormal = SKAction.scale(to: 0.2, duration: 0.12)
+        let scaleUp = SKAction.scale(to: 0.3, duration: 0.05)
+        let scaleNormal = SKAction.scale(to: 0.2, duration: 0.05)
         let scaleSequence = SKAction.sequence([scaleUp, scaleNormal])
         
         self.coinsCollected.run(scaleSequence)

@@ -23,6 +23,7 @@
 		642C23871DE6379E006DDC53 /* SpinningWheel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642C23861DE6379E006DDC53 /* SpinningWheel.swift */; };
 		642C23891DE64955006DDC53 /* Coin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642C23881DE64955006DDC53 /* Coin.swift */; };
 		642DFA441DD8C932003FE64B /* HUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642DFA431DD8C932003FE64B /* HUD.swift */; };
+		6459DA121DFA5F1100FB3A6B /* Star.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6459DA111DFA5F1100FB3A6B /* Star.swift */; };
 		645C33E31DCFD0A600ABA4D7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 645C33E11DCFD0A600ABA4D7 /* Main.storyboard */; };
 		645C33E51DCFD0A600ABA4D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 645C33E41DCFD0A600ABA4D7 /* Assets.xcassets */; };
 		645C33E81DCFD0A600ABA4D7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 645C33E61DCFD0A600ABA4D7 /* LaunchScreen.storyboard */; };
@@ -85,6 +86,7 @@
 		642C23861DE6379E006DDC53 /* SpinningWheel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SpinningWheel.swift; path = Classes/Obstacles/SpinningWheel.swift; sourceTree = "<group>"; };
 		642C23881DE64955006DDC53 /* Coin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Coin.swift; path = Classes/Obstacles/Coin.swift; sourceTree = "<group>"; };
 		642DFA431DD8C932003FE64B /* HUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HUD.swift; path = pigrunner/Classes/HUD.swift; sourceTree = SOURCE_ROOT; };
+		6459DA111DFA5F1100FB3A6B /* Star.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Star.swift; path = Classes/Obstacles/Star.swift; sourceTree = "<group>"; };
 		645C33D41DCFD0A600ABA4D7 /* PigRunner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PigRunner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		645C33E21DCFD0A600ABA4D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		645C33E41DCFD0A600ABA4D7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 				642C23881DE64955006DDC53 /* Coin.swift */,
 				645DB06D1DE65C7C00CE79F4 /* Spike.swift */,
 				645DB06F1DE65E4300CE79F4 /* BlockSpawner.swift */,
+				6459DA111DFA5F1100FB3A6B /* Star.swift */,
 			);
 			name = Obstacles;
 			sourceTree = "<group>";
@@ -439,6 +442,7 @@
 				64AD7F591DFA1D5A0012665E /* GameAudio.swift in Sources */,
 				642C237D1DE63716006DDC53 /* Int+Extensions.swift in Sources */,
 				792365841DEF63F70000AF05 /* StoreScene.swift in Sources */,
+				6459DA121DFA5F1100FB3A6B /* Star.swift in Sources */,
 				79BA49D11DD0BA690029EEF8 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

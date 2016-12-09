@@ -1,4 +1,12 @@
 //
+//  Star.swift
+//  PigRunner
+//
+//  Created by Joao Pereira on 09/12/16.
+//  Copyright © 2016 João Pereira. All rights reserved.
+//
+
+//
 //  Coin.swift
 //  PigRunner
 //
@@ -8,7 +16,7 @@
 
 import SpriteKit
 
-class Coin: SKSpriteNode {
+class Star: SKSpriteNode {
     // MARK: - Properties
     var nodeWidth: CGFloat = 0.0
     var nodeToSpawn: SKSpriteNode!

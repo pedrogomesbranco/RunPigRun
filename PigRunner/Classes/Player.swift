@@ -127,10 +127,6 @@ class Player: SKSpriteNode {
         self.isAlive = true
     }
     
-    // MARK: Power Ups
-    func collectedMagnet() {
-    }
-    
     func changeAnimation(newTextures: [SKTexture], timePerFrame: TimeInterval, withKey key: String, restore: Bool, repeatCount: Int?) {
         self.setScale(0.3)
         
@@ -141,6 +137,21 @@ class Player: SKSpriteNode {
         }
     }
     
+    // MARK: Power Ups
+    func collectedStar() {
+        self.isInvencible = true
+        
+        let blinkAction1 = SKAction.colorize(with: UIColor.blue, colorBlendFactor: 0.6, duration: 0.2)
+        let blinkAction2 = SKAction.colorize(with: UIColor.red, colorBlendFactor: 0.6, duration: 0.2)
+        let blinkAction3 = SKAction.colorize(with: UIColor.white, colorBlendFactor: 0.6, duration: 0.2)
+        
+        let blinkSequence = SKAction.sequence([blinkAction1, blinkAction2, blinkAction3])
+        let blinkAction = SKAction.repeat(blinkSequence, count: 20)
+        
+        self.run(blinkAction, completion: {
+            self.isInvencible = false
+        })
+    }
     
     // MARK: - Collision Handling
     func collided(withBody body: SKPhysicsBody) {
@@ -152,7 +163,7 @@ class Player: SKSpriteNode {
                     coin.run(GameAudio.sharedInstance.soundCoin)
                 }
                 GameData.sharedInstance.coins += 1
-                coin.collectedCoin()
+                coin.collected()
             }
             
         // Player - Special Coin Collision
@@ -162,7 +173,7 @@ class Player: SKSpriteNode {
                     specialCoin.run(GameAudio.sharedInstance.soundBigCoin)
                 }
                 GameData.sharedInstance.coins += (GameData.sharedInstance.specialCoinMultiplier) * 5
-                specialCoin.collectedCoin()
+                specialCoin.collected()
             }
             
         // Player - Spike Collision
@@ -188,12 +199,14 @@ class Player: SKSpriteNode {
             }
             
         case ColliderType.SpinningWheel:
-            self.life = 0
+            if !isInvencible {
+                self.life = 0
+            }
             
-        case ColliderType.Magnet:
-            if let magnet = body.node as? SKSpriteNode {
-                self.collectedMagnet()
-                magnet.removeFromParent()
+        case ColliderType.Star:
+            if let star = body.node as? SKSpriteNode {
+                self.collectedStar()
+                star.removeFromParent()
             }
             
         default:
