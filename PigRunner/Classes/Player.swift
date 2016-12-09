@@ -22,6 +22,7 @@ class Player: SKSpriteNode {
     var isRunning: Bool = true
     var isAlive: Bool = true
     var isInvencible: Bool = false
+    var isGliding: Bool = false
     var starPowerup: Bool = false
     var life: Int = 3
     var velocityX: Int = playerVelocityX
@@ -118,7 +119,16 @@ class Player: SKSpriteNode {
             setPlayerVelocity(to: 700.0)
             jumpsLeft -= 1
             isRunning = false
+            isGliding = false
             changeAnimation(newTextures: jumpTextures, timePerFrame: 0.15, withKey: "jump", restore: false, repeatCount: nil)
+        }
+    }
+    
+    func glide(){
+        if jumpsLeft == 0 {
+            self.removeAllActions()
+            self.texture = SKTexture(imageNamed: "Run_000")
+            self.physicsBody!.velocity.dy = self.physicsBody!.velocity.dy/1.1
         }
     }
     
@@ -126,16 +136,18 @@ class Player: SKSpriteNode {
         if isAlive {
             jumpsLeft = 2
             isRunning = true
+            isGliding = false
             changeAnimation(newTextures: runTextures, timePerFrame: 0.1, withKey: "run", restore: false, repeatCount: nil)
         }
     }
     
     func die() {
-        changeAnimation(newTextures: dieTextures, timePerFrame: 0.1, withKey: "rum", restore: false, repeatCount: nil)
+        self.isHidden = true
         self.physicsBody?.velocity.dx = 0.0
         jumpsLeft = 0
         life = 0
         isRunning = false
+        isGliding = false
         isAlive = false
     }
     
@@ -243,7 +255,6 @@ class Player: SKSpriteNode {
                 }
             }
             
-            
         case ColliderType.Star:
             if let star = body.node as? SKSpriteNode {
                 if soundEffectPrefs {
@@ -251,6 +262,11 @@ class Player: SKSpriteNode {
                 }
                 self.collectedStar()
                 star.removeFromParent()
+            }
+            
+        case ColliderType.Life:
+            if life < 3 {
+                self.life += 1
             }
             
         default:

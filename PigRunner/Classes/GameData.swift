@@ -23,7 +23,7 @@ class GameData: NSObject {
     
     static var filePath: String? {
         get {
-            return NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!.appending("gamedata") as String?
+            return NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!.appending("/gamedata") as String?
         }
     }
     

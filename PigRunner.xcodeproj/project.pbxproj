@@ -48,6 +48,7 @@
 		64AD7F701DFA27C90012665E /* GamePreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64AD7F6F1DFA27C90012665E /* GamePreferences.swift */; };
 		64AF81BF1DD811B700DC654C /* SmileAndTrigger.sks in Resources */ = {isa = PBXBuildFile; fileRef = 64AF81BE1DD811B700DC654C /* SmileAndTrigger.sks */; };
 		64AF81C11DD812EA00DC654C /* CoinSmile.sks in Resources */ = {isa = PBXBuildFile; fileRef = 64AF81C01DD812EA00DC654C /* CoinSmile.sks */; };
+		64CEB6C71DFAE03E005BB8F1 /* Life.sks in Resources */ = {isa = PBXBuildFile; fileRef = 64CEB6C61DFAE03E005BB8F1 /* Life.sks */; };
 		64F8B6561DE7D7C200B59BF2 /* Comic_Andy.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 64F8B6541DE7D7B400B59BF2 /* Comic_Andy.ttf */; };
 		64F8B6571DE7D7C400B59BF2 /* Space Comics.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 64F8B6551DE7D7B400B59BF2 /* Space Comics.ttf */; };
 		64F8B6591DE7D93A00B59BF2 /* MenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F8B6581DE7D93A00B59BF2 /* MenuScene.swift */; };
@@ -115,6 +116,7 @@
 		64AD7F6F1DFA27C90012665E /* GamePreferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GamePreferences.swift; path = Classes/GamePreferences.swift; sourceTree = "<group>"; };
 		64AF81BE1DD811B700DC654C /* SmileAndTrigger.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = SmileAndTrigger.sks; path = "pigrunner/scenes/Big Blocks/SmileAndTrigger.sks"; sourceTree = SOURCE_ROOT; };
 		64AF81C01DD812EA00DC654C /* CoinSmile.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = CoinSmile.sks; path = pigrunner/scenes/Coins/CoinSmile.sks; sourceTree = SOURCE_ROOT; };
+		64CEB6C61DFAE03E005BB8F1 /* Life.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = Life.sks; path = Scenes/Life.sks; sourceTree = "<group>"; };
 		64F8B6541DE7D7B400B59BF2 /* Comic_Andy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Comic_Andy.ttf; path = Resources/Comic_Andy.ttf; sourceTree = "<group>"; };
 		64F8B6551DE7D7B400B59BF2 /* Space Comics.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Space Comics.ttf"; path = "Resources/Space Comics.ttf"; sourceTree = "<group>"; };
 		64F8B6581DE7D93A00B59BF2 /* MenuScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuScene.swift; path = Classes/MenuScene.swift; sourceTree = "<group>"; };
@@ -257,6 +259,7 @@
 				2406EA831DF1A78000965112 /* Wall.sks */,
 				2406EA851DF1A83E00965112 /* Flyer.sks */,
 				64FF4EE41DD7D9F400337C2E /* SpinningWheel.sks */,
+				64CEB6C61DFAE03E005BB8F1 /* Life.sks */,
 			);
 			name = Obstacles;
 			sourceTree = "<group>";
@@ -421,6 +424,7 @@
 				6459DA171DFA826C00FB3A6B /* FartEmitter.sks in Resources */,
 				798E9C581DEDCB4D000BEBD0 /* PauseMenu.sks in Resources */,
 				2406EA8C1DF1D32700965112 /* Obstacles2.sks in Resources */,
+				64CEB6C71DFAE03E005BB8F1 /* Life.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

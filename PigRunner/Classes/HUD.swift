@@ -91,10 +91,9 @@ class HUD: SKNode {
     }
     
     private func setupCurrentLife(lifes: Int){
-        // O lifes-1 tem que ser o numero de vidas de compra. NSUSERDEFAULT
         lastLifeX = 0
         
-        for j in 0...lifes-1 {
+        for j in 0..<lifes {
             let offsetX = self.coinsCollected.position.x + self.currentLife.size.width/8 + lastLifeX
             let offsetY = self.coinsCollected.position.y - 115
             self.lastLifeX = offsetX
@@ -108,14 +107,18 @@ class HUD: SKNode {
             return
         }
         
-        for i in 0...lifes {
-            lifesNodes[i].removeFromParent()
+        for lifeNode in lifesNodes {
+            lifeNode.removeFromParent()
         }
         
         lastLifeX = 0
         
-        if(lifes > 0){
-            for j in 0...lifes-1{
+        if lifes > 0 {
+            for j in 0..<lifes {
+                self.enumerateChildNodes(withName: "lifeNode", using: { (node, _) in
+                    node.removeFromParent()
+                })
+                
                 let offsetX = self.coinsCollected.position.x + self.currentLife.size.width/8 + lastLifeX
                 let offsetY = self.coinsCollected.position.y - 115
                 self.lastLifeX = offsetX

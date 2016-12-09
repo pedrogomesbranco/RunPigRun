@@ -38,6 +38,10 @@ class StoreScene: SKScene {
         
         if coinButton.contains(touchLocation) {
             buySpecialCoinBonus()
+        } else if lifeButton.contains(touchLocation) {
+            buyExtraLife()
+        } else if starButton.contains(touchLocation) {
+            buyExtraStarTime()
         } else if menuButton.contains(touchLocation) {
             goToMenu()
         }

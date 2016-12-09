@@ -27,6 +27,7 @@ class GameViewController: UIViewController {
                 
                 GameTextures.sharedInstance.preloadAssets(completionHandler: { (_) in
                     let menuScene = MenuScene(size: CGSize(width: kViewSizeWidth, height: kViewSizeHeight))
+                    menuScene.scaleMode = .fill
                     let menuTransition = SKTransition.fade(with: UIColor.black, duration: 0.25)
                     
                     skView.presentScene(menuScene, transition: menuTransition)

@@ -53,7 +53,7 @@ class GameScene: SKScene {
         
         // Setup player
         player = Player(imageName: "Run_000",
-                        pos: CGPoint(x: groundHeight, y: -550),
+                        pos: CGPoint(x: groundHeight+5, y: -550),
                         categoryBitMask: ColliderType.Player,
                         collisionBitMask: ColliderType.Ground | ColliderType.Spikes)
         blocksGenerator.fgNode.addChild(player)
@@ -81,6 +81,11 @@ class GameScene: SKScene {
         
         self.hud.updateCoinsCollected(GameData.sharedInstance.coins)
         self.hud.updateScore(score: GameData.sharedInstance.score)
+        self.hud.updateLife(life: player.life)
+        
+        if self.player.isGliding {
+            self.player.glide()
+        }
         
         blocksGenerator.updateLevel(withCameraPosition: cameraNode.position)
         
@@ -95,7 +100,9 @@ class GameScene: SKScene {
         let touchLocationGameOver = touch.location(in: self.gameOver.gameOverNode)
         
         if self.hud.hudBackground.contains(touchLocationHUD) { // Pause
-            self.pauseButtonPressed()
+            if !gamePaused {
+                self.pauseButtonPressed()
+            }
         } else if self.pauseMenu.playBtn.contains(touchLocationPauseMenu) { // Play (Pause Menu)
             self.pauseMenu.tappedButton()
             self.isPaused = false
@@ -116,9 +123,19 @@ class GameScene: SKScene {
         } else if self.gameOver.continueBtn.contains(touchLocationGameOver) { // Continue (GameOver)
             self.gameOver.tappedButton()
             self.continueGame()
-        } else { // Jump
-            player.jump()
+        } else { // Jump | Glide
+            if self.player.jumpsLeft > 0 {
+                player.jump()
+            }
+            else{
+                player.isGliding = true
+            }
+            
         }
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.player.isGliding = false
     }
     
     private func pauseButtonPressed() {
@@ -165,9 +182,14 @@ class GameScene: SKScene {
     
     private func checkDeath() {
         if player.life <= 0 {
-            player.die()
-            // Display GameOver Overlay
-            self.gameOver.show(at: CGPoint(x: self.cameraNode.frame.width/2, y: self.cameraNode.frame.height/2), onNode: self.cameraNode)
+            if !gamePaused {
+                GameData.sharedInstance.extraLife = false
+                GameData.sharedInstance.save()
+                self.gamePaused = true
+                player.die()
+                // Display GameOver Overlay
+                self.gameOver.show(at: CGPoint(x: self.cameraNode.frame.width/2, y: self.cameraNode.frame.height/2), onNode: self.cameraNode)
+            }
         }
     }
     
@@ -191,7 +213,7 @@ class GameScene: SKScene {
     func updateCamera() {
         let cameraTarget = convert(player.position,
                                    from: blocksGenerator.fgNode)
-        let targetPosition = CGPoint(x: cameraTarget.x + (scene!.view!.bounds.width * 1.45),
+        let targetPosition = CGPoint(x: cameraTarget.x + (scene!.view!.bounds.width * 1.5),
                                      y: getCameraPosition().y)
         let diff = targetPosition - getCameraPosition()
         let newPosition = getCameraPosition() + diff
@@ -205,6 +227,5 @@ extension GameScene: SKPhysicsContactDelegate {
     func didBegin(_ contact: SKPhysicsContact) {
         let other = contact.bodyA.categoryBitMask == ColliderType.Player ? contact.bodyB : contact.bodyA
         player.collided(withBody: other)
-        self.hud.updateLife(life: self.player.life)
     }
 }

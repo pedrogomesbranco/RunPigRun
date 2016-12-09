@@ -3,6 +3,23 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "MenuScene.updateBackground() -&gt; ():MenuScene.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.backgroundNode.position.x">
+            </PersistentString>
+            <PersistentString
+               value = "self.amountBgMoved">
+            </PersistentString>
+            <PersistentString
+               value = "self.cameraNode.position.x">
+            </PersistentString>
+            <PersistentString
+               value = "self.backgroundNode.calculateAccumulatedFrame().width/2">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "BlocksGenerator.addRandomBlockNode() -&gt; ():BlocksGenerator.swift">
       </ContextState>
       <ContextState

@@ -55,7 +55,7 @@ class MenuScene: SKScene {
         self.addChild(background)
         
         background2.anchorPoint = CGPoint.zero
-        background2.position = CGPoint(x: background.frame.width, y: 0)
+        background2.position = CGPoint(x: background.size.width, y: 0)
         self.addChild(background2)
         
         let title = SKSpriteNode(imageNamed: "menu_title")
@@ -127,7 +127,7 @@ class MenuScene: SKScene {
         pig.zPosition = 5
         
         // Animate the pig's running movement
-        pig.run(SKAction.repeatForever(SKAction.animate(with: GameTextures.sharedInstance.idleTextures, timePerFrame: 0.1, resize: true, restore: true)), withKey: "menu_idle")
+        pig.run(SKAction.repeatForever(SKAction.animate(with: GameTextures.sharedInstance.runTextures, timePerFrame: 0.1, resize: true, restore: true)), withKey: "menu_run")
         
         self.addChild(pig)
     }
@@ -224,18 +224,23 @@ class MenuScene: SKScene {
         }
     }
     
-//    override func update(_ currentTime: TimeInterval) {
-//        updateBackground()
-//        self.pig.position.x += 10
-//        self.cameraNode.position.x = self.pig.position.x
-//    }
+    override func update(_ currentTime: TimeInterval) {
+        moveBackground()
+        updateBackground()
+    }
     
-    func updateBackground(){
-        if(self.cameraNode.position.x > background.position.x + background.size.width) {
-            background.position = CGPoint(x: background2.position.x, y: background.position.y)
+    func moveBackground() {
+        self.background.position.x -= 10
+        self.background2.position.x -= 10
+    }
+    
+    func updateBackground() {
+        if background.position.x < -background.size.width {
+            self.background.position.x = self.background2.size.width + self.background2.position.x
         }
-        if(self.cameraNode.position.x > background2.position.x + background2.size.width) {
-            background2.position = CGPoint(x: background.position.x, y: background2.position.y)
+        
+        if background2.position.x < -background2.size.width {
+            self.background2.position.x = self.background.size.width + self.background.position.x
         }
     }
 }
