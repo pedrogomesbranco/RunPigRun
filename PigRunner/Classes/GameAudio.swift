@@ -19,7 +19,7 @@ internal class SoundEffects {
     class var BigCoin: String { return "big_coin" }
     class var ExtraLife: String { return "extra_life" }
     class var Star: String { return "star" }
-    class var SecondJump: String { return "jump" }
+    class var Jump: String { return "jump" }
     class var Hurt: String { return "hurt" }
     class var GameOver: String { return "game_over" }
     class var NewRecord: String { return "new_record" }
@@ -42,7 +42,7 @@ class GameAudio {
     internal let soundBigCoin = SKAction.playSoundFileNamed(SoundEffects.BigCoin, waitForCompletion: false)
     internal let soundExtraLife = SKAction.playSoundFileNamed(SoundEffects.ExtraLife, waitForCompletion: false)
     internal let soundStar = SKAction.playSoundFileNamed(SoundEffects.Star, waitForCompletion: false)
-    internal let soundSecondJump = SKAction.playSoundFileNamed(SoundEffects.SecondJump, waitForCompletion: false)
+    internal let soundJump = SKAction.playSoundFileNamed(SoundEffects.Jump, waitForCompletion: false)
     internal let soundHurt = SKAction.playSoundFileNamed(SoundEffects.Hurt, waitForCompletion: false)
     internal let soundGameOver = SKAction.playSoundFileNamed(SoundEffects.GameOver, waitForCompletion: false)
     internal let soundNewRecord = SKAction.playSoundFileNamed(SoundEffects.NewRecord, waitForCompletion: false)

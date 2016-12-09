@@ -25,6 +25,8 @@
 		642DFA441DD8C932003FE64B /* HUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642DFA431DD8C932003FE64B /* HUD.swift */; };
 		6459DA121DFA5F1100FB3A6B /* Star.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6459DA111DFA5F1100FB3A6B /* Star.swift */; };
 		6459DA141DFA68E700FB3A6B /* background_star.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6459DA131DFA68E700FB3A6B /* background_star.mp3 */; };
+		6459DA171DFA826C00FB3A6B /* FartEmitter.sks in Resources */ = {isa = PBXBuildFile; fileRef = 6459DA151DFA826C00FB3A6B /* FartEmitter.sks */; };
+		6459DA181DFA826C00FB3A6B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6459DA161DFA826C00FB3A6B /* Assets.xcassets */; };
 		645C33E31DCFD0A600ABA4D7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 645C33E11DCFD0A600ABA4D7 /* Main.storyboard */; };
 		645C33E51DCFD0A600ABA4D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 645C33E41DCFD0A600ABA4D7 /* Assets.xcassets */; };
 		645C33E81DCFD0A600ABA4D7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 645C33E61DCFD0A600ABA4D7 /* LaunchScreen.storyboard */; };
@@ -89,6 +91,8 @@
 		642DFA431DD8C932003FE64B /* HUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HUD.swift; path = pigrunner/Classes/HUD.swift; sourceTree = SOURCE_ROOT; };
 		6459DA111DFA5F1100FB3A6B /* Star.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Star.swift; path = Classes/Obstacles/Star.swift; sourceTree = "<group>"; };
 		6459DA131DFA68E700FB3A6B /* background_star.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = background_star.mp3; path = Resources/Audio/background_star.mp3; sourceTree = "<group>"; };
+		6459DA151DFA826C00FB3A6B /* FartEmitter.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = FartEmitter.sks; path = Resources/FartEmitter.sks; sourceTree = "<group>"; };
+		6459DA161DFA826C00FB3A6B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Resources/Assets.xcassets; sourceTree = "<group>"; };
 		645C33D41DCFD0A600ABA4D7 /* PigRunner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PigRunner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		645C33E21DCFD0A600ABA4D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		645C33E41DCFD0A600ABA4D7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -240,6 +244,8 @@
 				64F8B6541DE7D7B400B59BF2 /* Comic_Andy.ttf */,
 				64F8B6551DE7D7B400B59BF2 /* Space Comics.ttf */,
 				645C33E41DCFD0A600ABA4D7 /* Assets.xcassets */,
+				6459DA151DFA826C00FB3A6B /* FartEmitter.sks */,
+				6459DA161DFA826C00FB3A6B /* Assets.xcassets */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -408,9 +414,11 @@
 				64AD7F6E1DFA1F830012665E /* star.wav in Resources */,
 				64AD7F691DFA1F830012665E /* game_over.wav in Resources */,
 				645C33E51DCFD0A600ABA4D7 /* Assets.xcassets in Resources */,
+				6459DA181DFA826C00FB3A6B /* Assets.xcassets in Resources */,
 				645C33E81DCFD0A600ABA4D7 /* LaunchScreen.storyboard in Resources */,
 				64AD7F671DFA1F830012665E /* coin.wav in Resources */,
 				64AD7F6B1DFA1F830012665E /* jump.wav in Resources */,
+				6459DA171DFA826C00FB3A6B /* FartEmitter.sks in Resources */,
 				798E9C581DEDCB4D000BEBD0 /* PauseMenu.sks in Resources */,
 				2406EA8C1DF1D32700965112 /* Obstacles2.sks in Resources */,
 			);

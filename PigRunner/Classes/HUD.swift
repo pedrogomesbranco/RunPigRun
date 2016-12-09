@@ -104,10 +104,16 @@ class HUD: SKNode {
     }
     
     private func currentLife(lifes: Int) {
-        for i in 0...lifes{
+        if lifes < 0 {
+            return
+        }
+        
+        for i in 0...lifes {
             lifesNodes[i].removeFromParent()
         }
+        
         lastLifeX = 0
+        
         if(lifes > 0){
             for j in 0...lifes-1{
                 let offsetX = self.coinsCollected.position.x + self.currentLife.size.width/8 + lastLifeX

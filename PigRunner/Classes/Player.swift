@@ -28,6 +28,7 @@ class Player: SKSpriteNode {
     var jumpPower: CGFloat = CGFloat(playerJumpPower)
     var jumpsLeft: Int = 2
     var soundEffectPrefs: Bool = true
+    var emitter: SKEmitterNode!
     let gameScene = GameScene.sharedInstance
     
     // MARK: - Init
@@ -37,12 +38,22 @@ class Player: SKSpriteNode {
     
     init(imageName: String, pos: CGPoint, categoryBitMask: UInt32, collisionBitMask: UInt32) {
         let texture = SKTexture(imageNamed: imageName)
+        let untypedEmitter: AnyObject = NSKeyedUnarchiver.unarchiveObject(withFile: Bundle.main.path(forResource: "FartEmitter", ofType: "sks")!) as AnyObject
+        
         super.init(texture: texture, color: .clear, size: texture.size())
+        
+        self.emitter = untypedEmitter as! SKEmitterNode
         
         self.anchorPoint = CGPoint(x: 0, y: 0.5)
         self.position = pos
         self.zPosition = GameLayer.Player
         self.setScale(0.3)
+        self.addChild(emitter)
+        
+        emitter.particlePosition.x += self.size.width + 30
+        emitter.particlePosition.y -= self.size.height
+        
+        emitter.isHidden = true
         
         // Load Preferences & Store data
         self.soundEffectPrefs = GamePreferences.sharedInstance.getSoundEffectsPrefs()
@@ -93,8 +104,15 @@ class Player: SKSpriteNode {
     // MARK: - Movements
     func jump() {
         if jumpsLeft > 0 {
+            emitter.isHidden = false
+            
+            let delayInSeconds = 0.4
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delayInSeconds) {
+                self.emitter.isHidden = true
+            }
+            
             if soundEffectPrefs {
-                self.run(GameAudio.sharedInstance.soundSecondJump)
+                self.run(GameAudio.sharedInstance.soundJump)
             }
             
             setPlayerVelocity(to: 700.0)
@@ -113,14 +131,12 @@ class Player: SKSpriteNode {
     }
     
     func die() {
+        changeAnimation(newTextures: dieTextures, timePerFrame: 0.1, withKey: "rum", restore: false, repeatCount: nil)
         self.physicsBody?.velocity.dx = 0.0
         jumpsLeft = 0
         life = 0
         isRunning = false
         isAlive = false
-        let dieAction = SKAction.animate(with: dieTextures, timePerFrame: 0.1, resize: true, restore: false)
-        self.run(dieAction)
-        self.removeAllActions()
     }
     
     func revive() {
@@ -149,12 +165,11 @@ class Player: SKSpriteNode {
         self.isInvencible = true
         self.starPowerup = true
         
-        let blinkAction1 = SKAction.colorize(with: UIColor.blue, colorBlendFactor: 0.6, duration: 0.2)
-        let blinkAction2 = SKAction.colorize(with: UIColor.red, colorBlendFactor: 0.6, duration: 0.2)
-        let blinkAction3 = SKAction.colorize(with: UIColor.white, colorBlendFactor: 0.6, duration: 0.2)
+        let blinkAction1 = SKAction.colorize(with: UIColor.yellow, colorBlendFactor: 0.6, duration: 0.15)
+        let blinkAction2 = SKAction.colorize(with: UIColor.white, colorBlendFactor: 0.6, duration: 0.15)
         
-        let blinkSequence = SKAction.sequence([blinkAction1, blinkAction2, blinkAction3])
-        let blinkAction = SKAction.repeat(blinkSequence, count: 20)
+        let blinkSequence = SKAction.sequence([blinkAction1, blinkAction2])
+        let blinkAction = SKAction.repeat(blinkSequence, count: 30) // 9 seconds duration
         
         self.run(blinkAction, completion: {
             self.isInvencible = false
@@ -227,7 +242,7 @@ class Player: SKSpriteNode {
                     self.life = 0
                 }
             }
-       
+            
             
         case ColliderType.Star:
             if let star = body.node as? SKSpriteNode {

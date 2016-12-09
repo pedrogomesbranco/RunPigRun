@@ -167,7 +167,7 @@ class GameScene: SKScene {
         if player.life <= 0 {
             player.die()
             // Display GameOver Overlay
-            gameOver.show(at: CGPoint(x: self.cameraNode.frame.width/2, y: self.cameraNode.frame.height/2), onNode: self.cameraNode)
+            self.gameOver.show(at: CGPoint(x: self.cameraNode.frame.width/2, y: self.cameraNode.frame.height/2), onNode: self.cameraNode)
         }
     }
     
