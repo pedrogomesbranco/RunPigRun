@@ -30,6 +30,8 @@ class PauseMenu: SKNode {
     
     // MARK: - Methods
     func show(at pos: CGPoint, onNode node: SKNode) {
+        GameAudio.sharedInstance.pauseBackgroundMusic()
+        
         self.pauseMenuNode.position = pos
         self.pauseMenuNode.removeFromParent()
         self.pauseMenuNode.zPosition = GameLayer.Interface
@@ -38,6 +40,8 @@ class PauseMenu: SKNode {
     }
     
     func tappedButton() {
+        GameAudio.sharedInstance.resumeBackgroundMusic()
+        
         self.pauseMenuNode.removeFromParent()
     }
 }

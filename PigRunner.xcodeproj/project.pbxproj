@@ -30,6 +30,18 @@
 		645C33FC1DCFD8BA00ABA4D7 /* CoinArrow.sks in Resources */ = {isa = PBXBuildFile; fileRef = 645C33FB1DCFD8BA00ABA4D7 /* CoinArrow.sks */; };
 		645DB06E1DE65C7C00CE79F4 /* Spike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645DB06D1DE65C7C00CE79F4 /* Spike.swift */; };
 		645DB0701DE65E4300CE79F4 /* BlockSpawner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645DB06F1DE65E4300CE79F4 /* BlockSpawner.swift */; };
+		64AD7F591DFA1D5A0012665E /* GameAudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64AD7F581DFA1D5A0012665E /* GameAudio.swift */; };
+		64AD7F651DFA1F830012665E /* background.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 64AD7F5B1DFA1F830012665E /* background.mp3 */; };
+		64AD7F661DFA1F830012665E /* big_coin.wav in Resources */ = {isa = PBXBuildFile; fileRef = 64AD7F5C1DFA1F830012665E /* big_coin.wav */; };
+		64AD7F671DFA1F830012665E /* coin.wav in Resources */ = {isa = PBXBuildFile; fileRef = 64AD7F5D1DFA1F830012665E /* coin.wav */; };
+		64AD7F681DFA1F830012665E /* extra_life.wav in Resources */ = {isa = PBXBuildFile; fileRef = 64AD7F5E1DFA1F830012665E /* extra_life.wav */; };
+		64AD7F691DFA1F830012665E /* game_over.wav in Resources */ = {isa = PBXBuildFile; fileRef = 64AD7F5F1DFA1F830012665E /* game_over.wav */; };
+		64AD7F6A1DFA1F830012665E /* hurt.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 64AD7F601DFA1F830012665E /* hurt.mp3 */; };
+		64AD7F6B1DFA1F830012665E /* jump.wav in Resources */ = {isa = PBXBuildFile; fileRef = 64AD7F611DFA1F830012665E /* jump.wav */; };
+		64AD7F6C1DFA1F830012665E /* new_record.wav in Resources */ = {isa = PBXBuildFile; fileRef = 64AD7F621DFA1F830012665E /* new_record.wav */; };
+		64AD7F6D1DFA1F830012665E /* purchase.wav in Resources */ = {isa = PBXBuildFile; fileRef = 64AD7F631DFA1F830012665E /* purchase.wav */; };
+		64AD7F6E1DFA1F830012665E /* star.wav in Resources */ = {isa = PBXBuildFile; fileRef = 64AD7F641DFA1F830012665E /* star.wav */; };
+		64AD7F701DFA27C90012665E /* GamePreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64AD7F6F1DFA27C90012665E /* GamePreferences.swift */; };
 		64AF81BF1DD811B700DC654C /* SmileAndTrigger.sks in Resources */ = {isa = PBXBuildFile; fileRef = 64AF81BE1DD811B700DC654C /* SmileAndTrigger.sks */; };
 		64AF81C11DD812EA00DC654C /* CoinSmile.sks in Resources */ = {isa = PBXBuildFile; fileRef = 64AF81C01DD812EA00DC654C /* CoinSmile.sks */; };
 		64F8B6561DE7D7C200B59BF2 /* Comic_Andy.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 64F8B6541DE7D7B400B59BF2 /* Comic_Andy.ttf */; };
@@ -81,6 +93,18 @@
 		645C33FB1DCFD8BA00ABA4D7 /* CoinArrow.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = CoinArrow.sks; path = Scenes/Coins/CoinArrow.sks; sourceTree = "<group>"; };
 		645DB06D1DE65C7C00CE79F4 /* Spike.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Spike.swift; path = Classes/Obstacles/Spike.swift; sourceTree = "<group>"; };
 		645DB06F1DE65E4300CE79F4 /* BlockSpawner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlockSpawner.swift; path = Classes/Obstacles/BlockSpawner.swift; sourceTree = "<group>"; };
+		64AD7F581DFA1D5A0012665E /* GameAudio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameAudio.swift; path = Classes/GameAudio.swift; sourceTree = "<group>"; };
+		64AD7F5B1DFA1F830012665E /* background.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = background.mp3; path = Resources/Audio/background.mp3; sourceTree = "<group>"; };
+		64AD7F5C1DFA1F830012665E /* big_coin.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = big_coin.wav; path = Resources/Audio/big_coin.wav; sourceTree = "<group>"; };
+		64AD7F5D1DFA1F830012665E /* coin.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = coin.wav; path = Resources/Audio/coin.wav; sourceTree = "<group>"; };
+		64AD7F5E1DFA1F830012665E /* extra_life.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = extra_life.wav; path = Resources/Audio/extra_life.wav; sourceTree = "<group>"; };
+		64AD7F5F1DFA1F830012665E /* game_over.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = game_over.wav; path = Resources/Audio/game_over.wav; sourceTree = "<group>"; };
+		64AD7F601DFA1F830012665E /* hurt.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = hurt.mp3; path = Resources/Audio/hurt.mp3; sourceTree = "<group>"; };
+		64AD7F611DFA1F830012665E /* jump.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = jump.wav; path = Resources/Audio/jump.wav; sourceTree = "<group>"; };
+		64AD7F621DFA1F830012665E /* new_record.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = new_record.wav; path = Resources/Audio/new_record.wav; sourceTree = "<group>"; };
+		64AD7F631DFA1F830012665E /* purchase.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = purchase.wav; path = Resources/Audio/purchase.wav; sourceTree = "<group>"; };
+		64AD7F641DFA1F830012665E /* star.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = star.wav; path = Resources/Audio/star.wav; sourceTree = "<group>"; };
+		64AD7F6F1DFA27C90012665E /* GamePreferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GamePreferences.swift; path = Classes/GamePreferences.swift; sourceTree = "<group>"; };
 		64AF81BE1DD811B700DC654C /* SmileAndTrigger.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = SmileAndTrigger.sks; path = "pigrunner/scenes/Big Blocks/SmileAndTrigger.sks"; sourceTree = SOURCE_ROOT; };
 		64AF81C01DD812EA00DC654C /* CoinSmile.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = CoinSmile.sks; path = pigrunner/scenes/Coins/CoinSmile.sks; sourceTree = SOURCE_ROOT; };
 		64F8B6541DE7D7B400B59BF2 /* Comic_Andy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Comic_Andy.ttf; path = Resources/Comic_Andy.ttf; sourceTree = "<group>"; };
@@ -185,6 +209,8 @@
 				796BD57B1DDE20A9001985F0 /* GameTextures.swift */,
 				790679E31DDE250800F8BA7A /* GameFonts.swift */,
 				64FC20771DF103CA008E73B6 /* GameData.swift */,
+				64AD7F581DFA1D5A0012665E /* GameAudio.swift */,
+				64AD7F6F1DFA27C90012665E /* GamePreferences.swift */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -204,6 +230,7 @@
 		645C33F21DCFD69D00ABA4D7 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				64AD7F5A1DFA1F6F0012665E /* Audio */,
 				7942F7151DE872300032B9BA /* Pig.atlas */,
 				64F8B6541DE7D7B400B59BF2 /* Comic_Andy.ttf */,
 				64F8B6551DE7D7B400B59BF2 /* Space Comics.ttf */,
@@ -243,6 +270,23 @@
 				642C237A1DE63716006DDC53 /* Int+Extensions.swift */,
 			);
 			name = Extensions;
+			sourceTree = "<group>";
+		};
+		64AD7F5A1DFA1F6F0012665E /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				64AD7F5B1DFA1F830012665E /* background.mp3 */,
+				64AD7F5C1DFA1F830012665E /* big_coin.wav */,
+				64AD7F5D1DFA1F830012665E /* coin.wav */,
+				64AD7F5E1DFA1F830012665E /* extra_life.wav */,
+				64AD7F5F1DFA1F830012665E /* game_over.wav */,
+				64AD7F601DFA1F830012665E /* hurt.mp3 */,
+				64AD7F611DFA1F830012665E /* jump.wav */,
+				64AD7F621DFA1F830012665E /* new_record.wav */,
+				64AD7F631DFA1F830012665E /* purchase.wav */,
+				64AD7F641DFA1F830012665E /* star.wav */,
+			);
+			name = Audio;
 			sourceTree = "<group>";
 		};
 		64AF81BB1DD8119200DC654C /* Blocks */ = {
@@ -329,27 +373,37 @@
 			buildActionMask = 2147483647;
 			files = (
 				64AF81C11DD812EA00DC654C /* CoinSmile.sks in Resources */,
+				64AD7F681DFA1F830012665E /* extra_life.wav in Resources */,
+				64AD7F6D1DFA1F830012665E /* purchase.wav in Resources */,
 				64F8B65F1DE7F5CF00B59BF2 /* TwoTriggers.sks in Resources */,
 				645C33E31DCFD0A600ABA4D7 /* Main.storyboard in Resources */,
 				24B129AC1DF1D48F0094C383 /* Life.sks in Resources */,
 				2406EA8A1DF1D2F500965112 /* Coins1.sks in Resources */,
 				2406EA841DF1A78000965112 /* Wall.sks in Resources */,
+				64AD7F651DFA1F830012665E /* background.mp3 in Resources */,
 				642C23731DE636C7006DDC53 /* GameScene.sks in Resources */,
 				792365821DEF61700000AF05 /* Store.sks in Resources */,
 				798C5FB31DD0CCEE00CA0FB5 /* CoinSpecialArrow.sks in Resources */,
+				64AD7F6A1DFA1F830012665E /* hurt.mp3 in Resources */,
 				645C33FA1DCFD8A800ABA4D7 /* Spikes.sks in Resources */,
 				64AF81BF1DD811B700DC654C /* SmileAndTrigger.sks in Resources */,
 				64FF4EE51DD7D9F400337C2E /* SpinningWheel.sks in Resources */,
 				64F8B6611DE7F6A900B59BF2 /* SpikesAndCoins.sks in Resources */,
 				64F8B6561DE7D7C200B59BF2 /* Comic_Andy.ttf in Resources */,
 				2406EA861DF1A83E00965112 /* Flyer.sks in Resources */,
+				64AD7F6C1DFA1F830012665E /* new_record.wav in Resources */,
 				64F8B6571DE7D7C400B59BF2 /* Space Comics.ttf in Resources */,
 				645C33FC1DCFD8BA00ABA4D7 /* CoinArrow.sks in Resources */,
 				64FC20741DF0F6C1008E73B6 /* GameOver.sks in Resources */,
 				7942F7161DE872300032B9BA /* Pig.atlas in Resources */,
+				64AD7F661DFA1F830012665E /* big_coin.wav in Resources */,
 				2406EA881DF1D29300965112 /* Obstacle1.sks in Resources */,
+				64AD7F6E1DFA1F830012665E /* star.wav in Resources */,
+				64AD7F691DFA1F830012665E /* game_over.wav in Resources */,
 				645C33E51DCFD0A600ABA4D7 /* Assets.xcassets in Resources */,
 				645C33E81DCFD0A600ABA4D7 /* LaunchScreen.storyboard in Resources */,
+				64AD7F671DFA1F830012665E /* coin.wav in Resources */,
+				64AD7F6B1DFA1F830012665E /* jump.wav in Resources */,
 				798E9C581DEDCB4D000BEBD0 /* PauseMenu.sks in Resources */,
 				2406EA8C1DF1D32700965112 /* Obstacles2.sks in Resources */,
 			);
@@ -370,6 +424,7 @@
 				645DB06E1DE65C7C00CE79F4 /* Spike.swift in Sources */,
 				793D1B671DD0D035008A7B9E /* BlocksGenerator.swift in Sources */,
 				642DFA441DD8C932003FE64B /* HUD.swift in Sources */,
+				64AD7F701DFA27C90012665E /* GamePreferences.swift in Sources */,
 				642C23771DE636F1006DDC53 /* GameViewController.swift in Sources */,
 				64FC20761DF0F873008E73B6 /* GameOver.swift in Sources */,
 				796BD57C1DDE20A9001985F0 /* GameTextures.swift in Sources */,
@@ -381,6 +436,7 @@
 				642C237B1DE63716006DDC53 /* CGFloat+Extensions.swift in Sources */,
 				642C237C1DE63716006DDC53 /* CGPoint+Extensions.swift in Sources */,
 				790679E41DDE250800F8BA7A /* GameFonts.swift in Sources */,
+				64AD7F591DFA1D5A0012665E /* GameAudio.swift in Sources */,
 				642C237D1DE63716006DDC53 /* Int+Extensions.swift in Sources */,
 				792365841DEF63F70000AF05 /* StoreScene.swift in Sources */,
 				79BA49D11DD0BA690029EEF8 /* Constants.swift in Sources */,

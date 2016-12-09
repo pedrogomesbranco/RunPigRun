@@ -17,6 +17,8 @@ class HUD: SKNode {
     private var scoreLabel = SKLabelNode()
     private var coinsLabel = SKLabelNode()
     private var lastLifeX: CGFloat = 0.0
+    private var lifesNodes = [SKSpriteNode(imageNamed: "life"),SKSpriteNode(imageNamed: "life"),SKSpriteNode(imageNamed: "life"), SKSpriteNode(imageNamed: "life")]
+    
     
     // MARK: - Public Properties
     internal let pauseButton = PauseButton()
@@ -90,15 +92,32 @@ class HUD: SKNode {
         self.hudBackground.addChild(self.scoreLabel)
     }
     
-    private func setupCurrentLife(lifes: Int) {
-        for _ in 0...lifes-1 {
-            let lifeIcon = SKSpriteNode(imageNamed: "life")
-            
+    private func setupCurrentLife(lifes: Int){
+        // O lifes-1 tem que ser o numero de vidas de compra. NSUSERDEFAULT
+        lastLifeX = 0
+        
+        for var j in 0...lifes-1{
             let offsetX = self.coinsCollected.position.x + self.currentLife.size.width/8 + lastLifeX
             let offsetY = self.coinsCollected.position.y - 115
             self.lastLifeX = offsetX
-            lifeIcon.position = CGPoint(x: offsetX, y: offsetY)
-            self.hudBackground.addChild(lifeIcon)
+            lifesNodes[j].position = CGPoint(x: offsetX, y: offsetY)
+            self.hudBackground.addChild(lifesNodes[j])
+        }
+    }
+    
+    private func currentLife(lifes: Int) {
+        for var i in 0...lifes{
+            lifesNodes[i].removeFromParent()
+        }
+        lastLifeX = 0
+        if(lifes > 0){
+            for var j in 0...lifes-1{
+                let offsetX = self.coinsCollected.position.x + self.currentLife.size.width/8 + lastLifeX
+                let offsetY = self.coinsCollected.position.y - 115
+                self.lastLifeX = offsetX
+                lifesNodes[j].position = CGPoint(x: offsetX, y: offsetY)
+                self.hudBackground.addChild(lifesNodes[j])
+            }
         }
     }
     
@@ -128,6 +147,6 @@ class HUD: SKNode {
     }
     
     func updateLife(life: Int) {
-//        self.setupCurrentLife(lifes: life)
+        self.currentLife(lifes: life)
     }
 }

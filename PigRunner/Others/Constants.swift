@@ -45,8 +45,11 @@ enum BlockType: UInt32 {
 }
 
 struct GameLayer {
-    static let Player: CGFloat = 3
-    static let Interface: CGFloat = 5
+    static let Backgorund: CGFloat      = 1
+    static let Obstacles: CGFloat       = 2
+    static let Player: CGFloat          = 3
+    static let WhiteBackground: CGFloat = 4
+    static let Interface: CGFloat       = 5
 }
 
 let playerVelocityX: Int = 700

@@ -52,7 +52,7 @@ class GameScene: SKScene {
         
         // Setup player
         player = Player(imageName: "Run_000",
-                        pos: CGPoint(x: 0, y: -550),
+                        pos: CGPoint(x: groundHeight, y: -550),
                         categoryBitMask: ColliderType.Player,
                         collisionBitMask: ColliderType.Ground | ColliderType.Spikes)
         blocksGenerator.fgNode.addChild(player)
@@ -66,7 +66,7 @@ class GameScene: SKScene {
         self.cameraNode.addChild(self.hudNode)
         self.hud = HUD(lives: player.life, coinsCollected: GameData.sharedInstance.coins, score: 0, lifes: self.player.life)
         self.hudNode.addChild(self.hud)
-        self.hud.updateLife(life: self.player.life)
+        //self.hud.updateLife(life: self.player.life)
 
         self.hudNode.zPosition = GameLayer.Interface
     }

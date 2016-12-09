@@ -26,6 +26,7 @@ class Player: SKSpriteNode {
     var velocityX: Int = playerVelocityX
     var jumpPower: CGFloat = CGFloat(playerJumpPower)
     var jumpsLeft: Int = 2
+    var soundEffectPrefs: Bool = true
     let gameScene = GameScene.sharedInstance
     
     // MARK: - Init
@@ -37,10 +38,12 @@ class Player: SKSpriteNode {
         let texture = SKTexture(imageNamed: imageName)
         super.init(texture: texture, color: .clear, size: texture.size())
         
-        self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        self.position = position
+        self.anchorPoint = CGPoint(x: 0, y: 0.5)
+        self.position = pos
         self.zPosition = GameLayer.Player
         self.setScale(0.3)
+        
+        self.soundEffectPrefs = GamePreferences.sharedInstance.getSoundEffectsPrefs()
         
         // Textures setup
         runTextures = GameTextures.sharedInstance.runTextures
@@ -84,6 +87,10 @@ class Player: SKSpriteNode {
     // MARK: - Movements
     func jump() {
         if jumpsLeft > 0 {
+            if soundEffectPrefs {
+                self.run(GameAudio.sharedInstance.soundSecondJump)
+            }
+            
             setPlayerVelocity(to: 700.0)
             jumpsLeft -= 1
             isRunning = false
@@ -136,6 +143,10 @@ class Player: SKSpriteNode {
         // Player - Coin Collision
         case ColliderType.CoinNormal:
             if let coin = body.node as? Coin {
+                if soundEffectPrefs {
+                    coin.run(GameAudio.sharedInstance.soundCoin)
+                }
+                
                 GameData.sharedInstance.coins += 1
                 coin.collectedCoin()
             }
@@ -143,13 +154,21 @@ class Player: SKSpriteNode {
         // Player - Special Coin Collision
         case ColliderType.CoinSpecial:
             if let specialCoin = body.node as? Coin {
+                if soundEffectPrefs {
+                    specialCoin.run(GameAudio.sharedInstance.soundBigCoin)
+                }
+                
                 GameData.sharedInstance.coins += (GameData.sharedInstance.specialCoinMultiplier) * 5
                 specialCoin.collectedCoin()
             }
             
         // Player - Spike Collision
         case ColliderType.Spikes:
-            guard let _ = body.node as? SKSpriteNode else { break }
+            guard let spike = body.node as? SKSpriteNode else { break }
+            
+            if soundEffectPrefs {
+                spike.run(GameAudio.sharedInstance.soundHurt)
+            }
             
             if isInvencible == false {
                 self.life -= 1

@@ -20,6 +20,10 @@ class StoreScene: SKScene {
         self.menuButton = self.childNode(withName: "menuButton") as! SKSpriteNode
         self.coinsLabel = self.childNode(withName: "coinsLabel") as! SKLabelNode
         
+        self.coinButton.zPosition = GameLayer.Interface
+        self.menuButton.zPosition = GameLayer.Interface
+        self.coinsLabel.zPosition = GameLayer.Interface
+        
         updateScene()
     }
     

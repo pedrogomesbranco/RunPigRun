@@ -37,6 +37,12 @@ class MenuScene: SKScene {
     
     override func didMove(to view: SKView) {
         self.setupMenuScene()
+        
+        let musicPreference = GamePreferences.sharedInstance.getBackgroundMusicPrefs()
+        
+        if musicPreference {
+            GameAudio.sharedInstance.playBackgroundMusic(filename: Music.BackgroundMusic)
+        }
     }
     
     // MARK: - Setup
@@ -100,12 +106,12 @@ class MenuScene: SKScene {
         playButton.run(SKAction.repeatForever(playBtnAnimation))
         
         pig = SKSpriteNode(imageNamed: "Idle_000")
-        pig.setScale(0.5)
-        pig.position = CGPoint(x: self.size.width/2 + 800, y: self.size.height/2 - 375)
+        pig.setScale(0.4)
+        pig.position = CGPoint(x: self.size.width/2 + 800, y: self.size.height/2 - 420)
         pig.zPosition = 5
         
         // Animate the pig's running movement
-        pig.run(SKAction.repeatForever(SKAction.animate(with: GameTextures.sharedInstance.idleTextures, timePerFrame: 0.1, resize: true, restore: true)), withKey: "menu_run")
+        pig.run(SKAction.repeatForever(SKAction.animate(with: GameTextures.sharedInstance.idleTextures, timePerFrame: 0.1, resize: true, restore: true)), withKey: "menu_idle")
         
         self.addChild(pig)
     }
@@ -119,6 +125,10 @@ class MenuScene: SKScene {
             self.loadStoreScene()
         } else if self.settingsButton.contains(touchLocation) {
             self.loadSettingsMenu()
+        } else if self.soundButton.contains(touchLocation) {
+            self.soundButtonTapped()
+        } else if self.musicButton.contains(touchLocation) {
+            self.musicButtonTapped()
         }
         else {
             self.loadGameScene()
@@ -165,6 +175,32 @@ class MenuScene: SKScene {
             self.musicButton.run(musicMoveAction)
         }
         
+    }
+    
+    private func soundButtonTapped() {
+        let currentPreference = GamePreferences.sharedInstance.getSoundEffectsPrefs()
+        
+        if currentPreference == true {
+            GamePreferences.sharedInstance.saveSoundEffectsPrefs(false)
+            self.soundButton.texture = SKTexture(imageNamed: "soundButtonoff")
+        } else {
+            GamePreferences.sharedInstance.saveSoundEffectsPrefs(true)
+            self.soundButton.texture = SKTexture(imageNamed: "soundButtonon")
+        }
+    }
+    
+    private func musicButtonTapped() {
+        let currentPreference = GamePreferences.sharedInstance.getBackgroundMusicPrefs()
+        
+        if currentPreference == true {
+            GamePreferences.sharedInstance.saveBackgroundMusicPrefs(false)
+            self.musicButton.texture = SKTexture(imageNamed: "musicButtonoff")
+            GameAudio.sharedInstance.stopBackgroundMusic()
+        } else {
+            GamePreferences.sharedInstance.saveBackgroundMusicPrefs(true)
+            self.musicButton.texture = SKTexture(imageNamed: "musicButtonon")
+            GameAudio.sharedInstance.playBackgroundMusic(filename: Music.BackgroundMusic)
+        }
     }
     
 //    override func update(_ currentTime: TimeInterval) {
