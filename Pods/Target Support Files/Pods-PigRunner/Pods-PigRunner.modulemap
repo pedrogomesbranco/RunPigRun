@@ -1,0 +1,6 @@
+framework module Pods_PigRunner {
+  umbrella header "Pods-PigRunner-umbrella.h"
+
+  export *
+  module * { export * }
+}

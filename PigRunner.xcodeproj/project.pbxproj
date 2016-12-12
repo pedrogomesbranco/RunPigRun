@@ -13,6 +13,7 @@
 		2406EA8A1DF1D2F500965112 /* Coins1.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2406EA891DF1D2F500965112 /* Coins1.sks */; };
 		2406EA8C1DF1D32700965112 /* Obstacles2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2406EA8B1DF1D32700965112 /* Obstacles2.sks */; };
 		24B129AC1DF1D48F0094C383 /* Life.sks in Resources */ = {isa = PBXBuildFile; fileRef = 24B129AB1DF1D48F0094C383 /* Life.sks */; };
+		268005011DFF080400105358 /* FacebookConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268005001DFF080400105358 /* FacebookConnection.swift */; };
 		6427C6041DFB11E500F4EA92 /* TutorialScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 6427C6031DFB11E500F4EA92 /* TutorialScene.sks */; };
 		6427C6061DFB136400F4EA92 /* TutorialScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6427C6051DFB136400F4EA92 /* TutorialScene.swift */; };
 		642C23731DE636C7006DDC53 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 642C23721DE636C7006DDC53 /* GameScene.sks */; };
@@ -77,6 +78,7 @@
 		79BA49CF1DD0B86B0029EEF8 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BA49CE1DD0B86B0029EEF8 /* Player.swift */; };
 		79BA49D11DD0BA690029EEF8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BA49D01DD0BA690029EEF8 /* Constants.swift */; };
 		79CF88811DE768DD00FCBCE6 /* PauseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CF88801DE768DD00FCBCE6 /* PauseButton.swift */; };
+		D59DE59B41764397973FF1E7 /* Pods_PigRunner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37A0DC1853C721C6DB9F62AB /* Pods_PigRunner.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,6 +88,8 @@
 		2406EA891DF1D2F500965112 /* Coins1.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Coins1.sks; sourceTree = "<group>"; };
 		2406EA8B1DF1D32700965112 /* Obstacles2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Obstacles2.sks; sourceTree = "<group>"; };
 		24B129AB1DF1D48F0094C383 /* Life.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Life.sks; sourceTree = "<group>"; };
+		268005001DFF080400105358 /* FacebookConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookConnection.swift; sourceTree = "<group>"; };
+		37A0DC1853C721C6DB9F62AB /* Pods_PigRunner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PigRunner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6427C6031DFB11E500F4EA92 /* TutorialScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = TutorialScene.sks; path = Scenes/TutorialScene.sks; sourceTree = "<group>"; };
 		6427C6051DFB136400F4EA92 /* TutorialScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TutorialScene.swift; path = Classes/TutorialScene.swift; sourceTree = "<group>"; };
 		642C23721DE636C7006DDC53 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = GameScene.sks; path = Scenes/GameScene.sks; sourceTree = "<group>"; };
@@ -152,6 +156,8 @@
 		79BA49CE1DD0B86B0029EEF8 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Player.swift; path = Classes/Player.swift; sourceTree = "<group>"; };
 		79BA49D01DD0BA690029EEF8 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = Others/Constants.swift; sourceTree = "<group>"; };
 		79CF88801DE768DD00FCBCE6 /* PauseButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PauseButton.swift; path = Classes/PauseButton.swift; sourceTree = "<group>"; };
+		950768A8B8899D784328784E /* Pods-PigRunner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PigRunner.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PigRunner/Pods-PigRunner.debug.xcconfig"; sourceTree = "<group>"; };
+		E943ADE6DF204C99E4AB861B /* Pods-PigRunner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PigRunner.release.xcconfig"; path = "Pods/Target Support Files/Pods-PigRunner/Pods-PigRunner.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,12 +165,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D59DE59B41764397973FF1E7 /* Pods_PigRunner.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		11668DC6B5DD91FD6F4FA744 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				37A0DC1853C721C6DB9F62AB /* Pods_PigRunner.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		642C23711DE63669006DDC53 /* Obstacles */ = {
 			isa = PBXGroup;
 			children = (
@@ -182,6 +197,8 @@
 			children = (
 				645C33D61DCFD0A600ABA4D7 /* PigRunner */,
 				645C33D51DCFD0A600ABA4D7 /* Products */,
+				E83AB7EE02CB4398F2316F07 /* Pods */,
+				11668DC6B5DD91FD6F4FA744 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -238,6 +255,7 @@
 				64FC20771DF103CA008E73B6 /* GameData.swift */,
 				64AD7F581DFA1D5A0012665E /* GameAudio.swift */,
 				64AD7F6F1DFA27C90012665E /* GamePreferences.swift */,
+				268005001DFF080400105358 /* FacebookConnection.swift */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -347,6 +365,15 @@
 			name = Menu;
 			sourceTree = "<group>";
 		};
+		E83AB7EE02CB4398F2316F07 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				950768A8B8899D784328784E /* Pods-PigRunner.debug.xcconfig */,
+				E943ADE6DF204C99E4AB861B /* Pods-PigRunner.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -354,9 +381,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 645C33EC1DCFD0A600ABA4D7 /* Build configuration list for PBXNativeTarget "PigRunner" */;
 			buildPhases = (
+				E03C13D7418AB2DD14917AEC /* [CP] Check Pods Manifest.lock */,
 				645C33D01DCFD0A600ABA4D7 /* Sources */,
 				645C33D11DCFD0A600ABA4D7 /* Frameworks */,
 				645C33D21DCFD0A600ABA4D7 /* Resources */,
+				D256BDA2B8396211F2B4EFAE /* [CP] Embed Pods Frameworks */,
+				260FFD5AF7DF9BB2ED2D85C4 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -456,12 +486,61 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		260FFD5AF7DF9BB2ED2D85C4 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PigRunner/Pods-PigRunner-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D256BDA2B8396211F2B4EFAE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PigRunner/Pods-PigRunner-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E03C13D7418AB2DD14917AEC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		645C33D01DCFD0A600ABA4D7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				64F8B6591DE7D93A00B59BF2 /* MenuScene.swift in Sources */,
+				268005011DFF080400105358 /* FacebookConnection.swift in Sources */,
 				6427C6061DFB136400F4EA92 /* TutorialScene.swift in Sources */,
 				798E9C551DEDCA72000BEBD0 /* PauseMenu.swift in Sources */,
 				79CF88811DE768DD00FCBCE6 /* PauseButton.swift in Sources */,
@@ -608,6 +687,7 @@
 		};
 		645C33ED1DCFD0A600ABA4D7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 950768A8B8899D784328784E /* Pods-PigRunner.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -626,6 +706,7 @@
 		};
 		645C33EE1DCFD0A600ABA4D7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E943ADE6DF204C99E4AB861B /* Pods-PigRunner.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
