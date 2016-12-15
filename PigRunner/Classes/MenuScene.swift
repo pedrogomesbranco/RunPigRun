@@ -234,7 +234,11 @@ class MenuScene: SKScene {
 
     // MARK: - Switch scenes
     private func loadGameScene() {
-        let runAction = SKAction.moveBy(x: 1600, y: 0, duration: 0.8)
+        self.title.isHidden = true
+        self.settingsButton.isHidden = true
+        self.storeButton.isHidden = true
+        self.playButton.isHidden = true
+        let runAction = SKAction.moveBy(x: pig.position.x, y: 0, duration: 0.8)
         pig.run(SKAction.repeatForever(SKAction.animate(with: GameTextures.sharedInstance.runTextures, timePerFrame: 0.1, resize: true, restore: true)), withKey: "menu_run")
         
         pig.run(runAction, completion: {
@@ -242,7 +246,6 @@ class MenuScene: SKScene {
                 let gameScene = GameScene(fileNamed: "GameScene")!
                 gameScene.scaleMode = .aspectFill
                 let transition = SKTransition.fade(with: UIColor.black, duration: 0.25)
-                
                 self.view?.presentScene(gameScene, transition: transition)
             })
         })
@@ -251,7 +254,7 @@ class MenuScene: SKScene {
     private func loadStoreScene() {
         whiteBg.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         whiteBg.position = CGPoint(x: self.size.width/2, y: self.size.height/2)
-        whiteBg.alpha = 0.5
+        whiteBg.alpha = 0.3
         whiteBg.zPosition = GameLayer.Interface
         title.isHidden = true
         
@@ -264,9 +267,10 @@ class MenuScene: SKScene {
     private func loadTutorialScene() {
         whiteBg.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         whiteBg.position = CGPoint(x: self.size.width/2, y: self.size.height/2)
-        whiteBg.alpha = 0.5
+        whiteBg.alpha = 0.3
         whiteBg.zPosition = GameLayer.Interface
         self.addChild(whiteBg)
+        title.isHidden = true
         
         self.tutorialIsActive = true
         tutorialScene.show(at: CGPoint(x: self.size.width/2, y: self.size.height/2), onScene: self)
@@ -300,7 +304,7 @@ class MenuScene: SKScene {
     private func loadRankingScene() {
         whiteBg.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         whiteBg.position = CGPoint(x: self.size.width/2, y: self.size.height/2)
-        whiteBg.alpha = 0.5
+        whiteBg.alpha = 0.3
         whiteBg.zPosition = GameLayer.Interface
         self.addChild(whiteBg)
         

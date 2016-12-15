@@ -143,7 +143,7 @@ class GameScene: SKScene {
         if !gamePaused {
             whiteBg.anchorPoint = CGPoint(x: 0.5, y: 0.5)
             whiteBg.position = CGPoint(x: self.cameraNode.frame.width/2, y: self.cameraNode.frame.height/2)
-            whiteBg.alpha = 0.7
+            whiteBg.alpha = 0.3
             whiteBg.zPosition = GameLayer.Interface
             self.cameraNode.addChild(whiteBg)
             
@@ -200,7 +200,7 @@ class GameScene: SKScene {
             if !gamePaused {
                 whiteBg.anchorPoint = CGPoint(x: 0.5, y: 0.5)
                 whiteBg.position = CGPoint(x: self.cameraNode.frame.width/2, y: self.cameraNode.frame.height/2)
-                whiteBg.alpha = 0.7
+                whiteBg.alpha = 0.3
                 whiteBg.zPosition = GameLayer.Interface
                 self.cameraNode.addChild(whiteBg)
                 GameData.sharedInstance.extraLife = false
