@@ -19,6 +19,8 @@ class StoreScene: SKNode {
     var coinsLabel: SKLabelNode!
     
     var extraLifeData: Bool = false
+    var specialCoin: Bool = false
+    var starTime: Bool = false
     
     // MARK: - Init
     required init?(coder aDecoder: NSCoder) {
@@ -41,6 +43,18 @@ class StoreScene: SKNode {
         self.coinsLabel.zPosition = GameLayer.Interface
         
         self.extraLifeData = GameData.sharedInstance.extraLife
+        
+        if GameData.sharedInstance.starExtraTime != 0 {
+            self.starTime = true
+        } else {
+            self.starTime = false
+        }
+        
+        if GameData.sharedInstance.specialCoinMultiplier != 1 {
+            self.specialCoin = true
+        } else {
+            self.specialCoin = false
+        }
         
         updateScene()
     }
@@ -86,16 +100,30 @@ class StoreScene: SKNode {
         } else {
             self.lifeButton.alpha = 1.0
         }
+        
+        if specialCoin {
+            self.coinButton.alpha = 0.5
+        } else {
+            self.coinButton.alpha = 1.0
+        }
+        
+        if starTime {
+            self.starButton.alpha = 0.5
+        } else {
+            self.starButton.alpha = 1.0
+        }
     }
     
     func buySpecialCoinBonus() {
-        GameData.sharedInstance.totalCoins -= 600
-        GameData.sharedInstance.specialCoinMultiplier = 2
-        GameData.sharedInstance.save()
-        
-        self.run(GameAudio.sharedInstance.soundPurchase)
-        
-        self.updateScene()
+        if (!specialCoin && GameData.sharedInstance.totalCoins >= 600) {
+            GameData.sharedInstance.totalCoins -= 600
+            GameData.sharedInstance.specialCoinMultiplier = 2
+            GameData.sharedInstance.save()
+            
+            self.run(GameAudio.sharedInstance.soundPurchase)
+            
+            self.updateScene()
+        }
     }
     
     func buyExtraLife() {
@@ -111,12 +139,14 @@ class StoreScene: SKNode {
     }
     
     func buyExtraStarTime() {
-        GameData.sharedInstance.totalCoins -= 600
-        GameData.sharedInstance.starExtraTime = 2
-        GameData.sharedInstance.save()
-        
-        self.run(GameAudio.sharedInstance.soundPurchase)
-        
-        self.updateScene()
+        if (!starTime && GameData.sharedInstance.totalCoins >= 600) {
+            GameData.sharedInstance.totalCoins -= 600
+            GameData.sharedInstance.starExtraTime = 5
+            GameData.sharedInstance.save()
+            
+            self.run(GameAudio.sharedInstance.soundPurchase)
+            
+            self.updateScene()
+        }
     }
 }

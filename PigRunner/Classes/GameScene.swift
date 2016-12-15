@@ -70,7 +70,7 @@ class GameScene: SKScene {
         self.cameraNode.addChild(self.hudNode)
         self.hud = HUD(lives: player.life, coinsCollected: GameData.sharedInstance.coins, score: 0, lifes: self.player.life)
         self.hudNode.addChild(self.hud)
-        self.hud.showScore()
+        self.hud.showAll()
         //self.hud.updateLife(life: self.player.life)
         
         self.hudNode.zPosition = GameLayer.Interface
@@ -143,7 +143,7 @@ class GameScene: SKScene {
         if !gamePaused {
             whiteBg.anchorPoint = CGPoint(x: 0.5, y: 0.5)
             whiteBg.position = CGPoint(x: self.cameraNode.frame.width/2, y: self.cameraNode.frame.height/2)
-            whiteBg.alpha = 0.5
+            whiteBg.alpha = 0.7
             whiteBg.zPosition = GameLayer.Interface
             self.cameraNode.addChild(whiteBg)
             
@@ -167,11 +167,16 @@ class GameScene: SKScene {
     }
     
     private func continueGame() {
-        if GameData.sharedInstance.totalCoins >= 1000 {
+        if GameData.sharedInstance.totalCoins >= 100 {
             self.whiteBg.removeFromParent()
-            GameData.sharedInstance.totalCoins -= 1000
+            GameData.sharedInstance.totalCoins -= 100
             GameData.sharedInstance.save()
             self.player.revive()
+            self.hud.showAll()
+            self.gamePaused = false
+            self.isPaused = false
+            self.gameOver.hideAll()
+            GameAudio.sharedInstance.playBackgroundMusic(filename: Music.BackgroundMusic)
         }
     }
     
@@ -195,7 +200,7 @@ class GameScene: SKScene {
             if !gamePaused {
                 whiteBg.anchorPoint = CGPoint(x: 0.5, y: 0.5)
                 whiteBg.position = CGPoint(x: self.cameraNode.frame.width/2, y: self.cameraNode.frame.height/2)
-                whiteBg.alpha = 0.5
+                whiteBg.alpha = 0.7
                 whiteBg.zPosition = GameLayer.Interface
                 self.cameraNode.addChild(whiteBg)
                 GameData.sharedInstance.extraLife = false
@@ -205,7 +210,7 @@ class GameScene: SKScene {
                 // Display GameOver Overlay
                 self.gameOver.show(at: CGPoint(x: self.cameraNode.frame.width/2, y: self.cameraNode.frame.height/2), onNode: self.cameraNode, withCoins: GameData.sharedInstance.coins)
                 self.gameOver.zPosition = GameLayer.Interface+2
-                self.hud.hideScore()
+                self.hud.hideAll()
             }
         }
     }

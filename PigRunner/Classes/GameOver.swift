@@ -19,6 +19,8 @@ class GameOver: SKNode {
     var earnedCoinsLbl: SKLabelNode!
     var totalCoinsLbl: SKLabelNode!
     
+    var bloodSpatter: SKSpriteNode!
+    
     // MARK: - Init
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -39,7 +41,7 @@ class GameOver: SKNode {
         
         let totalCoins = GameData.sharedInstance.totalCoins
         
-        if totalCoins < 1000 {
+        if totalCoins < 100 {
             self.continueBtn.alpha = 0.5
         }
     }
@@ -54,7 +56,7 @@ class GameOver: SKNode {
         whiteBg.fillColor = UIColor.white
         whiteBg.zPosition = GameLayer.Interface-1
         
-        let bloodSpatter = SKSpriteNode(imageNamed: "blood_spatter")
+        bloodSpatter = SKSpriteNode(imageNamed: "blood_spatter")
         bloodSpatter.size = node.calculateAccumulatedFrame().size
         bloodSpatter.setScale(0)
         bloodSpatter.position = pos
@@ -85,6 +87,10 @@ class GameOver: SKNode {
             
             self.gameOverNode.run(SKAction.scale(to: 1.1, duration: 0.5))
         })
+    }
+    
+    func hideAll() {
+        self.bloodSpatter.removeFromParent()
     }
     
     func tappedButton() {

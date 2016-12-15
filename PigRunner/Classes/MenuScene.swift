@@ -17,6 +17,7 @@ class MenuScene: SKScene {
     private var soundButton = SKSpriteNode()
     private var musicButton = SKSpriteNode()
     private var coinsLabel = SKLabelNode()
+    private var title = SKSpriteNode()
     private var pig = SKSpriteNode()
     let storeScene = StoreScene()
     let rankingScene = RankingScene()
@@ -65,7 +66,7 @@ class MenuScene: SKScene {
         background2.position = CGPoint(x: background.size.width, y: 0)
         self.addChild(background2)
         
-        let title = SKSpriteNode(imageNamed: "menu_title")
+        title = SKSpriteNode(imageNamed: "menu_title")
         title.position = CGPoint(x: self.size.width/2, y: self.size.height/2 + title.size.height*2)
         title.zPosition = GameLayer.Interface
         self.addChild(title)
@@ -84,20 +85,20 @@ class MenuScene: SKScene {
         self.addChild(settingsButton)
         
         storeButton = SKSpriteNode(imageNamed: "storeButton")
-        storeButton.position = CGPoint(x: 860, y: self.size.height/2 - 400)
+        storeButton.position = CGPoint(x: 580, y: self.size.height/2 - 400)
         storeButton.setScale(4)
         storeButton.zPosition = GameLayer.Interface
         storeButton.size.height = 280
         storeButton.size.width = 240
         self.addChild(storeButton)
         
-        rankingButton = SKSpriteNode(imageNamed: "rankingsbutton")
-        rankingButton.position = CGPoint(x: 580, y: self.size.height/2 - 400)
-        rankingButton.setScale(4)
-        rankingButton.zPosition = GameLayer.Interface
-        rankingButton.size.height = 280
-        rankingButton.size.width = 240
-        self.addChild(rankingButton)
+//        rankingButton = SKSpriteNode(imageNamed: "rankingsbutton")
+//        rankingButton.position = CGPoint(x: 580, y: self.size.height/2 - 400)
+//        rankingButton.setScale(4)
+//        rankingButton.zPosition = GameLayer.Interface
+//        rankingButton.size.height = 280
+//        rankingButton.size.width = 240
+//        self.addChild(rankingButton)
         
         if soundEffectPrefs {
             soundButton = SKSpriteNode(imageNamed: "soundButtonon")
@@ -165,6 +166,7 @@ class MenuScene: SKScene {
         } else if storeIsActive {
             if self.storeScene.menuButton.contains(touchLocationInStore) {
                 self.storeScene.storeNode.removeFromParent()
+                self.title.isHidden = false
                 self.whiteBg.removeFromParent()
                 self.storeIsActive = false
                 GameAudio.sharedInstance.playBackgroundMusic(filename: Music.BackgroundMusic)
@@ -251,6 +253,8 @@ class MenuScene: SKScene {
         whiteBg.position = CGPoint(x: self.size.width/2, y: self.size.height/2)
         whiteBg.alpha = 0.5
         whiteBg.zPosition = GameLayer.Interface
+        title.isHidden = true
+        
         self.addChild(whiteBg)
         
         storeScene.show(at: CGPoint(x: self.size.width/2, y: self.size.height/2), onScene: self)

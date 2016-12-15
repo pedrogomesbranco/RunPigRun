@@ -159,6 +159,8 @@ class Player: SKSpriteNode {
     func revive() {
         self.life = 3
         self.isAlive = true
+        self.isHidden = false
+        self.run(SKAction.repeatForever(SKAction.animate(with: runTextures, timePerFrame: 0.1, resize: false, restore: true)), withKey: "run")
     }
     
     func changeAnimation(newTextures: [SKTexture], timePerFrame: TimeInterval, withKey key: String, restore: Bool, repeatCount: Int?) {
@@ -190,7 +192,9 @@ class Player: SKSpriteNode {
         
         self.run(blinkAction)
         
-        self.starTimer = Timer.scheduledTimer(withTimeInterval: 9, repeats: false, block: { (_) in
+        let time = 9+GameData.sharedInstance.starExtraTime
+        
+        self.starTimer = Timer.scheduledTimer(withTimeInterval: TimeInterval(time), repeats: false, block: { (_) in
             self.run(SKAction.colorize(with: UIColor.white, colorBlendFactor: 1.0, duration: 0.1))
             self.isInvencible = false
             self.starPowerup = false
