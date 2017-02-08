@@ -41,7 +41,7 @@ class GameOver: SKNode {
         
         let totalCoins = GameData.sharedInstance.totalCoins
         
-        if totalCoins < 100 {
+        if totalCoins < 1000 {
             self.continueBtn.alpha = 0.5
         }
     }
