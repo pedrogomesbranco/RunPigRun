@@ -34,6 +34,7 @@ class GameScene: SKScene {
     
     override func didMove(to view: SKView) {
         physicsWorld.contactDelegate = self
+        physicsWorld.gravity = CGVector(dx: 0, dy: -10.0)
 
         // Reset GameData for current game
         GameData.sharedInstance.reset()

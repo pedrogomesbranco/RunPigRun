@@ -46,7 +46,7 @@ class FacebookConnection{
     // Load loggedUser information and all his friends playing the game, inside friendsPlayingGame variable (loggedUser is included in array)
     func getPlayersScore(){
         if(FBSDKAccessToken.current() != nil){
-            let req = FBSDKGraphRequest(graphPath:  "/" + FBSDKSettings.appID() + "/scores", parameters: ["fields": "score,user"], httpMethod: "GET")
+            let req = FBSDKGraphRequest(graphPath:  "/" + FBSDKSettings.appID() + "/scores", parameters: ["fields": "score,user,picture"], httpMethod: "GET")
     
             req?.start(completionHandler: {(connection, result, error)->Void in
                 if error != nil{
@@ -60,7 +60,8 @@ class FacebookConnection{
                 
                 let resultdict = result as! NSDictionary!
                 let data : NSArray = resultdict!.object(forKey: "data") as! NSArray
-                print(data.description)
+//                prints JSON with all players
+//                print(data.description)
                 
                 
                 for i in 0 ..< data.count
@@ -74,20 +75,27 @@ class FacebookConnection{
                     user.userId = (userDic["id"] as! String)
                     user.userFullName = (userDic["name"] as! String)
                     user.userScore = (valueDict["score"] as! Int)
+                    self.getUserPicture(fbUser: user)
                     
-                    // Image treatment
-                    let urlString = ((valueDict["picture"] as! NSDictionary)["data"] as! NSDictionary)["url"] as! String
-                    
-                    let url = URL(string: urlString)!
-                    let imageData = try? Data(contentsOf: url)
-                    
-                    if imageData != nil {
-                        user.userImage = UIImage(data: imageData!)!
-                    } else {
-                        print("error loading image")
-                    }
-
                     self.friendsPlayingGame?.append(user)
+
+
+                    // Image treatment
+                    
+//                    let urlString = self.getUserPicture(fbUserID: user.userId!)
+//                    let urlString = ((valueDict["picture"] as! NSDictionary)["data"] as! NSDictionary)["url"] as! String
+//                    
+//                    let url = URL(string: urlString)!
+//                    let imageData = try? Data(contentsOf: url)
+//
+//                    if imageData != nil {
+//                        user.userImage = UIImage(data: imageData!)!
+//                    } else {
+//                        print("error loading image")
+//                    }
+//
+//                    self.friendsPlayingGame?.append(user)
+                    
                     
                     //If is loggedUser
                     if(FBSDKAccessToken.current().userID == user.userId){
@@ -99,7 +107,38 @@ class FacebookConnection{
         }
     }
     
-    // Updates player highest score on Facebook
+    // Get User Profile Picture
+    private func getUserPicture(fbUser: User){
+        
+        if(FBSDKAccessToken.current() != nil){
+            let req = FBSDKGraphRequest(graphPath:  "/" + fbUser.userId!, parameters: ["fields": "picture"], httpMethod: "GET")
+            
+            req?.start(completionHandler: {(connection, result, error)->Void in
+                if error != nil{
+                    print(error!)
+                    return
+                }
+                let resultdict = result as! NSDictionary! // transform result JSON in dictionary
+                let pictureData = resultdict?.object(forKey: "picture") as! NSDictionary! // transform pictureData JSON in dictionary
+                let data = pictureData?.object(forKey: "data") as! NSDictionary! // transform Data JSON in dictionary
+                let imageURL = data?.object(forKey: "url") as! String! // transform image url JSON in string
+
+                let urlString = imageURL!
+                let url = URL(string: urlString)!
+                let imageData = try? Data(contentsOf: url)
+                //
+                if imageData != nil {
+                    fbUser.userImage = UIImage(data: imageData!)!
+                }
+                else {
+                    print("error loading image")
+                }
+                
+            })
+        }
+    }
+    
+    // Updates player highest score on Facebook Database
     func sendScore(score: Int){
         if(FBSDKAccessToken.current() != nil) {
             if (score > self.loggedUser!.userScore!) {
@@ -117,7 +156,7 @@ class FacebookConnection{
         }
     }
     
-    
+    // Request User Login to Facebook, from a View Controller
     func loginFromViewController(viewController: UIViewController){
         if(loginManager == nil){
             loginManager = FBSDKLoginManager.init()
@@ -129,10 +168,11 @@ class FacebookConnection{
                 return
             }
             let fbLoginResult: FBSDKLoginManagerLoginResult = result!
-            print(fbLoginResult.grantedPermissions)
+//            print(fbLoginResult.grantedPermissions)
         }
     }
     
+    // Request permission to access user's friends that play the game, from a View Controller
     func requestFriendPermissionFromViewController(viewController: UIViewController){
         if(loginManager == nil){
             loginManager = FBSDKLoginManager.init()
@@ -148,6 +188,7 @@ class FacebookConnection{
         }
     }
     
+    // Request user permission to write his records in Facebook database, from a View Controller
     func requestWritePermissionFromViewController(viewController: UIViewController){
         if(loginManager == nil){
             loginManager = FBSDKLoginManager.init()
@@ -162,5 +203,4 @@ class FacebookConnection{
             print(fbLoginResult.grantedPermissions)
         }
     }
-    
 }
