@@ -7,6 +7,7 @@
 //
 
 import SpriteKit
+import FBSDKLoginKit
 
 class MenuScene: SKScene {
     // MARK: - Properties
@@ -33,6 +34,12 @@ class MenuScene: SKScene {
     var tutorialIsActive: Bool = false
     
     private var touchSettings = false
+    
+    // View Controller
+    var viewController : GameViewController!
+    
+    // Facebook Configuration
+
     
     // MARK: - Init
     required init?(coder aDecoder: NSCoder) {
@@ -138,6 +145,9 @@ class MenuScene: SKScene {
         pig.run(SKAction.repeatForever(SKAction.animate(with: GameTextures.sharedInstance.runTextures, timePerFrame: 0.1, resize: true, restore: true)), withKey: "menu_run")
         
         self.addChild(pig)
+        
+        self.viewController.fbConnection.loginFromViewController(viewController: self.viewController)
+        
     }
     
     // MARK: - User Interaction
@@ -209,7 +219,8 @@ class MenuScene: SKScene {
             }
         } else {
             if self.storeButton.contains(touchLocation) {
-                self.loadStoreScene()
+//                self.loadStoreScene()
+                self.viewController.showRanking()
                 self.storeIsActive = true
             } else if self.settingsButton.contains(touchLocation) {
                 self.loadSettingsMenu()

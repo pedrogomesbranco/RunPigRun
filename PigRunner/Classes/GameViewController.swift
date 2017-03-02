@@ -22,22 +22,22 @@ class GameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        fbConnection.loginFromViewController(viewController: self)
-        fbConnection.getPlayersScore()
+//        fbConnection.loginFromViewController(viewController: self)
+//        fbConnection.getPlayersScore()
     }
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
         //Facebook Login
-        if (FBSDKAccessToken.current()) != nil {
-            loginManager = FBSDKLoginManager()
-//            fbConnection.getPlayersScore()
-        }
-        else{
-//            fbConnection.loginFromViewController(viewController: self)
-//            self.loginFromViewController()
-        }
+//        if (FBSDKAccessToken.current()) != nil {
+//            loginManager = FBSDKLoginManager()
+////            fbConnection.getPlayersScore()
+//        }
+//        else{
+////            fbConnection.loginFromViewController(viewController: self)
+////            self.loginFromViewController()
+//        }
         
 //        SpriteKit View Setup
         if let skView = self.view as? SKView {
@@ -53,6 +53,7 @@ class GameViewController: UIViewController {
                 GameTextures.sharedInstance.preloadAssets(completionHandler: { (_) in
                     let menuScene = MenuScene(size: CGSize(width: kViewSizeWidth, height: kViewSizeHeight))
                     menuScene.scaleMode = .fill
+                    menuScene.viewController = self
                     let menuTransition = SKTransition.fade(with: UIColor.black, duration: 0.25)
                     
                     skView.presentScene(menuScene, transition: menuTransition)
@@ -89,7 +90,10 @@ class GameViewController: UIViewController {
         }
     }
     
-
+    func showRanking (){
+        self.performSegue(withIdentifier: "RankedTableViewControllerSegue", sender: self)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Release any cached data, images, etc that aren't in use.
