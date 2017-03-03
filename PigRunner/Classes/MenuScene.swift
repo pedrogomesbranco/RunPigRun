@@ -19,7 +19,6 @@ class MenuScene: SKScene {
     private var coinsLabel = SKLabelNode()
     private var title = SKSpriteNode()
     private var pig = SKSpriteNode()
-    let storeScene = StoreScene()
     let rankingScene = RankingScene()
     let tutorialScene = TutorialScene()
     
@@ -144,7 +143,7 @@ class MenuScene: SKScene {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch = touches.first!
         let touchLocation = touch.location(in: self)
-        let touchLocationInStore = touch.location(in: self.storeScene.storeNode)
+//        let touchLocationInStore = touch.location(in: self.storeScene.storeNode)
         let touchLocationInRanking = touch.location(in: self.rankingScene.rankingNode)
         let touchLocationInTutorial = touch.location(in: self.tutorialScene.tutorialNode)
         
@@ -163,53 +162,9 @@ class MenuScene: SKScene {
                 self.rankingScene.rankingNode.removeFromParent()
                 GameAudio.sharedInstance.playBackgroundMusic(filename: Music.BackgroundMusic)
             }
-        } else if storeIsActive {
-            if self.storeScene.menuButton.contains(touchLocationInStore) {
-                self.storeScene.storeNode.removeFromParent()
-                self.title.isHidden = false
-                self.whiteBg.removeFromParent()
-                self.storeIsActive = false
-                GameAudio.sharedInstance.playBackgroundMusic(filename: Music.BackgroundMusic)
-            } else if self.storeScene.coinButton.contains(touchLocationInStore) {
-                if storeIsActive == true {
-                    self.storeScene.buySpecialCoinBonus()
-                } else {
-                    if tutorialPref {
-                        self.tutorialIsActive = true
-                        self.loadTutorialScene()
-                    } else {
-                        self.whiteBg.removeFromParent()
-                        self.loadGameScene()
-                    }
-                }
-            } else if self.storeScene.lifeButton.contains(touchLocationInStore) {
-                if storeIsActive == true {
-                    self.storeScene.buyExtraLife()
-                } else {
-                    if tutorialPref {
-                        self.tutorialIsActive = true
-                        self.loadTutorialScene()
-                    } else {
-                        self.whiteBg.removeFromParent()
-                        self.loadGameScene()
-                    }
-                }
-            } else if self.storeScene.starButton.contains(touchLocationInStore) {
-                if storeIsActive == true {
-                    self.storeScene.buyExtraStarTime()
-                } else {
-                    if tutorialPref {
-                        self.tutorialIsActive = true
-                        self.loadTutorialScene()
-                    } else {
-                        self.whiteBg.removeFromParent()
-                        self.loadGameScene()
-                    }
-                }
-            }
         } else {
             if self.storeButton.contains(touchLocation) {
-                self.loadStoreScene()
+//                self.loadStoreScene()
                 self.storeIsActive = true
             } else if self.settingsButton.contains(touchLocation) {
                 self.loadSettingsMenu()
@@ -251,18 +206,18 @@ class MenuScene: SKScene {
         })
     }
     
-    private func loadStoreScene() {
-        whiteBg.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        whiteBg.position = CGPoint(x: self.size.width/2, y: self.size.height/2)
-        whiteBg.alpha = 0.3
-        whiteBg.zPosition = GameLayer.Interface
-        title.isHidden = true
-        
-        self.addChild(whiteBg)
-        
-        storeScene.show(at: CGPoint(x: self.size.width/2, y: self.size.height/2), onScene: self)
-        storeScene.zPosition = GameLayer.Interface+2
-    }
+//    private func loadStoreScene() {
+//        whiteBg.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+//        whiteBg.position = CGPoint(x: self.size.width/2, y: self.size.height/2)
+//        whiteBg.alpha = 0.3
+//        whiteBg.zPosition = GameLayer.Interface
+//        title.isHidden = true
+//        
+//        self.addChild(whiteBg)
+//        
+//        storeScene.show(at: CGPoint(x: self.size.width/2, y: self.size.height/2), onScene: self)
+//        storeScene.zPosition = GameLayer.Interface+2
+//    }
     
     private func loadTutorialScene() {
         whiteBg.anchorPoint = CGPoint(x: 0.5, y: 0.5)

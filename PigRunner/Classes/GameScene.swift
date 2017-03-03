@@ -18,10 +18,11 @@ class GameScene: SKScene {
     
     let cameraNode = SKCameraNode()
     let hudNode = SKNode()
+    let parallax = SKSpriteNode()
     let gameOver = GameOver()
     let pauseMenu = PauseMenu()
     
-    let whiteBg =  SKSpriteNode(imageNamed: "whiteBg")
+    let whiteBg =  SKSpriteNode(imageNamed: "Rectangle 2-2")
     
     private var timeStep = 0
     
@@ -46,6 +47,7 @@ class GameScene: SKScene {
         // Setup World (root) SKScene
         let worldNode = childNode(withName: "World")!
         
+        self.whiteBg.size = self.size
         // Apply ground height to variable (used to position each block on the correct Y value)
         let groundNode = worldNode.childNode(withName: "Background")!.childNode(withName: "Block")!.childNode(withName: "Ground")! as! SKSpriteNode
         groundHeight = groundNode.size.height
@@ -56,13 +58,13 @@ class GameScene: SKScene {
         
         // Setup player
         player = Player(imageName: "Run_000",
-                        pos: CGPoint(x: groundHeight+5, y: -550),
+                        pos: CGPoint(x: groundHeight+5, y: -546.929382324219),
                         categoryBitMask: ColliderType.Player,
                         collisionBitMask: ColliderType.Ground | ColliderType.Spikes | ColliderType.Life)
         blocksGenerator.fgNode.addChild(player)
         
         // Setup camera
-        setCameraPosition(position: CGPoint(x: size.width/2, y: size.height/2))
+        updateCamera()
         addChild(cameraNode)
         camera = cameraNode
         
@@ -72,15 +74,18 @@ class GameScene: SKScene {
         self.hudNode.addChild(self.hud)
         self.hud.showAll()
         //self.hud.updateLife(life: self.player.life)
-        
-        self.hudNode.zPosition = GameLayer.Interface
+        self.hudNode.zPosition = 1
+
+        self.cameraNode.zPosition = -1
     }
     
     // MARK: - Game Loop
     override func update(_ currentTime: TimeInterval) {
+        if !checkpause(){
         checkDeath()
         
         player.updatePlayer(timeStep)
+        
         updateCamera()
         
         self.hud.updateCoinsCollected(GameData.sharedInstance.coins)
@@ -94,6 +99,12 @@ class GameScene: SKScene {
         blocksGenerator.updateLevel(withCameraPosition: cameraNode.position)
         
         timeStep += 1
+        }
+        else{
+            self.isPaused = true
+            self.gamePaused = true
+        }
+
     }
     
     // MARK: - User Interaction
@@ -123,9 +134,6 @@ class GameScene: SKScene {
         } else if self.gameOver.menuBtn.contains(touchLocationGameOver) { // Menu (GameOver)
             self.gameOver.tappedButton()
             self.goToMenu()
-        } else if self.gameOver.continueBtn.contains(touchLocationGameOver) { // Continue (GameOver)
-            self.gameOver.tappedButton()
-            self.continueGame()
         } else { // Jump | Glide
             if self.player.jumpsLeft > 0 {
                 player.jump()
@@ -139,12 +147,21 @@ class GameScene: SKScene {
         self.player.isGliding = false
     }
     
-    private func pauseButtonPressed() {
+    func checkpause() -> Bool{
+        if !gamePaused{
+            return false
+        }
+        else{
+            return true
+        }
+    }
+    
+    func pauseButtonPressed() {
         if !gamePaused {
             whiteBg.anchorPoint = CGPoint(x: 0.5, y: 0.5)
             whiteBg.position = CGPoint(x: self.cameraNode.frame.width/2, y: self.cameraNode.frame.height/2)
-            whiteBg.alpha = 0.3
-            whiteBg.zPosition = GameLayer.Interface
+            whiteBg.alpha = 1
+            whiteBg.zPosition = 5
             self.cameraNode.addChild(whiteBg)
             
             self.isPaused = true
@@ -200,7 +217,7 @@ class GameScene: SKScene {
             if !gamePaused {
                 whiteBg.anchorPoint = CGPoint(x: 0.5, y: 0.5)
                 whiteBg.position = CGPoint(x: self.cameraNode.frame.width/2, y: self.cameraNode.frame.height/2)
-                whiteBg.alpha = 0.3
+                whiteBg.alpha = 1
                 whiteBg.zPosition = GameLayer.Interface
                 self.cameraNode.addChild(whiteBg)
                 GameData.sharedInstance.extraLife = false
@@ -240,8 +257,9 @@ class GameScene: SKScene {
         let diff = targetPosition - getCameraPosition()
         let newPosition = getCameraPosition() + diff
         
-        setCameraPosition(position: CGPoint(x: newPosition.x, y: size.height/2))
+        setCameraPosition(position: CGPoint(x: newPosition.x, y: size.height/2 + player.position.y/10 + 85))
     }
+    
 }
 
 // MARK: - SKPhysicsContactDelegate

@@ -22,7 +22,7 @@ class PauseButton: SKSpriteNode {
     }
     
     convenience init() {
-        let texture = SKTexture(imageNamed: "pause")
+        let texture = SKTexture(imageNamed: "pause redondo")
         self.init(texture: texture, color: UIColor.white, size: texture.size())
         
         self.setupPauseButton()
@@ -32,7 +32,7 @@ class PauseButton: SKSpriteNode {
     private func setupPauseButton() {
         self.anchorPoint = CGPoint(x: 1.0, y: 1.0)
         self.position = CGPoint(x: kViewSizeWidth, y: kViewSizeHeight)
-        
+        self.setScale(0.3)
         self.zPosition = GameLayer.Interface
     }
     
@@ -40,8 +40,8 @@ class PauseButton: SKSpriteNode {
     func tappedPauseButton() {
         self.tapped = !self.tapped
         
-        let pauseTexture = SKTexture(imageNamed: "pause-btn")
-        let resumeTexture = SKTexture(imageNamed: "pause-btn")
+        let pauseTexture = SKTexture(imageNamed: "pause redondo")
+        let resumeTexture = SKTexture(imageNamed: "pause redondo")
         
         self.texture = self.tapped ? resumeTexture : pauseTexture
     }

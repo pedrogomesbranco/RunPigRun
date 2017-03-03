@@ -48,9 +48,10 @@ class Player: SKSpriteNode {
         
         self.anchorPoint = CGPoint(x: 0, y: 0.5)
         self.position = pos
-        self.zPosition = GameLayer.Player
-        self.setScale(0.3)
-        self.addChild(emitter)
+        self.zPosition = 1
+        self.setScale(2)
+//        self.addChild(emitter)
+        
         
         emitter.particlePosition.x += self.size.width + 30
         emitter.particlePosition.y -= self.size.height
@@ -81,6 +82,9 @@ class Player: SKSpriteNode {
         self.physicsBody!.collisionBitMask = collisionBitMask
         self.physicsBody?.friction = 0
         self.physicsBody?.restitution = 0.0
+        self.physicsBody?.mass = 50.0
+        self.physicsBody?.affectedByGravity = true
+        self.physicsBody?.density = 4.0
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -89,18 +93,21 @@ class Player: SKSpriteNode {
     
     // MARK: - Player methods
     func setPlayerVelocity(to amount: CGFloat) {
-        self.physicsBody!.velocity.dy =
-            max(self.physicsBody!.velocity.dy, amount * CGFloat(jumpPower))
+        self.physicsBody!.velocity.dy = amount
     }
     
     func updatePlayer(_ timeStep: Int) {
-        if isAlive {
+        if isAlive && self.physicsBody?.velocity.dy == 0.0{
             // Set player's constant velocity
-            self.physicsBody?.velocity.dx = CGFloat((kSpeedMultiplier * log(Double(timeStep+1))) + Double(velocityX))
-            
+            self.physicsBody?.velocity.dx = CGFloat((kSpeedMultiplier * log(Double(timeStep+1))) + Double(velocityX+150))}
+        else if isAlive && self.physicsBody?.velocity.dy != 0.0{
+            if (self.physicsBody?.velocity.dy)! < CGFloat(0.0){
+                self.physicsBody?.velocity.dy = (self.physicsBody?.velocity.dy)!
+            }
+            self.physicsBody?.velocity.dx = CGFloat(Double(velocityX+100))
+        }
             // Update player's score
             GameData.sharedInstance.score += Int((self.physicsBody?.velocity.dx)!/CGFloat(velocityX))
-        }
     }
     
     // MARK: - Movements
@@ -108,7 +115,7 @@ class Player: SKSpriteNode {
         if jumpsLeft > 0 {
             emitter.isHidden = false
             
-            let delayInSeconds = 0.4
+            let delayInSeconds = 0.3
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delayInSeconds) {
                 self.emitter.isHidden = true
             }
@@ -117,7 +124,7 @@ class Player: SKSpriteNode {
                 self.run(GameAudio.sharedInstance.soundJump)
             }
             
-            setPlayerVelocity(to: 700.0)
+            setPlayerVelocity(to: 900.0)
             jumpsLeft -= 1
             isRunning = false
             isGliding = false
@@ -132,7 +139,7 @@ class Player: SKSpriteNode {
             self.removeAllActions()
             self.texture = SKTexture(imageNamed: "Run_000")
             self.alpha = 1.0
-            self.physicsBody!.velocity.dy = self.physicsBody!.velocity.dy/1.1
+            self.physicsBody!.velocity.dy = self.physicsBody!.velocity.dy/1.15
         }
     }
     
@@ -173,36 +180,6 @@ class Player: SKSpriteNode {
         }
     }
     
-    // MARK: Power Ups
-    func collectedStar() {
-        let musicPrefs = GamePreferences.sharedInstance.getBackgroundMusicPrefs()
-        
-        if musicPrefs {
-            GameAudio.sharedInstance.playBackgroundMusic(filename: Music.BackgroundStarMusic)
-        }
-        
-        self.isInvencible = true
-        self.starPowerup = true
-        
-        let blinkAction1 = SKAction.colorize(with: UIColor.yellow, colorBlendFactor: 0.6, duration: 0.2)
-        let blinkAction2 = SKAction.colorize(with: UIColor.white, colorBlendFactor: 0.6, duration: 0.2)
-        
-        let blinkSequence = SKAction.sequence([blinkAction1, blinkAction2])
-        let blinkAction = SKAction.repeat(blinkSequence, count: 20) // 9 seconds duration
-        
-        self.run(blinkAction)
-        
-        let time = 9+GameData.sharedInstance.starExtraTime
-        
-        self.starTimer = Timer.scheduledTimer(withTimeInterval: TimeInterval(time), repeats: false, block: { (_) in
-            self.run(SKAction.colorize(with: UIColor.white, colorBlendFactor: 1.0, duration: 0.1))
-            self.isInvencible = false
-            self.starPowerup = false
-            if musicPrefs {
-                GameAudio.sharedInstance.playBackgroundMusic(filename: Music.BackgroundMusic)
-            }
-        })
-    }
     
     // MARK: - Collision Handling
     func collided(withBody body: SKPhysicsBody) {
@@ -215,16 +192,6 @@ class Player: SKSpriteNode {
                 }
                 GameData.sharedInstance.coins += 1
                 coin.collected()
-            }
-            
-        // Player - Special Coin Collision
-        case ColliderType.CoinSpecial:
-            if let specialCoin = body.node as? Coin {
-                if soundEffectPrefs {
-                    specialCoin.run(GameAudio.sharedInstance.soundBigCoin)
-                }
-                GameData.sharedInstance.coins += (GameData.sharedInstance.specialCoinMultiplier) * 5
-                specialCoin.collected()
             }
             
         // Player - Spike Collision
@@ -242,7 +209,6 @@ class Player: SKSpriteNode {
             
             if isInvencible == false {
                 self.life -= 1
-                self.makePlayerInvencible()
             }
             
         // Player - Ground Collision
@@ -266,38 +232,8 @@ class Player: SKSpriteNode {
                 }
             }
             
-        case ColliderType.Star:
-            if let star = body.node as? SKSpriteNode {
-                if soundEffectPrefs {
-                    star.run(GameAudio.sharedInstance.soundStar)
-                }
-                self.collectedStar()
-                star.removeFromParent()
-            }
-            
-        case ColliderType.Life:
-            if let lifeNode = body.node as? SKSpriteNode {
-                if life < 4 {
-                    self.life += 1
-                }
-                lifeNode.removeFromParent()
-            }
-            
         default:
             break
         }
-    }
-    
-    private func makePlayerInvencible() {
-        self.isInvencible = true
-        self.land()
-        
-        let blinkAction = SKAction.sequence([SKAction.fadeOut(withDuration: 0.1),
-                                             SKAction.fadeIn(withDuration: 0.1)])
-        let blinkForTime = SKAction.repeat(blinkAction, count: 6)
-        
-        self.run(blinkForTime, completion: {
-            self.isInvencible = false
-        })
     }
 }

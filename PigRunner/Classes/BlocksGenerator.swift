@@ -71,19 +71,19 @@ class BlocksGenerator: SKNode {
         let random = Int.random(min: 1, max: 100)
         
         if random <= 10 {
-            createBigBlockNode(type: .SmileAndTrigger)
+            createBigBlockNode(type: .Obstacles3)
         } else if random <= 20 {
-            createBigBlockNode(type: .SpikesAndCoins)
+            createBigBlockNode(type: .Obstacles3)
         } else if random <= 30 {
-            createBigBlockNode(type: .TwoTriggers)
+            createBigBlockNode(type: .Obstacles3)
         } else if random <= 40 {
-            createBigBlockNode(type: .Obstacle1)
+            createBigBlockNode(type: .Obstacles3)
         } else if random <= 50 {
-            createBigBlockNode(type: .Obstacles2)
+            createBigBlockNode(type: .Obstacles3)
         } else if random <= 60 {
             createBigBlockNode(type: .Obstacles3)
         } else if random <= 70 {
-            createBigBlockNode(type: .Obstacles4)
+            createBigBlockNode(type: .Obstacles3)
         }
     }
     

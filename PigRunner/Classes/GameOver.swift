@@ -33,17 +33,14 @@ class GameOver: SKNode {
         
         self.restartBtn = self.gameOverNode.childNode(withName: "restartBtn") as! SKSpriteNode
         self.menuBtn = self.gameOverNode.childNode(withName: "menuBtn") as! SKSpriteNode
-        self.continueBtn = self.gameOverNode.childNode(withName: "continueBtn") as! SKSpriteNode
         
-        self.collectedCoinsLbl = self.gameOverNode.childNode(withName: "collectedCoinsLbl") as! SKLabelNode
-        self.earnedCoinsLbl = self.gameOverNode.childNode(withName: "earnedCoinsLbl") as! SKLabelNode
         self.totalCoinsLbl = self.gameOverNode.childNode(withName: "totalCoinsLbl") as! SKLabelNode
         
         let totalCoins = GameData.sharedInstance.totalCoins
-        
-        if totalCoins < 1000 {
-            self.continueBtn.alpha = 0.5
-        }
+//        
+//        if totalCoins < 1000 {
+//            self.continueBtn.alpha = 0.5
+//        }
     }
     
     // MARK: - Methods

@@ -55,9 +55,9 @@ struct GameLayer {
     static let Interface: CGFloat       = 5
 }
 
-let playerVelocityX: Int = 700
+let playerVelocityX: Int = 600
 let kSpeedMultiplier = 10.0
-let playerJumpPower: Float = 1.5
+let playerJumpPower: Float = 1.4
 let spikesPercentage: Int = 33
 let coinsPercentage: Int = 66
 let specialCoinPercentage: Int = 30

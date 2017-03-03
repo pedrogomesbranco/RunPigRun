@@ -34,7 +34,7 @@ class HUD: SKNode {
     convenience init(lives: Int, coinsCollected: Int, score: Int, lifes: Int) {
         self.init()
         
-        self.zPosition = GameLayer.Interface
+        self.zPosition = 3
         
         self.setupHUDBackground()
         self.setupHUDCoins(collected: coinsCollected)
@@ -75,8 +75,8 @@ class HUD: SKNode {
         self.coinsLabel.position = CGPoint(x: labelOffsetX, y: labelOffsetY)
         self.coinsLabel.horizontalAlignmentMode = .left
         
-        self.hudBackground.addChild(self.coinsCollected)
-        self.hudBackground.addChild(self.coinsLabel)
+//        self.hudBackground.addChild(self.coinsCollected)
+//        self.hudBackground.addChild(self.coinsLabel)
     }
     
     private func setupHUDScore(score: Int) {
@@ -95,7 +95,7 @@ class HUD: SKNode {
         
         for j in 0..<lifes {
             let offsetX = self.coinsCollected.position.x + self.currentLife.size.width/8 + lastLifeX
-            let offsetY = self.coinsCollected.position.y - 115
+            let offsetY = self.coinsCollected.position.y - 25
             self.lastLifeX = offsetX
             lifesNodes[j].position = CGPoint(x: offsetX, y: offsetY)
             self.hudBackground.addChild(lifesNodes[j])
@@ -120,7 +120,7 @@ class HUD: SKNode {
                 })
                 
                 let offsetX = self.coinsCollected.position.x + self.currentLife.size.width/8 + lastLifeX
-                let offsetY = self.coinsCollected.position.y - 115
+                let offsetY = self.coinsCollected.position.y - 25
                 self.lastLifeX = offsetX
                 lifesNodes[j].position = CGPoint(x: offsetX, y: offsetY)
                 self.hudBackground.addChild(lifesNodes[j])
@@ -130,7 +130,7 @@ class HUD: SKNode {
     
     private func setupPauseButton() {
         let offsetX = self.hudBackground.size.width * 0.98
-        let offsetY = self.hudBackground.size.height/2 + 40
+        let offsetY = self.hudBackground.size.height/2 + 55
         
         self.pauseButton.position = CGPoint(x: offsetX, y: offsetY)
         self.pauseButton.setScale(4)

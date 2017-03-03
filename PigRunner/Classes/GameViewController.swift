@@ -25,21 +25,21 @@ class GameViewController: UIViewController {
                 
                 skView.ignoresSiblingOrder = true
                 
+                let menuScene = MenuScene(size: CGSize(width: kViewSizeWidth, height: kViewSizeHeight))
+                menuScene.scaleMode = .fill
+                let menuTransition = SKTransition.fade(with: UIColor.black, duration: 0.25)
+                skView.presentScene(menuScene, transition: menuTransition)
+                
                 GameTextures.sharedInstance.preloadAssets(completionHandler: { (_) in
-                    let menuScene = MenuScene(size: CGSize(width: kViewSizeWidth, height: kViewSizeHeight))
-                    menuScene.scaleMode = .fill
-                    let menuTransition = SKTransition.fade(with: UIColor.black, duration: 0.25)
-                    
-                    skView.presentScene(menuScene, transition: menuTransition)
                 })
             }
         }
     }
-
+        
     override var shouldAutorotate: Bool {
         return true
     }
-
+    
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         if UIDevice.current.userInterfaceIdiom == .phone {
             return .allButUpsideDown
@@ -47,12 +47,12 @@ class GameViewController: UIViewController {
             return .all
         }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Release any cached data, images, etc that aren't in use.
     }
-
+    
     override var prefersStatusBarHidden: Bool {
         return true
     }
