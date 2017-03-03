@@ -26,6 +26,9 @@ class GameScene: SKScene {
     
     private var timeStep = 0
     
+    // View Controller
+    var viewController : GameViewController!
+    
     // Shared Instance
     static let GameSceneSharedInstance = GameScene()
     
@@ -35,7 +38,8 @@ class GameScene: SKScene {
     
     override func didMove(to view: SKView) {
         physicsWorld.contactDelegate = self
-
+        physicsWorld.gravity = CGVector(dx: 0, dy: -10.0)
+        
         // Reset GameData for current game
         GameData.sharedInstance.reset()
         setupNodes()
@@ -178,6 +182,7 @@ class GameScene: SKScene {
         self.whiteBg.removeFromParent()
         let menuScene = MenuScene(size: size)
         menuScene.scaleMode = .fill
+        menuScene.viewController = self.viewController
         let transition = SKTransition.fade(with: UIColor.black, duration: 0.25)
         
         self.view?.presentScene(menuScene, transition: transition)

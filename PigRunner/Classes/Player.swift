@@ -75,7 +75,7 @@ class Player: SKSpriteNode {
         self.run(SKAction.repeatForever(SKAction.animate(with: runTextures, timePerFrame: 0.1, resize: false, restore: true)), withKey: "run")
         
         // Setup pig's physics body
-        self.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: self.size.width, height: self.size.height))
+        self.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: self.size.width/1.15, height: self.size.height/1.15))
         self.physicsBody!.isDynamic = true
         self.physicsBody!.allowsRotation = false
         self.physicsBody!.categoryBitMask = categoryBitMask
