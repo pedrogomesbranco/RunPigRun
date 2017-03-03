@@ -12,7 +12,7 @@ import FBSDKLoginKit
 class MenuScene: SKScene {
     // MARK: - Properties
     private var playButton = SKSpriteNode()
-    private var storeButton = SKSpriteNode()
+    private var facebookButton = SKSpriteNode()
     private var settingsButton = SKSpriteNode()
     private var rankingButton = SKSpriteNode()
     private var soundButton = SKSpriteNode()
@@ -29,7 +29,7 @@ class MenuScene: SKScene {
     var cameraNode = SKCameraNode()
     
     var rankingIsActive: Bool = false
-    var storeIsActive: Bool = false
+    var facebookIsActive: Bool = false
     var tutorialIsActive: Bool = false
     
     private var touchSettings = false
@@ -38,7 +38,7 @@ class MenuScene: SKScene {
     var viewController : GameViewController!
     
     // Facebook Configuration
-
+    var fbConnection : FacebookConnection!
     
     // MARK: - Init
     required init?(coder aDecoder: NSCoder) {
@@ -50,8 +50,9 @@ class MenuScene: SKScene {
     }
     
     override func didMove(to view: SKView) {
+        print(self.viewController)
+
         self.setupMenuScene()
-        
         GameAudio.sharedInstance.playBackgroundMusic(filename: Music.BackgroundMusic)
     }
     
@@ -90,21 +91,27 @@ class MenuScene: SKScene {
         settingsButton.size.width = 240
         self.addChild(settingsButton)
         
-        storeButton = SKSpriteNode(imageNamed: "storeButton")
-        storeButton.position = CGPoint(x: 580, y: self.size.height/2 - 400)
-        storeButton.setScale(4)
-        storeButton.zPosition = GameLayer.Interface
-        storeButton.size.height = 280
-        storeButton.size.width = 240
-        self.addChild(storeButton)
+        if (FBSDKAccessToken.current()) == nil {
+            facebookButton = SKSpriteNode(imageNamed: "facebook")
+            facebookButton.position = CGPoint(x: 580, y: self.size.height/2 - 400)
+            facebookButton.setScale(4)
+            facebookButton.zPosition = GameLayer.Interface
+            facebookButton.size.height = 280
+            facebookButton.size.width = 240
+            self.addChild(facebookButton)
+        }
+        else{
+            rankingButton = SKSpriteNode(imageNamed: "rankingsbutton-1")
+            rankingButton.position = CGPoint(x: 580, y: self.size.height/2 - 400)
+            rankingButton.setScale(4)
+            rankingButton.zPosition = GameLayer.Interface
+            rankingButton.size.height = 280
+            rankingButton.size.width = 240
+            self.addChild(rankingButton)
+        }
         
-//        rankingButton = SKSpriteNode(imageNamed: "rankingsbutton")
-//        rankingButton.position = CGPoint(x: 580, y: self.size.height/2 - 400)
-//        rankingButton.setScale(4)
-//        rankingButton.zPosition = GameLayer.Interface
-//        rankingButton.size.height = 280
-//        rankingButton.size.width = 240
-//        self.addChild(rankingButton)
+        
+
         
         if soundEffectPrefs {
             soundButton = SKSpriteNode(imageNamed: "soundButtonon")
@@ -145,7 +152,7 @@ class MenuScene: SKScene {
         
         self.addChild(pig)
         
-        self.viewController.fbConnection.loginFromViewController(viewController: self.viewController)
+//        self.viewController.fbConnection.loginFromViewController(viewController: self.viewController)
         
     }
     
@@ -173,15 +180,15 @@ class MenuScene: SKScene {
                 GameAudio.sharedInstance.playBackgroundMusic(filename: Music.BackgroundMusic)
             }
         } else {
-            if self.storeButton.contains(touchLocation) {
-//                self.loadStoreScene()
-<<<<<<< HEAD
-=======
+            if self.rankingButton.contains(touchLocation) {
                 self.viewController.showRanking()
->>>>>>> origin/master
-                self.storeIsActive = true
+//                self.facebookIsActive = true
+                self.rankingIsActive = true
                 self.removeFromParent()
                 self.view?.presentScene(nil)
+            } else if self.facebookButton.contains(touchLocation) {
+                self.viewController.fbConnection.loginFromViewController(viewController: self.viewController)
+                
             } else if self.settingsButton.contains(touchLocation) {
                 self.loadSettingsMenu()
             } else if self.soundButton.contains(touchLocation) {
@@ -207,7 +214,7 @@ class MenuScene: SKScene {
     private func loadGameScene() {
         self.title.isHidden = true
         self.settingsButton.isHidden = true
-        self.storeButton.isHidden = true
+        self.facebookButton.isHidden = true
         self.playButton.isHidden = true
         let runAction = SKAction.moveBy(x: pig.position.x, y: 0, duration: 0.8)
         pig.run(SKAction.repeatForever(SKAction.animate(with: GameTextures.sharedInstance.runTextures, timePerFrame: 0.1, resize: true, restore: true)), withKey: "menu_run")

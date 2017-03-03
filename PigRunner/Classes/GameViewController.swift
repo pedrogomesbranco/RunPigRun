@@ -16,7 +16,7 @@ class GameViewController: UIViewController {
     
     //Facebook Login Management
     // MARK: - Facebook
-    let fbConnection = FacebookConnection()
+    var fbConnection = FacebookConnection()
     var loginManager:FBSDKLoginManager?
     var userDict: [String: AnyObject]!
     
@@ -42,7 +42,7 @@ class GameViewController: UIViewController {
 //            if skView.scene == nil {
 //                if kDebug {
 //                    skView.showsFPS = true
-//                    skView.showsNodeCount = true
+//                    skView.showsNodeCouvar= true
 //                    skView.showsPhysics = true
 //                }
 //                
@@ -71,26 +71,18 @@ class GameViewController: UIViewController {
                 
                 skView.ignoresSiblingOrder = true
                 
-                let menuScene = MenuScene(size: CGSize(width: kViewSizeWidth, height: kViewSizeHeight))
-                menuScene.scaleMode = .fill
-                let menuTransition = SKTransition.fade(with: UIColor.black, duration: 0.25)
-                skView.presentScene(menuScene, transition: menuTransition)
-                
                 GameTextures.sharedInstance.preloadAssets(completionHandler: { (_) in
-<<<<<<< HEAD
-=======
                     let menuScene = MenuScene(size: CGSize(width: kViewSizeWidth, height: kViewSizeHeight))
                     menuScene.scaleMode = .fill
-                    menuScene.viewController = self
                     let menuTransition = SKTransition.fade(with: UIColor.black, duration: 0.25)
-                    
+                    menuScene.viewController = self
+                    menuScene.fbConnection = self.fbConnection
                     skView.presentScene(menuScene, transition: menuTransition)
->>>>>>> origin/master
                 })
             }
         }
     }
-<<<<<<< HEAD
+
         
     override var shouldAutorotate: Bool {
         return true
@@ -103,8 +95,7 @@ class GameViewController: UIViewController {
             return .all
         }
     }
-=======
->>>>>>> origin/master
+
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
