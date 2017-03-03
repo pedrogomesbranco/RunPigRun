@@ -14,8 +14,9 @@
 		2406EA8C1DF1D32700965112 /* Obstacles2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2406EA8B1DF1D32700965112 /* Obstacles2.sks */; };
 		24B129AC1DF1D48F0094C383 /* Life.sks in Resources */ = {isa = PBXBuildFile; fileRef = 24B129AB1DF1D48F0094C383 /* Life.sks */; };
 		268005011DFF080400105358 /* FacebookConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268005001DFF080400105358 /* FacebookConnection.swift */; };
-		26E46DE71E67DC0700A91226 /* RankingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E46DE61E67DC0700A91226 /* RankingTableViewController.swift */; };
-		26E46DEB1E67DEB300A91226 /* RankingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E46DEA1E67DEB300A91226 /* RankingCell.swift */; };
+		26EBD75F1E68E80300A404E6 /* FacebookUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26EBD75E1E68E80300A404E6 /* FacebookUser.swift */; };
+		26EBD7611E68FAFE00A404E6 /* RankingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26EBD7601E68FAFE00A404E6 /* RankingCell.swift */; };
+		26EBD7631E68FF7A00A404E6 /* RankingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26EBD7621E68FF7A00A404E6 /* RankingViewController.swift */; };
 		6427C6041DFB11E500F4EA92 /* TutorialScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 6427C6031DFB11E500F4EA92 /* TutorialScene.sks */; };
 		6427C6061DFB136400F4EA92 /* TutorialScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6427C6051DFB136400F4EA92 /* TutorialScene.swift */; };
 		642C23731DE636C7006DDC53 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 642C23721DE636C7006DDC53 /* GameScene.sks */; };
@@ -91,8 +92,9 @@
 		2406EA8B1DF1D32700965112 /* Obstacles2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Obstacles2.sks; sourceTree = "<group>"; };
 		24B129AB1DF1D48F0094C383 /* Life.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Life.sks; sourceTree = "<group>"; };
 		268005001DFF080400105358 /* FacebookConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookConnection.swift; sourceTree = "<group>"; };
-		26E46DE61E67DC0700A91226 /* RankingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankingTableViewController.swift; sourceTree = "<group>"; };
-		26E46DEA1E67DEB300A91226 /* RankingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankingCell.swift; sourceTree = "<group>"; };
+		26EBD75E1E68E80300A404E6 /* FacebookUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookUser.swift; sourceTree = "<group>"; };
+		26EBD7601E68FAFE00A404E6 /* RankingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankingCell.swift; sourceTree = "<group>"; };
+		26EBD7621E68FF7A00A404E6 /* RankingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankingViewController.swift; sourceTree = "<group>"; };
 		37A0DC1853C721C6DB9F62AB /* Pods_PigRunner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PigRunner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6427C6031DFB11E500F4EA92 /* TutorialScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = TutorialScene.sks; path = Scenes/TutorialScene.sks; sourceTree = "<group>"; };
 		6427C6051DFB136400F4EA92 /* TutorialScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TutorialScene.swift; path = Classes/TutorialScene.swift; sourceTree = "<group>"; };
@@ -188,7 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				642C23751DE636F1006DDC53 /* GameViewController.swift */,
-				26E46DE61E67DC0700A91226 /* RankingTableViewController.swift */,
+				26EBD7621E68FF7A00A404E6 /* RankingViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -196,9 +198,18 @@
 		26E46DE91E67DE4400A91226 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				26E46DEA1E67DEB300A91226 /* RankingCell.swift */,
+				26EBD7601E68FAFE00A404E6 /* RankingCell.swift */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		26EBD75D1E68E7EB00A404E6 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				79BA49CE1DD0B86B0029EEF8 /* Player.swift */,
+				26EBD75E1E68E80300A404E6 /* FacebookUser.swift */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 		642C23711DE63669006DDC53 /* Obstacles */ = {
@@ -257,6 +268,7 @@
 		645C33F01DCFD69100ABA4D7 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				26EBD75D1E68E7EB00A404E6 /* Models */,
 				26E46DE91E67DE4400A91226 /* Views */,
 				26E46DE81E67DE3200A91226 /* ViewControllers */,
 				642C23711DE63669006DDC53 /* Obstacles */,
@@ -267,7 +279,6 @@
 				64C773861DFB01DC00A5D2A1 /* RankingScene.swift */,
 				642C23741DE636F1006DDC53 /* GameScene.swift */,
 				793D1B661DD0D035008A7B9E /* BlocksGenerator.swift */,
-				79BA49CE1DD0B86B0029EEF8 /* Player.swift */,
 				642DFA431DD8C932003FE64B /* HUD.swift */,
 				79CF88801DE768DD00FCBCE6 /* PauseButton.swift */,
 				798E9C541DEDCA72000BEBD0 /* PauseMenu.swift */,
@@ -561,7 +572,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				26E46DE71E67DC0700A91226 /* RankingTableViewController.swift in Sources */,
 				64F8B6591DE7D93A00B59BF2 /* MenuScene.swift in Sources */,
 				268005011DFF080400105358 /* FacebookConnection.swift in Sources */,
 				6427C6061DFB136400F4EA92 /* TutorialScene.swift in Sources */,
@@ -569,7 +579,6 @@
 				79CF88811DE768DD00FCBCE6 /* PauseButton.swift in Sources */,
 				642C23871DE6379E006DDC53 /* SpinningWheel.swift in Sources */,
 				642C23801DE63729006DDC53 /* AppDelegate.swift in Sources */,
-				26E46DEB1E67DEB300A91226 /* RankingCell.swift in Sources */,
 				645DB06E1DE65C7C00CE79F4 /* Spike.swift in Sources */,
 				793D1B671DD0D035008A7B9E /* BlocksGenerator.swift in Sources */,
 				642DFA441DD8C932003FE64B /* HUD.swift in Sources */,
@@ -587,10 +596,13 @@
 				642C237C1DE63716006DDC53 /* CGPoint+Extensions.swift in Sources */,
 				790679E41DDE250800F8BA7A /* GameFonts.swift in Sources */,
 				64AD7F591DFA1D5A0012665E /* GameAudio.swift in Sources */,
+				26EBD75F1E68E80300A404E6 /* FacebookUser.swift in Sources */,
 				642C237D1DE63716006DDC53 /* Int+Extensions.swift in Sources */,
+				26EBD7611E68FAFE00A404E6 /* RankingCell.swift in Sources */,
 				792365841DEF63F70000AF05 /* StoreScene.swift in Sources */,
 				6459DA121DFA5F1100FB3A6B /* Star.swift in Sources */,
 				79BA49D11DD0BA690029EEF8 /* Constants.swift in Sources */,
+				26EBD7631E68FF7A00A404E6 /* RankingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

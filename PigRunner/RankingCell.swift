@@ -8,6 +8,10 @@
 
 import UIKit
 
-class EventosCell: UITableViewCell {
-
+class RankingCell : UITableViewCell{
+    @IBOutlet weak var userImageView: UIImageView!
+    @IBOutlet weak var scoreLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
+  
+    
 }

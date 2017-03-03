@@ -22,13 +22,11 @@ class GameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        fbConnection.loginFromViewController(viewController: self)
-//        fbConnection.getPlayersScore()
     }
     
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        
+//    override func viewWillLayoutSubviews() {
+//        super.viewWillLayoutSubviews()
+//        
         //Facebook Login
 //        if (FBSDKAccessToken.current()) != nil {
 //            loginManager = FBSDKLoginManager()
@@ -40,6 +38,29 @@ class GameViewController: UIViewController {
 //        }
         
 //        SpriteKit View Setup
+//        if let skView = self.view as? SKView {
+//            if skView.scene == nil {
+//                if kDebug {
+//                    skView.showsFPS = true
+//                    skView.showsNodeCount = true
+//                    skView.showsPhysics = true
+//                }
+//                
+//                skView.ignoresSiblingOrder = true
+//                
+//                GameTextures.sharedInstance.preloadAssets(completionHandler: { (_) in
+//                    let menuScene = MenuScene(size: CGSize(width: kViewSizeWidth, height: kViewSizeHeight))
+//                    menuScene.scaleMode = .fill
+//                    menuScene.viewController = self
+//                    let menuTransition = SKTransition.fade(with: UIColor.black, duration: 0.25)
+//                    
+//                    skView.presentScene(menuScene, transition: menuTransition)
+//                })
+//            }
+//        }
+//    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         if let skView = self.view as? SKView {
             if skView.scene == nil {
                 if kDebug {
@@ -61,6 +82,15 @@ class GameViewController: UIViewController {
             }
         }
     }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Release any cached data, images, etc that aren't in use.
+    }
+    
+    override var prefersStatusBarHidden: Bool {
+        return false
+    }
 //
 //    override var shouldAutorotate: Bool {
 //        return true
@@ -74,32 +104,32 @@ class GameViewController: UIViewController {
 //        }
 //    }
     
-    func loginFromViewController(){
-        if(loginManager == nil){
-            loginManager = FBSDKLoginManager.init()
-        }
-        
-        loginManager?.logIn(withReadPermissions: ["email", "public_profile", "user_friends", "user_games_activity"], from: self) {(result,error) in
-            
-            
-            if error != nil{
-                print(error.unsafelyUnwrapped)
-                return
-            }
-            let fbLoginResult: FBSDKLoginManagerLoginResult = result!
-        }
-    }
+//    func loginFromViewController(){
+//        if(loginManager == nil){
+//            loginManager = FBSDKLoginManager.init()
+//        }
+//        
+//        loginManager?.logIn(withReadPermissions: ["email", "public_profile", "user_friends", "user_games_activity"], from: self) {(result,error) in
+//            
+//            
+//            if error != nil{
+//                print(error.unsafelyUnwrapped)
+//                return
+//            }
+//            let fbLoginResult: FBSDKLoginManagerLoginResult = result!
+//        }
+//    }
     
     func showRanking (){
-        self.performSegue(withIdentifier: "RankedTableViewControllerSegue", sender: self)
+        self.performSegue(withIdentifier: "RankedViewControllerSegue", sender: self)
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Release any cached data, images, etc that aren't in use.
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "RankedViewControllerSegue"){
+            if let destinationViewController = segue.destination as? RankingViewController{
+                destinationViewController.fbConnection = self.fbConnection
+            }
+        }
     }
 
-    override var prefersStatusBarHidden: Bool {
-        return true
-    }
 }

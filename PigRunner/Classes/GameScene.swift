@@ -25,6 +25,8 @@ class GameScene: SKScene {
     
     private var timeStep = 0
     
+    // View Controller
+    var viewController : GameViewController!
     
     // Shared Instance
     static let GameSceneSharedInstance = GameScene()
@@ -163,6 +165,7 @@ class GameScene: SKScene {
         self.whiteBg.removeFromParent()
         let menuScene = MenuScene(size: size)
         menuScene.scaleMode = .fill
+        menuScene.viewController = self.viewController
         let transition = SKTransition.fade(with: UIColor.black, duration: 0.25)
         
         self.view?.presentScene(menuScene, transition: transition)

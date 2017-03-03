@@ -222,6 +222,8 @@ class MenuScene: SKScene {
 //                self.loadStoreScene()
                 self.viewController.showRanking()
                 self.storeIsActive = true
+                self.removeFromParent()
+                self.view?.presentScene(nil)
             } else if self.settingsButton.contains(touchLocation) {
                 self.loadSettingsMenu()
             } else if self.soundButton.contains(touchLocation) {
@@ -256,6 +258,7 @@ class MenuScene: SKScene {
             self.run(SKAction.run {
                 let gameScene = GameScene(fileNamed: "GameScene")!
                 gameScene.scaleMode = .aspectFill
+                gameScene.viewController = self.viewController
                 let transition = SKTransition.fade(with: UIColor.black, duration: 0.25)
                 self.view?.presentScene(gameScene, transition: transition)
             })

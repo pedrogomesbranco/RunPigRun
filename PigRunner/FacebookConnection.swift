@@ -18,100 +18,194 @@ import UIKit
 //
 // END TODO
 
-
-internal class User{
-    var userId: String?
-    var userFullName: String?
-    var userScore: Int?
-    var userImage: UIImage?
-    
-    init(){}
-    
-    init(id: String, fullName: String, score: Int, image: UIImage){
-        self.userId = id
-        self.userFullName = fullName
-        self.userScore = score
-        self.userImage = image
-    }
-}
-
-
-
 class FacebookConnection{
-    var loggedUser: User?
-    var friendsPlayingGame: [User]?
+    var loggedUser: FacebookUser?
+    var friendsPlayingGame = [FacebookUser]()
     var loginManager:FBSDKLoginManager?
 
     
     // Load loggedUser information and all his friends playing the game, inside friendsPlayingGame variable (loggedUser is included in array)
-    func getPlayersScore(){
+//    func getPlayersScore(completion: () -> Void){
+//        if(FBSDKAccessToken.current() != nil){
+//            let req = FBSDKGraphRequest(graphPath:  "/" + FBSDKSettings.appID() + "/scores", parameters: ["fields": "score,user,picture"], httpMethod: "GET")
+//    
+//            req?.start(completionHandler: {(connection, result, error)->Void in
+//                if error != nil{
+//                    print(error!)
+//                    return
+//                }
+//                
+//                if(self.friendsPlayingGame.count != 0){
+//                    self.friendsPlayingGame.removeAll()
+//                }
+//                
+//                let resultdict = result as! NSDictionary!
+//                let data : NSArray = resultdict!.object(forKey: "data") as! NSArray
+////                prints JSON with all players
+////                print(data.description)
+//                
+//                for i in 0 ..< data.count{
+//                    let valueDict : NSDictionary = data[i] as! NSDictionary
+//                    let userDic = valueDict["user"] as! [String: AnyObject]
+//                    
+//                    // Getting user information treatment
+//                    
+//                    
+//                    self.getUserPicture(fbUserID: userDic["id"] as! String!, completion: {(result) -> Void in
+//                        let user = User()
+//
+//                        user.userId = (userDic["id"] as! String!)
+//                        user.userFullName = (userDic["name"] as! String!)
+//                        user.userScore = (valueDict["score"] as! Int!)
+//                        user.userImage = result
+//
+//                        self.friendsPlayingGame.append(user)
+//
+//                        if(FBSDKAccessToken.current().userID == user.userId){
+//                            self.loggedUser = user
+//                        }
+//                    })
+//                    
+////                    try self.getUserPicture(fbUser: user)
+//                
+//                    
+//
+//                    // Image treatment
+//                    
+////                    let urlString = self.getUserPicture(fbUserID: user.userId!)
+////                    let urlString = ((valueDict["picture"] as! NSDictionary)["data"] as! NSDictionary)["url"] as! String
+////                    
+////                    let url = URL(string: urlString)!
+////                    let imageData = try? Data(contentsOf: url)
+////
+////                    if imageData != nil {
+////                        user.userImage = UIImage(data: imageData!)!
+////                    } else {
+////                        print("error loading image")
+////                    }
+////
+////                    self.friendsPlayingGame?.append(user)
+//                    
+//                    
+//                    //If is loggedUser
+//                    
+//                    
+//                }
+//            })
+//            
+//        }
+//    }
+
+    // Await Get Players Score
+    func getPlayersScore(completion: @escaping (_ result: ()) -> Void){
         if(FBSDKAccessToken.current() != nil){
             let req = FBSDKGraphRequest(graphPath:  "/" + FBSDKSettings.appID() + "/scores", parameters: ["fields": "score,user,picture"], httpMethod: "GET")
-    
+            
             req?.start(completionHandler: {(connection, result, error)->Void in
                 if error != nil{
                     print(error!)
                     return
                 }
                 
-                if(self.friendsPlayingGame?.count != 0){
-                    self.friendsPlayingGame?.removeAll()
+                if(self.friendsPlayingGame.count != 0){
+                    self.friendsPlayingGame.removeAll()
                 }
                 
                 let resultdict = result as! NSDictionary!
                 let data : NSArray = resultdict!.object(forKey: "data") as! NSArray
-//                prints JSON with all players
-//                print(data.description)
-                
-                
-                for i in 0 ..< data.count
-                {
+                //                prints JSON with all players
+                //                print(data.description)
+                                
+                for i in 0 ..< data.count{
                     let valueDict : NSDictionary = data[i] as! NSDictionary
                     let userDic = valueDict["user"] as! [String: AnyObject]
                     
                     // Getting user information treatment
-                    let user = User()
                     
-                    user.userId = (userDic["id"] as! String)
-                    user.userFullName = (userDic["name"] as! String)
-                    user.userScore = (valueDict["score"] as! Int)
-                    self.getUserPicture(fbUser: user)
                     
-                    self.friendsPlayingGame?.append(user)
-
-
+                    self.getUserPicture(fbUserID: userDic["id"] as! String!, completion: {(result) -> Void in
+                        let user = FacebookUser()
+                        
+                        user.userId = (userDic["id"] as! String!)
+                        user.userFullName = (userDic["name"] as! String!)
+                        user.userScore = (valueDict["score"] as! Int!)
+                        user.userImage = result
+                        
+                        self.friendsPlayingGame.append(user)
+                        
+                        if(FBSDKAccessToken.current().userID == user.userId){
+                            self.loggedUser = user
+                        }
+                        completion()
+                    })
+                    
+                    //                    try self.getUserPicture(fbUser: user)
+                    
+                    
+                    
                     // Image treatment
                     
-//                    let urlString = self.getUserPicture(fbUserID: user.userId!)
-//                    let urlString = ((valueDict["picture"] as! NSDictionary)["data"] as! NSDictionary)["url"] as! String
-//                    
-//                    let url = URL(string: urlString)!
-//                    let imageData = try? Data(contentsOf: url)
-//
-//                    if imageData != nil {
-//                        user.userImage = UIImage(data: imageData!)!
-//                    } else {
-//                        print("error loading image")
-//                    }
-//
-//                    self.friendsPlayingGame?.append(user)
+                    //                    let urlString = self.getUserPicture(fbUserID: user.userId!)
+                    //                    let urlString = ((valueDict["picture"] as! NSDictionary)["data"] as! NSDictionary)["url"] as! String
+                    //
+                    //                    let url = URL(string: urlString)!
+                    //                    let imageData = try? Data(contentsOf: url)
+                    //
+                    //                    if imageData != nil {
+                    //                        user.userImage = UIImage(data: imageData!)!
+                    //                    } else {
+                    //                        print("error loading image")
+                    //                    }
+                    //
+                    //                    self.friendsPlayingGame?.append(user)
                     
                     
                     //If is loggedUser
-                    if(FBSDKAccessToken.current().userID == user.userId){
-                        self.loggedUser = user
-                    }
+                    
+                    
                 }
-                
             })
+            
         }
     }
+
     
-    // Get User Profile Picture
-    private func getUserPicture(fbUser: User){
+    //  Get User Profile Picture
+//    private func getUserPicture(fbUser: User){
+//        
+//        if(FBSDKAccessToken.current() != nil){
+//            let req = FBSDKGraphRequest(graphPath:  "/" + fbUser.userId!, parameters: ["fields": "picture"], httpMethod: "GET")
+//            
+//            req?.start(completionHandler: {(connection, result, error)->Void in
+//                if error != nil{
+//                    print(error!)
+//                    return
+//                }
+//                let resultdict = result as! NSDictionary! // transform result JSON in dictionary
+//                let pictureData = resultdict?.object(forKey: "picture") as! NSDictionary! // transform pictureData JSON in dictionary
+//                let data = pictureData?.object(forKey: "data") as! NSDictionary! // transform Data JSON in dictionary
+//                let imageURL = data?.object(forKey: "url") as! String! // transform image url JSON in string
+//
+//                let urlString = imageURL!
+//                let url = URL(string: urlString)!
+//                let imageData = try? Data(contentsOf: url)
+//                //
+//                if imageData != nil {
+//                    fbUser.userImage = UIImage(data: imageData!)!
+//                }
+//                else {
+//                    print("error loading image")
+//                }
+//                
+//            })
+//        }
+//    }
+    
+    // Await Get User Profile Picture
+    private func getUserPicture(fbUserID:String, completion:@escaping (_ result: UIImage)->Void){
         
         if(FBSDKAccessToken.current() != nil){
-            let req = FBSDKGraphRequest(graphPath:  "/" + fbUser.userId!, parameters: ["fields": "picture"], httpMethod: "GET")
+            let req = FBSDKGraphRequest(graphPath:  "/" + fbUserID, parameters: ["fields": "picture"], httpMethod: "GET")
             
             req?.start(completionHandler: {(connection, result, error)->Void in
                 if error != nil{
@@ -122,13 +216,14 @@ class FacebookConnection{
                 let pictureData = resultdict?.object(forKey: "picture") as! NSDictionary! // transform pictureData JSON in dictionary
                 let data = pictureData?.object(forKey: "data") as! NSDictionary! // transform Data JSON in dictionary
                 let imageURL = data?.object(forKey: "url") as! String! // transform image url JSON in string
-
+                
                 let urlString = imageURL!
                 let url = URL(string: urlString)!
                 let imageData = try? Data(contentsOf: url)
                 //
                 if imageData != nil {
-                    fbUser.userImage = UIImage(data: imageData!)!
+//                    fbUser.userImage = UIImage(data: imageData!)!
+                    completion(UIImage(data: imageData!)!)
                 }
                 else {
                     print("error loading image")
@@ -137,6 +232,7 @@ class FacebookConnection{
             })
         }
     }
+
     
     // Updates player highest score on Facebook Database
     func sendScore(score: Int){
