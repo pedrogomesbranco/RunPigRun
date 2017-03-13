@@ -38,13 +38,12 @@ enum CoinType: UInt32 {
 }
 
 enum BlockType: UInt32 {
-    case SmileAndTrigger        = 0
-    case TwoTriggers            = 0b1
-    case SpikesAndCoins         = 0b10
-    case Obstacle1              = 0b100
-    case Obstacles2             = 0b1000
-    case Obstacles3             = 0b10000
-    case Obstacles4             = 0b100000
+    case Ob1 = 0
+    case Ob2 = 0b1
+    case Ob3 = 0b10
+    case Ob4 = 0b100
+    case Ob5 = 0b1000
+    case Ob6 = 0b10000
 }
 
 struct GameLayer {

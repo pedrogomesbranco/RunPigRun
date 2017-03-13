@@ -26,6 +26,7 @@ class GameTextures {
     internal var slideTextures = [SKTexture]()
     internal var idleTextures = [SKTexture]()
     internal var dieTextures = [SKTexture]()
+    internal var roller = [SKTexture]()
     
     // MARK: - Init
     init() {
@@ -45,32 +46,38 @@ class GameTextures {
     
     // MARK: Animation textures setup
     private func setupRunTextures() {
-        for i in 0...5 {
-            runTextures.append(pigAnimationAtlas.textureNamed("Run_00\(i)"))
+        for i in 1...10 {
+            runTextures.append(SKTexture.init(imageNamed: "Running 0\(i)"))
         }
     }
     
     private func setupJumpTextures() {
-        for i in 0...9 {
-            jumpTextures.append(pigAnimationAtlas.textureNamed("Jump_00\(i)"))
+        for i in 1...10 {
+            jumpTextures.append(SKTexture.init(imageNamed: "Running 0\(i)"))
         }
     }
     
     private func setupSlideTextures() {
-        for i in 0...3 {
-            slideTextures.append(pigAnimationAtlas.textureNamed("Sliding_00\(i)"))
+        for i in 1...10 {
+            slideTextures.append(SKTexture.init(imageNamed: "Running 0\(i)"))
         }
     }
     
     private func setupIdleTextures() {
-        for i in 0...9 {
-            idleTextures.append(pigAnimationAtlas.textureNamed("Idle_00\(i)"))
+        for i in 1...10 {
+            idleTextures.append(SKTexture.init(imageNamed: "Running 0\(i)"))
         }
     }
     
     private func setupDieTextures() {
-        for i in 0...7 {
-            dieTextures.append(pigAnimationAtlas.textureNamed("Die_00\(i)"))
+        for i in 1...10 {
+            dieTextures.append(SKTexture.init(imageNamed: "Running 0\(i)"))
+        }
+    }
+    
+    private func setRollerTextures(){
+        for i in 0...1{
+            roller.append(SKTexture.init(cgImage: "roller0\(i+1)" as! CGImage))
         }
     }
 }

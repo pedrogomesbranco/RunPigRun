@@ -28,7 +28,7 @@ class GameFonts {
     // MARK: - Setup
     private func setupScoreLabel() {
         self.scoreLabel = SKLabelNode(fontNamed: "Space Comics")
-        self.scoreLabel.fontColor = UIColor.black
+        self.scoreLabel.fontColor = UIColor.white
         self.scoreLabel.fontSize = 70.0
     }
     

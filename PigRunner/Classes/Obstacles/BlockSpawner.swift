@@ -18,20 +18,18 @@ class BlockSpawner: SKSpriteNode {
         var blockNode: SKNode!
         
         switch type {
-        case .SmileAndTrigger:
-            blockNode = SKNode(fileNamed: "SmileAndTrigger")
-        case .SpikesAndCoins:
-            blockNode = SKNode(fileNamed: "SpikesAndCoins")
-        case .TwoTriggers:
-            blockNode = SKNode(fileNamed: "TwoTriggers")
-        case .Obstacle1:
-            blockNode = SKNode(fileNamed: "Obstacle1")
-        case .Obstacles2:
-            blockNode = SKNode(fileNamed: "Obstacles2")
-        case .Obstacles3:
-            blockNode = SKNode(fileNamed: "Obstacles3")
-        case .Obstacles4:
-            blockNode = SKNode(fileNamed: "Obstacles4")
+        case .Ob1:
+            blockNode = SKNode(fileNamed: "Ob1")
+        case .Ob2:
+            blockNode = SKNode(fileNamed: "Ob2")
+        case .Ob3:
+            blockNode = SKNode(fileNamed: "Ob3")
+        case .Ob4:
+            blockNode = SKNode(fileNamed: "Ob4")
+        case .Ob5:
+            blockNode = SKNode(fileNamed: "Ob5")
+        case .Ob6:
+            blockNode = SKNode(fileNamed: "Ob6")
         }
         
         self.nodeToSpawn = blockNode.childNode(withName: "Block") as! SKSpriteNode!

@@ -63,8 +63,6 @@ class GameOver: SKNode {
         
         let earnedCoins = Int(Double(coins)*0.1)
         
-        self.collectedCoinsLbl.text = String(coins)
-        self.earnedCoinsLbl.text = String(earnedCoins)
         
         GameData.sharedInstance.totalCoins += Int(coins + earnedCoins)
         GameData.sharedInstance.save()

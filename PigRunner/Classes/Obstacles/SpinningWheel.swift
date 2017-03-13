@@ -12,23 +12,21 @@ class SpinningWheel: SKSpriteNode {
     // MARK: - Properties
     var nodeWidth: CGFloat = 0.0
     var nodeToSpawn: SKSpriteNode!
+    var rollerTextures: [SKTexture]!
     
     // MARK: - Methods
-    func trigger() {
-        let rotate = SKAction.rotate(byAngle: CGFloat(-M_PI), duration: 0.04)
-        let rotateAction = SKAction.repeat(rotate, count: 12)
-        
-        self.run(rotateAction, completion: {
-            let rotate = SKAction.rotate(byAngle: CGFloat(-M_PI), duration: 0.04)
-            let rotateAction = SKAction.repeat(rotate, count: 50)
-            
-            self.run(rotateAction)
-            self.physicsBody?.velocity.dx = -1800
-        })
-    }
+//    func trigger() {
+//        let move = SKAction.moveBy(x: 100, y: 0, duration: 0.5)
+//        let moveAction = SKAction.repeat(move, count: 2)
+//        rollerTextures = GameTextures.sharedInstance.roller
+//
+//        self.run(moveAction, completion: {
+//             self.changeAnimation(newTextures: self.rollerTextures, timePerFrame: 0.15, withKey: "jump", restore: false, repeatCount: nil)
+//        })
+//    }
 
     func spawnSpinningWheel(at pos: CGPoint, onNode node: SKNode) {
-        let scene = SKNode(fileNamed: "SpinningWheel")!
+        let scene = SKNode(fileNamed: "Ob5")!
         self.nodeToSpawn = scene.childNode(withName: "Block") as! SKSpriteNode!
         
         self.nodeToSpawn.position = pos
@@ -39,5 +37,14 @@ class SpinningWheel: SKSpriteNode {
         
         self.nodeToSpawn.removeFromParent()
         node.addChild(self.nodeToSpawn)
+    }
+    
+    func changeAnimation(newTextures: [SKTexture], timePerFrame: TimeInterval, withKey key: String, restore: Bool, repeatCount: Int?) {
+        
+        if restore {
+            self.run(SKAction.repeat(SKAction.animate(with: newTextures, timePerFrame: timePerFrame, resize: true, restore: true), count: repeatCount!))
+        } else {
+            self.run(SKAction.repeatForever(SKAction.animate(with: newTextures, timePerFrame: timePerFrame, resize: true, restore: false)), withKey: key)
+        }
     }
 }

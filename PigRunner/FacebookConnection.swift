@@ -202,7 +202,7 @@ class FacebookConnection{
 //    }
     
     // Await Get User Profile Picture
-    private func getUserPicture(fbUserID:String, completion:@escaping (_ result: UIImage)->Void){
+    private func getUserPicture(fbUserID:String, completion:@escaping (_ result: UIImage) -> Void){
         
         if(FBSDKAccessToken.current() != nil){
             let req = FBSDKGraphRequest(graphPath:  "/" + fbUserID, parameters: ["fields": "picture"], httpMethod: "GET")
@@ -229,6 +229,7 @@ class FacebookConnection{
                     print("error loading image")
                 }
                 
+                
             })
         }
     }
@@ -253,7 +254,8 @@ class FacebookConnection{
     }
     
     // Request User Login to Facebook, from a View Controller
-    func loginFromViewController(viewController: UIViewController){
+    
+    func loginFromViewController(viewController: UIViewController, completion: @escaping () -> Void){
         if(loginManager == nil){
             loginManager = FBSDKLoginManager.init()
         }
@@ -264,9 +266,27 @@ class FacebookConnection{
                 return
             }
             let fbLoginResult: FBSDKLoginManagerLoginResult = result!
-//            print(fbLoginResult.grantedPermissions)
+            //            print(fbLoginResult.grantedPermissions)
+            completion()
         }
     }
+    
+//    func loginFromViewController(viewController: UIViewController){
+//        if(loginManager == nil){
+//            loginManager = FBSDKLoginManager.init()
+//        }
+//        loginManager?.logIn(withReadPermissions: ["email", "public_profile", "user_friends", "user_games_activity"], from: viewController) { (result,error) in
+//            
+//            if error != nil{
+//                print(error.unsafelyUnwrapped)
+//                return
+//            }
+//            let fbLoginResult: FBSDKLoginManagerLoginResult = result!
+////            print(fbLoginResult.grantedPermissions)
+//        }
+//    }
+    
+    
     
     // Request permission to access user's friends that play the game, from a View Controller
     func requestFriendPermissionFromViewController(viewController: UIViewController){

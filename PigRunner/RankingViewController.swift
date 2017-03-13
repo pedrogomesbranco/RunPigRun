@@ -19,6 +19,7 @@ class RankingViewController : UIViewController, UITableViewDelegate, UITableView
         super.viewDidLoad()
         self.userTableView.delegate = self
         self.userTableView.dataSource = self
+        self.userTableView.separatorStyle = .none
         
     }
     
@@ -28,9 +29,13 @@ class RankingViewController : UIViewController, UITableViewDelegate, UITableView
         
         
         if(fbConnection.friendsPlayingGame[indexPath.row] != nil){
-            cell.nameLabel.text = fbConnection.friendsPlayingGame[indexPath.row].userFullName
+            let name =  fbConnection.friendsPlayingGame[indexPath.row].userFullName
+            cell.nameLabel.text = name?.uppercased()
             cell.scoreLabel.text = String(describing: fbConnection.friendsPlayingGame[indexPath.row].userScore!)
-            cell.userImageView.image = fbConnection.friendsPlayingGame[indexPath.row].userImage
+            let image = fbConnection.friendsPlayingGame[indexPath.row].userImage
+            cell.userImageView.image = image
+            cell.position.text = String(indexPath.row + 1)
+
         }
         return cell
     }

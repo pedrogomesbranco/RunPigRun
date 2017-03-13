@@ -71,13 +71,14 @@ class GameViewController: UIViewController {
                 
                 skView.ignoresSiblingOrder = true
                 
+                let menuScene = MenuScene(size: CGSize(width: kViewSizeWidth, height: kViewSizeHeight))
+                menuScene.scaleMode = .fill
+                let menuTransition = SKTransition.fade(with: UIColor.black, duration: 0.25)
+                menuScene.viewController = self
+                menuScene.fbConnection = self.fbConnection
+                skView.presentScene(menuScene, transition: menuTransition)
+                
                 GameTextures.sharedInstance.preloadAssets(completionHandler: { (_) in
-                    let menuScene = MenuScene(size: CGSize(width: kViewSizeWidth, height: kViewSizeHeight))
-                    menuScene.scaleMode = .fill
-                    let menuTransition = SKTransition.fade(with: UIColor.black, duration: 0.25)
-                    menuScene.viewController = self
-                    menuScene.fbConnection = self.fbConnection
-                    skView.presentScene(menuScene, transition: menuTransition)
                 })
             }
         }
@@ -103,7 +104,7 @@ class GameViewController: UIViewController {
     }
     
     override var prefersStatusBarHidden: Bool {
-        return false
+        return true
     }
 //
 //    override var shouldAutorotate: Bool {

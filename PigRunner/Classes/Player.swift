@@ -44,20 +44,20 @@ class Player: SKSpriteNode {
         
         super.init(texture: texture, color: .clear, size: texture.size())
         
+        print(texture.size())
+        
         self.emitter = untypedEmitter as! SKEmitterNode
         
         self.anchorPoint = CGPoint(x: 0, y: 0.5)
         self.position = pos
         self.zPosition = 1
-        self.setScale(2)
-//        self.addChild(emitter)
-        
+        self.setScale(0.6)
         
         emitter.particlePosition.x += self.size.width + 30
         emitter.particlePosition.y -= self.size.height
         
         emitter.isHidden = true
-        
+
         // Load Preferences & Store data
         self.soundEffectPrefs = GamePreferences.sharedInstance.getSoundEffectsPrefs()
         
@@ -72,10 +72,10 @@ class Player: SKSpriteNode {
         dieTextures = GameTextures.sharedInstance.dieTextures
         
         // Animate the pig's running movement
-        self.run(SKAction.repeatForever(SKAction.animate(with: runTextures, timePerFrame: 0.1, resize: false, restore: true)), withKey: "run")
+        self.run(SKAction.repeatForever(SKAction.animate(with: runTextures, timePerFrame: 0.15, resize: false, restore: true)), withKey: "run")
         
         // Setup pig's physics body
-        self.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: self.size.width/1.15, height: self.size.height/1.15))
+        self.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: self.size.width, height: self.size.height))
         self.physicsBody!.isDynamic = true
         self.physicsBody!.allowsRotation = false
         self.physicsBody!.categoryBitMask = categoryBitMask
@@ -104,7 +104,7 @@ class Player: SKSpriteNode {
             if (self.physicsBody?.velocity.dy)! < CGFloat(0.0){
                 self.physicsBody?.velocity.dy = (self.physicsBody?.velocity.dy)!
             }
-            self.physicsBody?.velocity.dx = CGFloat(Double(velocityX+100))
+            self.physicsBody?.velocity.dx = CGFloat(Double(velocityX+150))
         }
             // Update player's score
             GameData.sharedInstance.score += Int((self.physicsBody?.velocity.dx)!/CGFloat(velocityX))
@@ -137,7 +137,7 @@ class Player: SKSpriteNode {
             self.emitter.isHidden = false
             self.run(GameAudio.sharedInstance.soundJump)
             self.removeAllActions()
-            self.texture = SKTexture(imageNamed: "Run_000")
+            self.texture = SKTexture(imageNamed: "Running 01")
             self.alpha = 1.0
             self.physicsBody!.velocity.dy = self.physicsBody!.velocity.dy/1.15
         }
@@ -171,7 +171,6 @@ class Player: SKSpriteNode {
     }
     
     func changeAnimation(newTextures: [SKTexture], timePerFrame: TimeInterval, withKey key: String, restore: Bool, repeatCount: Int?) {
-        self.setScale(0.3)
         
         if restore {
             self.run(SKAction.repeat(SKAction.animate(with: newTextures, timePerFrame: timePerFrame, resize: true, restore: true), count: repeatCount!))
@@ -217,7 +216,7 @@ class Player: SKSpriteNode {
             
         case ColliderType.Trigger:
             if let spinningWheel = body.node?.parent?.childNode(withName: "sawblade") as? SpinningWheel {
-                spinningWheel.trigger()
+//                spinningWheel.trigger()
             }
             
         case ColliderType.SpinningWheel:

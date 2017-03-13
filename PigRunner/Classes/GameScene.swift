@@ -61,7 +61,7 @@ class GameScene: SKScene {
         blocksGenerator.setupInitialLevel()
         
         // Setup player
-        player = Player(imageName: "Run_000",
+        player = Player(imageName: "Running 01",
                         pos: CGPoint(x: groundHeight+5, y: -546.929382324219),
                         categoryBitMask: ColliderType.Player,
                         collisionBitMask: ColliderType.Ground | ColliderType.Spikes | ColliderType.Life)
@@ -79,36 +79,38 @@ class GameScene: SKScene {
         self.hud.showAll()
         //self.hud.updateLife(life: self.player.life)
         self.hudNode.zPosition = 1
-
+        
         self.cameraNode.zPosition = -1
     }
     
     // MARK: - Game Loop
     override func update(_ currentTime: TimeInterval) {
         if !checkpause(){
-        checkDeath()
-        
-        player.updatePlayer(timeStep)
-        
-        updateCamera()
-        
-        self.hud.updateCoinsCollected(GameData.sharedInstance.coins)
-        self.hud.updateScore(score: GameData.sharedInstance.score)
-        self.hud.updateLife(life: player.life)
-        
-        if self.player.isGliding {
-            self.player.glide()
-        }
-        
-        blocksGenerator.updateLevel(withCameraPosition: cameraNode.position)
-        
-        timeStep += 1
+            checkDeath()
+            
+            player.updatePlayer(timeStep)
+            
+            updateCamera()
+            
+            self.hud.updateCoinsCollected(GameData.sharedInstance.coins)
+            self.hud.updateScore(score: GameData.sharedInstance.score)
+            self.hud.updateLife(life: player.life)
+            
+            if self.player.isGliding {
+                self.player.glide()
+            }
+            
+            blocksGenerator.updateLevel(withCameraPosition: cameraNode.position)
+            
+            timeStep += 1
         }
         else{
             self.isPaused = true
             self.gamePaused = true
         }
-
+        
+        currentScene = self
+        
     }
     
     // MARK: - User Interaction
@@ -161,7 +163,7 @@ class GameScene: SKScene {
     }
     
     func pauseButtonPressed() {
-        if !gamePaused {
+        if !gamePaused{
             whiteBg.anchorPoint = CGPoint(x: 0.5, y: 0.5)
             whiteBg.position = CGPoint(x: self.cameraNode.frame.width/2, y: self.cameraNode.frame.height/2)
             whiteBg.alpha = 1
@@ -218,7 +220,7 @@ class GameScene: SKScene {
     }
     
     private func checkDeath() {
-        if player.life <= 0 {
+        if player.life <= -100 {
             if !gamePaused {
                 whiteBg.anchorPoint = CGPoint(x: 0.5, y: 0.5)
                 whiteBg.position = CGPoint(x: self.cameraNode.frame.width/2, y: self.cameraNode.frame.height/2)

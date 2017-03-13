@@ -8,7 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		2406EA841DF1A78000965112 /* Wall.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2406EA831DF1A78000965112 /* Wall.sks */; };
-		2406EA861DF1A83E00965112 /* Flyer.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2406EA851DF1A83E00965112 /* Flyer.sks */; };
+		2406EA861DF1A83E00965112 /* KifesBox.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2406EA851DF1A83E00965112 /* KifesBox.sks */; };
+		2435EE281E76CE77005E914D /* Piggo.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 2435EE271E76CE77005E914D /* Piggo.atlas */; };
+		245A00A21E76F117007D0EAE /* Ob1.sks in Resources */ = {isa = PBXBuildFile; fileRef = 245A00A11E76F117007D0EAE /* Ob1.sks */; };
+		245A00A41E76F120007D0EAE /* Ob2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 245A00A31E76F120007D0EAE /* Ob2.sks */; };
+		245A00A61E76F12B007D0EAE /* Ob3.sks in Resources */ = {isa = PBXBuildFile; fileRef = 245A00A51E76F12B007D0EAE /* Ob3.sks */; };
+		245A00A81E76F132007D0EAE /* Ob4.sks in Resources */ = {isa = PBXBuildFile; fileRef = 245A00A71E76F132007D0EAE /* Ob4.sks */; };
+		245A00AA1E76F142007D0EAE /* Ob5.sks in Resources */ = {isa = PBXBuildFile; fileRef = 245A00A91E76F142007D0EAE /* Ob5.sks */; };
 		268005011DFF080400105358 /* FacebookConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268005001DFF080400105358 /* FacebookConnection.swift */; };
 		26EBD75F1E68E80300A404E6 /* FacebookUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26EBD75E1E68E80300A404E6 /* FacebookUser.swift */; };
 		26EBD7611E68FAFE00A404E6 /* RankingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26EBD7601E68FAFE00A404E6 /* RankingCell.swift */; };
@@ -32,7 +38,7 @@
 		645C33E31DCFD0A600ABA4D7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 645C33E11DCFD0A600ABA4D7 /* Main.storyboard */; };
 		645C33E51DCFD0A600ABA4D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 645C33E41DCFD0A600ABA4D7 /* Assets.xcassets */; };
 		645C33E81DCFD0A600ABA4D7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 645C33E61DCFD0A600ABA4D7 /* LaunchScreen.storyboard */; };
-		645C33FA1DCFD8A800ABA4D7 /* Spikes.sks in Resources */ = {isa = PBXBuildFile; fileRef = 645C33F91DCFD8A800ABA4D7 /* Spikes.sks */; };
+		645C33FA1DCFD8A800ABA4D7 /* net.sks in Resources */ = {isa = PBXBuildFile; fileRef = 645C33F91DCFD8A800ABA4D7 /* net.sks */; };
 		645DB06E1DE65C7C00CE79F4 /* Spike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645DB06D1DE65C7C00CE79F4 /* Spike.swift */; };
 		645DB0701DE65E4300CE79F4 /* BlockSpawner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645DB06F1DE65E4300CE79F4 /* BlockSpawner.swift */; };
 		64AD7F591DFA1D5A0012665E /* GameAudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64AD7F581DFA1D5A0012665E /* GameAudio.swift */; };
@@ -49,7 +55,7 @@
 		64C773831DFAFEA200A5D2A1 /* purchase.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 64C773821DFAFEA200A5D2A1 /* purchase.mp3 */; };
 		64C773851DFB015C00A5D2A1 /* RankingScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 64C773841DFB015C00A5D2A1 /* RankingScene.sks */; };
 		64C773871DFB01DC00A5D2A1 /* RankingScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C773861DFB01DC00A5D2A1 /* RankingScene.swift */; };
-		64C7738A1DFB0AF600A5D2A1 /* Obstacles3.sks in Resources */ = {isa = PBXBuildFile; fileRef = 64C773881DFB0AF600A5D2A1 /* Obstacles3.sks */; };
+		64C7738A1DFB0AF600A5D2A1 /* Ob6.sks in Resources */ = {isa = PBXBuildFile; fileRef = 64C773881DFB0AF600A5D2A1 /* Ob6.sks */; };
 		64CEB6C71DFAE03E005BB8F1 /* Life.sks in Resources */ = {isa = PBXBuildFile; fileRef = 64CEB6C61DFAE03E005BB8F1 /* Life.sks */; };
 		64F8B6561DE7D7C200B59BF2 /* Comic_Andy.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 64F8B6541DE7D7B400B59BF2 /* Comic_Andy.ttf */; };
 		64F8B6571DE7D7C400B59BF2 /* Space Comics.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 64F8B6551DE7D7B400B59BF2 /* Space Comics.ttf */; };
@@ -73,7 +79,13 @@
 
 /* Begin PBXFileReference section */
 		2406EA831DF1A78000965112 /* Wall.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Wall.sks; sourceTree = "<group>"; };
-		2406EA851DF1A83E00965112 /* Flyer.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Flyer.sks; sourceTree = "<group>"; };
+		2406EA851DF1A83E00965112 /* KifesBox.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = KifesBox.sks; sourceTree = "<group>"; };
+		2435EE271E76CE77005E914D /* Piggo.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Piggo.atlas; sourceTree = "<group>"; };
+		245A00A11E76F117007D0EAE /* Ob1.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Ob1.sks; sourceTree = "<group>"; };
+		245A00A31E76F120007D0EAE /* Ob2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Ob2.sks; sourceTree = "<group>"; };
+		245A00A51E76F12B007D0EAE /* Ob3.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Ob3.sks; sourceTree = "<group>"; };
+		245A00A71E76F132007D0EAE /* Ob4.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Ob4.sks; sourceTree = "<group>"; };
+		245A00A91E76F142007D0EAE /* Ob5.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Ob5.sks; sourceTree = "<group>"; };
 		268005001DFF080400105358 /* FacebookConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookConnection.swift; sourceTree = "<group>"; };
 		26EBD75E1E68E80300A404E6 /* FacebookUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookUser.swift; sourceTree = "<group>"; };
 		26EBD7601E68FAFE00A404E6 /* RankingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankingCell.swift; sourceTree = "<group>"; };
@@ -100,7 +112,7 @@
 		645C33E21DCFD0A600ABA4D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		645C33E41DCFD0A600ABA4D7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		645C33E71DCFD0A600ABA4D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		645C33F91DCFD8A800ABA4D7 /* Spikes.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = Spikes.sks; path = Scenes/Obstacles/Spikes.sks; sourceTree = "<group>"; };
+		645C33F91DCFD8A800ABA4D7 /* net.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = net.sks; path = Scenes/Obstacles/net.sks; sourceTree = "<group>"; };
 		645DB06D1DE65C7C00CE79F4 /* Spike.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Spike.swift; path = Classes/Obstacles/Spike.swift; sourceTree = "<group>"; };
 		645DB06F1DE65E4300CE79F4 /* BlockSpawner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlockSpawner.swift; path = Classes/Obstacles/BlockSpawner.swift; sourceTree = "<group>"; };
 		64AD7F581DFA1D5A0012665E /* GameAudio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameAudio.swift; path = Classes/GameAudio.swift; sourceTree = "<group>"; };
@@ -117,7 +129,7 @@
 		64C773821DFAFEA200A5D2A1 /* purchase.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = purchase.mp3; path = Resources/Audio/purchase.mp3; sourceTree = "<group>"; };
 		64C773841DFB015C00A5D2A1 /* RankingScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = RankingScene.sks; path = Scenes/RankingScene.sks; sourceTree = "<group>"; };
 		64C773861DFB01DC00A5D2A1 /* RankingScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RankingScene.swift; path = Classes/RankingScene.swift; sourceTree = "<group>"; };
-		64C773881DFB0AF600A5D2A1 /* Obstacles3.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = Obstacles3.sks; path = "Scenes/Big Blocks/Obstacles3.sks"; sourceTree = "<group>"; };
+		64C773881DFB0AF600A5D2A1 /* Ob6.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = Ob6.sks; path = "Scenes/Big Blocks/Ob6.sks"; sourceTree = "<group>"; };
 		64CEB6C61DFAE03E005BB8F1 /* Life.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = Life.sks; path = Scenes/Life.sks; sourceTree = "<group>"; };
 		64F8B6541DE7D7B400B59BF2 /* Comic_Andy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Comic_Andy.ttf; path = Resources/Comic_Andy.ttf; sourceTree = "<group>"; };
 		64F8B6551DE7D7B400B59BF2 /* Space Comics.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Space Comics.ttf"; path = "Resources/Space Comics.ttf"; sourceTree = "<group>"; };
@@ -282,6 +294,7 @@
 			isa = PBXGroup;
 			children = (
 				64AD7F5A1DFA1F6F0012665E /* Audio */,
+				2435EE271E76CE77005E914D /* Piggo.atlas */,
 				7942F7151DE872300032B9BA /* Pig.atlas */,
 				64F8B6541DE7D7B400B59BF2 /* Comic_Andy.ttf */,
 				64F8B6551DE7D7B400B59BF2 /* Space Comics.ttf */,
@@ -295,9 +308,9 @@
 		645C33F31DCFD6A800ABA4D7 /* Obstacles */ = {
 			isa = PBXGroup;
 			children = (
-				645C33F91DCFD8A800ABA4D7 /* Spikes.sks */,
+				645C33F91DCFD8A800ABA4D7 /* net.sks */,
 				2406EA831DF1A78000965112 /* Wall.sks */,
-				2406EA851DF1A83E00965112 /* Flyer.sks */,
+				2406EA851DF1A83E00965112 /* KifesBox.sks */,
 				64FF4EE41DD7D9F400337C2E /* SpinningWheel.sks */,
 				64CEB6C61DFAE03E005BB8F1 /* Life.sks */,
 			);
@@ -335,7 +348,12 @@
 		64AF81BB1DD8119200DC654C /* Blocks */ = {
 			isa = PBXGroup;
 			children = (
-				64C773881DFB0AF600A5D2A1 /* Obstacles3.sks */,
+				245A00A11E76F117007D0EAE /* Ob1.sks */,
+				245A00A31E76F120007D0EAE /* Ob2.sks */,
+				245A00A51E76F12B007D0EAE /* Ob3.sks */,
+				245A00A71E76F132007D0EAE /* Ob4.sks */,
+				245A00A91E76F142007D0EAE /* Ob5.sks */,
+				64C773881DFB0AF600A5D2A1 /* Ob6.sks */,
 			);
 			name = Blocks;
 			sourceTree = "<group>";
@@ -395,7 +413,7 @@
 				TargetAttributes = {
 					645C33D31DCFD0A600ABA4D7 = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = A2ZTH56XFL;
+						DevelopmentTeam = 258X7LU8QG;
 						LastSwiftMigration = 0810;
 						ProvisioningStyle = Automatic;
 					};
@@ -424,29 +442,35 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				64C7738A1DFB0AF600A5D2A1 /* Obstacles3.sks in Resources */,
+				245A00AA1E76F142007D0EAE /* Ob5.sks in Resources */,
+				64C7738A1DFB0AF600A5D2A1 /* Ob6.sks in Resources */,
 				64AD7F681DFA1F830012665E /* extra_life.wav in Resources */,
 				64C773831DFAFEA200A5D2A1 /* purchase.mp3 in Resources */,
 				645C33E31DCFD0A600ABA4D7 /* Main.storyboard in Resources */,
 				2406EA841DF1A78000965112 /* Wall.sks in Resources */,
 				64AD7F651DFA1F830012665E /* background.mp3 in Resources */,
+				245A00A41E76F120007D0EAE /* Ob2.sks in Resources */,
+				2435EE281E76CE77005E914D /* Piggo.atlas in Resources */,
 				6427C6041DFB11E500F4EA92 /* TutorialScene.sks in Resources */,
+				245A00A21E76F117007D0EAE /* Ob1.sks in Resources */,
 				642C23731DE636C7006DDC53 /* GameScene.sks in Resources */,
 				64AD7F6A1DFA1F830012665E /* hurt.mp3 in Resources */,
 				6459DA141DFA68E700FB3A6B /* background_star.mp3 in Resources */,
 				64C773851DFB015C00A5D2A1 /* RankingScene.sks in Resources */,
-				645C33FA1DCFD8A800ABA4D7 /* Spikes.sks in Resources */,
+				645C33FA1DCFD8A800ABA4D7 /* net.sks in Resources */,
 				64FF4EE51DD7D9F400337C2E /* SpinningWheel.sks in Resources */,
 				64F8B6561DE7D7C200B59BF2 /* Comic_Andy.ttf in Resources */,
-				2406EA861DF1A83E00965112 /* Flyer.sks in Resources */,
+				2406EA861DF1A83E00965112 /* KifesBox.sks in Resources */,
 				64AD7F6C1DFA1F830012665E /* new_record.wav in Resources */,
 				64F8B6571DE7D7C400B59BF2 /* Space Comics.ttf in Resources */,
 				64FC20741DF0F6C1008E73B6 /* GameOver.sks in Resources */,
 				7942F7161DE872300032B9BA /* Pig.atlas in Resources */,
 				64AD7F661DFA1F830012665E /* big_coin.wav in Resources */,
 				64AD7F6E1DFA1F830012665E /* star.wav in Resources */,
+				245A00A81E76F132007D0EAE /* Ob4.sks in Resources */,
 				64AD7F691DFA1F830012665E /* game_over.wav in Resources */,
 				645C33E51DCFD0A600ABA4D7 /* Assets.xcassets in Resources */,
+				245A00A61E76F12B007D0EAE /* Ob3.sks in Resources */,
 				6459DA181DFA826C00FB3A6B /* Assets.xcassets in Resources */,
 				645C33E81DCFD0A600ABA4D7 /* LaunchScreen.storyboard in Resources */,
 				64AD7F671DFA1F830012665E /* coin.wav in Resources */,
@@ -671,7 +695,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = A2ZTH56XFL;
+				DEVELOPMENT_TEAM = 258X7LU8QG;
 				INFOPLIST_FILE = PigRunner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -693,7 +717,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = A2ZTH56XFL;
+				DEVELOPMENT_TEAM = 258X7LU8QG;
 				INFOPLIST_FILE = PigRunner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
