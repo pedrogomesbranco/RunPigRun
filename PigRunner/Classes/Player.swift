@@ -51,13 +51,13 @@ class Player: SKSpriteNode {
         self.anchorPoint = CGPoint(x: 0, y: 0.5)
         self.position = pos
         self.zPosition = 1
-        self.setScale(0.6)
+        self.setScale(0.5)
         
         emitter.particlePosition.x += self.size.width + 30
         emitter.particlePosition.y -= self.size.height
         
         emitter.isHidden = true
-
+        
         // Load Preferences & Store data
         self.soundEffectPrefs = GamePreferences.sharedInstance.getSoundEffectsPrefs()
         
@@ -93,21 +93,29 @@ class Player: SKSpriteNode {
     
     // MARK: - Player methods
     func setPlayerVelocity(to amount: CGFloat) {
-        self.physicsBody!.velocity.dy = amount
+        if jumpsLeft == 2{
+            self.physicsBody!.velocity.dy = amount
+        }
+        else{
+            self.physicsBody!.velocity.dy = amount + 100
+        }
     }
     
     func updatePlayer(_ timeStep: Int) {
+        
         if isAlive && self.physicsBody?.velocity.dy == 0.0{
             // Set player's constant velocity
-            self.physicsBody?.velocity.dx = CGFloat((kSpeedMultiplier * log(Double(timeStep+1))) + Double(velocityX+150))}
+            self.physicsBody?.velocity.dx = CGFloat((kSpeedMultiplier * log(Double(timeStep+1))) + Double(velocityX+400))
+        }
         else if isAlive && self.physicsBody?.velocity.dy != 0.0{
             if (self.physicsBody?.velocity.dy)! < CGFloat(0.0){
                 self.physicsBody?.velocity.dy = (self.physicsBody?.velocity.dy)!
             }
-            self.physicsBody?.velocity.dx = CGFloat(Double(velocityX+150))
+            self.physicsBody?.velocity.dx = CGFloat(Double(velocityX+400))
         }
-            // Update player's score
-            GameData.sharedInstance.score += Int((self.physicsBody?.velocity.dx)!/CGFloat(velocityX))
+        
+        // Update player's score
+        GameData.sharedInstance.score += Int((self.physicsBody?.velocity.dx)!/CGFloat(velocityX))
     }
     
     // MARK: - Movements
@@ -124,7 +132,7 @@ class Player: SKSpriteNode {
                 self.run(GameAudio.sharedInstance.soundJump)
             }
             
-            setPlayerVelocity(to: 900.0)
+            setPlayerVelocity(to: 1000)
             jumpsLeft -= 1
             isRunning = false
             isGliding = false
@@ -216,7 +224,7 @@ class Player: SKSpriteNode {
             
         case ColliderType.Trigger:
             if let spinningWheel = body.node?.parent?.childNode(withName: "sawblade") as? SpinningWheel {
-//                spinningWheel.trigger()
+                //                spinningWheel.trigger()
             }
             
         case ColliderType.SpinningWheel:
