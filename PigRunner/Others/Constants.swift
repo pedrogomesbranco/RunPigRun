@@ -17,7 +17,7 @@ struct ColliderType {
     static let CoinSpecial: UInt32      = 0b1000    // 8
     static let Spikes: UInt32           = 0b10000   // 16
     static let Trigger: UInt32          = 0b100000  // 32
-    static let SpinningWheel: UInt32    = 0b1000000 // 64
+    static let Steamroller: UInt32      = 0b1000000 // 64
     static let Star: UInt32             = 0b10000000 // 128
     static let MagneticField: UInt32    = 0b100000000 // 256
     static let GarbageCollector: UInt32 = 0b1000000000 // 512
