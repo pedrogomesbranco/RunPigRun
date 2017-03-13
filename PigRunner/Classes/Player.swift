@@ -48,14 +48,66 @@ class Player: SKSpriteNode {
     
     self.emitter = untypedEmitter as! SKEmitterNode
     
+<<<<<<< HEAD
     self.anchorPoint = CGPoint(x: 0, y: 0.5)
     self.position = pos
     self.zPosition = 1
     self.setScale(0.5)
+=======
+    init(imageName: String, pos: CGPoint, categoryBitMask: UInt32, collisionBitMask: UInt32) {
+        let texture = SKTexture(imageNamed: imageName)
+        let untypedEmitter: AnyObject = NSKeyedUnarchiver.unarchiveObject(withFile: Bundle.main.path(forResource: "FartEmitter", ofType: "sks")!) as AnyObject
+        
+        super.init(texture: texture, color: .clear, size: texture.size())
+        
+        print(texture.size())
+        
+        self.emitter = untypedEmitter as! SKEmitterNode
+        
+        self.anchorPoint = CGPoint(x: 0, y: 0.5)
+        self.position = pos
+        self.zPosition = 1
+        self.setScale(0.5)
+        
+        emitter.particlePosition.x += self.size.width + 30
+        emitter.particlePosition.y -= self.size.height
+        
+        emitter.isHidden = true
+        
+        // Load Preferences & Store data
+        self.soundEffectPrefs = GamePreferences.sharedInstance.getSoundEffectsPrefs()
+        
+        if GameData.sharedInstance.extraLife {
+            self.life = 4
+        }
+        
+        // Textures setup
+        runTextures = GameTextures.sharedInstance.runTextures
+        jumpTextures = GameTextures.sharedInstance.jumpTextures
+        slideTextures = GameTextures.sharedInstance.slideTextures
+        dieTextures = GameTextures.sharedInstance.dieTextures
+        
+        // Animate the pig's running movement
+        self.run(SKAction.repeatForever(SKAction.animate(with: runTextures, timePerFrame: 0.15, resize: false, restore: true)), withKey: "run")
+        
+        // Setup pig's physics body
+        self.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: self.size.width, height: self.size.height))
+        self.physicsBody!.isDynamic = true
+        self.physicsBody!.allowsRotation = false
+        self.physicsBody!.categoryBitMask = categoryBitMask
+        self.physicsBody!.collisionBitMask = collisionBitMask
+        self.physicsBody?.friction = 0
+        self.physicsBody?.restitution = 0.0
+        self.physicsBody?.mass = 50.0
+        self.physicsBody?.affectedByGravity = true
+        self.physicsBody?.density = 4.0
+    }
+>>>>>>> 410dceb0d2243bed849b674c58eeaba7c963a7fe
     
     emitter.particlePosition.x += self.size.width + 30
     emitter.particlePosition.y -= self.size.height
     
+<<<<<<< HEAD
     emitter.isHidden = true
     
     // Load Preferences & Store data
@@ -63,6 +115,55 @@ class Player: SKSpriteNode {
     
     if GameData.sharedInstance.extraLife {
       self.life = 4
+=======
+    // MARK: - Player methods
+    func setPlayerVelocity(to amount: CGFloat) {
+        if jumpsLeft == 2{
+            self.physicsBody!.velocity.dy = amount
+        }
+        else{
+            self.physicsBody!.velocity.dy = amount + 100
+        }
+    }
+    
+    func updatePlayer(_ timeStep: Int) {
+        
+        if isAlive && self.physicsBody?.velocity.dy == 0.0{
+            // Set player's constant velocity
+            self.physicsBody?.velocity.dx = CGFloat((kSpeedMultiplier * log(Double(timeStep+1))) + Double(velocityX+400))
+        }
+        else if isAlive && self.physicsBody?.velocity.dy != 0.0{
+            if (self.physicsBody?.velocity.dy)! < CGFloat(0.0){
+                self.physicsBody?.velocity.dy = (self.physicsBody?.velocity.dy)!
+            }
+            self.physicsBody?.velocity.dx = CGFloat(Double(velocityX+400))
+        }
+        
+        // Update player's score
+        GameData.sharedInstance.score += Int((self.physicsBody?.velocity.dx)!/CGFloat(velocityX))
+    }
+    
+    // MARK: - Movements
+    func jump() {
+        if jumpsLeft > 0 {
+            emitter.isHidden = false
+            
+            let delayInSeconds = 0.3
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delayInSeconds) {
+                self.emitter.isHidden = true
+            }
+            
+            if soundEffectPrefs {
+                self.run(GameAudio.sharedInstance.soundJump)
+            }
+            
+            setPlayerVelocity(to: 1000)
+            jumpsLeft -= 1
+            isRunning = false
+            isGliding = false
+            changeAnimation(newTextures: jumpTextures, timePerFrame: 0.15, withKey: "jump", restore: false, repeatCount: nil)
+        }
+>>>>>>> 410dceb0d2243bed849b674c58eeaba7c963a7fe
     }
     
     // Textures setup
@@ -172,6 +273,7 @@ class Player: SKSpriteNode {
   
   func changeAnimation(newTextures: [SKTexture], timePerFrame: TimeInterval, withKey key: String, restore: Bool, repeatCount: Int?) {
     
+<<<<<<< HEAD
     if restore {
       self.run(SKAction.repeat(SKAction.animate(with: newTextures, timePerFrame: timePerFrame, resize: true, restore: true), count: repeatCount!))
     } else {
@@ -227,6 +329,62 @@ class Player: SKSpriteNode {
         
         if !isInvencible {
           self.life = 0
+=======
+    
+    // MARK: - Collision Handling
+    func collided(withBody body: SKPhysicsBody) {
+        switch body.categoryBitMask {
+        // Player - Coin Collision
+        case ColliderType.CoinNormal:
+            if let coin = body.node as? Coin {
+                if soundEffectPrefs {
+                    coin.run(GameAudio.sharedInstance.soundCoin)
+                }
+                GameData.sharedInstance.coins += 1
+                coin.collected()
+            }
+            
+        // Player - Spike Collision
+        case ColliderType.Spikes:
+            guard let spike = body.node as? SKSpriteNode else { break }
+            
+            if starPowerup {
+                spike.removeFromParent()
+                break
+            }
+            
+            if soundEffectPrefs {
+                spike.run(GameAudio.sharedInstance.soundHurt)
+            }
+            
+            if isInvencible == false {
+                self.life -= 1
+            }
+            
+        // Player - Ground Collision
+        case ColliderType.Ground:
+            self.land()
+            
+        case ColliderType.Trigger:
+            if let spinningWheel = body.node?.parent?.childNode(withName: "sawblade") as? SpinningWheel {
+                //                spinningWheel.trigger()
+            }
+            
+        case ColliderType.SpinningWheel:
+            if let spinningWheel = body.node?.parent?.childNode(withName: "sawblade") as? SpinningWheel {
+                if starPowerup {
+                    spinningWheel.removeFromParent()
+                    break
+                }
+                
+                if !isInvencible {
+                    self.life = 0
+                }
+            }
+            
+        default:
+            break
+>>>>>>> 410dceb0d2243bed849b674c58eeaba7c963a7fe
         }
       }
       
