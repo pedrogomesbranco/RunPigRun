@@ -20,13 +20,14 @@ class MenuScene: SKScene {
     private var musicButton = SKSpriteNode()
     private var coinsLabel = SKLabelNode()
     private var title = SKSpriteNode()
-//    private var pig = SKSpriteNode()
-    let rankingScene = RankingScene()
+    private var isLoaded = false
+    //    private var pig = SKSpriteNode()
+    //    let rankingScene = RankingScene()
     let tutorialScene = TutorialScene()
     
     let background = SKSpriteNode(imageNamed: "Background 01")
     let whiteBg = SKSpriteNode(imageNamed: "whiteBg")
-//    var cameraNode = SKCameraNode()
+    //    var cameraNode = SKCameraNode()
     
     var rankingIsActive: Bool = false
     var facebookIsActive: Bool = false
@@ -50,10 +51,18 @@ class MenuScene: SKScene {
     }
     
     override func didMove(to view: SKView) {
-        print(self.viewController)
-
-        self.setupMenuScene()
+        if(!isLoaded){
+            self.setupMenuScene()
+            isLoaded = true
+        }
+        resetActives()
         GameAudio.sharedInstance.playBackgroundMusic(filename: Music.BackgroundMusic)
+    }
+    
+    private func resetActives(){
+        rankingIsActive = false
+        facebookIsActive = false
+        tutorialIsActive = false
     }
     
     // MARK: - Setup
@@ -62,7 +71,7 @@ class MenuScene: SKScene {
         let soundEffectPrefs = GamePreferences.sharedInstance.getSoundEffectsPrefs()
         
         self.backgroundColor = UIColor.black
-                
+        
         background.anchorPoint = CGPoint.zero
         background.position = CGPoint.zero
         self.addChild(background)
@@ -70,7 +79,7 @@ class MenuScene: SKScene {
         title = SKSpriteNode(imageNamed: "menu_title")
         title.position = CGPoint(x: self.size.width/2, y: self.size.height/2 + title.size.height*2)
         title.zPosition = GameLayer.Interface
-//        self.addChild(title)
+        self.addChild(title)
         
         playButton = SKSpriteNode(imageNamed: "playzao")
         playButton.position = CGPoint(x: 1900, y: self.size.height/2 - 400)
@@ -111,7 +120,7 @@ class MenuScene: SKScene {
         helpButton.size.height = 280
         helpButton.size.width = 240
         self.addChild(helpButton)
-
+        
         
         if soundEffectPrefs {
             soundButton.alpha = 1
@@ -143,13 +152,14 @@ class MenuScene: SKScene {
         let playBtnAnimation = SKAction.sequence([playBtnScaleUp, playBtnScaleDown])
         
         playButton.run(SKAction.repeatForever(playBtnAnimation))
+        
     }
     
     // MARK: - User Interaction
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch = touches.first!
         let touchLocation = touch.location(in: self)
-        let touchLocationInRanking = touch.location(in: self.rankingScene.rankingNode)
+        //        let touchLocationInRanking = touch.location(in: self.rankingScene.rankingNode)
         let touchLocationInTutorial = touch.location(in: self.tutorialScene.tutorialNode)
         
         let tutorialPref = GamePreferences.sharedInstance.getTutorialPrefs()
@@ -160,25 +170,27 @@ class MenuScene: SKScene {
                 self.whiteBg.removeFromParent()
                 self.loadGameScene()
             }
-        } else if rankingIsActive {
-            if self.rankingScene.menuButton.contains(touchLocationInRanking) {
-                self.rankingIsActive = false
-                self.whiteBg.removeFromParent()
-                self.rankingScene.rankingNode.removeFromParent()
-                GameAudio.sharedInstance.playBackgroundMusic(filename: Music.BackgroundMusic)
-            }
-        } else {
+        }
+            //        else if rankingIsActive {
+            //            if self.rankingScene.menuButton.contains(touchLocationInRanking) {
+            //                self.rankingIsActive = false
+            //                self.whiteBg.removeFromParent()
+            //                self.rankingScene.rankingNode.removeFromParent()
+            //                GameAudio.sharedInstance.playBackgroundMusic(filename: Music.BackgroundMusic)
+            //            }
+            //        }
+        else {
             if self.rankingButton.contains(touchLocation) {
                 self.viewController.showRanking()
                 self.rankingIsActive = true
-                self.removeFromParent()
+                //                self.removeFromParent()
                 self.view?.presentScene(nil)
             } else if self.facebookButton.contains(touchLocation) {
                 self.viewController.fbConnection.loginFromViewController(viewController: self.viewController, completion: ({
                     if (FBSDKAccessToken.current()) != nil {
                         self.facebookButton.removeFromParent()
                         self.rankingButton = SKSpriteNode(imageNamed: "rankingsbutton-1")
-                        self.rankingButton.position = CGPoint(x: 580, y: self.size.height/2 - 400)
+                        self.rankingButton.position = CGPoint(x: 550, y: self.size.height/2 - 400)
                         self.rankingButton.setScale(4)
                         self.rankingButton.zPosition = GameLayer.Interface
                         self.rankingButton.size.height = 280
@@ -193,10 +205,9 @@ class MenuScene: SKScene {
                 self.soundButtonTapped()
             } else if self.musicButton.contains(touchLocation) {
                 self.musicButtonTapped()
-            } else if self.rankingButton.contains(touchLocation) {
-                self.loadRankingScene()
-                self.rankingIsActive = true
-            } else {
+            }
+
+            else {
                 if tutorialPref {
                     self.tutorialIsActive = true
                     self.loadTutorialScene()
@@ -207,43 +218,17 @@ class MenuScene: SKScene {
             }
         }
     }
-
+    
     // MARK: - Switch scenes
     private func loadGameScene() {
-        self.title.isHidden = true
-        self.settingsButton.isHidden = true
-        self.facebookButton.isHidden = true
-        self.rankingButton.isHidden = true
-        self.playButton.isHidden = true
-        self.helpButton.isHidden = true
         
         let gameScene = GameScene(fileNamed: "GameScene")!
         gameScene.scaleMode = .aspectFill
         gameScene.viewController = self.viewController
+        gameScene.fbConnection = self.fbConnection
         let transition = SKTransition.fade(with: UIColor.black, duration: 0.25)
         self.view?.presentScene(gameScene, transition: transition)
-
-//        let runAction = SKAction.moveBy(x: pig.position.x, y: 0, duration: 0.8)
-//        pig.run(SKAction.repeatForever(SKAction.animate(with: GameTextures.sharedInstance.runTextures, timePerFrame: 0.1, resize: true, restore: true)), withKey: "menu_run")
-//        
-//        pig.run(runAction, completion: {
-//            self.run(SKAction.run {
-//                            })
-//        })
     }
-    
-//    private func loadStoreScene() {
-//        whiteBg.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-//        whiteBg.position = CGPoint(x: self.size.width/2, y: self.size.height/2)
-//        whiteBg.alpha = 0.3
-//        whiteBg.zPosition = GameLayer.Interface
-//        title.isHidden = true
-//        
-//        self.addChild(whiteBg)
-//        
-//        storeScene.show(at: CGPoint(x: self.size.width/2, y: self.size.height/2), onScene: self)
-//        storeScene.zPosition = GameLayer.Interface+2
-//    }
     
     private func loadTutorialScene() {
         whiteBg.anchorPoint = CGPoint(x: 0.5, y: 0.5)
@@ -251,7 +236,6 @@ class MenuScene: SKScene {
         whiteBg.alpha = 0.3
         whiteBg.zPosition = GameLayer.Interface
         self.addChild(whiteBg)
-        title.isHidden = true
         
         self.tutorialIsActive = true
         tutorialScene.show(at: CGPoint(x: self.size.width/2, y: self.size.height/2), onScene: self)
@@ -280,17 +264,6 @@ class MenuScene: SKScene {
                 self.musicButton.removeFromParent()
             })
         }
-    }
-    
-    private func loadRankingScene() {
-        whiteBg.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        whiteBg.position = CGPoint(x: self.size.width/2, y: self.size.height/2)
-        whiteBg.alpha = 0.3
-        whiteBg.zPosition = GameLayer.Interface
-        self.addChild(whiteBg)
-        
-        rankingScene.show(at: CGPoint(x: self.size.width/2, y: self.size.height/2), onScene: self)
-        rankingScene.zPosition = GameLayer.Interface+2
     }
     
     private func soundButtonTapped() {

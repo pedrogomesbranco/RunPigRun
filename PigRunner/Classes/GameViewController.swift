@@ -17,38 +17,51 @@ class GameViewController: UIViewController {
     //Facebook Login Management
     // MARK: - Facebook
     var fbConnection = FacebookConnection()
-    var loginManager:FBSDKLoginManager?
-    var userDict: [String: AnyObject]!
+    
+    // MARK: - Scene Configuration
+    var skView : SKView?
+    var menuScene : MenuScene?
+    var menuTransition : SKTransition?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        prepareScene()
+    }
+    
+    private func prepareScene(){
+        skView = self.view as? SKView
+        
+        if skView?.scene == nil {
+            if kDebug {
+                skView?.showsFPS = true
+                skView?.showsNodeCount = true
+                skView?.showsPhysics = true
+            }
+            
+            skView?.ignoresSiblingOrder = true
+            skView?.sizeToFit()
+            
+            self.menuScene = MenuScene(size: CGSize(width: kViewSizeWidth, height: kViewSizeHeight))
+            menuScene?.scaleMode = .fill
+            menuScene?.fbConnection = self.fbConnection
+            menuScene?.viewController = self
+            
+            self.menuTransition = SKTransition.fade(with: UIColor.black, duration: 0.25)
+            
+            
+        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if let skView = self.view as? SKView {
-            if skView.scene == nil {
-                if kDebug {
-                    skView.showsFPS = true
-                    skView.showsNodeCount = true
-                    skView.showsPhysics = true
-                }
-                
-                skView.ignoresSiblingOrder = true
-                
-                let menuScene = MenuScene(size: CGSize(width: kViewSizeWidth, height: kViewSizeHeight))
-                menuScene.scaleMode = .fill
-                let menuTransition = SKTransition.fade(with: UIColor.black, duration: 0.25)
-                menuScene.viewController = self
-                menuScene.fbConnection = self.fbConnection
-                skView.presentScene(menuScene, transition: menuTransition)
-                
-                GameTextures.sharedInstance.preloadAssets(completionHandler: { (_) in
-                })
-            }
-        }
-    }
-
         
+        GameTextures.sharedInstance.preloadAssets(completionHandler: { (_) in
+            self.skView?.presentScene(self.menuScene!)
+        })
+    }
+    
+    
     override var shouldAutorotate: Bool {
         return true
     }
@@ -60,7 +73,7 @@ class GameViewController: UIViewController {
             return .all
         }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Release any cached data, images, etc that aren't in use.

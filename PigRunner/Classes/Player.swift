@@ -50,7 +50,7 @@ class Player: SKSpriteNode {
         
         self.emitter = untypedEmitter as! SKEmitterNode
         
-        self.anchorPoint = CGPoint(x: 0, y: 0.5)
+        self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         self.position = pos
         self.zPosition = 1
         self.setScale(0.65)
@@ -82,11 +82,7 @@ class Player: SKSpriteNode {
         self.physicsBody!.allowsRotation = false
         self.physicsBody!.categoryBitMask = categoryBitMask
         self.physicsBody!.collisionBitMask = collisionBitMask
-        self.physicsBody?.friction = 0
-        self.physicsBody?.restitution = 0.0
-        self.physicsBody?.mass = 50.0
         self.physicsBody?.affectedByGravity = true
-        self.physicsBody?.density = 4.0
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -170,7 +166,7 @@ class Player: SKSpriteNode {
             jumpsLeft = 2
             isRunning = true
             isGliding = false
-            changeAnimation(newTextures: runTextures, timePerFrame: 0.05, withKey: "run", restore: false, repeatCount: nil)
+            changeAnimation(newTextures: runTextures, timePerFrame: 0.10, withKey: "run", restore: false, repeatCount: nil)
         }
     }
     

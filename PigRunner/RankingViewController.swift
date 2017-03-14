@@ -34,7 +34,7 @@ class RankingViewController : UIViewController, UITableViewDelegate, UITableView
             let image = fbConnection.friendsPlayingGame[indexPath.row].userImage
             cell.userImageView.image = image
             cell.position.text = String(indexPath.row + 1)
-
+            
         }
         return cell
     }

@@ -29,6 +29,10 @@ class GameScene: SKScene {
     // View Controller
     var viewController : GameViewController!
     
+    // Facebook Configuration
+    var fbConnection : FacebookConnection!
+    
+    
     // Shared Instance
     static let GameSceneSharedInstance = GameScene()
     
@@ -182,8 +186,12 @@ class GameScene: SKScene {
     
     private func goToMenu() {
         self.whiteBg.removeFromParent()
-        let menuScene = MenuScene(size: size)
+        //        let menuScene = MenuScene(size: size)
+        //        menuScene.scaleMode = .fill
+        //        menuScene.viewController = self.viewController
+        let menuScene = MenuScene(size: CGSize(width: kViewSizeWidth, height: kViewSizeHeight))
         menuScene.scaleMode = .fill
+        menuScene.fbConnection = self.fbConnection
         menuScene.viewController = self.viewController
         let transition = SKTransition.fade(with: UIColor.black, duration: 0.25)
         
