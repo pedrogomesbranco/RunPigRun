@@ -24,10 +24,9 @@ class MenuScene: SKScene {
     let rankingScene = RankingScene()
     let tutorialScene = TutorialScene()
     
-    let background = SKSpriteNode(imageNamed: "full-background")
-    let background2 = SKSpriteNode(imageNamed: "full-background")
+    let background = SKSpriteNode(imageNamed: "Background 01")
     let whiteBg = SKSpriteNode(imageNamed: "whiteBg")
-    var cameraNode = SKCameraNode()
+//    var cameraNode = SKCameraNode()
     
     var rankingIsActive: Bool = false
     var facebookIsActive: Bool = false
@@ -64,15 +63,11 @@ class MenuScene: SKScene {
         
         self.backgroundColor = UIColor.black
         
-        self.addChild(cameraNode)
+//        self.addChild(cameraNode)
         
         background.anchorPoint = CGPoint.zero
         background.position = CGPoint.zero
-        self.addChild(background)
-        
-        background2.anchorPoint = CGPoint.zero
-        background2.position = CGPoint(x: background.size.width, y: 0)
-        self.addChild(background2)
+//        self.addChild(background)
         
         title = SKSpriteNode(imageNamed: "menu_title")
         title.position = CGPoint(x: self.size.width/2, y: self.size.height/2 + title.size.height*2)
@@ -339,22 +334,6 @@ class MenuScene: SKScene {
     }
     
     override func update(_ currentTime: TimeInterval) {
-        moveBackground()
-        updateBackground()
-    }
-    
-    func moveBackground() {
-        self.background.position.x -= 10
-        self.background2.position.x -= 10
-    }
-    
-    func updateBackground() {
-        if background.position.x < -background.size.width {
-            self.background.position.x = self.background2.size.width + self.background2.position.x
-        }
         
-        if background2.position.x < -background2.size.width {
-            self.background2.position.x = self.background.size.width + self.background.position.x
-        }
     }
 }

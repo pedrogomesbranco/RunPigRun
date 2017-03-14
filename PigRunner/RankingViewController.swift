@@ -27,7 +27,6 @@ class RankingViewController : UIViewController, UITableViewDelegate, UITableView
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! RankingCell
         
-        
         if(fbConnection.friendsPlayingGame[indexPath.row] != nil){
             let name =  fbConnection.friendsPlayingGame[indexPath.row].userFullName
             cell.nameLabel.text = name?.uppercased()

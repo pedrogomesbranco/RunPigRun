@@ -74,7 +74,7 @@ class Player: SKSpriteNode {
         dieTextures = GameTextures.sharedInstance.dieTextures
         
         // Animate the pig's running movement
-        self.run(SKAction.repeatForever(SKAction.animate(with: runTextures, timePerFrame: 0.05, resize: false, restore: true)), withKey: "run")
+        self.run(SKAction.repeatForever(SKAction.animate(with: runTextures, timePerFrame: 0.85, resize: false, restore: true)), withKey: "run")
         
         // Setup pig's physics body
         self.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: self.size.width, height: self.size.height))
@@ -170,7 +170,7 @@ class Player: SKSpriteNode {
             jumpsLeft = 2
             isRunning = true
             isGliding = false
-            changeAnimation(newTextures: runTextures, timePerFrame: 0.1, withKey: "run", restore: false, repeatCount: nil)
+            changeAnimation(newTextures: runTextures, timePerFrame: 0.15, withKey: "run", restore: false, repeatCount: nil)
         }
     }
     

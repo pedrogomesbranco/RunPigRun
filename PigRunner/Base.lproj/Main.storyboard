@@ -30,11 +30,12 @@
                     </view>
                     <navigationItem key="navigationItem" id="uwN-nj-mVI"/>
                     <connections>
-                        <segue destination="SdN-lz-SQE" kind="showDetail" identifier="RankedViewControllerSegue" id="sNZ-vd-c9S"/>
+                        <segue destination="SdN-lz-SQE" kind="show" identifier="RankedViewControllerSegue" id="sNZ-vd-c9S"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="53" y="54"/>
         </scene>
         <!--Ranking View Controller-->
         <scene sceneID="WhX-Ev-ILr">

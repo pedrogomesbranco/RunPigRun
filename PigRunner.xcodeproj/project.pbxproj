@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2406EA841DF1A78000965112 /* Wall.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2406EA831DF1A78000965112 /* Wall.sks */; };
 		2406EA861DF1A83E00965112 /* KnifesBox.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2406EA851DF1A83E00965112 /* KnifesBox.sks */; };
+		240E5E6B1E7862A6007B5803 /* RankingScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 240E5E6A1E7862A6007B5803 /* RankingScene.sks */; };
 		2435EE281E76CE77005E914D /* Piggo.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 2435EE271E76CE77005E914D /* Piggo.atlas */; };
 		245A00A21E76F117007D0EAE /* Ob1.sks in Resources */ = {isa = PBXBuildFile; fileRef = 245A00A11E76F117007D0EAE /* Ob1.sks */; };
 		245A00A41E76F120007D0EAE /* Ob2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 245A00A31E76F120007D0EAE /* Ob2.sks */; };
@@ -53,7 +54,6 @@
 		64AD7F6E1DFA1F830012665E /* star.wav in Resources */ = {isa = PBXBuildFile; fileRef = 64AD7F641DFA1F830012665E /* star.wav */; };
 		64AD7F701DFA27C90012665E /* GamePreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64AD7F6F1DFA27C90012665E /* GamePreferences.swift */; };
 		64C773831DFAFEA200A5D2A1 /* purchase.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 64C773821DFAFEA200A5D2A1 /* purchase.mp3 */; };
-		64C773851DFB015C00A5D2A1 /* RankingScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 64C773841DFB015C00A5D2A1 /* RankingScene.sks */; };
 		64C773871DFB01DC00A5D2A1 /* RankingScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C773861DFB01DC00A5D2A1 /* RankingScene.swift */; };
 		64C7738A1DFB0AF600A5D2A1 /* Ob6.sks in Resources */ = {isa = PBXBuildFile; fileRef = 64C773881DFB0AF600A5D2A1 /* Ob6.sks */; };
 		64CEB6C71DFAE03E005BB8F1 /* Life.sks in Resources */ = {isa = PBXBuildFile; fileRef = 64CEB6C61DFAE03E005BB8F1 /* Life.sks */; };
@@ -80,6 +80,7 @@
 /* Begin PBXFileReference section */
 		2406EA831DF1A78000965112 /* Wall.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Wall.sks; sourceTree = "<group>"; };
 		2406EA851DF1A83E00965112 /* KnifesBox.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = KnifesBox.sks; sourceTree = "<group>"; };
+		240E5E6A1E7862A6007B5803 /* RankingScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = RankingScene.sks; sourceTree = "<group>"; };
 		2435EE271E76CE77005E914D /* Piggo.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Piggo.atlas; sourceTree = "<group>"; };
 		245A00A11E76F117007D0EAE /* Ob1.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Ob1.sks; sourceTree = "<group>"; };
 		245A00A31E76F120007D0EAE /* Ob2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Ob2.sks; sourceTree = "<group>"; };
@@ -127,7 +128,6 @@
 		64AD7F641DFA1F830012665E /* star.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = star.wav; path = Resources/Audio/star.wav; sourceTree = "<group>"; };
 		64AD7F6F1DFA27C90012665E /* GamePreferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GamePreferences.swift; path = Classes/GamePreferences.swift; sourceTree = "<group>"; };
 		64C773821DFAFEA200A5D2A1 /* purchase.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = purchase.mp3; path = Resources/Audio/purchase.mp3; sourceTree = "<group>"; };
-		64C773841DFB015C00A5D2A1 /* RankingScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = RankingScene.sks; path = Scenes/RankingScene.sks; sourceTree = "<group>"; };
 		64C773861DFB01DC00A5D2A1 /* RankingScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RankingScene.swift; path = Classes/RankingScene.swift; sourceTree = "<group>"; };
 		64C773881DFB0AF600A5D2A1 /* Ob6.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = Ob6.sks; path = "Scenes/Big Blocks/Ob6.sks"; sourceTree = "<group>"; };
 		64CEB6C61DFAE03E005BB8F1 /* Life.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = Life.sks; path = Scenes/Life.sks; sourceTree = "<group>"; };
@@ -298,9 +298,9 @@
 				7942F7151DE872300032B9BA /* Pig.atlas */,
 				64F8B6541DE7D7B400B59BF2 /* Comic_Andy.ttf */,
 				64F8B6551DE7D7B400B59BF2 /* Space Comics.ttf */,
-				645C33E41DCFD0A600ABA4D7 /* Assets.xcassets */,
 				6459DA151DFA826C00FB3A6B /* FartEmitter.sks */,
 				6459DA161DFA826C00FB3A6B /* Assets.xcassets */,
+				645C33E41DCFD0A600ABA4D7 /* Assets.xcassets */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -363,7 +363,7 @@
 			children = (
 				64FC20731DF0F6C1008E73B6 /* GameOver.sks */,
 				798E9C571DEDCB4D000BEBD0 /* PauseMenu.sks */,
-				64C773841DFB015C00A5D2A1 /* RankingScene.sks */,
+				240E5E6A1E7862A6007B5803 /* RankingScene.sks */,
 				6427C6031DFB11E500F4EA92 /* TutorialScene.sks */,
 			);
 			name = Menu;
@@ -445,6 +445,7 @@
 				245A00AA1E76F142007D0EAE /* Ob5.sks in Resources */,
 				64C7738A1DFB0AF600A5D2A1 /* Ob6.sks in Resources */,
 				64AD7F681DFA1F830012665E /* extra_life.wav in Resources */,
+				240E5E6B1E7862A6007B5803 /* RankingScene.sks in Resources */,
 				64C773831DFAFEA200A5D2A1 /* purchase.mp3 in Resources */,
 				645C33E31DCFD0A600ABA4D7 /* Main.storyboard in Resources */,
 				2406EA841DF1A78000965112 /* Wall.sks in Resources */,
@@ -456,7 +457,6 @@
 				642C23731DE636C7006DDC53 /* GameScene.sks in Resources */,
 				64AD7F6A1DFA1F830012665E /* hurt.mp3 in Resources */,
 				6459DA141DFA68E700FB3A6B /* background_star.mp3 in Resources */,
-				64C773851DFB015C00A5D2A1 /* RankingScene.sks in Resources */,
 				645C33FA1DCFD8A800ABA4D7 /* net.sks in Resources */,
 				64FF4EE51DD7D9F400337C2E /* SpinningWheel.sks in Resources */,
 				64F8B6561DE7D7C200B59BF2 /* Comic_Andy.ttf in Resources */,
