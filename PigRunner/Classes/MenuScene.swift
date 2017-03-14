@@ -62,9 +62,7 @@ class MenuScene: SKScene {
         let soundEffectPrefs = GamePreferences.sharedInstance.getSoundEffectsPrefs()
         
         self.backgroundColor = UIColor.black
-        
-        self.addChild(cameraNode)
-        
+                
         background.anchorPoint = CGPoint.zero
         background.position = CGPoint.zero
         self.addChild(background)
