@@ -31,16 +31,13 @@ class BlocksGenerator: SKNode {
         
         // Setup initial scene nodes variables
         self.bgNode = worldNode.childNode(withName: "Background")!
-        
         self.background = self.bgNode.childNode(withName: "Block")!.copy() as! SKNode
-        
         self.backWidth = self.background.calculateAccumulatedFrame().width.rounded()
-        
         self.fgNode = worldNode.childNode(withName: "Foreground")!
         
         // Set initial value for 'lastItemPosition' to create an initial empty space
         // on the start of a level.
-        self.lastItemPosition.x = self.backWidth * 1.5
+        self.lastItemPosition.x = self.backWidth * 0.4
         
     }
     
@@ -68,7 +65,7 @@ class BlocksGenerator: SKNode {
     }
     
     func addRandomBlockNode() {
-        let random = Int.random(min: 1, max: 70)
+        let random = Int.random(min: 1, max: 80)
         
         if random <= 10 {
             createBigBlockNode(type: .Ob1)
@@ -82,6 +79,8 @@ class BlocksGenerator: SKNode {
             createBigBlockNode(type: .Ob5)
         } else if random <= 60 {
             createBigBlockNode(type: .Ob6)
+        } else if random <= 70 {
+            createBigBlockNode(type: .Ob7)
         }
     }
     

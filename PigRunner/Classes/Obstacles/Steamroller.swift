@@ -17,7 +17,7 @@ class Steamroller: SKSpriteNode {
   // MARK: - Methods
   
   func trigger() {
-    let moveAction = SKAction.moveBy(x: -1600, y: 0, duration: TimeInterval(1.0))
+    let moveAction = SKAction.moveBy(x: -1600, y: 0, duration: TimeInterval(3.0))
     
     self.run(moveAction) { 
       self.removeFromParent()

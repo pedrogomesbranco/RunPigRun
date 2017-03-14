@@ -44,6 +44,7 @@ enum BlockType: UInt32 {
     case Ob4 = 0b100
     case Ob5 = 0b1000
     case Ob6 = 0b10000
+    case Ob7 = 0b100000
 }
 
 struct GameLayer {

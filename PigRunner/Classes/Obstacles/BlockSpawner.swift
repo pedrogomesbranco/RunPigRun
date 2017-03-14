@@ -30,6 +30,8 @@ class BlockSpawner: SKSpriteNode {
             blockNode = SKNode(fileNamed: "Ob5")
         case .Ob6:
             blockNode = SKNode(fileNamed: "Ob6")
+        case .Ob7:
+            blockNode = SKNode(fileNamed: "Ob7")
         }
         
         self.nodeToSpawn = blockNode.childNode(withName: "Block") as! SKSpriteNode!

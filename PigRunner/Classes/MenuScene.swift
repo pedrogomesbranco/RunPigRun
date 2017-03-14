@@ -184,7 +184,6 @@ class MenuScene: SKScene {
                 self.viewController.showRanking()
                 self.rankingIsActive = true
                 //                self.removeFromParent()
-                self.view?.presentScene(nil)
             } else if self.facebookButton.contains(touchLocation) {
                 self.viewController.fbConnection.loginFromViewController(viewController: self.viewController, completion: ({
                     if (FBSDKAccessToken.current()) != nil {

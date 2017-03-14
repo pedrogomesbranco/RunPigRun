@@ -45,9 +45,6 @@ class Player: SKSpriteNode {
         
         super.init(texture: texture, color: .clear, size: texture.size())
         
-        print(self.size)
-        print(bodyTexture.size())
-        
         self.emitter = untypedEmitter as! SKEmitterNode
         
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
@@ -199,6 +196,7 @@ class Player: SKSpriteNode {
     
     // MARK: - Collision Handling
     func collided(withBody body: SKPhysicsBody) {
+        print(body.node?.name)
         switch body.categoryBitMask {
         // Player - Coin Collision
         case ColliderType.CoinNormal:
@@ -213,16 +211,13 @@ class Player: SKSpriteNode {
         // Player - Spike Collision
         case ColliderType.Spikes:
             guard let spike = body.node as? SKSpriteNode else { break }
-            
             if starPowerup {
                 spike.removeFromParent()
                 break
             }
-            
             if soundEffectPrefs {
                 spike.run(GameAudio.sharedInstance.soundHurt)
             }
-            
             if isInvencible == false {
                 self.life -= 1
             }
@@ -231,7 +226,8 @@ class Player: SKSpriteNode {
         case ColliderType.Ground:
             self.land()
             
-        case ColliderType.Trigger:if let steamroller = body.node?.parent?.childNode(withName: "steamroller") as? Steamroller {
+        case ColliderType.Trigger:
+            if let steamroller = body.node?.parent?.childNode(withName: "steamroller") as? Steamroller {
             steamroller.trigger()
             }
             
@@ -241,7 +237,6 @@ class Player: SKSpriteNode {
                     steamroller.removeFromParent()
                     break
                 }
-                
                 if !isInvencible {
                     self.life = 0
                 }
