@@ -30,7 +30,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="uwN-nj-mVI"/>
                     <connections>
-                        <segue destination="SdN-lz-SQE" kind="show" identifier="RankedViewControllerSegue" id="sNZ-vd-c9S"/>
+                        <segue destination="SdN-lz-SQE" kind="presentation" identifier="RankedViewControllerSegue" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="sNZ-vd-c9S"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>

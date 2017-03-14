@@ -24,42 +24,6 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
     }
     
-//    override func viewWillLayoutSubviews() {
-//        super.viewWillLayoutSubviews()
-//        
-        //Facebook Login
-//        if (FBSDKAccessToken.current()) != nil {
-//            loginManager = FBSDKLoginManager()
-////            fbConnection.getPlayersScore()
-//        }
-//        else{
-////            fbConnection.loginFromViewController(viewController: self)
-////            self.loginFromViewController()
-//        }
-        
-//        SpriteKit View Setup
-//        if let skView = self.view as? SKView {
-//            if skView.scene == nil {
-//                if kDebug {
-//                    skView.showsFPS = true
-//                    skView.showsNodeCouvar= true
-//                    skView.showsPhysics = true
-//                }
-//                
-//                skView.ignoresSiblingOrder = true
-//                
-//                GameTextures.sharedInstance.preloadAssets(completionHandler: { (_) in
-//                    let menuScene = MenuScene(size: CGSize(width: kViewSizeWidth, height: kViewSizeHeight))
-//                    menuScene.scaleMode = .fill
-//                    menuScene.viewController = self
-//                    let menuTransition = SKTransition.fade(with: UIColor.black, duration: 0.25)
-//                    
-//                    skView.presentScene(menuScene, transition: menuTransition)
-//                })
-//            }
-//        }
-//    }
-    
     override func viewWillAppear(_ animated: Bool) {
         if let skView = self.view as? SKView {
             if skView.scene == nil {
@@ -105,34 +69,6 @@ class GameViewController: UIViewController {
     override var prefersStatusBarHidden: Bool {
         return true
     }
-//
-//    override var shouldAutorotate: Bool {
-//        return true
-//    }
-
-//    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-//        if UIDevice.current.userInterfaceIdiom == .phone {
-//            return .allButUpsideDown
-//        } else {
-//            return .all
-//        }
-//    }
-    
-//    func loginFromViewController(){
-//        if(loginManager == nil){
-//            loginManager = FBSDKLoginManager.init()
-//        }
-//        
-//        loginManager?.logIn(withReadPermissions: ["email", "public_profile", "user_friends", "user_games_activity"], from: self) {(result,error) in
-//            
-//            
-//            if error != nil{
-//                print(error.unsafelyUnwrapped)
-//                return
-//            }
-//            let fbLoginResult: FBSDKLoginManagerLoginResult = result!
-//        }
-//    }
     
     func showRanking (){
         self.performSegue(withIdentifier: "RankedViewControllerSegue", sender: self)
@@ -145,5 +81,4 @@ class GameViewController: UIViewController {
             }
         }
     }
-
 }

@@ -46,8 +46,8 @@ class GameTextures {
     
     // MARK: Animation textures setup
     private func setupRunTextures() {
-        for i in 1...4 {
-            runTextures.append(SKTexture.init(imageNamed: "Runner 0\(i)"))
+        for i in 1...12 {
+            runTextures.append(SKTexture.init(imageNamed: "Running 0\(i)"))
         }
     }
     

@@ -53,7 +53,7 @@ class Player: SKSpriteNode {
         self.anchorPoint = CGPoint(x: 0, y: 0.5)
         self.position = pos
         self.zPosition = 1
-        self.setScale(0.5)
+        self.setScale(0.65)
         
         emitter.particlePosition.x += self.size.width + 30
         emitter.particlePosition.y -= self.size.height
@@ -170,7 +170,7 @@ class Player: SKSpriteNode {
             jumpsLeft = 2
             isRunning = true
             isGliding = false
-            changeAnimation(newTextures: runTextures, timePerFrame: 0.15, withKey: "run", restore: false, repeatCount: nil)
+            changeAnimation(newTextures: runTextures, timePerFrame: 0.05, withKey: "run", restore: false, repeatCount: nil)
         }
     }
     

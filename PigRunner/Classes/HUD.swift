@@ -74,9 +74,6 @@ class HUD: SKNode {
         
         self.coinsLabel.position = CGPoint(x: labelOffsetX, y: labelOffsetY)
         self.coinsLabel.horizontalAlignmentMode = .left
-        
-//        self.hudBackground.addChild(self.coinsCollected)
-//        self.hudBackground.addChild(self.coinsLabel)
     }
     
     private func setupHUDScore(score: Int) {

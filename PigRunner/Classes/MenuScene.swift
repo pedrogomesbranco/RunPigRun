@@ -70,7 +70,7 @@ class MenuScene: SKScene {
         title = SKSpriteNode(imageNamed: "menu_title")
         title.position = CGPoint(x: self.size.width/2, y: self.size.height/2 + title.size.height*2)
         title.zPosition = GameLayer.Interface
-        self.addChild(title)
+//        self.addChild(title)
         
         playButton = SKSpriteNode(imageNamed: "playzao")
         playButton.position = CGPoint(x: 1900, y: self.size.height/2 - 400)
@@ -143,18 +143,6 @@ class MenuScene: SKScene {
         let playBtnAnimation = SKAction.sequence([playBtnScaleUp, playBtnScaleDown])
         
         playButton.run(SKAction.repeatForever(playBtnAnimation))
-        
-//        pig = SKSpriteNode(imageNamed: "Idle_000")
-//        pig.setScale(0.4)
-//        pig.position = CGPoint(x: self.size.width/2 + 800, y: self.size.height/2 - 420)
-//        pig.zPosition = 5
-//        
-//        // Animate the pig's running movement
-//        pig.run(SKAction.repeatForever(SKAction.animate(with: GameTextures.sharedInstance.runTextures, timePerFrame: 0.1, resize: true, restore: true)), withKey: "menu_run")
-//        
-//        self.addChild(pig)
-//        
-        
     }
     
     // MARK: - User Interaction

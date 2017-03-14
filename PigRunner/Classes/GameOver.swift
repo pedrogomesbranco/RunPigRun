@@ -37,10 +37,6 @@ class GameOver: SKNode {
         self.totalCoinsLbl = self.gameOverNode.childNode(withName: "totalCoinsLbl") as! SKLabelNode
         
         let totalCoins = GameData.sharedInstance.totalCoins
-//        
-//        if totalCoins < 1000 {
-//            self.continueBtn.alpha = 0.5
-//        }
     }
     
     // MARK: - Methods
