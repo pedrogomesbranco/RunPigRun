@@ -63,11 +63,11 @@ class MenuScene: SKScene {
         
         self.backgroundColor = UIColor.black
         
-//        self.addChild(cameraNode)
+        self.addChild(cameraNode)
         
         background.anchorPoint = CGPoint.zero
         background.position = CGPoint.zero
-//        self.addChild(background)
+        self.addChild(background)
         
         title = SKSpriteNode(imageNamed: "menu_title")
         title.position = CGPoint(x: self.size.width/2, y: self.size.height/2 + title.size.height*2)
