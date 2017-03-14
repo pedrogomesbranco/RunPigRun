@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
-    <device id="retina4_0" orientation="landscape">
+    <device id="retina5_5" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -18,30 +18,26 @@
                         <viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
+                        <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchScreen" translatesAutoresizingMaskIntoConstraints="NO" id="w47-4H-gmg">
-                                <rect key="frame" x="185" y="123" width="240" height="128"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="240" id="ecR-Zx-Cg3"/>
-                                </constraints>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="launch2" translatesAutoresizingMaskIntoConstraints="NO" id="7EO-5y-c2r">
+                                <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="w47-4H-gmg" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="103" id="Lwj-Kb-4xw"/>
-                            <constraint firstItem="w47-4H-gmg" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" constant="185" id="ODM-f2-d0q"/>
-                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="w47-4H-gmg" secondAttribute="bottom" constant="69" id="kMQ-ON-6Hv"/>
+                            <constraint firstItem="7EO-5y-c2r" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="Irz-Rr-hfI"/>
+                            <constraint firstItem="7EO-5y-c2r" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="m1b-HW-l8F"/>
                         </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="115.59220389805098" y="290.39999999999998"/>
+            <point key="canvasLocation" x="115.14084507042254" y="288.75"/>
         </scene>
     </scenes>
     <resources>
-        <image name="LaunchScreen" width="736" height="414"/>
+        <image name="launch2" width="1704" height="960"/>
     </resources>
 </document>

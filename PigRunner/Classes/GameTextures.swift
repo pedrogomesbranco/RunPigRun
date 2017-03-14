@@ -46,31 +46,31 @@ class GameTextures {
     
     // MARK: Animation textures setup
     private func setupRunTextures() {
-        for i in 1...10 {
-            runTextures.append(SKTexture.init(imageNamed: "Running 0\(i)"))
+        for i in 1...4 {
+            runTextures.append(SKTexture.init(imageNamed: "Runner 0\(i)"))
         }
     }
     
     private func setupJumpTextures() {
-        for i in 1...10 {
+        for i in 1...12 {
             jumpTextures.append(SKTexture.init(imageNamed: "Running 0\(i)"))
         }
     }
     
     private func setupSlideTextures() {
-        for i in 1...10 {
+        for i in 1...12 {
             slideTextures.append(SKTexture.init(imageNamed: "Running 0\(i)"))
         }
     }
     
     private func setupIdleTextures() {
-        for i in 1...10 {
+        for i in 1...12 {
             idleTextures.append(SKTexture.init(imageNamed: "Running 0\(i)"))
         }
     }
     
     private func setupDieTextures() {
-        for i in 1...10 {
+        for i in 1...12 {
             dieTextures.append(SKTexture.init(imageNamed: "Running 0\(i)"))
         }
     }

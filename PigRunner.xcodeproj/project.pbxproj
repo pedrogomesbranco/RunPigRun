@@ -413,7 +413,7 @@
 				TargetAttributes = {
 					645C33D31DCFD0A600ABA4D7 = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = Z7E3V3347K;
+						DevelopmentTeam = 258X7LU8QG;
 						LastSwiftMigration = 0810;
 						ProvisioningStyle = Automatic;
 					};
@@ -695,7 +695,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = Z7E3V3347K;
+				DEVELOPMENT_TEAM = 258X7LU8QG;
 				INFOPLIST_FILE = PigRunner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -717,7 +717,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = Z7E3V3347K;
+				DEVELOPMENT_TEAM = 258X7LU8QG;
 				INFOPLIST_FILE = PigRunner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
