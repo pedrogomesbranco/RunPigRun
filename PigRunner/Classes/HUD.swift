@@ -18,6 +18,8 @@ class HUD: SKNode {
   private var coinsLabel = SKLabelNode()
   private var lastLifeX: CGFloat = 0.0
   private var lifesLabel: SKLabelNode!
+  private var lifeNode = SKSpriteNode()
+
   
   // MARK: - Public Properties
   internal let pauseButton = PauseButton()
@@ -80,7 +82,7 @@ class HUD: SKNode {
     self.scoreLabel = GameFonts.sharedInstance.createScoreLabel(score: 0)
     
     let offsetX = self.hudBackground.size.width/2
-    let offsetY = self.hudBackground.size.height/2 - 80
+    let offsetY = self.hudBackground.size.height/2 - 60
     
     self.scoreLabel.position = CGPoint(x: offsetX, y: offsetY)
     
@@ -88,19 +90,20 @@ class HUD: SKNode {
   }
   
   private func setupCurrentLife(lifes: Int) {
-    let xPosition = self.coinsCollected.position.x + self.currentLife.size.width/10
-    let yPosition = self.coinsCollected.position.y - 75
-    let lifeNode = SKSpriteNode(imageNamed: "apple")
-    lifeNode.anchorPoint = .zero
-    lifeNode.setScale(0.25)
-    lifeNode.zPosition = GameLayer.Interface
+    let xPosition = self.coinsCollected.position.x + self.currentLife.size.width/10 + 10
+    let yPosition = self.coinsCollected.position.y - 85
+    self.lifeNode = SKSpriteNode(imageNamed: "apple")
+    self.lifeNode.anchorPoint = .zero
+    self.lifeNode.setScale(0.25)
+    self.lifeNode.zPosition = GameLayer.Interface
     
-    lifesLabel = SKLabelNode(text: "x\(lifes)")
-    lifesLabel.fontSize = 120
-    lifesLabel.position = CGPoint(x: lifeNode.position.x+lifeNode.frame.width, y: lifeNode.position.y)
-    lifesLabel.zPosition = GameLayer.Interface
+    self.lifesLabel = SKLabelNode(fontNamed: "Space Comics")
+    self.lifesLabel.fontSize = 52
+    self.lifesLabel.text = "X\(lifes)"
+    self.lifesLabel.position = CGPoint(x: lifeNode.position.x+lifeNode.frame.width - 100, y: lifeNode.position.y + 20)
+    self.lifesLabel.zPosition = GameLayer.Interface
     
-    lifeNode.position = CGPoint(x: xPosition, y: yPosition)
+    self.lifeNode.position = CGPoint(x: xPosition, y: yPosition)
     self.hudBackground.addChild(lifeNode)
     self.hudBackground.addChild(lifesLabel)
   }
@@ -110,7 +113,7 @@ class HUD: SKNode {
       return
     }
     
-    lifesLabel.text = "x\(lifes)"
+    lifesLabel.text = "X\(lifes)"
   }
   
   private func setupPauseButton() {
@@ -139,6 +142,8 @@ class HUD: SKNode {
     self.coinsCollected.isHidden = true
     self.coinsLabel.isHidden = true
     self.pauseButton.isHidden = true
+    self.lifesLabel.isHidden = true
+    self.lifeNode.isHidden = true
   }
   
   func showAll() {
@@ -146,6 +151,8 @@ class HUD: SKNode {
     self.coinsCollected.isHidden = false
     self.coinsLabel.isHidden = false
     self.pauseButton.isHidden = false
+    self.lifesLabel.isHidden = false
+    self.lifeNode.isHidden = false
   }
   
   func updateScore(score: Int) {

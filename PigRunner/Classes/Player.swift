@@ -107,7 +107,8 @@ class Player: SKSpriteNode {
     
     // Update player's score
     GameData.sharedInstance.score += Int((self.physicsBody?.velocity.dx)!/CGFloat(velocityX))
-  }
+    
+    }
   
   // MARK: - Movements
   func jump() {
@@ -159,7 +160,7 @@ class Player: SKSpriteNode {
       jumpsLeft = 2
       isRunning = true
       isGliding = false
-      changeAnimation(newTextures: runTextures, timePerFrame: 0.10, withKey: "run", restore: false, repeatCount: nil)
+      changeAnimation(newTextures: runTextures, timePerFrame: 0.15, withKey: "run", restore: false, repeatCount: nil)
     }
   }
   

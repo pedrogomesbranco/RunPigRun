@@ -139,6 +139,7 @@ class GameScene: SKScene {
             self.isPaused = false
             self.gamePaused = false
             self.hud.pauseButton.isHidden = false
+            self.hud.showAll()
         } else if self.pauseMenu.menuBtn.contains(touchLocationPauseMenu) { // Menu (Pause Menu)
             self.pauseMenu.tappedButton()
             self.updateGameData()
@@ -182,6 +183,7 @@ class GameScene: SKScene {
             self.isPaused = true
             self.gamePaused = true
             self.hud.pauseButton.isHidden = true
+            self.hud.hideAll()
             self.hud.pauseButton.tappedPauseButton()
             pauseMenu.show(at: CGPoint(x: self.cameraNode.frame.width/2, y: self.cameraNode.frame.height/2), onNode: self.cameraNode)
             self.cameraNode.addChild(pauseMenu)
