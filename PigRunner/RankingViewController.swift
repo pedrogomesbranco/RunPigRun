@@ -45,15 +45,26 @@ class RankingViewController : UIViewController, UITableViewDelegate, UITableView
         return fbConnection.friendsPlayingGame.count
     }
     
+    @IBAction func logout(_ sender: Any) {
+        self.fbConnection.logoutFacebook()
+        self.dismiss(animated: true, completion: {})
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         if (FBSDKAccessToken.current()) != nil {
             fbConnection.getPlayersScore(completion: {(result) ->Void in
                 print("total de players" + String(self.fbConnection.friendsPlayingGame.count))
                 print("reloading table view\n\n")
-                self.userTableView.reloadData()
+                if(self.fbConnection.totalPlayers == self.fbConnection.friendsPlayingGame.count){
+                    self.sortByScore()
+                    self.userTableView.reloadData()
+                }
             })
         }
+    }
+    
+    private func sortByScore(){
+        fbConnection.friendsPlayingGame.sort(by: {$0.userScore! > $1.userScore!})
     }
     
     @IBAction func didTapButton(_ sender: UIButton) {

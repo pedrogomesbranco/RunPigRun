@@ -55,6 +55,7 @@ class MenuScene: SKScene {
       self.setupMenuScene()
       isLoaded = true
     }
+    reloadButtons()
     resetActives()
     GameAudio.sharedInstance.playBackgroundMusic(filename: Music.BackgroundMusic)
   }
@@ -155,13 +156,40 @@ class MenuScene: SKScene {
     
   }
   
+  //show either facebook button or ranking button
+  private func reloadButtons(){
+    if (FBSDKAccessToken.current()) == nil {
+      if(self.rankingButton != nil){
+        self.rankingButton.removeFromParent()
+      }
+      facebookButton = SKSpriteNode(imageNamed: "facebook")
+      facebookButton.position = CGPoint(x: 550, y: self.size.height/2 - 400)
+      facebookButton.setScale(4)
+      facebookButton.zPosition = GameLayer.Interface
+      facebookButton.size.height = 280
+      facebookButton.size.width = 240
+      self.addChild(facebookButton)
+    }
+    else{
+      if(self.facebookButton != nil){
+        self.facebookButton.removeFromParent()
+      }
+      rankingButton = SKSpriteNode(imageNamed: "rankingsbutton-1")
+      rankingButton.position = CGPoint(x: 550, y: self.size.height/2 - 400)
+      rankingButton.setScale(4)
+      rankingButton.zPosition = GameLayer.Interface
+      rankingButton.size.height = 280
+      rankingButton.size.width = 240
+      self.addChild(rankingButton)
+    }
+  }
+  
   // MARK: - User Interaction
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
     let touch = touches.first!
     let touchLocation = touch.location(in: self)
     //        let touchLocationInRanking = touch.location(in: self.rankingScene.rankingNode)
     let touchLocationInTutorial = touch.location(in: self.tutorialScene.tutorialNode)
-    
     
     if tutorialIsActive {
       if self.tutorialScene.gotItButton.contains(touchLocationInTutorial) {
@@ -214,6 +242,7 @@ class MenuScene: SKScene {
   
   // MARK: - Switch scenes
   private func loadGameScene() {
+    
     let gameScene = GameScene(fileNamed: "GameScene")!
     gameScene.scaleMode = .aspectFill
     gameScene.viewController = self.viewController

@@ -22,6 +22,7 @@ class FacebookConnection{
     var loggedUser: FacebookUser?
     var friendsPlayingGame = [FacebookUser]()
     var loginManager:FBSDKLoginManager?
+    var totalPlayers : Int!
     
     // Await Get Players Score
     func getPlayersScore(completion: @escaping (_ result: ()) -> Void){
@@ -40,6 +41,7 @@ class FacebookConnection{
                 
                 let resultdict = result as! NSDictionary!
                 let data : NSArray = resultdict!.object(forKey: "data") as! NSArray
+                self.totalPlayers = data.count
                 //                prints JSON with all players
                 //                print(data.description)
                 
@@ -173,5 +175,13 @@ class FacebookConnection{
             let fbLoginResult: FBSDKLoginManagerLoginResult = result!
             print(fbLoginResult.grantedPermissions)
         }
+    }
+    
+    // Logout from Facebook
+    func logoutFacebook(){
+        if(loginManager == nil){
+            loginManager = FBSDKLoginManager.init()
+        }
+        loginManager?.logOut()
     }
 }
