@@ -191,6 +191,8 @@ class MenuScene: SKScene {
     //        let touchLocationInRanking = touch.location(in: self.rankingScene.rankingNode)
     let touchLocationInTutorial = touch.location(in: self.tutorialScene.tutorialNode)
     
+    let tutorialPref = GamePreferences.sharedInstance.getTutorialPrefs()
+    
     if tutorialIsActive {
       if self.tutorialScene.gotItButton.contains(touchLocationInTutorial) {
         self.tutorialScene.tutorialNode.removeFromParent()
