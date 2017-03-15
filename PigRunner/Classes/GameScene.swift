@@ -207,7 +207,6 @@ class GameScene: SKScene {
             self.hud.showAll()
             self.gamePaused = false
             self.isPaused = false
-            self.gameOver.hideAll()
             GameAudio.sharedInstance.playBackgroundMusic(filename: Music.BackgroundMusic)
         }
     }
@@ -228,7 +227,7 @@ class GameScene: SKScene {
     }
     
     private func checkDeath() {
-        if player.life <= -100 {
+        if player.life <= 0 {
             if !gamePaused {
                 whiteBg.anchorPoint = CGPoint(x: 0.5, y: 0.5)
                 whiteBg.position = CGPoint(x: self.cameraNode.frame.width/2, y: self.cameraNode.frame.height/2)
@@ -241,7 +240,8 @@ class GameScene: SKScene {
                 player.die()
                 // Display GameOver Overlay
                 self.gameOver.show(at: CGPoint(x: self.cameraNode.frame.width/2, y: self.cameraNode.frame.height/2), onNode: self.cameraNode, withCoins: GameData.sharedInstance.coins)
-                self.gameOver.zPosition = GameLayer.Interface+2
+                self.cameraNode.addChild(gameOver)
+                self.gameOver.zPosition = GameLayer.Interface
                 self.hud.hideAll()
             }
         }

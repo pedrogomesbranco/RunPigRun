@@ -137,7 +137,7 @@ class Player: SKSpriteNode {
             }
                 //second jump
             else if (jumpsLeft == 1){
-                setPlayerVelocity(to: 900)
+                setPlayerVelocity(to: 1100)
                 jumpsLeft -= 1
                 isRunning = false
                 isGliding = false

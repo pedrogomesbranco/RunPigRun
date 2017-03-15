@@ -11,15 +11,9 @@ import SpriteKit
 class GameOver: SKNode {
     // MARK: - Properties
     var gameOverNode: SKNode!
-    var continueBtn: SKSpriteNode!
     var menuBtn: SKSpriteNode!
     var restartBtn: SKSpriteNode!
-    
-    var collectedCoinsLbl: SKLabelNode!
-    var earnedCoinsLbl: SKLabelNode!
     var totalCoinsLbl: SKLabelNode!
-    
-    var bloodSpatter: SKSpriteNode!
     
     // MARK: - Init
     required init?(coder aDecoder: NSCoder) {
@@ -30,13 +24,9 @@ class GameOver: SKNode {
         super.init()
         
         self.gameOverNode = SKNode(fileNamed: "GameOver")!.childNode(withName: "Overlay")
-        
         self.restartBtn = self.gameOverNode.childNode(withName: "restartBtn") as! SKSpriteNode
         self.menuBtn = self.gameOverNode.childNode(withName: "menuBtn") as! SKSpriteNode
-        
         self.totalCoinsLbl = self.gameOverNode.childNode(withName: "totalCoinsLbl") as! SKLabelNode
-        
-        let totalCoins = GameData.sharedInstance.totalCoins
     }
     
     // MARK: - Methods
@@ -48,40 +38,17 @@ class GameOver: SKNode {
         whiteBg.position = CGPoint(x: 0, y: 0)
         whiteBg.fillColor = UIColor.white
         whiteBg.zPosition = GameLayer.Interface-1
-        
-        bloodSpatter = SKSpriteNode(imageNamed: "blood_spatter")
-        bloodSpatter.size = node.calculateAccumulatedFrame().size
-        bloodSpatter.setScale(0)
-        bloodSpatter.position = pos
-        bloodSpatter.zPosition = GameLayer.Interface-1
-        
-        node.addChild(bloodSpatter)
-        
-        let earnedCoins = Int(Double(coins)*0.1)
-        
-        
-        GameData.sharedInstance.totalCoins += Int(coins + earnedCoins)
+        GameData.sharedInstance.totalCoins += Int(coins)
         GameData.sharedInstance.save()
         
         self.totalCoinsLbl.text = String(GameData.sharedInstance.totalCoins)
+        self.gameOverNode.position = pos
+        self.gameOverNode.zPosition = GameLayer.Interface
+        self.gameOverNode.setScale(0)
         
-        let scaleX = SKAction.scaleX(to: 2.0, duration: 0.08)
-        let scaleY = SKAction.scaleY(to: 3.5, duration: 0.08)
-        let scaleSequence = SKAction.sequence([scaleX, scaleY])
-        bloodSpatter.run(scaleSequence, completion: {
-            self.gameOverNode.position = pos
-            self.gameOverNode.removeFromParent()
-            self.gameOverNode.zPosition = GameLayer.Interface
-            self.gameOverNode.setScale(0)
-            
-            node.addChild(self.gameOverNode)
-            
-            self.gameOverNode.run(SKAction.scale(to: 1.1, duration: 0.5))
-        })
-    }
-    
-    func hideAll() {
-        self.bloodSpatter.removeFromParent()
+        node.addChild(self.gameOverNode)
+        
+        self.gameOverNode.run(SKAction.scale(to: 1.1, duration: 0.5))
     }
     
     func tappedButton() {
