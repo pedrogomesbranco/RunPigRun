@@ -27,10 +27,10 @@ class GameScene: SKScene {
     private var timeStep = 0
     
     // View Controller
-    var viewController : GameViewController!
+    var viewController: GameViewController!
     
     // Facebook Configuration
-    var fbConnection : FacebookConnection!
+    var fbConnection: FacebookConnection!
     
     
     // Shared Instance
@@ -68,7 +68,13 @@ class GameScene: SKScene {
         player = Player(imageName: "Running 01",
                         pos: CGPoint(x: groundHeight+5, y: -546.929382324219),
                         categoryBitMask: ColliderType.Player,
-                        collisionBitMask: ColliderType.Ground | ColliderType.Spikes | ColliderType.Life | ColliderType.Steamroller)
+                        collisionBitMask: ColliderType.Ground
+                          | ColliderType.KnifesBox
+                          | ColliderType.NetTrap
+                          | ColliderType.Hydrant
+                          | ColliderType.BearTrap
+                          | ColliderType.Life
+                          | ColliderType.Steamroller)
         blocksGenerator.fgNode.addChild(player)
         
         // Setup camera
@@ -78,10 +84,10 @@ class GameScene: SKScene {
         
         // HUD
         self.cameraNode.addChild(self.hudNode)
-        self.hud = HUD(lives: player.life, coinsCollected: GameData.sharedInstance.coins, score: 0, lifes: self.player.life)
+        self.hud = HUD(coinsCollected: GameData.sharedInstance.coins, score: 0, lifes: self.player.life)
         self.hudNode.addChild(self.hud)
         self.hud.showAll()
-        //self.hud.updateLife(life: self.player.life)
+        self.hud.updateLife(life: player.life)
         self.hudNode.zPosition = 1
         
         self.cameraNode.zPosition = -1
@@ -108,13 +114,12 @@ class GameScene: SKScene {
             
             timeStep += 1
         }
-        else{
+        else {
             self.isPaused = true
             self.gamePaused = true
         }
         
         currentScene = self
-        
     }
     
     // MARK: - User Interaction
