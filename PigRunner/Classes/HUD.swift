@@ -150,12 +150,14 @@ class HUD: SKNode {
         self.scoreLabel.isHidden = true
         self.coinsCollected.isHidden = true
         self.coinsLabel.isHidden = true
+        self.pauseButton.isHidden = true
     }
     
     func showAll() {
         self.scoreLabel.isHidden = false
         self.coinsCollected.isHidden = false
         self.coinsLabel.isHidden = false
+        self.pauseButton.isHidden = false
     }
     
     func updateScore(score: Int) {

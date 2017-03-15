@@ -34,17 +34,14 @@ class GameOver: SKNode {
         GameAudio.sharedInstance.pauseBackgroundMusic()
         self.run(GameAudio.sharedInstance.soundGameOver)
         
-        let whiteBg = SKShapeNode(rect: CGRect(x: 0, y: 0, width: kViewSizeWidth, height: kViewSizeHeight))
-        whiteBg.position = CGPoint(x: 0, y: 0)
-        whiteBg.fillColor = UIColor.white
-        whiteBg.zPosition = GameLayer.Interface-1
         GameData.sharedInstance.totalCoins += Int(coins)
         GameData.sharedInstance.save()
         
         self.totalCoinsLbl.text = String(GameData.sharedInstance.totalCoins)
         self.gameOverNode.position = pos
+        self.gameOverNode.removeFromParent()
         self.gameOverNode.zPosition = GameLayer.Interface
-        self.gameOverNode.setScale(0)
+        self.gameOverNode.setScale(1)
         
         node.addChild(self.gameOverNode)
         

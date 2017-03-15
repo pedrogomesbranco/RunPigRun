@@ -240,7 +240,6 @@ class GameScene: SKScene {
                 player.die()
                 // Display GameOver Overlay
                 self.gameOver.show(at: CGPoint(x: self.cameraNode.frame.width/2, y: self.cameraNode.frame.height/2), onNode: self.cameraNode, withCoins: GameData.sharedInstance.coins)
-                self.cameraNode.addChild(gameOver)
                 self.gameOver.zPosition = GameLayer.Interface
                 self.hud.hideAll()
             }
