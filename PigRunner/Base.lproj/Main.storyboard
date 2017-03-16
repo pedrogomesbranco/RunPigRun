@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -60,8 +61,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="483" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="NAME" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.29999999999999999" translatesAutoresizingMaskIntoConstraints="NO" id="aS7-Xh-Rwg">
-                                                    <rect key="frame" x="159" y="8" width="317" height="31"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NAME" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.29999999999999999" translatesAutoresizingMaskIntoConstraints="NO" id="aS7-Xh-Rwg">
+                                                    <rect key="frame" x="159" y="8" width="149" height="31"/>
                                                     <fontDescription key="fontDescription" name="SpaceComics" family="Space Comics" pointSize="13"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -75,8 +76,8 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="1231" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y17-pI-O9v">
-                                                    <rect key="frame" x="564" y="10" width="87" height="28"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1231" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y17-pI-O9v">
+                                                    <rect key="frame" x="396" y="10" width="87" height="28"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="87" id="IG9-mW-Ik9"/>
                                                     </constraints>
@@ -132,8 +133,11 @@
                                 <rect key="frame" x="115" y="20" width="46" height="30"/>
                                 <state key="normal" title="Button"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="headTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="89X-JO-64V">
-                                <rect key="frame" x="231" y="28" width="317" height="16"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="headTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="89X-JO-64V">
+                                <rect key="frame" x="200" y="27" width="348" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="89X-JO-64V" secondAttribute="height" multiplier="317:16" id="Xgb-Y8-w8f"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="SpaceComics" family="Space Comics" pointSize="10"/>
                                 <state key="normal" image="DISCONNECT FROM YOUR">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -142,22 +146,26 @@
                                     <action selector="logout:" destination="SdN-lz-SQE" eventType="touchUpInside" id="t1C-Je-jS5"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bordinha" translatesAutoresizingMaskIntoConstraints="NO" id="gzL-bp-xV5">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bordinha" translatesAutoresizingMaskIntoConstraints="NO" id="gzL-bp-xV5">
                                 <rect key="frame" x="60" y="54" width="494" height="234"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="PUq-ij-dyg" firstAttribute="leading" secondItem="taM-9X-TE7" secondAttribute="leading" constant="12" id="1Mb-PF-lKI"/>
-                            <constraint firstItem="89X-JO-64V" firstAttribute="leading" secondItem="pGI-xU-BAg" secondAttribute="trailing" constant="71" id="Gdk-0b-Qca"/>
+                            <constraint firstAttribute="trailing" secondItem="gzL-bp-xV5" secondAttribute="trailing" constant="14" id="8Na-4M-dek"/>
+                            <constraint firstItem="gzL-bp-xV5" firstAttribute="height" secondItem="145-Hx-z8l" secondAttribute="height" constant="11" id="Ipu-tb-mP4"/>
+                            <constraint firstItem="gzL-bp-xV5" firstAttribute="width" secondItem="145-Hx-z8l" secondAttribute="width" constant="11" id="LIM-bM-dI9"/>
                             <constraint firstItem="pGI-xU-BAg" firstAttribute="centerY" secondItem="PUq-ij-dyg" secondAttribute="centerY" id="NC3-iO-RVj"/>
                             <constraint firstItem="pGI-xU-BAg" firstAttribute="leading" secondItem="PUq-ij-dyg" secondAttribute="trailing" constant="60" id="PmR-e9-SWc"/>
                             <constraint firstItem="145-Hx-z8l" firstAttribute="trailing" secondItem="taM-9X-TE7" secondAttribute="trailingMargin" id="X94-JF-Y40"/>
+                            <constraint firstItem="89X-JO-64V" firstAttribute="trailing" secondItem="taM-9X-TE7" secondAttribute="trailingMargin" id="ZBY-AW-mY5"/>
+                            <constraint firstItem="pGa-pY-prj" firstAttribute="top" secondItem="gzL-bp-xV5" secondAttribute="bottom" constant="32" id="aaw-0a-ohI"/>
                             <constraint firstItem="145-Hx-z8l" firstAttribute="top" secondItem="PUq-ij-dyg" secondAttribute="bottom" id="dOD-me-C4v"/>
                             <constraint firstItem="145-Hx-z8l" firstAttribute="leading" secondItem="PUq-ij-dyg" secondAttribute="trailing" constant="10" id="g6z-CW-MiX"/>
                             <constraint firstItem="pGa-pY-prj" firstAttribute="top" secondItem="145-Hx-z8l" secondAttribute="bottom" constant="40" id="lrk-n8-OGI"/>
                             <constraint firstItem="89X-JO-64V" firstAttribute="centerY" secondItem="PUq-ij-dyg" secondAttribute="centerY" constant="0.5" id="nT6-ff-xpC"/>
+                            <constraint firstItem="89X-JO-64V" firstAttribute="leading" secondItem="taM-9X-TE7" secondAttribute="leading" constant="200" id="vGy-9e-37K"/>
                             <constraint firstItem="PUq-ij-dyg" firstAttribute="top" secondItem="taM-9X-TE7" secondAttribute="top" constant="14" id="yiF-wk-7FH"/>
                         </constraints>
                     </view>
@@ -168,7 +176,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3OY-ch-PUx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="708.80281690140851" y="20.625"/>
+            <point key="canvasLocation" x="755" y="53"/>
         </scene>
     </scenes>
     <resources>

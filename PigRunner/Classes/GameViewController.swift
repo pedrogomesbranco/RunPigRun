@@ -49,7 +49,6 @@ class GameViewController: UIViewController {
             
             self.menuTransition = SKTransition.fade(with: UIColor.black, duration: 0.25)
             
-            
         }
         
     }
@@ -91,6 +90,7 @@ class GameViewController: UIViewController {
         if(segue.identifier == "RankedViewControllerSegue"){
             if let destinationViewController = segue.destination as? RankingViewController{
                 destinationViewController.fbConnection = self.fbConnection
+                destinationViewController.menuScene = self.menuScene
             }
         }
     }

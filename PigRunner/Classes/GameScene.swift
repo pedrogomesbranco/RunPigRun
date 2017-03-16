@@ -193,16 +193,7 @@ class GameScene: SKScene {
     
     private func goToMenu() {
         self.whiteBg.removeFromParent()
-        //        let menuScene = MenuScene(size: size)
-        //        menuScene.scaleMode = .fill
-        //        menuScene.viewController = self.viewController
-        let menuScene = MenuScene(size: CGSize(width: kViewSizeWidth, height: kViewSizeHeight))
-        menuScene.scaleMode = .fill
-        menuScene.fbConnection = self.fbConnection
-        menuScene.viewController = self.viewController
-        let transition = SKTransition.fade(with: UIColor.black, duration: 0.25)
-        
-        self.view?.presentScene(menuScene, transition: transition)
+        self.viewController.viewWillAppear(true)
     }
     
     private func continueGame() {

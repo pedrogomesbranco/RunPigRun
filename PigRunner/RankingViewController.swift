@@ -11,7 +11,8 @@ import FBSDKCoreKit
 
 class RankingViewController : UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    var fbConnection:FacebookConnection!
+    var fbConnection: FacebookConnection!
+    var menuScene: MenuScene!
     @IBOutlet weak var returnButton: UIButton!
     @IBOutlet weak var userTableView: UITableView!
     
@@ -40,15 +41,11 @@ class RankingViewController : UIViewController, UITableViewDelegate, UITableView
     }
     
     
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return fbConnection.friendsPlayingGame.count
     }
     
-    @IBAction func logout(_ sender: Any) {
-        self.fbConnection.logoutFacebook()
-        self.dismiss(animated: true, completion: {})
-    }
+
     
     override func viewWillAppear(_ animated: Bool) {
         if (FBSDKAccessToken.current()) != nil {
@@ -66,6 +63,15 @@ class RankingViewController : UIViewController, UITableViewDelegate, UITableView
     private func sortByScore(){
         fbConnection.friendsPlayingGame.sort(by: {$0.userScore! > $1.userScore!})
     }
+    
+    
+    @IBAction func logout(_ sender: Any) {
+        self.fbConnection.logoutFacebook(completion: {
+            self.menuScene.changeRankingButtonToFacebookButton()
+        })
+        self.dismiss(animated: true, completion: {})
+    }
+    
     
     @IBAction func didTapButton(_ sender: UIButton) {
         self.dismiss(animated: true, completion: {})
