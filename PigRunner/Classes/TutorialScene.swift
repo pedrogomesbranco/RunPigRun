@@ -11,7 +11,6 @@ import SpriteKit
 class TutorialScene: SKNode {
     // MARK: - Properties
     var tutorialNode: SKNode!
-    
     var gotItButton: SKSpriteNode!
     
     // MARK: - Init
@@ -24,7 +23,6 @@ class TutorialScene: SKNode {
         
         self.tutorialNode = SKNode(fileNamed: "TutorialScene")!.childNode(withName: "Overlay")
         self.gotItButton = self.tutorialNode.childNode(withName: "gotItButton") as! SKSpriteNode
-        
         self.gotItButton.zPosition = GameLayer.Interface
     }
     

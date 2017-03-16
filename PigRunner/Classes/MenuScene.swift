@@ -171,10 +171,7 @@ class MenuScene: SKScene {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch = touches.first!
         let touchLocation = touch.location(in: self)
-        //        let touchLocationInRanking = touch.location(in: self.rankingScene.rankingNode)
         let touchLocationInTutorial = touch.location(in: self.tutorialScene.tutorialNode)
-        
-//        let tutorialPref = GamePreferences.sharedInstance.getTutorialPrefs()
         
         if tutorialIsActive {
             if self.tutorialScene.gotItButton.contains(touchLocationInTutorial) {
@@ -234,7 +231,6 @@ class MenuScene: SKScene {
         whiteBg.alpha = 0.3
         whiteBg.zPosition = GameLayer.Interface
         self.addChild(whiteBg)
-        
         self.tutorialIsActive = true
         tutorialScene.show(at: CGPoint(x: self.size.width/2, y: self.size.height/2), onScene: self)
         tutorialScene.zPosition = GameLayer.Interface+2
