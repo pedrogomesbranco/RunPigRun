@@ -178,10 +178,11 @@ class FacebookConnection{
     }
     
     // Logout from Facebook
-    func logoutFacebook(){
+    func logoutFacebook(completion:() -> Void){
         if(loginManager == nil){
             loginManager = FBSDKLoginManager.init()
         }
         loginManager?.logOut()
+        completion()
     }
 }
