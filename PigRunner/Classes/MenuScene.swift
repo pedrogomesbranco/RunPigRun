@@ -191,14 +191,16 @@ class MenuScene: SKScene {
             }
             else if (self.facebookButton.contains(touchLocation) && FBSDKAccessToken.current() == nil) {
                 self.viewController.fbConnection.loginFromViewController(viewController: self.viewController, completion: ({
-                    self.facebookButton.removeFromParent()
-                    self.rankingButton = SKSpriteNode(imageNamed: "rankingsbutton-1")
-                    self.rankingButton.position = CGPoint(x: 550, y: self.size.height/2 - 400)
-                    self.rankingButton.setScale(4)
-                    self.rankingButton.zPosition = GameLayer.Interface
-                    self.rankingButton.size.height = 280
-                    self.rankingButton.size.width = 240
-                    self.addChild(self.rankingButton)
+                    if(FBSDKAccessToken.current() != nil){
+                        self.facebookButton.removeFromParent()
+                        self.rankingButton = SKSpriteNode(imageNamed: "rankingsbutton-1")
+                        self.rankingButton.position = CGPoint(x: 550, y: self.size.height/2 - 400)
+                        self.rankingButton.setScale(4)
+                        self.rankingButton.zPosition = GameLayer.Interface
+                        self.rankingButton.size.height = 280
+                        self.rankingButton.size.width = 240
+                        self.addChild(self.rankingButton)
+                    }
                 }))
                 
             } else if self.settingsButton.contains(touchLocation) {
