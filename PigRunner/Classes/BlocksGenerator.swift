@@ -11,118 +11,114 @@ import SpriteKit
 import CoreImage
 
 class BlocksGenerator: SKNode {
-  // MARK: - Properties
-  var background: SKNode!
-  var backWidth: CGFloat = 0.0
-  var lastItemPosition = CGPoint.zero
-  var lastItemWidth: CGFloat = 0.0
-  var levelX: CGFloat = 0.0
-  
-  var image = UIImage()
-  
-  var bgNode = SKNode()
-  var fgNode = SKNode()
-  
-  let gameScene = GameScene.sharedInstance
-  
-  // MARK: - Init
-  init(withWorldNode worldNode: SKNode) {
-    super.init()
+    // MARK: - Properties
+    var background: SKNode!
+    var backWidth: CGFloat = 0.0
+    var lastItemPosition = CGPoint.zero
+    var lastItemWidth: CGFloat = 0.0
+    var levelX: CGFloat = 0.0
     
-    // Setup initial scene nodes variables
-    self.bgNode = worldNode.childNode(withName: "Background")!
-    self.background = self.bgNode.childNode(withName: "Block")!.copy() as! SKNode
-    self.backWidth = self.background.calculateAccumulatedFrame().width.rounded()
-    self.fgNode = worldNode.childNode(withName: "Foreground")!
+    var image = UIImage()
     
-    // Set initial value for 'lastItemPosition' to create an initial empty space
-    // on the start of a level.
-    self.lastItemPosition.x = self.backWidth * 0.4
+    var bgNode = SKNode()
+    var fgNode = SKNode()
     
-  }
-  
-  required init?(coder aDecoder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
-  }
-  
-  func setupInitialLevel() {
-    // Fill level with random blocks (coins and obstacles)
-    levelX = bgNode.childNode(withName: "Block")!.position.x + backWidth
-    while lastItemPosition.x < levelX {
-      addRandomBlockNode()
+    let gameScene = GameScene.sharedInstance
+    
+    // MARK: - Init
+    init(withWorldNode worldNode: SKNode) {
+        super.init()
+        
+        // Setup initial scene nodes variables
+        self.bgNode = worldNode.childNode(withName: "Background")!
+        self.background = self.bgNode.childNode(withName: "Block")!.copy() as! SKNode
+        self.backWidth = self.background.calculateAccumulatedFrame().width.rounded()
+        self.fgNode = worldNode.childNode(withName: "Foreground")!
+        
+        // Set initial value for 'lastItemPosition' to create an initial empty space
+        // on the start of a level.
+        self.lastItemPosition.x = self.backWidth * 0.4
+        
     }
-  }
-  
-  func createBigBlockNode(type: BlockType) {
-    let block = BlockSpawner()
-    block.spawnBlock(type, at: lastItemPosition, onNode: fgNode)
-    updateLastItem(width: block.nodeWidth)
-  }
-  
-  private func updateLastItem(width: CGFloat) {
-    lastItemPosition.x = lastItemPosition.x + width
-    lastItemWidth = width
-  }
-  
-  func addRandomBlockNode() {
-    let random = Int.random(min: 1, max: 80)
-    if random <= 10 {
-      createBigBlockNode(type: .Ob1)
-    } else if random <= 20 {
-      createBigBlockNode(type: .Ob2)
-    } else if random <= 30 {
-      createBigBlockNode(type: .Ob3)
-    } else if random <= 40 {
-      createBigBlockNode(type: .Ob4)
-    } else if random <= 50 {
-      createBigBlockNode(type: .Ob5)
-    } else if random <= 60 {
-      createBigBlockNode(type: .Ob6)
-    } else if random <= 70 {
-      createBigBlockNode(type: .Ob7)
-    } else if random <= 80 {
-      createBigBlockNode(type: .Ob8)
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
-  }
-  
-  func addRandomBlockNodeWithoutLife() {
-    let random = Int.random(min: 1, max: 70)
-    if random <= 10 {
-      createBigBlockNode(type: .Ob1)
-    } else if random <= 20 {
-      createBigBlockNode(type: .Ob2)
-    } else if random <= 30 {
-      createBigBlockNode(type: .Ob3)
-    } else if random <= 40 {
-      createBigBlockNode(type: .Ob4)
-    } else if random <= 50 {
-      createBigBlockNode(type: .Ob5)
-    } else if random <= 60 {
-      createBigBlockNode(type: .Ob6)
-    } else if random <= 70 {
-      createBigBlockNode(type: .Ob7)
-    }
-  }
-  
-  func updateLevel(withCameraPosition cameraPos: CGPoint, andLife life: Int) {
-    if cameraPos.x > levelX - 1300 {
-      createBackgroundNode()
-      
-      while lastItemPosition.x < levelX {
-        if life < 3 {
-          addRandomBlockNode()
-        } else {
-          addRandomBlockNodeWithoutLife()
+    
+    func setupInitialLevel() {
+        // Fill level with random blocks (coins and obstacles)
+        levelX = bgNode.childNode(withName: "Block")!.position.x + backWidth
+        while lastItemPosition.x < levelX {
+            addRandomBlockNode()
         }
-      }
     }
-  }
-  
-  // MARK: - Background
-  func createBackgroundNode() {
-    let backNode = background.copy() as! SKNode
-    backNode.position = CGPoint(x: levelX, y: 0.0)
-    bgNode.addChild(backNode)
-    levelX += backWidth
-  }
+    
+    func createBigBlockNode(type: BlockType) {
+        let block = BlockSpawner()
+        block.spawnBlock(type, at: lastItemPosition, onNode: fgNode)
+        updateLastItem(width: block.nodeWidth)
+    }
+    
+    private func updateLastItem(width: CGFloat) {
+        lastItemPosition.x = lastItemPosition.x + width
+        lastItemWidth = width
+    }
+    
+    func addRandomBlockNode() {
+        let random = Int.random(min: 1, max: 80)
+        if random <= 10 {
+            createBigBlockNode(type: .Ob1)
+        } else if random <= 20 {
+            createBigBlockNode(type: .Ob2)
+        } else if random <= 30 {
+            createBigBlockNode(type: .Ob3)
+        } else if random <= 40 {
+            createBigBlockNode(type: .Ob4)
+        } else if random <= 50 {
+            createBigBlockNode(type: .Ob5)
+        } else if random <= 60 {
+            createBigBlockNode(type: .Ob6)
+        } else if random <= 70 {
+            createBigBlockNode(type: .Ob7)
+        } else if random <= 80 {
+            createBigBlockNode(type: .Ob8)
+        }
+    }
+    
+    func addRandomBlockNodeWithoutLife() {
+        let random = Int.random(min: 1, max: 70)
+        if random <= 10 {
+            createBigBlockNode(type: .Ob1)
+        } else if random <= 20 {
+            createBigBlockNode(type: .Ob2)
+        } else if random <= 30 {
+            createBigBlockNode(type: .Ob3)
+        } else if random <= 40 {
+            createBigBlockNode(type: .Ob4)
+        } else if random <= 50 {
+            createBigBlockNode(type: .Ob5)
+        } else if random <= 60 {
+            createBigBlockNode(type: .Ob6)
+        } else if random <= 70 {
+            createBigBlockNode(type: .Ob8)
+        }
+    }
+    
+    func updateLevel(withCameraPosition cameraPos: CGPoint) {
+        if cameraPos.x > levelX - 1300 {
+            createBackgroundNode()
+            
+            while lastItemPosition.x < levelX {
+                addRandomBlockNode()
+            }
+        }
+    }
+    
+    // MARK: - Background
+    func createBackgroundNode() {
+        let backNode = background.copy() as! SKNode
+        backNode.position = CGPoint(x: levelX, y: 0.0)
+        bgNode.addChild(backNode)
+        levelX += backWidth
+    }
 }

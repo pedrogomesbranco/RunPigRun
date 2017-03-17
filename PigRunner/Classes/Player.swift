@@ -211,7 +211,7 @@ class Player: SKSpriteNode {
     // Player - Net Trap Collision
     case ColliderType.NetTrap:
       if !isInvencible {
-        life = 0
+        life -= 1
         self.run(GameAudio.sharedInstance.soundHurt)
       }
       
@@ -255,7 +255,7 @@ class Player: SKSpriteNode {
           break
         }
         if !isInvencible {
-          self.life = 0
+          self.life -= 1
         }
       }
       

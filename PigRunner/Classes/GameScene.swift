@@ -159,12 +159,12 @@ class GameScene: SKScene {
       self.hud.updateCoinsCollected(GameData.sharedInstance.coins)
       self.hud.updateScore(score: GameData.sharedInstance.score)
       self.hud.updateLife(life: player.life)
-      
+      print(player.life)
       if self.player.isGliding {
         self.player.glide()
       }
       
-      blocksGenerator.updateLevel(withCameraPosition: cameraNode.position, andLife: player.life)
+      blocksGenerator.updateLevel(withCameraPosition: cameraNode.position)
       
       timeStep += 1
     }
@@ -262,7 +262,8 @@ class GameScene: SKScene {
   
   private func goToMenu() {
     self.whiteBg.removeFromParent()
-    self.viewController.viewWillAppear(true)
+    let menuScene = MenuScene(size: CGSize(width: kViewSizeWidth, height: kViewSizeHeight))
+    self.view?.presentScene(menuScene)
   }
   
   private func continueGame() {
@@ -293,6 +294,7 @@ class GameScene: SKScene {
   }
   
   private func checkDeath() {
+    print(player.life)
     if player.life <= 0 {
       if !gamePaused {
         player.die()

@@ -57,7 +57,6 @@ class GameViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
         GameTextures.sharedInstance.preloadAssets(completionHandler: { (_) in
             self.skView?.presentScene(self.menuScene!)
         })

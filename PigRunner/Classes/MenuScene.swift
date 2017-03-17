@@ -51,7 +51,7 @@ class MenuScene: SKScene {
     }
     
     override func didMove(to view: SKView) {
-        fbConnection.getUserScore(completion: {})
+//        fbConnection.getUserScore(completion: {})
         if(!isLoaded){
             self.setupMenuScene()
             isLoaded = true
@@ -80,11 +80,11 @@ class MenuScene: SKScene {
         background.size = self.size
         self.addChild(background)
         
-        fbConnection.getUserScore(completion: {
-            if FBSDKAccessToken.current() != nil{
-                fbConnection.sendScore(score: UserDefaults.standard.value(forKey: "high") as! Int)
-            }
-        })
+//        fbConnection.getUserScore(completion: {
+//            if FBSDKAccessToken.current() != nil{
+//                fbConnection.sendScore(score: UserDefaults.standard.value(forKey: "high") as! Int)
+//            }
+//        })
         
         playButton = SKSpriteNode(imageNamed: "playzao")
         playButton.position = CGPoint(x: 1900, y: self.size.height/2 - 400)
