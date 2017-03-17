@@ -211,6 +211,8 @@ class MenuScene: SKScene {
                 self.soundButtonTapped()
             } else if self.musicButton.contains(touchLocation) {
                 self.musicButtonTapped()
+            } else if self.helpButton.contains(touchLocation) {
+                self.viewController.showTutorial()
             }
                 
             else {

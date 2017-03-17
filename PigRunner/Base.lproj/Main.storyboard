@@ -32,6 +32,7 @@
                     <navigationItem key="navigationItem" id="uwN-nj-mVI"/>
                     <connections>
                         <segue destination="SdN-lz-SQE" kind="presentation" identifier="RankedViewControllerSegue" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="sNZ-vd-c9S"/>
+                        <segue destination="TY9-k4-a2U" kind="presentation" identifier="tutorial" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="Ki2-kx-RVD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
@@ -179,11 +180,85 @@
             </objects>
             <point key="canvasLocation" x="754.22535211267609" y="52.5"/>
         </scene>
+        <!--Help Tut-->
+        <scene sceneID="yYK-ny-vFs">
+            <objects>
+                <viewController id="TY9-k4-a2U" customClass="HelpTut" customModule="PigRunner" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="YCS-WZ-gi4"/>
+                        <viewControllerLayoutGuide type="bottom" id="JHW-wD-KPo"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="cZe-Ds-aft">
+                        <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Fundo do ranking rev01" translatesAutoresizingMaskIntoConstraints="NO" id="mUC-jh-94F">
+                                <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d39-3c-FNK">
+                                <rect key="frame" x="12" y="14" width="43" height="43"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="43" id="Crh-BS-Ns8"/>
+                                    <constraint firstAttribute="width" constant="43" id="d5G-el-rTg"/>
+                                </constraints>
+                                <state key="normal" image="EXIT"/>
+                                <connections>
+                                    <action selector="didTapButton:" destination="TY9-k4-a2U" eventType="touchUpInside" id="hJ1-LH-Fm0"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Xc-xb-BL3" userLabel="InternView">
+                                <rect key="frame" x="69" y="57" width="489" height="239"/>
+                                <subviews>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="helptext" translatesAutoresizingMaskIntoConstraints="NO" id="99J-Lq-r6R">
+                                        <rect key="frame" x="40" y="40" width="409" height="159"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="99J-Lq-r6R" secondAttribute="trailing" constant="40" id="Baf-mH-sfd"/>
+                                    <constraint firstAttribute="bottom" secondItem="99J-Lq-r6R" secondAttribute="bottom" constant="40" id="UjC-wX-idi"/>
+                                    <constraint firstItem="99J-Lq-r6R" firstAttribute="leading" secondItem="1Xc-xb-BL3" secondAttribute="leading" constant="40" id="gkt-U3-q0y"/>
+                                    <constraint firstItem="99J-Lq-r6R" firstAttribute="top" secondItem="1Xc-xb-BL3" secondAttribute="top" constant="40" id="rOc-5V-HQd"/>
+                                </constraints>
+                            </view>
+                            <imageView userInteractionEnabled="NO" alpha="0.80000001192092896" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bordinha" translatesAutoresizingMaskIntoConstraints="NO" id="0fk-L8-3nz">
+                                <rect key="frame" x="65" y="57" width="489" height="239"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="0fk-L8-3nz" secondAttribute="height" multiplier="493:241" id="tjL-dH-wSt"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="0fk-L8-3nz" firstAttribute="top" secondItem="d39-3c-FNK" secondAttribute="bottom" id="Aw1-jv-XcJ"/>
+                            <constraint firstAttribute="trailing" secondItem="mUC-jh-94F" secondAttribute="trailing" id="Eol-QV-wFP"/>
+                            <constraint firstItem="1Xc-xb-BL3" firstAttribute="top" secondItem="d39-3c-FNK" secondAttribute="bottom" id="GTi-7I-gZO"/>
+                            <constraint firstItem="mUC-jh-94F" firstAttribute="top" secondItem="cZe-Ds-aft" secondAttribute="top" id="MKR-dt-Z1o"/>
+                            <constraint firstItem="1Xc-xb-BL3" firstAttribute="height" secondItem="0fk-L8-3nz" secondAttribute="height" id="NEc-rf-gdo"/>
+                            <constraint firstAttribute="trailing" secondItem="1Xc-xb-BL3" secondAttribute="trailing" constant="10" id="Nl8-ed-ELN"/>
+                            <constraint firstItem="mUC-jh-94F" firstAttribute="leading" secondItem="cZe-Ds-aft" secondAttribute="leading" id="Wy7-tA-PLn"/>
+                            <constraint firstItem="0fk-L8-3nz" firstAttribute="leading" secondItem="d39-3c-FNK" secondAttribute="trailing" constant="10" id="ZrW-E3-mGs"/>
+                            <constraint firstItem="d39-3c-FNK" firstAttribute="leading" secondItem="cZe-Ds-aft" secondAttribute="leading" constant="12" id="gMC-Ug-ZNi"/>
+                            <constraint firstAttribute="trailing" secondItem="0fk-L8-3nz" secondAttribute="trailing" constant="14" id="mg5-rt-joo"/>
+                            <constraint firstItem="1Xc-xb-BL3" firstAttribute="width" secondItem="0fk-L8-3nz" secondAttribute="width" id="oaX-pq-Auc"/>
+                            <constraint firstItem="JHW-wD-KPo" firstAttribute="top" secondItem="mUC-jh-94F" secondAttribute="bottom" id="wVj-IN-38h"/>
+                            <constraint firstItem="d39-3c-FNK" firstAttribute="top" secondItem="cZe-Ds-aft" secondAttribute="top" constant="14" id="yZg-7p-tGd"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="returnButton" destination="d39-3c-FNK" id="5Fy-9h-Fy8"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="m04-6Z-l5i" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="754" y="-791"/>
+        </scene>
     </scenes>
     <resources>
         <image name="DISCONNECT FROM YOUR" width="975" height="48"/>
         <image name="EXIT" width="58" height="58"/>
         <image name="Fundo do ranking rev01" width="2400" height="1800"/>
         <image name="bordinha" width="527" height="241"/>
+        <image name="helptext" width="1431" height="522"/>
     </resources>
 </document>
