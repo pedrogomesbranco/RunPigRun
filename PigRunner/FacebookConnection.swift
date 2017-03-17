@@ -127,6 +127,52 @@ class FacebookConnection{
         }
     }
     
+    func getUserScore(completion: () -> Void){
+        if(FBSDKAccessToken.current() != nil){
+            let req = FBSDKGraphRequest(graphPath:  "/" + FBSDKSettings.appID() + "/scores", parameters: ["fields": "score,user"], httpMethod: "GET")
+            
+            req?.start(completionHandler: {(connection, result, error)->Void in
+                if error != nil{
+                    print(error!)
+                    return
+                }
+                
+                if(self.friendsPlayingGame.count != 0){
+                    self.friendsPlayingGame.removeAll()
+                }
+                
+                let resultdict = result as! NSDictionary!
+                let data : NSArray = resultdict!.object(forKey: "data") as! NSArray
+                self.totalPlayers = data.count
+                //                prints JSON with all players
+                //                print(data.description)
+                
+                for i in 0 ..< data.count{
+                    let valueDict : NSDictionary = data[i] as! NSDictionary
+                    let userDic = valueDict["user"] as! [String: AnyObject]
+                    
+                    // Getting user information treatment
+                    
+                    
+                    let user = FacebookUser()
+                    
+                    user.userId = (userDic["id"] as! String!)
+                    user.userFullName = (userDic["name"] as! String!)
+                    user.userScore = (valueDict["score"] as! Int!)
+                    
+                    self.friendsPlayingGame.append(user)
+                        
+                    if(FBSDKAccessToken.current().userID == user.userId){
+                        self.loggedUser = user
+                    }
+
+                    
+                }
+            })
+            
+        }
+    }
+    
     // Request User Login to Facebook, from a View Controller
     func loginFromViewController(viewController: UIViewController, completion: @escaping () -> Void){
         if(loginManager == nil){

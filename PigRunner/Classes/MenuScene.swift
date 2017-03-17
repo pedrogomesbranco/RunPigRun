@@ -25,7 +25,7 @@ class MenuScene: SKScene {
     //    let rankingScene = RankingScene()
     let tutorialScene = TutorialScene()
     
-    let background = SKSpriteNode(imageNamed: "Background 01")
+    let background = SKSpriteNode(imageNamed: "MENUZÃO DA MASSA")
     let whiteBg = SKSpriteNode(imageNamed: "whiteBg")
     //    var cameraNode = SKCameraNode()
     
@@ -51,6 +51,7 @@ class MenuScene: SKScene {
     }
     
     override func didMove(to view: SKView) {
+        fbConnection.getUserScore(completion: {})
         if(!isLoaded){
             self.setupMenuScene()
             isLoaded = true
@@ -74,12 +75,14 @@ class MenuScene: SKScene {
         
         background.anchorPoint = CGPoint.zero
         background.position = CGPoint.zero
+        background.size = self.size
         self.addChild(background)
         
-        title = SKSpriteNode(imageNamed: "menu_title")
-        title.position = CGPoint(x: self.size.width/2, y: self.size.height/2 + title.size.height*2)
-        title.zPosition = GameLayer.Interface
-        self.addChild(title)
+        fbConnection.getUserScore(completion: {
+            if FBSDKAccessToken.current() != nil{
+                fbConnection.sendScore(score: UserDefaults.standard.value(forKey: "high") as! Int)
+            }
+        })
         
         playButton = SKSpriteNode(imageNamed: "playzao")
         playButton.position = CGPoint(x: 1900, y: self.size.height/2 - 400)

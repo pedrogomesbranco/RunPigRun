@@ -78,15 +78,19 @@ class GameScene: SKScene {
         
         self.whiteBg.addChild(cdNode)
         
-        timer = Timer.scheduledTimer(timeInterval: 0.75, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 0.55, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
         timer.fire()
     }
     
     func updateCounter (){
-        cdNode.text = String (counter)
+        if counter == 0{
+            cdNode.text = "RUN!"
+        }
+        else{
+            cdNode.text = String (counter)
+        }
         
-        
-        if(counter == 0){
+        if(counter == -1){
             timer.invalidate()
             self.whiteBg.removeFromParent()
             self.isPaused = false
