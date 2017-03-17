@@ -87,10 +87,12 @@ class MenuScene: SKScene {
         playButton = SKSpriteNode(imageNamed: "playzao")
         playButton.position = CGPoint(x: 1900, y: self.size.height/2 - 400)
         playButton.zPosition = GameLayer.Interface
+        playButton.size.height = 280
+        playButton.size.width = 240
         self.addChild(playButton)
         
         settingsButton = SKSpriteNode(imageNamed: "settingsButton-2")
-        settingsButton.position = CGPoint(x: 270, y: self.size.height/2 - 400)
+        settingsButton.position = CGPoint(x: 270, y: self.size.height/2 - 500)
         settingsButton.zPosition = GameLayer.Interface + 1
         settingsButton.setScale(4)
         settingsButton.size.height = 280
@@ -99,7 +101,7 @@ class MenuScene: SKScene {
         
         if (FBSDKAccessToken.current()) == nil {
             facebookButton = SKSpriteNode(imageNamed: "facebook")
-            facebookButton.position = CGPoint(x: 550, y: self.size.height/2 - 400)
+            facebookButton.position = CGPoint(x: 550, y: self.size.height/2 - 500)
             facebookButton.setScale(4)
             facebookButton.zPosition = GameLayer.Interface
             facebookButton.size.height = 280
@@ -108,7 +110,7 @@ class MenuScene: SKScene {
         }
         else{
             rankingButton = SKSpriteNode(imageNamed: "rankingsbutton-1")
-            rankingButton.position = CGPoint(x: 550, y: self.size.height/2 - 400)
+            rankingButton.position = CGPoint(x: 550, y: self.size.height/2 - 500)
             rankingButton.setScale(4)
             rankingButton.zPosition = GameLayer.Interface
             rankingButton.size.height = 280
@@ -117,7 +119,7 @@ class MenuScene: SKScene {
         }
         
         helpButton = SKSpriteNode(imageNamed: "help")
-        helpButton.position = CGPoint(x: 830, y: self.size.height/2 - 400)
+        helpButton.position = CGPoint(x: 830, y: self.size.height/2 - 500)
         helpButton.setScale(4)
         helpButton.zPosition = GameLayer.Interface
         helpButton.size.height = 280
@@ -150,8 +152,8 @@ class MenuScene: SKScene {
         musicButton.size.height = 280
         musicButton.size.width = 240
         
-        let playBtnScaleUp = SKAction.scale(to: 3, duration: 0.5)
-        let playBtnScaleDown = SKAction.scale(to: 3.3, duration: 0.5)
+        let playBtnScaleUp = SKAction.scale(to: 2, duration: 0.5)
+        let playBtnScaleDown = SKAction.scale(to: 1.75, duration: 0.5)
         let playBtnAnimation = SKAction.sequence([playBtnScaleUp, playBtnScaleDown])
         
         playButton.run(SKAction.repeatForever(playBtnAnimation))
@@ -162,7 +164,7 @@ class MenuScene: SKScene {
     func changeRankingButtonToFacebookButton(){
         self.rankingButton.removeFromParent()
         facebookButton = SKSpriteNode(imageNamed: "facebook")
-        facebookButton.position = CGPoint(x: 550, y: self.size.height/2 - 400)
+        facebookButton.position = CGPoint(x: 550, y: self.size.height/2 - 500)
         facebookButton.setScale(4)
         facebookButton.zPosition = GameLayer.Interface
         facebookButton.size.height = 280
@@ -194,7 +196,7 @@ class MenuScene: SKScene {
                     if(FBSDKAccessToken.current() != nil){
                         self.facebookButton.removeFromParent()
                         self.rankingButton = SKSpriteNode(imageNamed: "rankingsbutton-1")
-                        self.rankingButton.position = CGPoint(x: 550, y: self.size.height/2 - 400)
+                        self.rankingButton.position = CGPoint(x: 550, y: self.size.height/2 - 500)
                         self.rankingButton.setScale(4)
                         self.rankingButton.zPosition = GameLayer.Interface
                         self.rankingButton.size.height = 280
@@ -228,32 +230,22 @@ class MenuScene: SKScene {
         self.view?.presentScene(gameScene, transition: transition)
     }
     
-//    private func loadTutorialScene() {
-//        whiteBg.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-//        whiteBg.position = CGPoint(x: self.size.width/2, y: self.size.height/2)
-//        whiteBg.alpha = 0.3
-//        whiteBg.zPosition = GameLayer.Interface
-//        self.addChild(whiteBg)
-//        self.tutorialIsActive = true
-//        tutorialScene.show(at: CGPoint(x: self.size.width/2, y: self.size.height/2), onScene: self)
-//        tutorialScene.zPosition = GameLayer.Interface+2
-//    }
     
     private func loadSettingsMenu() {
         if(touchSettings == false){
             self.addChild(musicButton)
             self.addChild(soundButton)
             touchSettings = true
-            let soundMoveAction = SKAction.move(to: CGPoint(x: 270, y: self.size.height/2 + 140), duration: 0.25)
-            let musicMoveAction = SKAction.move(to: CGPoint(x: 270, y: self.size.height/2 - 120), duration: 0.25)
+            let soundMoveAction = SKAction.move(to: CGPoint(x: 270, y: self.size.height/2 + 70), duration: 0.25)
+            let musicMoveAction = SKAction.move(to: CGPoint(x: 270, y: self.size.height/2 - 200), duration: 0.25)
             self.soundButton.run(soundMoveAction)
             self.musicButton.run(musicMoveAction)
             
         }
         else{
             touchSettings = false
-            let soundMoveAction = SKAction.move(to: CGPoint(x: 270, y: self.size.height/2 - 400), duration: 0.25)
-            let musicMoveAction = SKAction.move(to: CGPoint(x: 270, y: self.size.height/2 - 400), duration: 0.25)
+            let soundMoveAction = SKAction.move(to: CGPoint(x: 270, y: self.size.height/2 - 500), duration: 0.25)
+            let musicMoveAction = SKAction.move(to: CGPoint(x: 270, y: self.size.height/2 - 500), duration: 0.25)
             self.soundButton.run(soundMoveAction, completion: {
                 self.soundButton.removeFromParent()
             })

@@ -27,6 +27,7 @@ class GameTextures {
     internal var idleTextures = [SKTexture]()
     internal var dieTextures = [SKTexture]()
     internal var roller = [SKTexture]()
+    internal var puff = [SKTexture]()
     
     // MARK: - Init
     init() {
@@ -46,8 +47,8 @@ class GameTextures {
     
     // MARK: Animation textures setup
     private func setupRunTextures() {
-        for i in 1...5 {
-            runTextures.append(SKTexture.init(imageNamed: "Runner 0\(i)"))
+        for i in 1...12 {
+            runTextures.append(SKTexture.init(imageNamed: "Running 0\(i)"))
         }
     }
     

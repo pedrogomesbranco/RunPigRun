@@ -31,7 +31,7 @@ class Player: SKSpriteNode {
   var emitter: SKEmitterNode!
   let gameScene = GameScene.sharedInstance
   var starTimer: Timer!
-  let bodyTexture = SKTexture(imageNamed: "Running 01")
+  let bodyTexture = SKTexture(imageNamed: "glide")
   var life: Int = 1
   
   // MARK: - Init
@@ -160,7 +160,7 @@ class Player: SKSpriteNode {
       jumpsLeft = 2
       isRunning = true
       isGliding = false
-      changeAnimation(newTextures: runTextures, timePerFrame: 0.15, withKey: "run", restore: false, repeatCount: nil)
+      changeAnimation(newTextures: runTextures, timePerFrame: 0.08, withKey: "run", restore: false, repeatCount: nil)
     }
   }
   

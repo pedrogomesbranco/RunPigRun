@@ -92,7 +92,7 @@ class HUD: SKNode {
   private func setupCurrentLife(lifes: Int) {
     let xPosition = self.coinsCollected.position.x + self.currentLife.size.width/10 + 10
     let yPosition = self.coinsCollected.position.y - 85
-    self.lifeNode = SKSpriteNode(imageNamed: "apple")
+    self.lifeNode = SKSpriteNode(imageNamed: "Apple 03")
     self.lifeNode.anchorPoint = .zero
     self.lifeNode.setScale(0.25)
     self.lifeNode.zPosition = GameLayer.Interface

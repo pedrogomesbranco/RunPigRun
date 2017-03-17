@@ -119,7 +119,7 @@ class GameScene: SKScene {
         
         // Setup player
         player = Player(imageName: "Running 01",
-                        pos: CGPoint(x: groundHeight+5, y: -546.929382324219),
+                        pos: CGPoint(x: groundHeight, y: -376.929382324219),
                         categoryBitMask: ColliderType.Player,
                         collisionBitMask: ColliderType.Ground
                           | ColliderType.KnifesBox
@@ -171,8 +171,23 @@ class GameScene: SKScene {
             self.isPaused = true
             self.gamePaused = true
         }
-        
+        speedSet()
         currentScene = self
+    }
+    
+    func speedSet(){
+        if GameData.sharedInstance.score > 1000 && GameData.sharedInstance.score < 2000{
+            player.velocityX = 750
+        }
+        else if GameData.sharedInstance.score > 2000 && GameData.sharedInstance.score < 3500{
+            player.velocityX = 900
+        }
+        else if GameData.sharedInstance.score > 3500 && GameData.sharedInstance.score < 5500{
+            player.velocityX = 1200
+        }
+        else if GameData.sharedInstance.score > 5500{
+            player.velocityX = 1400
+        }
     }
     
     // MARK: - User Interaction
@@ -258,7 +273,6 @@ class GameScene: SKScene {
             self.hud.showAll()
             self.gamePaused = false
             self.isPaused = false
-            GameAudio.sharedInstance.playBackgroundMusic(filename: Music.BackgroundMusic)
         }
     }
     
@@ -293,9 +307,6 @@ class GameScene: SKScene {
                 self.gameOver.show(at: CGPoint(x: self.cameraNode.frame.width/2, y: self.cameraNode.frame.height/2), onNode: self.cameraNode, withCoins: GameData.sharedInstance.coins)
                 self.gameOver.zPosition = GameLayer.Interface
                 self.hud.hideAll()
-                if FBSDKAccessToken.current() != nil{
-                    fbConnection.sendScore(score: UserDefaults.standard.value(forKey: "high") as! Int)
-                }
             }
         }
     }
