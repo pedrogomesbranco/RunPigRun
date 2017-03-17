@@ -7,6 +7,7 @@
 //
 
 import SpriteKit
+import FBSDKCoreKit
 
 class GameScene: SKScene {
     
@@ -21,6 +22,7 @@ class GameScene: SKScene {
     let parallax = SKSpriteNode()
     let gameOver = GameOver()
     let pauseMenu = PauseMenu()
+    var cdNode = SKLabelNode()
     
     let whiteBg =  SKSpriteNode(imageNamed: "Rectangle 2-2")
     
@@ -32,6 +34,9 @@ class GameScene: SKScene {
     // Facebook Configuration
     var fbConnection: FacebookConnection!
     
+    //Timer
+    var timer: Timer!
+    var counter = 3
     
     // Shared Instance
     static let GameSceneSharedInstance = GameScene()
@@ -47,6 +52,50 @@ class GameScene: SKScene {
         // Reset GameData for current game
         GameData.sharedInstance.reset()
         setupNodes()
+        countdownNode()
+    }
+    
+    func countdownNode (){
+        self.whiteBg.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        self.whiteBg.position = CGPoint(x: self.cameraNode.frame.width/2, y: self.cameraNode.frame.height/2)
+        self.whiteBg.alpha = 1
+        self.whiteBg.zPosition = 5
+        self.cameraNode.addChild(whiteBg)
+        
+        self.isPaused = true
+        self.gamePaused = true
+        self.hud.pauseButton.isHidden = true
+        self.hud.hideAll()
+        
+        //        var cdNode = SKLabelNode()
+        cdNode = SKLabelNode(fontNamed: "Space Comics")
+        cdNode.position = CGPoint(x: self.cameraNode.frame.width/2, y: self.cameraNode.frame.height/2)
+        cdNode.text = "3"
+        cdNode.fontSize = 150
+        cdNode.alpha = 1
+        cdNode.zPosition = 7
+        cdNode.fontColor = SKColor.black
+        
+        self.whiteBg.addChild(cdNode)
+        
+        timer = Timer.scheduledTimer(timeInterval: 0.75, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
+        timer.fire()
+    }
+    
+    func updateCounter (){
+        cdNode.text = String (counter)
+        
+        
+        if(counter == 0){
+            timer.invalidate()
+            self.whiteBg.removeFromParent()
+            self.isPaused = false
+            self.gamePaused = false
+            self.hud.pauseButton.isHidden = false
+            self.hud.showAll()
+            self.cdNode.isHidden = true
+        }
+        counter -= 1
     }
     
     // MARK: - Init
@@ -240,6 +289,9 @@ class GameScene: SKScene {
                 self.gameOver.show(at: CGPoint(x: self.cameraNode.frame.width/2, y: self.cameraNode.frame.height/2), onNode: self.cameraNode, withCoins: GameData.sharedInstance.coins)
                 self.gameOver.zPosition = GameLayer.Interface
                 self.hud.hideAll()
+                if FBSDKAccessToken.current() != nil{
+                    fbConnection.sendScore(score: UserDefaults.standard.value(forKey: "high") as! Int)
+                }
             }
         }
     }

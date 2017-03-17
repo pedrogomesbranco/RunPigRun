@@ -225,16 +225,16 @@ class MenuScene: SKScene {
         self.view?.presentScene(gameScene, transition: transition)
     }
     
-    private func loadTutorialScene() {
-        whiteBg.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        whiteBg.position = CGPoint(x: self.size.width/2, y: self.size.height/2)
-        whiteBg.alpha = 0.3
-        whiteBg.zPosition = GameLayer.Interface
-        self.addChild(whiteBg)
-        self.tutorialIsActive = true
-        tutorialScene.show(at: CGPoint(x: self.size.width/2, y: self.size.height/2), onScene: self)
-        tutorialScene.zPosition = GameLayer.Interface+2
-    }
+//    private func loadTutorialScene() {
+//        whiteBg.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+//        whiteBg.position = CGPoint(x: self.size.width/2, y: self.size.height/2)
+//        whiteBg.alpha = 0.3
+//        whiteBg.zPosition = GameLayer.Interface
+//        self.addChild(whiteBg)
+//        self.tutorialIsActive = true
+//        tutorialScene.show(at: CGPoint(x: self.size.width/2, y: self.size.height/2), onScene: self)
+//        tutorialScene.zPosition = GameLayer.Interface+2
+//    }
     
     private func loadSettingsMenu() {
         if(touchSettings == false){

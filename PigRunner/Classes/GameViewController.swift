@@ -25,8 +25,11 @@ class GameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         prepareScene()
+        
+        if UserDefaults.standard.value(forKey: "high") == nil{
+            UserDefaults.standard.set(0, forKey: "high")
+        }
     }
     
     private func prepareScene(){
