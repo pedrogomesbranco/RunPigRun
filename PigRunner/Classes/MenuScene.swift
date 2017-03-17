@@ -58,6 +58,8 @@ class MenuScene: SKScene {
         }
         resetActives()
         GameAudio.sharedInstance.playBackgroundMusic(filename: Music.BackgroundMusic)
+        print(UserDefaults.standard.value(forKey: "high"))
+        print(GameData.sharedInstance.score)
     }
     
     private func resetActives(){

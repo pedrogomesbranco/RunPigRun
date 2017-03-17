@@ -25,12 +25,13 @@
 		248CA66A1E7C348B0072BBE4 /* no.wav in Resources */ = {isa = PBXBuildFile; fileRef = 248CA6691E7C348B0072BBE4 /* no.wav */; };
 		248CA66C1E7C3BB50072BBE4 /* Help.sks in Resources */ = {isa = PBXBuildFile; fileRef = 248CA66B1E7C3BB50072BBE4 /* Help.sks */; };
 		248CA66E1E7C46CB0072BBE4 /* HelpTut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248CA66D1E7C46CB0072BBE4 /* HelpTut.swift */; };
+		248CA6711E7C4F990072BBE4 /* pulo_duplo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 248CA66F1E7C4F990072BBE4 /* pulo_duplo.mp3 */; };
+		248CA6721E7C4F990072BBE4 /* pulo_simples.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 248CA6701E7C4F990072BBE4 /* pulo_simples.mp3 */; };
 		249E2D691E7C0E7F001892A2 /* Ob8.sks in Resources */ = {isa = PBXBuildFile; fileRef = 249E2D681E7C0E7F001892A2 /* Ob8.sks */; };
 		249E2D741E7C1FD7001892A2 /* apple.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 249E2D6A1E7C1FD7001892A2 /* apple.mp3 */; };
 		249E2D761E7C1FD7001892A2 /* hahaha.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 249E2D6C1E7C1FD7001892A2 /* hahaha.m4a */; };
 		249E2D771E7C1FD7001892A2 /* letsgo.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 249E2D6D1E7C1FD7001892A2 /* letsgo.m4a */; };
 		249E2D781E7C1FD7001892A2 /* ouch.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 249E2D6E1E7C1FD7001892A2 /* ouch.m4a */; };
-		249E2D791E7C1FD7001892A2 /* pulo.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 249E2D6F1E7C1FD7001892A2 /* pulo.m4a */; };
 		249E2D7A1E7C1FD7001892A2 /* track.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 249E2D701E7C1FD7001892A2 /* track.mp3 */; };
 		249E2D7B1E7C1FD7001892A2 /* truck.wav in Resources */ = {isa = PBXBuildFile; fileRef = 249E2D711E7C1FD7001892A2 /* truck.wav */; };
 		249E2D7C1E7C1FD7001892A2 /* walk.wav in Resources */ = {isa = PBXBuildFile; fileRef = 249E2D721E7C1FD7001892A2 /* walk.wav */; };
@@ -116,12 +117,13 @@
 		248CA6691E7C348B0072BBE4 /* no.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = no.wav; sourceTree = "<group>"; };
 		248CA66B1E7C3BB50072BBE4 /* Help.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Help.sks; sourceTree = "<group>"; };
 		248CA66D1E7C46CB0072BBE4 /* HelpTut.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpTut.swift; sourceTree = "<group>"; };
+		248CA66F1E7C4F990072BBE4 /* pulo_duplo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = pulo_duplo.mp3; sourceTree = "<group>"; };
+		248CA6701E7C4F990072BBE4 /* pulo_simples.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = pulo_simples.mp3; sourceTree = "<group>"; };
 		249E2D681E7C0E7F001892A2 /* Ob8.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Ob8.sks; sourceTree = "<group>"; };
 		249E2D6A1E7C1FD7001892A2 /* apple.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = apple.mp3; sourceTree = "<group>"; };
 		249E2D6C1E7C1FD7001892A2 /* hahaha.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = hahaha.m4a; sourceTree = "<group>"; };
 		249E2D6D1E7C1FD7001892A2 /* letsgo.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = letsgo.m4a; sourceTree = "<group>"; };
 		249E2D6E1E7C1FD7001892A2 /* ouch.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = ouch.m4a; sourceTree = "<group>"; };
-		249E2D6F1E7C1FD7001892A2 /* pulo.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = pulo.m4a; sourceTree = "<group>"; };
 		249E2D701E7C1FD7001892A2 /* track.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = track.mp3; sourceTree = "<group>"; };
 		249E2D711E7C1FD7001892A2 /* truck.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = truck.wav; sourceTree = "<group>"; };
 		249E2D721E7C1FD7001892A2 /* walk.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = walk.wav; sourceTree = "<group>"; };
@@ -387,8 +389,9 @@
 				248CA65E1E7C243F0072BBE4 /* fogo.mp3 */,
 				249E2D6D1E7C1FD7001892A2 /* letsgo.m4a */,
 				249E2D6E1E7C1FD7001892A2 /* ouch.m4a */,
-				249E2D6F1E7C1FD7001892A2 /* pulo.m4a */,
 				248CA6601E7C289D0072BBE4 /* fireee.mp3 */,
+				248CA66F1E7C4F990072BBE4 /* pulo_duplo.mp3 */,
+				248CA6701E7C4F990072BBE4 /* pulo_simples.mp3 */,
 				248CA6641E7C29FF0072BBE4 /* 27.10.16.mp3 */,
 				248CA6621E7C29940072BBE4 /* truck.mp3 */,
 				249E2D701E7C1FD7001892A2 /* track.mp3 */,
@@ -520,6 +523,7 @@
 				245A00A21E76F117007D0EAE /* Ob1.sks in Resources */,
 				642C23731DE636C7006DDC53 /* GameScene.sks in Resources */,
 				249E2D691E7C0E7F001892A2 /* Ob8.sks in Resources */,
+				248CA6711E7C4F990072BBE4 /* pulo_duplo.mp3 in Resources */,
 				248CA65F1E7C243F0072BBE4 /* fogo.mp3 in Resources */,
 				64AD7F6A1DFA1F830012665E /* hurt.mp3 in Resources */,
 				249E2D7A1E7C1FD7001892A2 /* track.mp3 in Resources */,
@@ -541,7 +545,6 @@
 				245A00A81E76F132007D0EAE /* Ob4.sks in Resources */,
 				248CA66A1E7C348B0072BBE4 /* no.wav in Resources */,
 				64AD7F691DFA1F830012665E /* game_over.wav in Resources */,
-				249E2D791E7C1FD7001892A2 /* pulo.m4a in Resources */,
 				645C33E51DCFD0A600ABA4D7 /* Assets.xcassets in Resources */,
 				245A00A61E76F12B007D0EAE /* Ob3.sks in Resources */,
 				249E2D7C1E7C1FD7001892A2 /* walk.wav in Resources */,
@@ -552,6 +555,7 @@
 				249E2D741E7C1FD7001892A2 /* apple.mp3 in Resources */,
 				64AD7F6B1DFA1F830012665E /* jump.wav in Resources */,
 				249E2D771E7C1FD7001892A2 /* letsgo.m4a in Resources */,
+				248CA6721E7C4F990072BBE4 /* pulo_simples.mp3 in Resources */,
 				6459DA171DFA826C00FB3A6B /* FartEmitter.sks in Resources */,
 				798E9C581DEDCB4D000BEBD0 /* PauseMenu.sks in Resources */,
 				64CEB6C71DFAE03E005BB8F1 /* Life.sks in Resources */,
