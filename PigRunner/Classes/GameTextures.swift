@@ -36,6 +36,7 @@ class GameTextures {
         self.setupSlideTextures()
         self.setupIdleTextures()
         self.setupDieTextures()
+        self.setupPuff()
     }
     
     func preloadAssets(completionHandler:@escaping (Bool) -> Void) {
@@ -79,6 +80,12 @@ class GameTextures {
     private func setRollerTextures(){
         for i in 0...1{
             roller.append(SKTexture.init(cgImage: "roller0\(i+1)" as! CGImage))
+        }
+    }
+    
+    private func setupPuff(){
+        for i in 1...5{
+            puff.append(SKTexture.init(imageNamed: "puff\(i)"))
         }
     }
 }

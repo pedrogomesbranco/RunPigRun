@@ -10,20 +10,20 @@ import SpriteKit
 import AVFoundation
 
 internal class Music {
-    class var BackgroundMusic: String { return "background.mp3" }
+    class var BackgroundMusic: String { return "funtrack.mp3" }
     class var BackgroundStarMusic: String { return "background_star.mp3" }
 }
 
 internal class SoundEffects {
     class var Coin: String { return "coin" }
-    class var BigCoin: String { return "big_coin" }
-    class var ExtraLife: String { return "extra_life" }
-    class var Star: String { return "star" }
-    class var Jump: String { return "jump" }
-    class var Hurt: String { return "hurt" }
+    class var BigCoin: String { return "walk.wav" }
+    class var ExtraLife: String { return "apple.mp3" }
+    class var Star: String { return "no.wav" }
+    class var Jump: String { return "pulo.m4a" }
+    class var Hurt: String { return "ouch.m4a" }
     class var GameOver: String { return "game_over" }
-    class var NewRecord: String { return "new_record" }
-    class var Purchase: String { return "purchase.mp3" }
+    class var NewRecord: String { return "letsgo.m4a" }
+    class var Purchase: String { return "hahaha.m4a" }
 }
 
 let GameAudioSharedInstance = GameAudio()
@@ -42,7 +42,7 @@ class GameAudio {
     internal let soundBigCoin = SKAction.playSoundFileNamed(SoundEffects.BigCoin, waitForCompletion: false)
     internal let soundExtraLife = SKAction.playSoundFileNamed(SoundEffects.ExtraLife, waitForCompletion: false)
     internal let soundStar = SKAction.playSoundFileNamed(SoundEffects.Star, waitForCompletion: false)
-    internal let soundJump = SKAction.playSoundFileNamed(SoundEffects.Jump, waitForCompletion: false)
+    internal let soundJump = SKAction.playSoundFileNamed(SoundEffects.Jump, waitForCompletion: true)
     internal let soundHurt = SKAction.playSoundFileNamed(SoundEffects.Hurt, waitForCompletion: true)
     internal let soundGameOver = SKAction.playSoundFileNamed(SoundEffects.GameOver, waitForCompletion: false)
     internal let soundNewRecord = SKAction.playSoundFileNamed(SoundEffects.NewRecord, waitForCompletion: false)
@@ -61,7 +61,7 @@ class GameAudio {
         } catch { }
         
         self.musicPlayer.numberOfLoops = -1
-        self.musicPlayer.volume = 0.25
+        self.musicPlayer.volume = 0.5
         self.musicPlayer.prepareToPlay()
         
         if musicPreference {
@@ -71,7 +71,7 @@ class GameAudio {
     
     func stopBackgroundMusic() {
         if self.musicPlayer.isPlaying {
-            self.musicPlayer.stop()
+            self.musicPlayer.pause()
         }
     }
     

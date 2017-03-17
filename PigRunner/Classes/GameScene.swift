@@ -85,6 +85,7 @@ class GameScene: SKScene {
     func updateCounter (){
         if counter == 0{
             cdNode.text = "RUN!"
+            self.run(GameAudio.sharedInstance.soundPurchase)
         }
         else{
             cdNode.text = String (counter)
@@ -122,12 +123,12 @@ class GameScene: SKScene {
                         pos: CGPoint(x: groundHeight, y: -376.929382324219),
                         categoryBitMask: ColliderType.Player,
                         collisionBitMask: ColliderType.Ground
-                          | ColliderType.KnifesBox
-                          | ColliderType.NetTrap
-                          | ColliderType.Hydrant
-                          | ColliderType.BearTrap
-                          | ColliderType.Life
-                          | ColliderType.Steamroller)
+                            | ColliderType.KnifesBox
+                            | ColliderType.NetTrap
+                            | ColliderType.Hydrant
+                            | ColliderType.BearTrap
+                            | ColliderType.Life
+                            | ColliderType.Steamroller)
         blocksGenerator.fgNode.addChild(player)
         
         // Setup camera
@@ -304,6 +305,7 @@ class GameScene: SKScene {
                 self.gamePaused = true
                 player.die()
                 // Display GameOver Overlay
+                player.changeAnimation(newTextures: player.puff, timePerFrame: 0.1, withKey: "puff", restore: false, repeatCount: nil)
                 self.gameOver.show(at: CGPoint(x: self.cameraNode.frame.width/2, y: self.cameraNode.frame.height/2), onNode: self.cameraNode, withCoins: GameData.sharedInstance.coins)
                 self.gameOver.zPosition = GameLayer.Interface
                 self.hud.hideAll()
@@ -338,7 +340,6 @@ class GameScene: SKScene {
         
         setCameraPosition(position: CGPoint(x: newPosition.x, y: size.height/2 + player.position.y/10 + 85))
     }
-    
 }
 
 // MARK: - SKPhysicsContactDelegate

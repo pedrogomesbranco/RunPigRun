@@ -222,12 +222,14 @@ class MenuScene: SKScene {
     
     // MARK: - Switch scenes
     private func loadGameScene() {
-        let gameScene = GameScene(fileNamed: "GameScene")!
-        gameScene.scaleMode = .aspectFill
-        gameScene.viewController = self.viewController
-        gameScene.fbConnection = self.fbConnection
-        let transition = SKTransition.fade(with: UIColor.black, duration: 0.25)
-        self.view?.presentScene(gameScene, transition: transition)
+        self.run(GameAudio.sharedInstance.soundNewRecord, completion: {
+            let gameScene = GameScene(fileNamed: "GameScene")!
+            gameScene.scaleMode = .aspectFill
+            gameScene.viewController = self.viewController
+            gameScene.fbConnection = self.fbConnection
+            let transition = SKTransition.fade(with: UIColor.black, duration: 0.25)
+            self.view?.presentScene(gameScene, transition: transition)})
+       
     }
     
     
