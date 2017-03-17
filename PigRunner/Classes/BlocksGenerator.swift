@@ -66,6 +66,7 @@ class BlocksGenerator: SKNode {
     
     func addRandomBlockNode() {
         let random = Int.random(min: 1, max: 80)
+        print(random)
         if random <= 10 {
             createBigBlockNode(type: .Ob1)
         } else if random <= 20 {
@@ -104,12 +105,16 @@ class BlocksGenerator: SKNode {
         }
     }
     
-    func updateLevel(withCameraPosition cameraPos: CGPoint) {
+    func updateLevel(withCameraPosition cameraPos: CGPoint, life: Int) {
         if cameraPos.x > levelX - 1300 {
             createBackgroundNode()
             
             while lastItemPosition.x < levelX {
-                addRandomBlockNode()
+                if life < 3{
+                    addRandomBlockNode()
+                } else{
+                    addRandomBlockNodeWithoutLife()
+                }
             }
         }
     }

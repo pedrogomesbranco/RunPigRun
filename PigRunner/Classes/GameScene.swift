@@ -164,7 +164,7 @@ class GameScene: SKScene {
         self.player.glide()
       }
       
-      blocksGenerator.updateLevel(withCameraPosition: cameraNode.position)
+        blocksGenerator.updateLevel(withCameraPosition: cameraNode.position, life: player.life)
       
       timeStep += 1
     }
