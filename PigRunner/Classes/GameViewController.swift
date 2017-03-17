@@ -88,10 +88,6 @@ class GameViewController: UIViewController {
         self.performSegue(withIdentifier: "RankedViewControllerSegue", sender: self)
     }
     
-    func showTutorial (){
-        self.performSegue(withIdentifier: "tutorial", sender: self)
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "RankedViewControllerSegue"){
             if let destinationViewController = segue.destination as? RankingViewController{

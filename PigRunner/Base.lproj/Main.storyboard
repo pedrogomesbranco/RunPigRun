@@ -19,7 +19,7 @@
         <!--Game View Controller-->
         <scene sceneID="tXr-a1-R10">
             <objects>
-                <viewController id="BV1-FR-VrT" customClass="GameViewController" customModule="PigRunner" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GameViewController" id="BV1-FR-VrT" customClass="GameViewController" customModule="PigRunner" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8aa-yV-Osq"/>
                         <viewControllerLayoutGuide type="bottom" id="qHh-Mt-9TT"/>
@@ -42,7 +42,7 @@
         <!--Ranking View Controller-->
         <scene sceneID="WhX-Ev-ILr">
             <objects>
-                <viewController id="SdN-lz-SQE" customClass="RankingViewController" customModule="PigRunner" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RankingVC" id="SdN-lz-SQE" customClass="RankingViewController" customModule="PigRunner" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="rX7-2u-SMF"/>
                         <viewControllerLayoutGuide type="bottom" id="pGa-pY-prj"/>
@@ -183,7 +183,7 @@
         <!--Help Tut-->
         <scene sceneID="yYK-ny-vFs">
             <objects>
-                <viewController id="TY9-k4-a2U" customClass="HelpTut" customModule="PigRunner" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HelpTutorialVC" id="TY9-k4-a2U" customClass="HelpTut" customModule="PigRunner" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="YCS-WZ-gi4"/>
                         <viewControllerLayoutGuide type="bottom" id="JHW-wD-KPo"/>

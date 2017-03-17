@@ -36,10 +36,10 @@ class MenuScene: SKScene {
     private var touchSettings = false
     
     // View Controller
-    var viewController : GameViewController!
+    var viewController: GameViewController!
     
     // Facebook Configuration
-    var fbConnection : FacebookConnection!
+    var fbConnection: FacebookConnection!
     
     // MARK: - Init
     required init?(coder aDecoder: NSCoder) {
@@ -48,6 +48,7 @@ class MenuScene: SKScene {
     
     override init(size: CGSize) {
         super.init(size: size)
+        self.viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "GameViewController") as! GameViewController
     }
     
     override func didMove(to view: SKView) {
@@ -190,7 +191,10 @@ class MenuScene: SKScene {
             
         else{
             if (self.rankingButton.contains(touchLocation) && FBSDKAccessToken.current() != nil) {
-                self.viewController.showRanking()
+                let vc = self.view?.window?.rootViewController!
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let rankingVC = storyboard.instantiateViewController(withIdentifier: "RankingVC") as! RankingViewController
+                vc?.present(rankingVC, animated: true, completion: nil)
                 self.rankingIsActive = true
             }
             else if (self.facebookButton.contains(touchLocation) && FBSDKAccessToken.current() == nil) {
@@ -214,7 +218,10 @@ class MenuScene: SKScene {
             } else if self.musicButton.contains(touchLocation) {
                 self.musicButtonTapped()
             } else if self.helpButton.contains(touchLocation) {
-                self.viewController.showTutorial()
+                let vc = self.view?.window?.rootViewController!
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let tutorialVC = storyboard.instantiateViewController(withIdentifier: "HelpTutorialVC") as! HelpTut
+                vc?.present(tutorialVC, animated: true, completion: nil)
             }
                 
             else {
@@ -233,7 +240,6 @@ class MenuScene: SKScene {
             gameScene.fbConnection = self.fbConnection
             let transition = SKTransition.fade(with: UIColor.black, duration: 0.25)
             self.view?.presentScene(gameScene, transition: transition)})
-       
     }
     
     
