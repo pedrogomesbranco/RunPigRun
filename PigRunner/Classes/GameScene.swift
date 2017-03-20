@@ -342,7 +342,7 @@ class GameScene: SKScene {
     let diff = targetPosition - getCameraPosition()
     let newPosition = getCameraPosition() + diff
     
-    setCameraPosition(position: CGPoint(x: newPosition.x, y: size.height/2 + player.position.y/10 + 85))
+    setCameraPosition(position: CGPoint(x: newPosition.x - 70, y: size.height/2 + player.position.y/10 + 85))
   }
 }
 

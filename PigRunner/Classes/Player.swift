@@ -209,8 +209,8 @@ class Player: SKSpriteNode {
         case ColliderType.KnifesBox:
             if !isInvencible {
                 life -= 1
-                makePlayerInvencible()
                 self.run(GameAudio.sharedInstance.soundHurt)
+                makePlayerInvencible()
             }
             
         // Player - Net Trap Collision
@@ -218,30 +218,31 @@ class Player: SKSpriteNode {
             if !isInvencible {
                 life -= 1
                 self.run(GameAudio.sharedInstance.soundHurt)
+                makePlayerInvencible()
             }
             
         // Player - Hydrant Collision
         case ColliderType.Hydrant:
             if !isInvencible {
                 life -= 1
-                makePlayerInvencible()
                 self.run(GameAudio.sharedInstance.soundHurt)
+                makePlayerInvencible()
             }
             
         // Player - Bear Trap
         case ColliderType.BearTrap:
             if !isInvencible {
                 life -= 1
-                makePlayerInvencible()
                 self.run(GameAudio.sharedInstance.soundHurt)
+                makePlayerInvencible()
             }
             
         // Player - Barbecue Collision
         case ColliderType.Barbecue:
             if !isInvencible {
                 life -= 1
-                makePlayerInvencible()
                 self.run(GameAudio.sharedInstance.soundHurt)
+                makePlayerInvencible()
             }
             
         // Player - Ground Collision
@@ -261,6 +262,8 @@ class Player: SKSpriteNode {
                 }
                 if !isInvencible {
                     self.life -= 1
+                    self.run(GameAudio.sharedInstance.soundHurt)
+                    makePlayerInvencible()
                 }
             }
             
@@ -292,7 +295,6 @@ class Player: SKSpriteNode {
         self.run(blinkForTime, completion: {
             self.isInvencible = false
             self.physicsBody?.collisionBitMask = collisions!
-            
         })
     }
 }
