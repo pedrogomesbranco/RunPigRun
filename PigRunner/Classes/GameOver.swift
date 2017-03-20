@@ -7,6 +7,7 @@
 //
 
 import SpriteKit
+import FBSDKCoreKit
 
 class GameOver: SKNode {
     // MARK: - Properties
@@ -14,6 +15,7 @@ class GameOver: SKNode {
     var menuBtn: SKSpriteNode!
     var restartBtn: SKSpriteNode!
     var totalCoinsLbl: SKLabelNode!
+    var fbConnection: FacebookConnection!
     
     // MARK: - Init
     required init?(coder aDecoder: NSCoder) {
@@ -44,9 +46,26 @@ class GameOver: SKNode {
         self.gameOverNode.zPosition = GameLayer.Interface
         self.gameOverNode.setScale(1)
         
+        //Salva no GameData o maior score
+        let a = GameData.sharedInstance.score
+        let b = UserDefaults.standard.value(forKey: "high") as! Int
         if GameData.sharedInstance.score > UserDefaults.standard.value(forKey: "high") as! Int{
-           UserDefaults.standard.set(GameData.sharedInstance.score, forKey: "high")
+            UserDefaults.standard.set(GameData.sharedInstance.score, forKey: "high")
+            let c = UserDefaults.standard.value(forKey: "high") as! Int
+            // Graph Request para asalvar no facebook o maior score
+            if (FBSDKAccessToken.current() != nil){
+                fbConnection.sendScore(score: UserDefaults.standard.value(forKey: "high") as! Int)
+                fbConnection.loggedUser?.userScore = UserDefaults.standard.value(forKey: "high") as! Int
+            }
         }
+        else {
+            GameData.sharedInstance.highScore = UserDefaults.standard.value(forKey: "high") as! Int
+            if (FBSDKAccessToken.current() != nil){
+                fbConnection.sendScore(score: UserDefaults.standard.value(forKey: "high") as! Int)
+                fbConnection.loggedUser?.userScore = UserDefaults.standard.value(forKey: "high") as! Int
+            }
+        }
+
         
         node.addChild(self.gameOverNode)
         

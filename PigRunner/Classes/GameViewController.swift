@@ -27,8 +27,21 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         prepareScene()
         
+        // Verifica se é a primeira vez do usuario no app
         if UserDefaults.standard.value(forKey: "high") == nil{
             UserDefaults.standard.set(0, forKey: "high")
+        }
+        
+        // Verifica se o usuario está conectado com facebook e recupera seus dados
+        if FBSDKAccessToken.current() != nil {
+            fbConnection.getUserScore(completion: {})
+        }
+        
+        // Verifica se tem permissao para publicar score
+        if FBSDKAccessToken.current() != nil {
+            if (UserDefaults.standard.value(forKey: "PublishPermission") == nil ){
+                UserDefaults.standard.set(false, forKey: "PublishPermission")
+            }
         }
     }
     
@@ -82,16 +95,16 @@ class GameViewController: UIViewController {
         return true
     }
     
-    func showRanking (){
-        self.performSegue(withIdentifier: "RankedViewControllerSegue", sender: self)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if(segue.identifier == "RankedViewControllerSegue"){
-            if let destinationViewController = segue.destination as? RankingViewController{
-                destinationViewController.fbConnection = self.fbConnection
-                destinationViewController.menuScene = self.menuScene
-            }
-        }
-    }
+//    func showRanking (){
+//        self.performSegue(withIdentifier: "RankedViewControllerSegue", sender: self)
+//    }
+//    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if(segue.identifier == "RankedViewControllerSegue"){
+//            if let destinationViewController = segue.destination as? RankingViewController{
+//                destinationViewController.fbConnection = self.fbConnection
+//                destinationViewController.menuScene = self.menuScene
+//            }
+//        }
+//    }
 }

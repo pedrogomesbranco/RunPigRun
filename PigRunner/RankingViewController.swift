@@ -22,6 +22,7 @@ class RankingViewController : UIViewController, UITableViewDelegate, UITableView
         self.userTableView.dataSource = self
         self.userTableView.separatorStyle = .none
         
+        print(self.fbConnection.loggedUser)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

@@ -208,7 +208,7 @@ class FacebookConnection{
     }
     
     // Request user permission to write his records in Facebook database, from a View Controller
-    func requestWritePermissionFromViewController(viewController: UIViewController){
+    func requestWritePermissionFromViewController(viewController: UIViewController, completion: @escaping () -> Void){
         if(loginManager == nil){
             loginManager = FBSDKLoginManager.init()
         }
@@ -219,7 +219,11 @@ class FacebookConnection{
                 return
             }
             let fbLoginResult: FBSDKLoginManagerLoginResult = result!
+            print(result!.grantedPermissions)
+            print(result!.grantedPermissions.description)
+            UserDefaults.standard.set(true, forKey: "PublishPermission")
             print(fbLoginResult.grantedPermissions)
+            completion()
         }
     }
     

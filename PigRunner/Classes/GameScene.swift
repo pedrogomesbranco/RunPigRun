@@ -49,6 +49,10 @@ class GameScene: SKScene {
         physicsWorld.contactDelegate = self
         physicsWorld.gravity = CGVector(dx: 0, dy: -15.0)
         
+        gameOver.fbConnection = self.fbConnection
+        
+        print(self.fbConnection)
+        
         // Reset GameData for current game
         GameData.sharedInstance.reset()
         setupNodes()
@@ -178,10 +182,10 @@ class GameScene: SKScene {
     
     func speedSet(){
         if player.velocityX < 1400 {
-            player.velocityX = 0.15094 * Double(GameData.sharedInstance.score) + Double(600)
+            player.velocityX = Int(0.15094 * Double(GameData.sharedInstance.score) + Double(600))
         }
         else{
-            player.velocityX.x = 1400
+            player.velocityX = 1400
         }
     }
     
@@ -256,17 +260,26 @@ class GameScene: SKScene {
     
     private func goToMenu() {
         self.whiteBg.removeFromParent()
-        let menuScene = MenuScene(size: CGSize(width: kViewSizeWidth, height: kViewSizeHeight))
-        self.view?.presentScene(menuScene)
+//        let menuScene = MenuScene(size: CGSize(width: kViewSizeWidth, height: kViewSizeHeight))
+//        self.view?.presentScene(menuScene)
+        self.viewController.viewWillAppear(true)
+
     }
     
     
     private func restartGame() {
         self.whiteBg.removeFromParent()
+//        let gameScene = GameScene(fileNamed: "GameScene")!
+//        gameScene.scaleMode = .aspectFill
+//        
+//        self.view?.presentScene(gameScene)
         let gameScene = GameScene(fileNamed: "GameScene")!
         gameScene.scaleMode = .aspectFill
-        
-        self.view?.presentScene(gameScene)
+        gameScene.viewController = self.viewController
+        gameScene.fbConnection = self.fbConnection
+        let transition = SKTransition.fade(with: UIColor.black, duration: 0.25)
+        self.view?.presentScene(gameScene, transition: transition)
+        self.removeFromParent()
     }
     
     private func updateGameData() {

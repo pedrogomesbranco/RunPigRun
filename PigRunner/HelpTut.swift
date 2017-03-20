@@ -11,7 +11,7 @@ import FBSDKCoreKit
 
 class HelpTut: UIViewController{
     
-    var menuScene: MenuScene!
+//    var menuScene: MenuScene!
     @IBOutlet weak var returnButton: UIButton!
     
     override func viewDidLoad() {

@@ -55,8 +55,8 @@ class MenuScene: SKScene {
         }
         resetActives()
         GameAudio.sharedInstance.playBackgroundMusic(filename: Music.BackgroundMusic)
-        print(UserDefaults.standard.value(forKey: "high"))
-        print(GameData.sharedInstance.score)
+//        print(UserDefaults.standard.value(forKey: "high"))
+//        print(GameData.sharedInstance.score)
     }
     
     private func resetActives(){
@@ -175,6 +175,8 @@ class MenuScene: SKScene {
             let vc = self.view?.window?.rootViewController!
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let rankingVC = storyboard.instantiateViewController(withIdentifier: "RankingVC") as! RankingViewController
+            rankingVC.fbConnection = self.fbConnection
+            rankingVC.menuScene = self
             vc?.present(rankingVC, animated: true, completion: nil)
             self.rankingIsActive = true
         }
@@ -189,6 +191,24 @@ class MenuScene: SKScene {
                     self.rankingButton.size.height = 280
                     self.rankingButton.size.width = 240
                     self.addChild(self.rankingButton)
+                    
+                    self.fbConnection.requestWritePermissionFromViewController(viewController: self.viewController, completion: {
+                        self.fbConnection.getUserScore(completion: {
+                            var localScore = UserDefaults.standard.value(forKey: "high") as! Int
+                            if((self.fbConnection.loggedUser?.userScore)! > localScore){
+                                localScore = (self.fbConnection.loggedUser?.userScore)!
+                                
+                                UserDefaults.standard.set((self.fbConnection.loggedUser?.userScore)!, forKey: "high")
+                                GameData.sharedInstance.highScore = UserDefaults.standard.value(forKey: "high") as! Int
+                                
+                            }
+                            else{
+                                GameData.sharedInstance.highScore = UserDefaults.standard.value(forKey: "high") as! Int
+                                self.fbConnection.loggedUser?.userScore = localScore
+                                self.fbConnection.sendScore(score: localScore)
+                            }
+                        })
+                    })
                 }
             }))
             
@@ -202,6 +222,7 @@ class MenuScene: SKScene {
             let vc = self.view?.window?.rootViewController!
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let tutorialVC = storyboard.instantiateViewController(withIdentifier: "HelpTutorialVC") as! HelpTut
+//            tutorialVC.menuScene = self
             vc?.present(tutorialVC, animated: true, completion: nil)
         }
             
