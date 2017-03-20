@@ -17,8 +17,6 @@ class GameTextures {
     }
     
     // MARK: - Public properties
-    // Texture Atlas
-    let pigAnimationAtlas = SKTextureAtlas(named: "Pig")
     
     // Texture Arrays
     internal var runTextures = [SKTexture]()
@@ -39,12 +37,6 @@ class GameTextures {
         self.setupPuffTextures()
     }
     
-    func preloadAssets(completionHandler:@escaping (Bool) -> Void) {
-        pigAnimationAtlas.preload(completionHandler: {
-            print("Animations atlas pre-loaded.")
-            completionHandler(true)
-        })
-    }
     
     // MARK: Animation textures setup
     private func setupRunTextures() {

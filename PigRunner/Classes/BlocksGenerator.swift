@@ -65,7 +65,7 @@ class BlocksGenerator: SKNode {
     }
     
     func addRandomBlockNode() {
-        let random = Int.random(min: 1, max: 80)
+        let random = Int.random(min: 1, max: 70)
         
         if random <= 10 {
             createBigBlockNode(type: .Ob1)
@@ -80,14 +80,12 @@ class BlocksGenerator: SKNode {
         } else if random <= 60 {
             createBigBlockNode(type: .Ob6)
         } else if random <= 70 {
-            createBigBlockNode(type: .Ob8)
-        } else if random <= 80 {
             createBigBlockNode(type: .Ob7)
         }
     }
     
     func addRandomBlockNodeWithoutLife() {
-        let random = Int.random(min: 1, max: 70)
+        let random = Int.random(min: 1, max: 60)
         if random <= 10 {
             createBigBlockNode(type: .Ob1)
         } else if random <= 20 {
@@ -100,8 +98,6 @@ class BlocksGenerator: SKNode {
             createBigBlockNode(type: .Ob5)
         } else if random <= 60 {
             createBigBlockNode(type: .Ob6)
-        } else if random <= 70 {
-            createBigBlockNode(type: .Ob8)
         }
     }
     

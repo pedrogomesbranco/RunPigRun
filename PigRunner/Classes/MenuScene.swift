@@ -21,10 +21,6 @@ class MenuScene: SKScene {
     private var coinsLabel = SKLabelNode()
     private var title = SKSpriteNode()
     private var isLoaded = false
-    //    private var pig = SKSpriteNode()
-    //    let rankingScene = RankingScene()
-    let tutorialScene = TutorialScene()
-    
     let background = SKSpriteNode(imageNamed: "MENUZÃO DA MASSA")
     let whiteBg = SKSpriteNode(imageNamed: "whiteBg")
     //    var cameraNode = SKCameraNode()
@@ -52,7 +48,7 @@ class MenuScene: SKScene {
     }
     
     override func didMove(to view: SKView) {
-//        fbConnection.getUserScore(completion: {})
+        //        fbConnection.getUserScore(completion: {})
         if(!isLoaded){
             self.setupMenuScene()
             isLoaded = true
@@ -80,12 +76,6 @@ class MenuScene: SKScene {
         background.position = CGPoint.zero
         background.size = self.size
         self.addChild(background)
-        
-//        fbConnection.getUserScore(completion: {
-//            if FBSDKAccessToken.current() != nil{
-//                fbConnection.sendScore(score: UserDefaults.standard.value(forKey: "high") as! Int)
-//            }
-//        })
         
         playButton = SKSpriteNode(imageNamed: "playzao")
         playButton.position = CGPoint(x: 1900, y: self.size.height/2 - 400)
@@ -179,55 +169,45 @@ class MenuScene: SKScene {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch = touches.first!
         let touchLocation = touch.location(in: self)
-        let touchLocationInTutorial = touch.location(in: self.tutorialScene.tutorialNode)
         
-        if tutorialIsActive {
-            if self.tutorialScene.gotItButton.contains(touchLocationInTutorial) {
-                self.tutorialScene.tutorialNode.removeFromParent()
-                self.whiteBg.removeFromParent()
-                self.loadGameScene()
-            }
+        
+        if (self.rankingButton.contains(touchLocation) && FBSDKAccessToken.current() != nil) {
+            let vc = self.view?.window?.rootViewController!
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let rankingVC = storyboard.instantiateViewController(withIdentifier: "RankingVC") as! RankingViewController
+            vc?.present(rankingVC, animated: true, completion: nil)
+            self.rankingIsActive = true
+        }
+        else if (self.facebookButton.contains(touchLocation) && FBSDKAccessToken.current() == nil) {
+            self.viewController.fbConnection.loginFromViewController(viewController: self.viewController, completion: ({
+                if(FBSDKAccessToken.current() != nil){
+                    self.facebookButton.removeFromParent()
+                    self.rankingButton = SKSpriteNode(imageNamed: "rankingsbutton-1")
+                    self.rankingButton.position = CGPoint(x: 550, y: self.size.height/2 - 500)
+                    self.rankingButton.setScale(4)
+                    self.rankingButton.zPosition = GameLayer.Interface
+                    self.rankingButton.size.height = 280
+                    self.rankingButton.size.width = 240
+                    self.addChild(self.rankingButton)
+                }
+            }))
+            
+        } else if self.settingsButton.contains(touchLocation) {
+            self.loadSettingsMenu()
+        } else if self.soundButton.contains(touchLocation) {
+            self.soundButtonTapped()
+        } else if self.musicButton.contains(touchLocation) {
+            self.musicButtonTapped()
+        } else if self.helpButton.contains(touchLocation) {
+            let vc = self.view?.window?.rootViewController!
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let tutorialVC = storyboard.instantiateViewController(withIdentifier: "HelpTutorialVC") as! HelpTut
+            vc?.present(tutorialVC, animated: true, completion: nil)
         }
             
-        else{
-            if (self.rankingButton.contains(touchLocation) && FBSDKAccessToken.current() != nil) {
-                let vc = self.view?.window?.rootViewController!
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let rankingVC = storyboard.instantiateViewController(withIdentifier: "RankingVC") as! RankingViewController
-                vc?.present(rankingVC, animated: true, completion: nil)
-                self.rankingIsActive = true
-            }
-            else if (self.facebookButton.contains(touchLocation) && FBSDKAccessToken.current() == nil) {
-                self.viewController.fbConnection.loginFromViewController(viewController: self.viewController, completion: ({
-                    if(FBSDKAccessToken.current() != nil){
-                        self.facebookButton.removeFromParent()
-                        self.rankingButton = SKSpriteNode(imageNamed: "rankingsbutton-1")
-                        self.rankingButton.position = CGPoint(x: 550, y: self.size.height/2 - 500)
-                        self.rankingButton.setScale(4)
-                        self.rankingButton.zPosition = GameLayer.Interface
-                        self.rankingButton.size.height = 280
-                        self.rankingButton.size.width = 240
-                        self.addChild(self.rankingButton)
-                    }
-                }))
-                
-            } else if self.settingsButton.contains(touchLocation) {
-                self.loadSettingsMenu()
-            } else if self.soundButton.contains(touchLocation) {
-                self.soundButtonTapped()
-            } else if self.musicButton.contains(touchLocation) {
-                self.musicButtonTapped()
-            } else if self.helpButton.contains(touchLocation) {
-                let vc = self.view?.window?.rootViewController!
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let tutorialVC = storyboard.instantiateViewController(withIdentifier: "HelpTutorialVC") as! HelpTut
-                vc?.present(tutorialVC, animated: true, completion: nil)
-            }
-                
-            else {
-                self.whiteBg.removeFromParent()
-                self.loadGameScene()
-            }
+        else {
+            self.whiteBg.removeFromParent()
+            self.loadGameScene()
         }
     }
     

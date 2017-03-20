@@ -39,7 +39,6 @@ class HUD: SKNode {
     self.zPosition = 3
     
     self.setupHUDBackground()
-    self.setupHUDCoins(collected: coinsCollected)
     self.setupHUDScore(score: score)
     self.setupPauseButton()
     self.setupCurrentLife(lifes: lifes)
@@ -57,27 +56,6 @@ class HUD: SKNode {
     self.addChild(hudBackground)
   }
   
-  private func setupHUDCoins(collected: Int) {
-    // Coins Sprite
-    self.coinsCollected = SKSpriteNode(imageNamed: "moedao")
-    self.coinsCollected.size.height *= 2.2
-    self.coinsCollected.size.width *= 2.2
-    
-    let coinOffsetX = self.coinsCollected.size.width - 350
-    let coinOffsetY = self.hudBackground.size.height/2 - 15
-    
-    self.coinsCollected.position = CGPoint(x: coinOffsetX, y: coinOffsetY)
-    
-    // Coins Collected Label
-    self.coinsLabel = GameFonts.sharedInstance.createCoinsLabel(coins: 0)
-    
-    let labelOffsetX = coinOffsetX + 80
-    let labelOffsetY = coinOffsetY - 35
-    
-    self.coinsLabel.position = CGPoint(x: labelOffsetX, y: labelOffsetY)
-    self.coinsLabel.horizontalAlignmentMode = .left
-  }
-  
   private func setupHUDScore(score: Int) {
     self.scoreLabel = GameFonts.sharedInstance.createScoreLabel(score: 0)
     
@@ -90,8 +68,8 @@ class HUD: SKNode {
   }
   
   private func setupCurrentLife(lifes: Int) {
-    let xPosition = self.coinsCollected.position.x + self.currentLife.size.width/10 + 10
-    let yPosition = self.coinsCollected.position.y - 85
+    let xPosition = self.coinsCollected.position.x + self.currentLife.size.width/10 - 60
+    let yPosition = self.coinsCollected.position.y - 20
     self.lifeNode = SKSpriteNode(imageNamed: "Apple 03")
     self.lifeNode.anchorPoint = .zero
     self.lifeNode.setScale(0.25)

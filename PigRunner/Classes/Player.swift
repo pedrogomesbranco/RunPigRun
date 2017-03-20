@@ -29,7 +29,6 @@ class Player: SKSpriteNode {
     var jumpPower: CGFloat = CGFloat(playerJumpPower)
     var jumpsLeft: Int = 2
     var soundEffectPrefs: Bool = true
-    var emitter: SKEmitterNode!
     let gameScene = GameScene.sharedInstance
     var starTimer: Timer!
     let bodyTexture = SKTexture(imageNamed: "glide")
@@ -42,21 +41,14 @@ class Player: SKSpriteNode {
     
     init(imageName: String, pos: CGPoint, categoryBitMask: UInt32, collisionBitMask: UInt32) {
         let texture = SKTexture(imageNamed: imageName)
-        let untypedEmitter: AnyObject = NSKeyedUnarchiver.unarchiveObject(withFile: Bundle.main.path(forResource: "FartEmitter", ofType: "sks")!) as AnyObject
+        
         
         super.init(texture: texture, color: .clear, size: texture.size())
-        
-        self.emitter = untypedEmitter as! SKEmitterNode
         
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         self.position = pos
         self.zPosition = 1
         self.setScale(0.65)
-        
-        emitter.particlePosition.x += self.size.width + 30
-        emitter.particlePosition.y -= self.size.height
-        
-        emitter.isHidden = true
         
         // Load Preferences & Store data
         self.soundEffectPrefs = GamePreferences.sharedInstance.getSoundEffectsPrefs()
@@ -117,11 +109,9 @@ class Player: SKSpriteNode {
     // MARK: - Movements
     func jump() {
         if jumpsLeft > 0 {
-            emitter.isHidden = false
             
             let delayInSeconds = 0.3
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delayInSeconds) {
-                self.emitter.isHidden = true
             }
             
             //first jump
@@ -153,7 +143,7 @@ class Player: SKSpriteNode {
     
     func glide() {
         if jumpsLeft == 0 {
-            self.emitter.isHidden = false
+            
             self.run(GameAudio.sharedInstance.soundJump)
             self.removeAllActions()
             changeAnimation(newTextures: runTextures, timePerFrame: 0.08, withKey: "run", restore: false, repeatCount: nil)
@@ -164,7 +154,7 @@ class Player: SKSpriteNode {
     
     func land() {
         if isAlive {
-            self.emitter.isHidden = true
+            
             jumpsLeft = 2
             isRunning = true
             isGliding = false
