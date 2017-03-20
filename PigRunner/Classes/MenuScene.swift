@@ -230,7 +230,7 @@ class MenuScene: SKScene {
             self.loadGameScene()
         }
         else {
-            GameAudio.sharedInstance.soundPurchase
+            self.run(GameAudio.sharedInstance.soundPurchase)
         }
     }
     
