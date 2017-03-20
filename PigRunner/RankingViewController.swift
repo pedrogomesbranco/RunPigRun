@@ -13,6 +13,7 @@ class RankingViewController : UIViewController, UITableViewDelegate, UITableView
     
     var fbConnection: FacebookConnection!
     var menuScene: MenuScene!
+    let myActivityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
     @IBOutlet weak var returnButton: UIButton!
     @IBOutlet weak var userTableView: UITableView!
     
@@ -21,7 +22,10 @@ class RankingViewController : UIViewController, UITableViewDelegate, UITableView
         self.userTableView.delegate = self
         self.userTableView.dataSource = self
         self.userTableView.separatorStyle = .none
-        
+        self.myActivityIndicator.center = view.center
+        self.myActivityIndicator.hidesWhenStopped = false
+        self.myActivityIndicator.startAnimating()
+        view.addSubview(myActivityIndicator)
         print(self.fbConnection.loggedUser)
     }
     
@@ -56,6 +60,7 @@ class RankingViewController : UIViewController, UITableViewDelegate, UITableView
                 if(self.fbConnection.totalPlayers == self.fbConnection.friendsPlayingGame.count){
                     self.sortByScore()
                     self.userTableView.reloadData()
+                    self.myActivityIndicator.removeFromSuperview()
                 }
             })
         }
