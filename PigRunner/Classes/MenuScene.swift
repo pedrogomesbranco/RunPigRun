@@ -222,13 +222,15 @@ class MenuScene: SKScene {
             let vc = self.view?.window?.rootViewController!
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let tutorialVC = storyboard.instantiateViewController(withIdentifier: "HelpTutorialVC") as! HelpTut
-//            tutorialVC.menuScene = self
             vc?.present(tutorialVC, animated: true, completion: nil)
         }
             
-        else {
+        else if self.playButton.contains(touchLocation){
             self.whiteBg.removeFromParent()
             self.loadGameScene()
+        }
+        else {
+            GameAudio.sharedInstance.soundPurchase
         }
     }
     
