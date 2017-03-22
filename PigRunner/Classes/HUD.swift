@@ -120,7 +120,7 @@ class HUD: SKNode {
     self.coinsCollected.isHidden = true
     self.coinsLabel.isHidden = true
     self.pauseButton.isHidden = true
-    self.lifesLabel.isHidden = true
+//    self.lifesLabel.isHidden = true
     self.lifeNode.isHidden = true
   }
   

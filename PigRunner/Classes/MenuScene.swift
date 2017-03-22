@@ -48,15 +48,12 @@ class MenuScene: SKScene {
     }
     
     override func didMove(to view: SKView) {
-        //        fbConnection.getUserScore(completion: {})
         if(!isLoaded){
             self.setupMenuScene()
             isLoaded = true
         }
         resetActives()
         GameAudio.sharedInstance.playBackgroundMusic(filename: Music.BackgroundMusic)
-//        print(UserDefaults.standard.value(forKey: "high"))
-//        print(GameData.sharedInstance.score)
     }
     
     private func resetActives(){
@@ -191,7 +188,7 @@ class MenuScene: SKScene {
                     self.rankingButton.size.height = 280
                     self.rankingButton.size.width = 240
                     self.addChild(self.rankingButton)
-                    
+
                     self.fbConnection.requestWritePermissionFromViewController(viewController: self.viewController, completion: {
                         self.fbConnection.getUserScore(completion: {
                             var localScore = UserDefaults.standard.value(forKey: "high") as! Int

@@ -110,16 +110,13 @@ class Player: SKSpriteNode {
     func jump() {
         if jumpsLeft > 0 {
             
-            let delayInSeconds = 0.3
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delayInSeconds) {
-            }
+
             
             //first jump
             if(jumpsLeft == 2) {
                 if soundEffectPrefs {
                     self.run(GameAudio.sharedInstance.soundJump)
                 }
-                
                 setPlayerVelocity(to: 1200)
                 jumpsLeft -= 1
                 isRunning = false
@@ -143,9 +140,7 @@ class Player: SKSpriteNode {
     
     func glide() {
         if jumpsLeft == 0 {
-            
             self.run(GameAudio.sharedInstance.soundJump)
-            self.removeAllActions()
             changeAnimation(newTextures: runTextures, timePerFrame: 0.08, withKey: "run", restore: false, repeatCount: nil)
             self.alpha = 1.0
             self.physicsBody!.velocity.dy = self.physicsBody!.velocity.dy/1.15
@@ -154,7 +149,6 @@ class Player: SKSpriteNode {
     
     func land() {
         if isAlive {
-            
             jumpsLeft = 2
             isRunning = true
             isGliding = false
@@ -265,8 +259,6 @@ class Player: SKSpriteNode {
                     self.run(GameAudio.sharedInstance.soundExtraLife)
                 }
             }
-            break
-            
         default:
             break
         }
@@ -274,7 +266,6 @@ class Player: SKSpriteNode {
     
     private func makePlayerInvencible() {
         self.isInvencible = true
-        let collisions = self.physicsBody?.collisionBitMask
         self.physicsBody?.collisionBitMask = ColliderType.Ground
         self.land()
         
@@ -284,7 +275,13 @@ class Player: SKSpriteNode {
         
         self.run(blinkForTime, completion: {
             self.isInvencible = false
-            self.physicsBody?.collisionBitMask = collisions!
+            self.physicsBody?.collisionBitMask = ColliderType.Ground
+                | ColliderType.KnifesBox
+                | ColliderType.NetTrap
+                | ColliderType.Hydrant
+                | ColliderType.BearTrap
+                | ColliderType.Life
+                | ColliderType.Steamroller
         })
     }
 }

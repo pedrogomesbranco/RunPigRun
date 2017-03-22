@@ -163,7 +163,6 @@ class GameScene: SKScene {
             //      self.hud.updateCoinsCollected(GameData.sharedInstance.coins)
             self.hud.updateScore(score: GameData.sharedInstance.score)
             self.hud.updateLife(life: player.life)
-            print(player.life)
             if self.player.isGliding {
                 self.player.glide()
             }
@@ -177,7 +176,6 @@ class GameScene: SKScene {
             self.gamePaused = true
         }
         speedSet()
-        currentScene = self
     }
     
     func speedSet(){
@@ -290,7 +288,6 @@ class GameScene: SKScene {
     }
     
     private func checkDeath() {
-        print(player.life)
         if player.life <= 0 {
             if !gamePaused {
                 player.die()
